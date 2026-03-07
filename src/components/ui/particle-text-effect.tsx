@@ -106,6 +106,9 @@ export const ParticleTextEffect = forwardRef<ParticleTextHandle, ParticleTextEff
     const animationRef = useRef<number>(0)
     const particlesRef = useRef<Particle[]>([])
     const containerRef = useRef<HTMLDivElement>(null)
+    const currentLinesRef = useRef<string[]>([])
+    const solidifyStartRef = useRef<number | null>(null)
+    const solidifyProgressRef = useRef(0)
 
     const pixelSteps = 5
 
@@ -198,11 +201,16 @@ export const ParticleTextEffect = forwardRef<ParticleTextHandle, ParticleTextEff
       killAll: () => {
         const canvas = canvasRef.current
         if (!canvas) return
+        solidifyProgressRef.current = 0
+        solidifyStartRef.current = null
         particlesRef.current.forEach((p) => p.kill(canvas.width, canvas.height))
       },
       showLines: (newLines: string[]) => {
         const canvas = canvasRef.current
         if (!canvas) return
+        currentLinesRef.current = newLines
+        solidifyProgressRef.current = 0
+        solidifyStartRef.current = performance.now() + 2500
         renderLines(newLines, canvas)
       },
     }))
@@ -224,9 +232,43 @@ export const ParticleTextEffect = forwardRef<ParticleTextHandle, ParticleTextEff
       resize()
       window.addEventListener("resize", resize)
 
+      const drawSolidText = (ctx: CanvasRenderingContext2D) => {
+        const textLines = currentLinesRef.current
+        if (textLines.length === 0 || solidifyProgressRef.current <= 0) return
+
+        const scaledFontSize = fontSize * (canvas.width / 1000)
+        const scaledLineHeight = scaledFontSize * lineHeight
+        const totalHeight = textLines.length * scaledLineHeight
+        const startY = (canvas.height - totalHeight) / 2 + scaledLineHeight / 2
+
+        ctx.save()
+        ctx.globalAlpha = solidifyProgressRef.current
+        ctx.fillStyle = "white"
+        ctx.textAlign = "center"
+        ctx.textBaseline = "middle"
+
+        textLines.forEach((line, i) => {
+          const isFirst = i === 0
+          ctx.font = `${isFirst ? 'bold' : '600'} ${isFirst ? scaledFontSize * 1.3 : scaledFontSize}px system-ui, -apple-system, sans-serif`
+          ctx.fillText(line, canvas.width / 2, startY + i * scaledLineHeight)
+        })
+        ctx.restore()
+      }
+
       const animate = () => {
         const ctx = canvas.getContext("2d")!
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        // Update solidify progress
+        if (solidifyStartRef.current !== null) {
+          const elapsed = performance.now() - solidifyStartRef.current
+          if (elapsed > 0) {
+            solidifyProgressRef.current = Math.min(elapsed / 1500, 1)
+          }
+        }
+
+        // Draw solid text underneath particles (fills gaps gradually)
+        drawSolidText(ctx)
 
         const particles = particlesRef.current
         for (let i = particles.length - 1; i >= 0; i--) {

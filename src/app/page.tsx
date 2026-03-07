@@ -66,7 +66,6 @@ export default function Home() {
     }, 1500)
     const t2 = setTimeout(() => {
       setPhase(2)
-      particleRef.current?.showLines(["Vion", "Innovation", "Studio", "▸ Start Now"])
     }, 3000)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [modelLoaded])
@@ -80,7 +79,7 @@ export default function Home() {
     const y = rect.top + rect.height / 2
     simulateMouseOnSpline(x, y)
 
-    // Destroy all particles immediately
+    // Destroy all particles
     particleRef.current?.killAll()
 
     setTransitioning(true)
@@ -287,7 +286,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Particle Text - centered on mobile, left on desktop */}
+      {/* Particle Text - solidifies naturally on canvas */}
       <ParticleTextEffect
         ref={particleRef}
         lines={[]}
@@ -296,13 +295,18 @@ export default function Home() {
         className="absolute inset-0 md:left-0 md:top-0 md:w-[40%] md:h-full z-10 pointer-events-none"
       />
 
-      {/* Invisible clickable button over "Start Now" particle area */}
+      {/* Start Now button */}
       {phase >= 2 && !transitioning && (
-        <div className="absolute inset-0 md:left-0 md:top-0 md:w-[40%] md:h-full z-20 flex items-end md:items-end justify-center pb-[18%] md:pb-[12%] pointer-events-none">
-          <button
+        <div className="absolute inset-0 md:left-0 md:top-0 md:w-[40%] md:h-full z-20 flex items-end justify-center pb-[18%] md:pb-[12%]">
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             onClick={handleStartNow}
-            className="pointer-events-auto px-20 py-6 cursor-none bg-transparent"
-          />
+            className="px-10 py-3.5 bg-white text-black font-semibold text-lg rounded-lg border-2 border-white active:bg-black active:text-white active:border-white hover:bg-black hover:text-white hover:border-white transition-all duration-200 cursor-none"
+          >
+            Start Now
+          </motion.button>
         </div>
       )}
 
