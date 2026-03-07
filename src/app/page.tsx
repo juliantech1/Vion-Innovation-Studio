@@ -125,7 +125,7 @@ export default function Home() {
       </div>
 
       {/* Text & Button - bottom center on mobile, left side on desktop */}
-      <div className="absolute inset-0 md:left-0 md:top-0 md:bottom-auto md:w-[35%] z-10 flex flex-col items-center md:items-end justify-center md:justify-center md:pr-4 pointer-events-none pt-[10vh] md:pt-0">
+      <div className="absolute inset-0 md:left-0 md:top-0 md:bottom-auto md:h-full md:w-[35%] z-10 flex flex-col items-center md:items-end justify-center md:justify-end md:pb-[15vh] md:pr-4 pointer-events-none pt-[10vh] md:pt-0">
         {phase >= 1 && (
           <div className="flex flex-col gap-1 md:gap-2 items-center md:items-start">
             <motion.h1
