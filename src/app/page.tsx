@@ -4,6 +4,7 @@ import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
 import { FallingPattern } from "@/components/ui/falling-pattern"
 import { DottedSurface } from "@/components/ui/dotted-surface"
+import { ParticleTextEffect, type ParticleTextHandle } from "@/components/ui/particle-text-effect"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import { useEffect, useState, useCallback, useRef } from "react"
 
@@ -15,6 +16,7 @@ const fadeInLeft = (delay: number) => ({
 
 export default function Home() {
   const splineContainerRef = useRef<HTMLDivElement>(null)
+  const particleRef = useRef<ParticleTextHandle>(null)
   const [modelLoaded, setModelLoaded] = useState(false)
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
@@ -58,8 +60,14 @@ export default function Home() {
 
   useEffect(() => {
     if (!modelLoaded) return
-    const t1 = setTimeout(() => setPhase(1), 1500)
-    const t2 = setTimeout(() => setPhase(2), 3000)
+    const t1 = setTimeout(() => {
+      setPhase(1)
+      particleRef.current?.showLines(["Vion", "Innovation", "Studio"])
+    }, 1500)
+    const t2 = setTimeout(() => {
+      setPhase(2)
+      particleRef.current?.showLines(["Vion", "Innovation", "Studio", "▸ Start Now"])
+    }, 3000)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [modelLoaded])
 
@@ -71,6 +79,9 @@ export default function Home() {
     const x = rect.left + rect.width / 2
     const y = rect.top + rect.height / 2
     simulateMouseOnSpline(x, y)
+
+    // Destroy all particles immediately
+    particleRef.current?.killAll()
 
     setTransitioning(true)
     setTimeout(() => setBgPhase(1), 800)
@@ -276,47 +287,24 @@ export default function Home() {
         />
       </div>
 
-      {/* Text & Button - bottom center on mobile, left side on desktop */}
-      <div className="absolute inset-0 md:left-0 md:top-0 md:bottom-auto md:h-full md:w-[35%] z-10 flex flex-col items-center md:items-end justify-center md:justify-end md:pb-[15vh] md:pr-4 pointer-events-none pt-[10vh] md:pt-0">
-        {phase >= 1 && (
-          <div className="flex flex-col gap-1 md:gap-2 items-center md:items-start">
-            <motion.h1
-              {...fadeInLeft(0)}
-              className="text-5xl md:text-9xl font-bold text-white tracking-tight"
-            >
-              Vion
-            </motion.h1>
-            <motion.h2
-              {...fadeInLeft(0.6)}
-              className="text-3xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
-            >
-              Innovation
-            </motion.h2>
-            <motion.h2
-              {...fadeInLeft(1.2)}
-              className="text-3xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
-            >
-              Studio
-            </motion.h2>
-          </div>
-        )}
+      {/* Particle Text - centered on mobile, left on desktop */}
+      <ParticleTextEffect
+        ref={particleRef}
+        lines={[]}
+        fontSize={70}
+        lineHeight={1.3}
+        className="absolute inset-0 md:left-0 md:top-0 md:w-[40%] md:h-full z-10 pointer-events-none"
+      />
 
-        {phase >= 2 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mt-6 md:mt-8 pointer-events-auto"
-          >
-            <button
-              onClick={handleStartNow}
-              className="px-10 py-4 md:px-16 md:py-5 rounded-full bg-white text-black font-bold text-xl md:text-2xl border-2 border-transparent hover:bg-black hover:text-white hover:border-white transition-all duration-300 cursor-none"
-            >
-              Start Now
-            </button>
-          </motion.div>
-        )}
-      </div>
+      {/* Invisible clickable button over "Start Now" particle area */}
+      {phase >= 2 && !transitioning && (
+        <div className="absolute inset-0 md:left-0 md:top-0 md:w-[40%] md:h-full z-20 flex items-end md:items-end justify-center pb-[18%] md:pb-[12%] pointer-events-none">
+          <button
+            onClick={handleStartNow}
+            className="pointer-events-auto px-20 py-6 cursor-none bg-transparent"
+          />
+        </div>
+      )}
 
       {/* Falling pattern transition overlay */}
       {transitioning && (
