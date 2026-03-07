@@ -79,7 +79,7 @@ export default function Home() {
 
   if (showWhite) {
     return (
-      <div className="h-screen w-full bg-white cursor-none">
+      <div className="min-h-screen w-full bg-white cursor-none">
         {/* Custom cursor */}
         <motion.div
           className="fixed top-0 left-0 z-50 pointer-events-none"
@@ -90,6 +90,107 @@ export default function Home() {
             <div className="w-2.5 h-2.5 rounded-full bg-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(0,0,0,0.4),0_0_20px_rgba(0,0,0,0.2)]" />
           </div>
         </motion.div>
+
+        <div className="max-w-[1140px] mx-auto px-6">
+
+          {/* Section 1 — Value Statement */}
+          <section className="pt-40 pb-32 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" as const }}
+              className="text-2xl md:text-3xl font-medium text-black tracking-[-0.02em] leading-tight"
+            >
+              We design systems that scale businesses.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" as const }}
+              className="mt-5 text-sm md:text-base text-neutral-500 tracking-[-0.01em]"
+            >
+              Custom software, automation and internal tools built for performance.
+            </motion.p>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-[#EAEAEA]" />
+
+          {/* Section 2 — Service Blocks */}
+          <section className="py-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { title: "Custom Web & Mobile Apps", desc: "Performant applications tailored to your workflow." },
+                { title: "CRM & Internal Systems", desc: "Centralized tools that eliminate operational friction." },
+                { title: "AI & Automation", desc: "Intelligent processes that reduce manual work." },
+                { title: "Business Dashboards", desc: "Real-time visibility into the metrics that matter." },
+              ].map((service, i) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * i, ease: "easeOut" as const }}
+                  className="border border-[#EAEAEA] rounded-[10px] p-7 hover:border-neutral-400 transition-colors duration-200 cursor-none"
+                >
+                  <h3 className="text-sm font-semibold text-black tracking-[-0.01em]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
+                    {service.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-[#EAEAEA]" />
+
+          {/* Section 3 — Process Timeline */}
+          <section className="py-32">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-0">
+              {[
+                { num: "01", label: "Strategy" },
+                { num: "02", label: "Build" },
+                { num: "03", label: "Scale" },
+              ].map((step, i) => (
+                <motion.div
+                  key={step.num}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.15 * i, ease: "easeOut" as const }}
+                  className="flex items-center gap-4 flex-1 w-full md:w-auto"
+                >
+                  <span className="text-xs font-mono text-neutral-400">{step.num}</span>
+                  <span className="text-sm font-medium text-black tracking-[-0.01em]">{step.label}</span>
+                  {i < 2 && (
+                    <div className="hidden md:block flex-1 h-px bg-[#EAEAEA] ml-6" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-[#EAEAEA]" />
+
+          {/* Section 4 — CTA */}
+          <section className="py-32 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
+            >
+              <button className="px-10 py-4 bg-black text-white text-sm font-medium rounded-lg hover:bg-white hover:text-black border border-black transition-all duration-200 cursor-none">
+                Start Your Project
+              </button>
+              <p className="mt-5 text-xs text-neutral-400 tracking-[-0.01em]">
+                Let&apos;s build something scalable.
+              </p>
+            </motion.div>
+          </section>
+
+        </div>
       </div>
     )
   }
