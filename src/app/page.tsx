@@ -19,6 +19,7 @@ export default function Home() {
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
   const [showWhite, setShowWhite] = useState(false)
+  const [lang, setLang] = useState<'en' | 'es'>('en')
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const springX = useSpring(cursorX, { damping: 25, stiffness: 300 })
@@ -72,10 +73,49 @@ export default function Home() {
     simulateMouseOnSpline(x, y)
 
     setTransitioning(true)
-    setTimeout(() => setBgPhase(1), 2000)
-    setTimeout(() => setBgPhase(2), 5000)
-    setTimeout(() => setShowWhite(true), 6000)
+    setTimeout(() => setBgPhase(1), 800)
+    setTimeout(() => setBgPhase(2), 2500)
+    setTimeout(() => setShowWhite(true), 3000)
   }
+
+  const t = {
+    en: {
+      statement: "We design systems that scale businesses.",
+      subtitle: "Custom software, automation and internal tools built for performance.",
+      services: [
+        { title: "Custom Web & Mobile Apps", desc: "Performant applications tailored to your workflow." },
+        { title: "CRM & Internal Systems", desc: "Centralized tools that eliminate operational friction." },
+        { title: "AI & Automation", desc: "Intelligent processes that reduce manual work." },
+        { title: "Business Dashboards", desc: "Real-time visibility into the metrics that matter." },
+      ],
+      steps: [
+        { num: "01", label: "Strategy" },
+        { num: "02", label: "Build" },
+        { num: "03", label: "Scale" },
+      ],
+      cta: "Start Your Project",
+      ctaSub: "Let's build something scalable.",
+    },
+    es: {
+      statement: "Diseñamos sistemas que escalan negocios.",
+      subtitle: "Software a medida, automatización y herramientas internas construidas para rendimiento.",
+      services: [
+        { title: "Apps Web & Móviles", desc: "Aplicaciones de alto rendimiento adaptadas a tu flujo de trabajo." },
+        { title: "CRM & Sistemas Internos", desc: "Herramientas centralizadas que eliminan la fricción operativa." },
+        { title: "IA & Automatización", desc: "Procesos inteligentes que reducen el trabajo manual." },
+        { title: "Dashboards de Negocio", desc: "Visibilidad en tiempo real de las métricas que importan." },
+      ],
+      steps: [
+        { num: "01", label: "Estrategia" },
+        { num: "02", label: "Construir" },
+        { num: "03", label: "Escalar" },
+      ],
+      cta: "Inicia Tu Proyecto",
+      ctaSub: "Construyamos algo escalable.",
+    },
+  }
+
+  const c = t[lang]
 
   if (showWhite) {
     return (
@@ -91,6 +131,26 @@ export default function Home() {
           </div>
         </motion.div>
 
+        {/* Language Toggle */}
+        <div className="fixed top-6 right-6 z-40 flex items-center gap-3">
+          <span className="text-xs font-medium text-neutral-400">EN</span>
+          <button
+            onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
+            className={`relative w-12 h-6 rounded-full border transition-colors duration-300 cursor-none ${
+              lang === 'en' ? 'bg-white border-black' : 'bg-black border-black'
+            }`}
+          >
+            <div
+              className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-all duration-300 ${
+                lang === 'en'
+                  ? 'left-1 bg-black'
+                  : 'left-[calc(100%-20px)] bg-white'
+              }`}
+            />
+          </button>
+          <span className="text-xs font-medium text-neutral-400">ES</span>
+        </div>
+
         <div className="max-w-[1140px] mx-auto px-6">
 
           {/* Section 1 — Value Statement */}
@@ -98,18 +158,18 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" as const }}
+              transition={{ duration: 0.4, ease: "easeOut" as const }}
               className="text-2xl md:text-3xl font-medium text-black tracking-[-0.02em] leading-tight"
             >
-              We design systems that scale businesses.
+              {c.statement}
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" as const }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" as const }}
               className="mt-5 text-sm md:text-base text-neutral-500 tracking-[-0.01em]"
             >
-              Custom software, automation and internal tools built for performance.
+              {c.subtitle}
             </motion.p>
           </section>
 
@@ -119,17 +179,12 @@ export default function Home() {
           {/* Section 2 — Service Blocks */}
           <section className="py-32">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { title: "Custom Web & Mobile Apps", desc: "Performant applications tailored to your workflow." },
-                { title: "CRM & Internal Systems", desc: "Centralized tools that eliminate operational friction." },
-                { title: "AI & Automation", desc: "Intelligent processes that reduce manual work." },
-                { title: "Business Dashboards", desc: "Real-time visibility into the metrics that matter." },
-              ].map((service, i) => (
+              {c.services.map((service, i) => (
                 <motion.div
-                  key={service.title}
+                  key={i}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * i, ease: "easeOut" as const }}
+                  transition={{ duration: 0.4, delay: 0.05 * i, ease: "easeOut" as const }}
                   className="border border-[#EAEAEA] rounded-[10px] p-7 hover:border-neutral-400 transition-colors duration-200 cursor-none"
                 >
                   <h3 className="text-sm font-semibold text-black tracking-[-0.01em]">
@@ -149,16 +204,12 @@ export default function Home() {
           {/* Section 3 — Process Timeline */}
           <section className="py-32">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-0">
-              {[
-                { num: "01", label: "Strategy" },
-                { num: "02", label: "Build" },
-                { num: "03", label: "Scale" },
-              ].map((step, i) => (
+              {c.steps.map((step, i) => (
                 <motion.div
                   key={step.num}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.15 * i, ease: "easeOut" as const }}
+                  transition={{ duration: 0.4, delay: 0.1 * i, ease: "easeOut" as const }}
                   className="flex items-center gap-4 flex-1 w-full md:w-auto"
                 >
                   <span className="text-xs font-mono text-neutral-400">{step.num}</span>
@@ -179,13 +230,13 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
+              transition={{ duration: 0.4, delay: 0.05, ease: "easeOut" as const }}
             >
               <button className="px-10 py-4 bg-black text-white text-sm font-medium rounded-lg hover:bg-white hover:text-black border border-black transition-all duration-200 cursor-none">
-                Start Your Project
+                {c.cta}
               </button>
               <p className="mt-5 text-xs text-neutral-400 tracking-[-0.01em]">
-                Let&apos;s build something scalable.
+                {c.ctaSub}
               </p>
             </motion.div>
           </section>
@@ -275,7 +326,7 @@ export default function Home() {
             className="fixed inset-0 z-30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" as const }}
+            transition={{ duration: 0.8, ease: "easeInOut" as const }}
           >
             <FallingPattern
               className="h-full w-full"
@@ -292,7 +343,7 @@ export default function Home() {
             className="fixed inset-0 z-40 bg-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: bgPhase >= 1 ? 1 : 0 }}
-            transition={{ duration: 3, ease: "easeInOut" as const }}
+            transition={{ duration: 1.5, ease: "easeInOut" as const }}
           />
         </>
       )}
