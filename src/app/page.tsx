@@ -14,6 +14,7 @@ const fadeInLeft = (delay: number) => ({
 })
 
 export default function Home() {
+  const [modelLoaded, setModelLoaded] = useState(false)
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
   const [showWhite, setShowWhite] = useState(false)
@@ -33,10 +34,11 @@ export default function Home() {
   }, [handleMouseMove])
 
   useEffect(() => {
+    if (!modelLoaded) return
     const t1 = setTimeout(() => setPhase(1), 1500)
     const t2 = setTimeout(() => setPhase(2), 3000)
     return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
+  }, [modelLoaded])
 
   const [bgPhase, setBgPhase] = useState(0) // 0: black, 1: fading to white, 2: white
 
@@ -92,6 +94,7 @@ export default function Home() {
         <SplineScene
           scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
           className="w-full h-full"
+          onLoad={() => setModelLoaded(true)}
         />
       </div>
 
