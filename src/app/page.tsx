@@ -87,33 +87,33 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* 3D Model */}
-      <div className="absolute inset-0 left-[25%]">
+      {/* 3D Model - centered on mobile, right on desktop */}
+      <div className="absolute inset-0 md:left-[25%]">
         <SplineScene
           scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
           className="w-full h-full"
         />
       </div>
 
-      {/* Text & Button */}
-      <div className="absolute left-0 top-0 h-full w-[35%] z-10 flex flex-col items-end justify-center pr-4 pointer-events-none">
+      {/* Text & Button - bottom center on mobile, left side on desktop */}
+      <div className="absolute left-0 bottom-0 w-full pb-16 md:pb-0 md:bottom-auto md:top-0 md:h-full md:w-[35%] z-10 flex flex-col items-center md:items-end justify-end md:justify-center md:pr-4 pointer-events-none">
         {phase >= 1 && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 md:gap-2 items-center md:items-start">
             <motion.h1
               {...fadeInLeft(0)}
-              className="text-7xl md:text-9xl font-bold text-white tracking-tight"
+              className="text-5xl md:text-9xl font-bold text-white tracking-tight"
             >
               Vion
             </motion.h1>
             <motion.h2
               {...fadeInLeft(0.6)}
-              className="text-5xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
+              className="text-3xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
             >
               Innovation
             </motion.h2>
             <motion.h2
               {...fadeInLeft(1.2)}
-              className="text-5xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
+              className="text-3xl md:text-7xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500"
             >
               Studio
             </motion.h2>
@@ -125,11 +125,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mt-8 pointer-events-auto"
+            className="mt-6 md:mt-8 pointer-events-auto"
           >
             <button
               onClick={handleStartNow}
-              className="px-16 py-5 rounded-full bg-white text-black font-bold text-2xl border-2 border-transparent hover:bg-black hover:text-white hover:border-white transition-all duration-300 cursor-none"
+              className="px-10 py-4 md:px-16 md:py-5 rounded-full bg-white text-black font-bold text-xl md:text-2xl border-2 border-transparent hover:bg-black hover:text-white hover:border-white transition-all duration-300 cursor-none"
             >
               Start Now
             </button>
