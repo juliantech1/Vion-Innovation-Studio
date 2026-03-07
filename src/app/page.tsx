@@ -5,7 +5,7 @@ import { Spotlight } from "@/components/ui/spotlight"
 import { FallingPattern } from "@/components/ui/falling-pattern"
 import { DottedSurface } from "@/components/ui/dotted-surface"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 
 const fadeInLeft = (delay: number) => ({
   initial: { opacity: 0, x: -40 },
@@ -14,6 +14,7 @@ const fadeInLeft = (delay: number) => ({
 })
 
 export default function Home() {
+  const splineContainerRef = useRef<HTMLDivElement>(null)
   const [modelLoaded, setModelLoaded] = useState(false)
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
@@ -28,10 +29,31 @@ export default function Home() {
     cursorY.set(e.clientY)
   }, [cursorX, cursorY])
 
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    const touch = e.touches[0]
+    cursorX.set(touch.clientX)
+    cursorY.set(touch.clientY)
+  }, [cursorX, cursorY])
+
+  const simulateMouseOnSpline = useCallback((x: number, y: number) => {
+    const canvas = splineContainerRef.current?.querySelector('canvas')
+    if (!canvas) return
+    const event = new MouseEvent('mousemove', {
+      clientX: x,
+      clientY: y,
+      bubbles: true,
+    })
+    canvas.dispatchEvent(event)
+  }, [])
+
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [handleMouseMove])
+    window.addEventListener("touchmove", handleTouchMove)
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("touchmove", handleTouchMove)
+    }
+  }, [handleMouseMove, handleTouchMove])
 
   useEffect(() => {
     if (!modelLoaded) return
@@ -42,11 +64,15 @@ export default function Home() {
 
   const [bgPhase, setBgPhase] = useState(0) // 0: black, 1: fading to white, 2: white
 
-  const handleStartNow = () => {
+  const handleStartNow = (e: React.MouseEvent | React.TouchEvent) => {
+    // Get button position to make robot look toward it
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+    const x = rect.left + rect.width / 2
+    const y = rect.top + rect.height / 2
+    simulateMouseOnSpline(x, y)
+
     setTransitioning(true)
-    // Phase 1: show falling pattern on black for 2s
     setTimeout(() => setBgPhase(1), 2000)
-    // Phase 2: fully white, transition complete
     setTimeout(() => setBgPhase(2), 5000)
     setTimeout(() => setShowWhite(true), 6000)
   }
@@ -90,7 +116,7 @@ export default function Home() {
       </motion.div>
 
       {/* 3D Model - centered on mobile, right on desktop */}
-      <div className="absolute inset-0 md:left-[25%]">
+      <div ref={splineContainerRef} className="absolute inset-0 md:left-[25%]">
         <SplineScene
           scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
           className="w-full h-full"

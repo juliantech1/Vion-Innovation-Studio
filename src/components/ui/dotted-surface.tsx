@@ -26,19 +26,20 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
         const scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0x000000, 2000, 10000);
 
+        const isMobile = window.innerWidth < 768;
         const camera = new THREE.PerspectiveCamera(
-            60,
+            isMobile ? 75 : 60,
             window.innerWidth / window.innerHeight,
             1,
             10000,
         );
-        camera.position.set(0, 355, 1220);
+        camera.position.set(0, isMobile ? 500 : 355, isMobile ? 900 : 1220);
 
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
             antialias: true,
         });
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x000000, 0);
 
