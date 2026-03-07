@@ -3,6 +3,7 @@
 import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
 import { FallingPattern } from "@/components/ui/falling-pattern"
+import { DottedSurface } from "@/components/ui/dotted-surface"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import { useEffect, useState, useCallback } from "react"
 
@@ -67,6 +68,9 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full bg-black relative overflow-hidden cursor-none">
+      {/* Dotted surface background */}
+      <DottedSurface className="z-0" />
+
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
