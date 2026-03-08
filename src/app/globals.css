@@ -148,3 +148,16 @@
     @apply font-sans;
   }
 }
+
+/* Hide Spline watermark */
+spline-viewer::part(logo),
+spline-viewer #logo,
+canvas + div[style*="position: absolute"][style*="right"],
+canvas + a,
+div[data-spline] + div:has(a[href*="spline"]),
+div[style*="z-index"]:has(> a[href*="spline"]) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

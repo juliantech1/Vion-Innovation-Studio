@@ -6,6 +6,10 @@ import { FallingPattern } from "@/components/ui/falling-pattern"
 import { DottedSurface } from "@/components/ui/dotted-surface"
 import { ParticleTextEffect, type ParticleTextHandle } from "@/components/ui/particle-text-effect"
 import { ContainerScroll } from "@/components/ui/container-scroll-animation"
+import Spline from '@splinetool/react-spline'
+import { Header } from "@/components/ui/header-2"
+import { PinContainer } from "@/components/ui/3d-pin"
+import { StickyFooter } from "@/components/sticky-footer"
 import Image from "next/image"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import { useEffect, useState, useCallback, useRef } from "react"
@@ -22,7 +26,7 @@ export default function Home() {
   const [modelLoaded, setModelLoaded] = useState(false)
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
-  const [showWhite, setShowWhite] = useState(false)
+  const [showMain, setShowMain] = useState(false)
   const [lang, setLang] = useState<'en' | 'es'>('en')
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
@@ -85,97 +89,68 @@ export default function Home() {
     particleRef.current?.killAll()
 
     setTransitioning(true)
-    setTimeout(() => setBgPhase(1), 800)
-    setTimeout(() => setBgPhase(2), 2500)
-    setTimeout(() => setShowWhite(true), 3000)
+    setTimeout(() => setBgPhase(1), 300)
+    setTimeout(() => setBgPhase(2), 900)
+    setTimeout(() => setShowMain(true), 1200)
   }
 
   const t = {
     en: {
       statement: "We design systems that scale businesses.",
       subtitle: "Custom software, automation and internal tools built for performance.",
-      services: [
-        { title: "Custom Web & Mobile Apps", desc: "Performant applications tailored to your workflow." },
-        { title: "CRM & Internal Systems", desc: "Centralized tools that eliminate operational friction." },
-        { title: "AI & Automation", desc: "Intelligent processes that reduce manual work." },
-        { title: "Business Dashboards", desc: "Real-time visibility into the metrics that matter." },
-      ],
-      steps: [
-        { num: "01", label: "Strategy" },
-        { num: "02", label: "Build" },
-        { num: "03", label: "Scale" },
-      ],
       scrollTitle: "Your Business Deserves",
       scrollHighlight: "Its Own Software",
-      cta: "Start Your Project",
-      ctaSub: "Let's build something scalable.",
     },
     es: {
       statement: "Diseñamos sistemas que escalan negocios.",
       subtitle: "Software a medida, automatización y herramientas internas construidas para rendimiento.",
-      services: [
-        { title: "Apps Web & Móviles", desc: "Aplicaciones de alto rendimiento adaptadas a tu flujo de trabajo." },
-        { title: "CRM & Sistemas Internos", desc: "Herramientas centralizadas que eliminan la fricción operativa." },
-        { title: "IA & Automatización", desc: "Procesos inteligentes que reducen el trabajo manual." },
-        { title: "Dashboards de Negocio", desc: "Visibilidad en tiempo real de las métricas que importan." },
-      ],
-      steps: [
-        { num: "01", label: "Estrategia" },
-        { num: "02", label: "Construir" },
-        { num: "03", label: "Escalar" },
-      ],
       scrollTitle: "Tu Negocio Merece",
       scrollHighlight: "Su Propio Software",
-      cta: "Inicia Tu Proyecto",
-      ctaSub: "Construyamos algo escalable.",
     },
   }
 
   const c = t[lang]
 
-  if (showWhite) {
+  if (showMain) {
     return (
-      <div className="min-h-screen w-full bg-white cursor-none">
+      <div className="min-h-screen w-full bg-black cursor-none relative">
+        {/* 3D Spline Boxes Background — pointer-events enabled for mouse interaction */}
+        <div className="fixed inset-0 z-0">
+          <Spline
+            style={{
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'auto',
+            }}
+            scene="https://prod.spline.design/dJqTIQ-tE3ULUPMi/scene.splinecode"
+          />
+        </div>
+
         {/* Custom cursor */}
         <motion.div
-          className="fixed top-0 left-0 z-50 pointer-events-none"
+          className="fixed top-0 left-0 z-[60] pointer-events-none"
           style={{ x: springX, y: springY }}
         >
           <div className="relative -translate-x-1/2 -translate-y-1/2">
-            <div className="w-10 h-10 rounded-full border border-black/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
-            <div className="w-2.5 h-2.5 rounded-full bg-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(0,0,0,0.4),0_0_20px_rgba(0,0,0,0.2)]" />
+            <div className="w-10 h-10 rounded-full border border-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+            <div className="w-2.5 h-2.5 rounded-full bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.4)]" />
           </div>
         </motion.div>
 
-        {/* Language Toggle */}
-        <div className="fixed top-6 right-6 z-40 flex items-center gap-3">
-          <span className="text-xs font-medium text-neutral-400">EN</span>
-          <button
-            onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
-            className={`relative w-12 h-6 rounded-full border transition-colors duration-300 cursor-none ${
-              lang === 'en' ? 'bg-white border-black' : 'bg-black border-black'
-            }`}
-          >
-            <div
-              className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-all duration-300 ${
-                lang === 'en'
-                  ? 'left-1 bg-black'
-                  : 'left-[calc(100%-20px)] bg-white'
-              }`}
-            />
-          </button>
-          <span className="text-xs font-medium text-neutral-400">ES</span>
+        {/* Navigation Header — fixed so it's independent of scroll containers */}
+        <div className="fixed top-0 left-0 right-0 z-40 pointer-events-auto">
+          <Header lang={lang} onLangChange={(l) => setLang(l)} />
         </div>
 
-        <div className="max-w-[1140px] mx-auto px-6">
+        <div className="max-w-[1140px] mx-auto px-6 relative z-10 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto">
 
           {/* Section 1 — Value Statement */}
-          <section className="pt-40 pb-32 text-center">
+          <section className="pt-28 pb-32 text-center relative">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" as const }}
-              className="text-2xl md:text-3xl font-medium text-black tracking-[-0.02em] leading-tight"
+              className="text-2xl md:text-3xl font-medium text-white tracking-[-0.02em] leading-tight"
             >
               {c.statement}
             </motion.p>
@@ -183,7 +158,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" as const }}
-              className="mt-5 text-sm md:text-base text-neutral-500 tracking-[-0.01em]"
+              className="mt-5 text-sm md:text-base text-neutral-400 tracking-[-0.01em]"
             >
               {c.subtitle}
             </motion.p>
@@ -192,7 +167,7 @@ export default function Home() {
           {/* Section — Scroll Animation Showcase */}
           <ContainerScroll
             titleComponent={
-              <h2 className="text-4xl font-semibold text-black">
+              <h2 className="text-4xl font-semibold text-white">
                 {c.scrollTitle} <br />
                 <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                   {c.scrollHighlight}
@@ -208,74 +183,77 @@ export default function Home() {
             />
           </ContainerScroll>
 
-          {/* Divider */}
-          <div className="w-full h-px bg-[#EAEAEA]" />
-
-          {/* Section 2 — Service Blocks */}
-          <section className="py-32">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {c.services.map((service, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.05 * i, ease: "easeOut" as const }}
-                  className="border border-[#EAEAEA] rounded-[10px] p-7 hover:border-neutral-400 transition-colors duration-200 cursor-none"
-                >
-                  <h3 className="text-sm font-semibold text-black tracking-[-0.01em]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
-                    {service.desc}
-                  </p>
-                </motion.div>
+          {/* Section — 3D Pin Cards */}
+          <section className="py-24">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-40 gap-x-4 place-items-center">
+              {[
+                {
+                  title: "Brand Strategy",
+                  href: "#",
+                  heading: "Brand Strategy",
+                  desc: "Building strong brand identities that resonate with your audience.",
+                  gradient: "from-purple-600 via-violet-500 to-indigo-500",
+                },
+                {
+                  title: "Start Up Branding",
+                  href: "#",
+                  heading: "Start Up Branding",
+                  desc: "Launch-ready branding packages for emerging businesses.",
+                  gradient: "from-cyan-500 via-teal-500 to-emerald-500",
+                },
+                {
+                  title: "Web Design",
+                  href: "#",
+                  heading: "Web Design",
+                  desc: "Stunning, conversion-focused websites that stand out.",
+                  gradient: "from-blue-600 via-sky-500 to-cyan-400",
+                },
+                {
+                  title: "App Design",
+                  href: "#",
+                  heading: "App Design",
+                  desc: "Intuitive mobile experiences users love to engage with.",
+                  gradient: "from-pink-500 via-rose-500 to-orange-400",
+                },
+                {
+                  title: "Web App Development",
+                  href: "#",
+                  heading: "Web App Development",
+                  desc: "Full-stack web applications built for scale and performance.",
+                  gradient: "from-violet-600 via-purple-500 to-fuchsia-500",
+                },
+                {
+                  title: "AI Automations",
+                  href: "#",
+                  heading: "AI Automations",
+                  desc: "Intelligent workflows that eliminate manual processes.",
+                  gradient: "from-emerald-500 via-cyan-500 to-blue-500",
+                },
+              ].map((card, i) => (
+                <div key={i} className="h-80 w-full flex items-center justify-center pointer-events-auto">
+                  <PinContainer title={card.title} href={card.href}>
+                    <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[16rem] h-[16rem]">
+                      <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+                        {card.heading}
+                      </h3>
+                      <div className="text-base !m-0 !p-0 font-normal">
+                        <span className="text-slate-500">
+                          {card.desc}
+                        </span>
+                      </div>
+                      <div className={`flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br ${card.gradient}`} />
+                    </div>
+                  </PinContainer>
+                </div>
               ))}
             </div>
           </section>
 
-          {/* Divider */}
-          <div className="w-full h-px bg-[#EAEAEA]" />
+        </div>
 
-          {/* Section 3 — Process Timeline */}
-          <section className="py-32">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-0">
-              {c.steps.map((step, i) => (
-                <motion.div
-                  key={step.num}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 * i, ease: "easeOut" as const }}
-                  className="flex items-center gap-4 flex-1 w-full md:w-auto"
-                >
-                  <span className="text-xs font-mono text-neutral-400">{step.num}</span>
-                  <span className="text-sm font-medium text-black tracking-[-0.01em]">{step.label}</span>
-                  {i < 2 && (
-                    <div className="hidden md:block flex-1 h-px bg-[#EAEAEA] ml-6" />
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-[#EAEAEA]" />
-
-          {/* Section 4 — CTA */}
-          <section className="py-32 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05, ease: "easeOut" as const }}
-            >
-              <button className="px-10 py-4 bg-black text-white text-sm font-medium rounded-lg hover:bg-white hover:text-black border border-black transition-all duration-200 cursor-none">
-                {c.cta}
-              </button>
-              <p className="mt-5 text-xs text-neutral-400 tracking-[-0.01em]">
-                {c.ctaSub}
-              </p>
-            </motion.div>
-          </section>
-
+        {/* Sticky Footer */}
+        <div className="pointer-events-auto">
+          <StickyFooter />
         </div>
       </div>
     )
@@ -343,7 +321,7 @@ export default function Home() {
             className="fixed inset-0 z-30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" as const }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
           >
             <FallingPattern
               className="h-full w-full"
@@ -355,12 +333,12 @@ export default function Home() {
             />
           </motion.div>
 
-          {/* Slow fade from black to white */}
+          {/* Dark fade overlay */}
           <motion.div
-            className="fixed inset-0 z-40 bg-white"
+            className="fixed inset-0 z-40 bg-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: bgPhase >= 1 ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" as const }}
+            transition={{ duration: 0.6, ease: "easeOut" as const }}
           />
         </>
       )}
