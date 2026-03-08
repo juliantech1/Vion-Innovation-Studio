@@ -189,10 +189,31 @@ export default function Home() {
             </motion.p>
           </section>
 
+          {/* Section — Scroll Animation Showcase */}
+          <ContainerScroll
+            titleComponent={
+              <h2 className="text-4xl font-semibold text-black">
+                {c.scrollTitle} <br />
+                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                  {c.scrollHighlight}
+                </span>
+              </h2>
+            }
+          >
+            <Image
+              src="/ipad.png"
+              alt="Business dashboard"
+              height={720}
+              width={1400}
+              className="mx-auto rounded-2xl object-cover h-full object-left-top"
+              draggable={false}
+            />
+          </ContainerScroll>
+
           {/* Divider */}
           <div className="w-full h-px bg-[#EAEAEA]" />
 
-          {/* Section 2 — Service Blocks */}
+          {/* Section — Service Blocks */}
           <section className="py-32">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {c.services.map((service, i) => (
@@ -213,27 +234,6 @@ export default function Home() {
               ))}
             </div>
           </section>
-
-          {/* Section — Scroll Animation Showcase */}
-          <ContainerScroll
-            titleComponent={
-              <h2 className="text-4xl font-semibold text-black">
-                {c.scrollTitle} <br />
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                  {c.scrollHighlight}
-                </span>
-              </h2>
-            }
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=720&fit=crop&q=80"
-              alt="Business dashboard"
-              height={720}
-              width={1400}
-              className="mx-auto rounded-2xl object-cover h-full object-left-top"
-              draggable={false}
-            />
-          </ContainerScroll>
 
           {/* Divider */}
           <div className="w-full h-px bg-[#EAEAEA]" />
