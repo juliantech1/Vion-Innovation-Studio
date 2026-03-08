@@ -5,6 +5,8 @@ import { Spotlight } from "@/components/ui/spotlight"
 import { FallingPattern } from "@/components/ui/falling-pattern"
 import { DottedSurface } from "@/components/ui/dotted-surface"
 import { ParticleTextEffect, type ParticleTextHandle } from "@/components/ui/particle-text-effect"
+import { ContainerScroll } from "@/components/ui/container-scroll-animation"
+import Image from "next/image"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import { useEffect, useState, useCallback, useRef } from "react"
 
@@ -103,6 +105,8 @@ export default function Home() {
         { num: "02", label: "Build" },
         { num: "03", label: "Scale" },
       ],
+      scrollTitle: "Your Business Deserves",
+      scrollHighlight: "Its Own Software",
       cta: "Start Your Project",
       ctaSub: "Let's build something scalable.",
     },
@@ -120,6 +124,8 @@ export default function Home() {
         { num: "02", label: "Construir" },
         { num: "03", label: "Escalar" },
       ],
+      scrollTitle: "Tu Negocio Merece",
+      scrollHighlight: "Su Propio Software",
       cta: "Inicia Tu Proyecto",
       ctaSub: "Construyamos algo escalable.",
     },
@@ -207,6 +213,27 @@ export default function Home() {
               ))}
             </div>
           </section>
+
+          {/* Section — Scroll Animation Showcase */}
+          <ContainerScroll
+            titleComponent={
+              <h2 className="text-4xl font-semibold text-black">
+                {c.scrollTitle} <br />
+                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                  {c.scrollHighlight}
+                </span>
+              </h2>
+            }
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=720&fit=crop&q=80"
+              alt="Business dashboard"
+              height={720}
+              width={1400}
+              className="mx-auto rounded-2xl object-cover h-full object-left-top"
+              draggable={false}
+            />
+          </ContainerScroll>
 
           {/* Divider */}
           <div className="w-full h-px bg-[#EAEAEA]" />
