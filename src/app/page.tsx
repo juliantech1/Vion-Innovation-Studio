@@ -201,11 +201,11 @@ export default function Home() {
             }
           >
             <Image
-              src="/ipad.png"
-              alt="Business dashboard"
+              src="/ipad2.png"
+              alt="Business software showcase"
               height={720}
               width={1400}
-              className="mx-auto rounded-2xl object-cover h-full object-left-top"
+              className="mx-auto object-cover w-full h-full"
               draggable={false}
             />
           </ContainerScroll>
@@ -213,7 +213,7 @@ export default function Home() {
           {/* Divider */}
           <div className="w-full h-px bg-[#EAEAEA]" />
 
-          {/* Section — Service Blocks */}
+          {/* Section 2 — Service Blocks */}
           <section className="py-32">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {c.services.map((service, i) => (
