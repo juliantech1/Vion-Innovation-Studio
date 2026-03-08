@@ -200,12 +200,10 @@ export default function Home() {
               </h2>
             }
           >
-            <Image
+            <img
               src="/ipad2.png"
               alt="Business software showcase"
-              height={720}
-              width={1400}
-              className="mx-auto object-cover w-full h-full"
+              className="mx-auto rounded-2xl object-cover h-full w-full object-left-top"
               draggable={false}
             />
           </ContainerScroll>
