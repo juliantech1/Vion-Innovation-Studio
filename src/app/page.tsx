@@ -26,12 +26,18 @@ export default function Home() {
   const [modelLoaded, setModelLoaded] = useState(false)
   const [phase, setPhase] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
-  const [showMain, setShowMain] = useState(false)
+  const [showMain, setShowMain] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).has('skip')
+    }
+    return false
+  })
   const [lang, setLang] = useState<'en' | 'es'>('en')
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const springX = useSpring(cursorX, { damping: 25, stiffness: 300 })
   const springY = useSpring(cursorY, { damping: 25, stiffness: 300 })
+  const [cursorHover, setCursorHover] = useState(false)
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     cursorX.set(e.clientX)
@@ -63,6 +69,27 @@ export default function Home() {
       window.removeEventListener("touchmove", handleTouchMove)
     }
   }, [handleMouseMove, handleTouchMove])
+
+  useEffect(() => {
+    const onOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.closest('a, button, [role="button"], input, textarea, select, [draggable="true"], label, [onclick]')) {
+        setCursorHover(true)
+      }
+    }
+    const onOut = (e: MouseEvent) => {
+      const related = e.relatedTarget as HTMLElement | null
+      if (!related || !related.closest?.('a, button, [role="button"], input, textarea, select, [draggable="true"], label, [onclick]')) {
+        setCursorHover(false)
+      }
+    }
+    document.addEventListener('mouseover', onOver)
+    document.addEventListener('mouseout', onOut)
+    return () => {
+      document.removeEventListener('mouseover', onOver)
+      document.removeEventListener('mouseout', onOut)
+    }
+  }, [])
 
   useEffect(() => {
     if (!modelLoaded) return
@@ -114,15 +141,15 @@ export default function Home() {
   if (showMain) {
     return (
       <div className="min-h-screen w-full bg-black cursor-none relative">
-        {/* 3D Spline Boxes Background — pointer-events enabled for mouse interaction */}
-        <div className="fixed inset-0 z-0">
+        {/* 3D Spline Boxes Background */}
+        <div className="fixed inset-0 z-0 overflow-hidden">
           <Spline
             style={{
               width: '100%',
               height: '100%',
               pointerEvents: 'auto',
             }}
-            scene="https://prod.spline.design/dJqTIQ-tE3ULUPMi/scene.splinecode"
+            scene="https://prod.spline.design/rebLu0BL4cCKQDvT/scene.splinecode"
           />
         </div>
 
@@ -132,8 +159,16 @@ export default function Home() {
           style={{ x: springX, y: springY }}
         >
           <div className="relative -translate-x-1/2 -translate-y-1/2">
-            <div className="w-10 h-10 rounded-full border border-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
-            <div className="w-2.5 h-2.5 rounded-full bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.4)]" />
+            <motion.div
+              className="rounded-full border border-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              animate={{ width: cursorHover ? 40 : 0, height: cursorHover ? 40 : 0, opacity: cursorHover ? 1 : 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            />
+            <motion.div
+              className="rounded-full bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.4)]"
+              animate={{ width: cursorHover ? 12 : 10, height: cursorHover ? 12 : 10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            />
           </div>
         </motion.div>
 
@@ -142,15 +177,15 @@ export default function Home() {
           <Header lang={lang} onLangChange={(l) => setLang(l)} />
         </div>
 
-        <div className="max-w-[1140px] mx-auto px-6 relative z-10 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto">
-
-          {/* Section 1 — Value Statement */}
-          <section className="pt-28 pb-32 text-center relative">
+        {/* Section 1 — Value Statement + Spline */}
+        <section className="relative z-10 pt-28 pb-16 h-screen flex items-center">
+          {/* Left — Text */}
+          <div className="w-full md:w-[45%] pl-10 md:pl-20 relative z-20 pointer-events-none">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" as const }}
-              className="text-2xl md:text-3xl font-medium text-white tracking-[-0.02em] leading-tight"
+              className="text-4xl md:text-7xl font-medium text-white tracking-[-0.02em] leading-tight text-left"
             >
               {c.statement}
             </motion.p>
@@ -158,11 +193,28 @@ export default function Home() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" as const }}
-              className="mt-5 text-sm md:text-base text-neutral-400 tracking-[-0.01em]"
+              className="mt-3 text-base md:text-xl text-neutral-400 tracking-[-0.01em] text-left"
             >
               {c.subtitle}
             </motion.p>
-          </section>
+          </div>
+
+          {/* Right — Spline Animation (larger, shifted left, mouse-interactive) */}
+          <div className="hidden md:block absolute right-0 top-0 w-[75%] h-full overflow-hidden -ml-[5%]"
+            style={{ left: '20%' }}
+          >
+            <Spline
+              style={{
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'auto',
+              }}
+              scene="https://prod.spline.design/5a7A2AD8SAW2juV8/scene.splinecode"
+            />
+          </div>
+        </section>
+
+        <div className="max-w-[1140px] mx-auto px-6 relative z-10 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto">
 
           {/* Section — Scroll Animation Showcase */}
           <ContainerScroll
@@ -275,8 +327,16 @@ export default function Home() {
         style={{ x: springX, y: springY }}
       >
         <div className="relative -translate-x-1/2 -translate-y-1/2">
-          <div className="w-10 h-10 rounded-full border border-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
-          <div className="w-2.5 h-2.5 rounded-full bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.4)]" />
+          <motion.div
+            className="rounded-full border border-white/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            animate={{ width: cursorHover ? 40 : 0, height: cursorHover ? 40 : 0, opacity: cursorHover ? 1 : 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          />
+          <motion.div
+            className="rounded-full bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(255,255,255,0.8),0_0_20px_rgba(255,255,255,0.4)]"
+            animate={{ width: cursorHover ? 12 : 10, height: cursorHover ? 12 : 10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          />
         </div>
       </motion.div>
 

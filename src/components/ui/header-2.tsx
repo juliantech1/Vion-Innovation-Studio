@@ -16,7 +16,7 @@ const translations = {
         services: 'Services',
         about: 'About',
         blog: 'Blog',
-        subscribe: 'Subscribe',
+        subscribe: 'How It Works',
         contact: 'Contact',
         serviceItems: [
             'Brand Strategy',
@@ -32,7 +32,7 @@ const translations = {
         services: 'Servicios',
         about: 'Nosotros',
         blog: 'Blog',
-        subscribe: 'Suscribirse',
+        subscribe: 'Cómo Funciona',
         contact: 'Contacto',
         serviceItems: [
             'Estrategia de Marca',
@@ -59,10 +59,10 @@ export function Header({ lang = 'en', onLangChange }: HeaderProps) {
     }));
 
     const links = [
-        { label: t.work, href: '#' },
+        { label: t.work, href: '/work' },
         { label: t.services, href: '#', hasDropdown: true },
-        { label: t.about, href: '#' },
-        { label: t.blog, href: '#' },
+        { label: t.about, href: '/about' },
+        { label: t.blog, href: '/blog' },
     ];
 
     React.useEffect(() => {
@@ -105,7 +105,9 @@ export function Header({ lang = 'en', onLangChange }: HeaderProps) {
             >
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <img src="/images/Untitled design(27).png" alt="VION Innovation Studio" className="h-10 w-auto" />
+                    <a href="/?skip" className="cursor-none">
+                        <img src="/images/Untitled design(27).png" alt="VION Innovation Studio" className="h-20 w-auto" />
+                    </a>
                 </div>
 
                 {/* Desktop nav */}
@@ -152,11 +154,21 @@ export function Header({ lang = 'en', onLangChange }: HeaderProps) {
                     )}
                 </div>
 
-                {/* Desktop CTA */}
+                {/* Desktop CTA + Lang switch */}
                 <div className="hidden items-center gap-3 md:flex">
-                    <button className="rounded-lg border border-white/20 px-5 py-2.5 text-base font-medium text-neutral-300 hover:bg-white/10 hover:text-white transition-colors cursor-none">
+                    {!scrolled && onLangChange && (
+                        <button
+                            onClick={() => onLangChange(lang === 'en' ? 'es' : 'en')}
+                            className="flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-neutral-300 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-none"
+                        >
+                            <span className={lang === 'en' ? 'text-white' : 'text-neutral-500'}>EN</span>
+                            <span className="text-neutral-500">/</span>
+                            <span className={lang === 'es' ? 'text-white' : 'text-neutral-500'}>ES</span>
+                        </button>
+                    )}
+                    <a href="/how-it-works" className="rounded-lg border border-white/20 px-5 py-2.5 text-base font-medium text-neutral-300 hover:bg-white/10 hover:text-white transition-colors cursor-none">
                         {t.subscribe}
-                    </button>
+                    </a>
                     <button className="rounded-lg bg-white px-5 py-2.5 text-base font-medium text-black hover:bg-white/90 transition-colors cursor-none">
                         {t.contact}
                     </button>
@@ -227,9 +239,9 @@ export function Header({ lang = 'en', onLangChange }: HeaderProps) {
                         )}
                     </div>
                     <div className="flex flex-col gap-3">
-                        <button className="w-full rounded-lg border border-white/20 px-5 py-3 text-lg font-medium text-neutral-300 hover:bg-white/10 hover:text-white transition-colors cursor-none">
+                        <a href="/how-it-works" className="w-full rounded-lg border border-white/20 px-5 py-3 text-lg font-medium text-neutral-300 hover:bg-white/10 hover:text-white transition-colors cursor-none text-center">
                             {t.subscribe}
-                        </button>
+                        </a>
                         <button className="w-full rounded-lg bg-white px-5 py-3 text-lg font-medium text-black hover:bg-white/90 transition-colors cursor-none">
                             {t.contact}
                         </button>
