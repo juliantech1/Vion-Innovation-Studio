@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description: "Bienvenido a Vion",
   other: {
     "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-status-bar-style": "default",
     "theme-color": "#000000",
   },
 };
