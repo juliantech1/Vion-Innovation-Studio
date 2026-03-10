@@ -12,7 +12,7 @@ import { PinContainer } from "@/components/ui/3d-pin"
 import { StickyFooter } from "@/components/sticky-footer"
 import Image from "next/image"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
-import { useEffect, useState, useCallback, useRef } from "react"
+import { useEffect, useState, useCallback, useRef, useMemo } from "react"
 
 const fadeInLeft = (delay: number) => ({
   initial: { opacity: 0, x: -40 },
@@ -33,6 +33,15 @@ export default function Home() {
     return false
   })
   const [lang, setLang] = useState<'en' | 'es'>('en')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const springX = useSpring(cursorX, { damping: 25, stiffness: 300 })
@@ -137,6 +146,37 @@ export default function Home() {
   }
 
   const c = t[lang]
+
+  // Mobile version: video background + navbar only
+  if (isMobile) {
+    return (
+      <div className="min-h-screen w-full bg-black relative flex flex-col overflow-hidden">
+        {/* Video background - rotated to vertical */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="min-h-full min-w-full object-cover rotate-90 scale-[1.8]"
+          >
+            <source src="/videos/liquid-glass.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 z-[1] bg-black/40" />
+
+        {/* Navigation Header */}
+        <div className="w-full z-40 relative">
+          <Header lang={lang} onLangChange={(l) => setLang(l)} />
+        </div>
+
+        {/* Empty content area */}
+        <div className="flex-1 relative z-10" />
+      </div>
+    )
+  }
 
   if (showMain) {
     return (
