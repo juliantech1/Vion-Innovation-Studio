@@ -158,7 +158,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="min-h-full min-w-full object-cover rotate-90 scale-[1.8]"
+            className="h-full w-full object-cover"
           >
             <source src="/videos/liquid-glass.mp4" type="video/mp4" />
           </video>
