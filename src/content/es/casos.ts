@@ -67,6 +67,7 @@ export const casos: Pagina = {
   acento: 'automatización',
   bajada:
     'Empezamos por casa: estos son los proyectos propios de Vion, hechos en Costa Rica. Los casos de clientes se suman acá cuando existan y el cliente lo permita.',
+  acciones: [{ texto: 'Pedir diagnóstico', destino: { pagina: 'contacto' } }],
   secciones: [
     {
       tipo: 'proyectos',

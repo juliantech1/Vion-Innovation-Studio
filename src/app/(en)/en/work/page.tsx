@@ -1,8 +1,8 @@
-import { PaginaContenido } from '@/components/sitio/PaginaContenido';
+import { Casos } from '@/components/paginas/Casos';
 import { metadatosDe } from '@/seo/metadatos';
 
 export const generateMetadata = () => metadatosDe('casos', 'en');
 
 export default function Page() {
-  return <PaginaContenido id="casos" idioma="en" />;
+  return <Casos idioma="en" />;
 }

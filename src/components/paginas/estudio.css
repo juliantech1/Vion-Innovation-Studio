@@ -1,0 +1,190 @@
+/* Casos, Nosotros, Contacto, Privacidad y Gracias (rediseño, pag2). Solo compone con los tokens de globals.css y las
+   piezas de sistema.css: no redefine colores ni tipografía. Lo importan los componentes de esas páginas.
+   1 portada interior · 2 dibujos · 3 casos · 4 nosotros · 5 contacto y formulario · 6 lectura (privacidad) · 7 gracias */
+
+.proyecto__t, .persona__nombre, .via__t { font-family: Geist, "Geist Titular Fallback", "Geist Titular Fallback DejaVu", "Helvetica Neue", Arial, sans-serif; }
+
+/* ───── 1. Portada interior: el titular a lo ancho, la bajada con un botón y la ficha a la derecha ───── */
+.portada--interior .pi {
+  display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); column-gap: var(--spacing-canal);
+  row-gap: clamp(2rem, 1rem + 3vw, 3.5rem); align-content: space-between; min-height: min(100svh, 50rem);
+  padding-top: calc(var(--spacing-cabecera) + clamp(1.25rem, 0.4rem + 2.6vw, 3rem)); padding-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+.pi__cab { grid-column: 1 / span 10; display: grid; gap: clamp(0.9rem, 2vh, 1.5rem); align-content: start; }
+.pi__texto { grid-column: 1 / span 6; display: grid; gap: 1.75rem; align-self: end; }
+.pi__texto .lead { max-width: 31em; }
+.pi__ficha { grid-column: 8 / -1; display: grid; gap: 0.75rem; align-self: end; }
+.ficha--indice > div { grid-template-columns: 2.5rem minmax(0, 1fr); align-items: center; }
+.ficha--indice dt { color: var(--tinta-2); }
+.ficha--indice dd { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem 1rem; }
+.ficha--indice dd small { text-align: right; }
+.ficha--indice dd a, .pi__ficha dd a { display: inline-flex; align-items: center; min-height: 2.75rem; margin-block: -0.7rem; }
+@media (max-width: 61.99rem) {
+  .portada--interior .pi { min-height: 0; }
+  .pi__cab, .pi__texto, .pi__ficha { grid-column: 1 / -1; }
+  .pi__ficha { max-width: 34rem; }
+}
+
+/* ───── 2. Dibujos: línea de la marca, rótulos en Geist Mono, un trazo rojo donde decide una persona ───── */
+.dibujo svg path { vector-effect: none; }   /* con non-scaling-stroke y pathLength, Chrome corta el final del trazo al agrandar */
+.dibujo svg { width: 100%; height: auto; max-width: 33rem; overflow: visible; }
+.dibujo--vertical svg { max-width: 19rem; }
+.dibujo text { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--tinta); }
+.dibujo text.d-fuerte { font-weight: 600; }
+.dibujo text.d-tenue { fill: var(--tinta-2); }
+.dibujo text.d-rojo { fill: var(--marca-tinta); font-weight: 600; }
+.dibujo .d-relleno { fill: var(--tinta); opacity: 0.14; }
+
+/* ───── 3. Casos: un proyecto por lámina, texto y figura en espejo ───── */
+.proyecto { padding-block: var(--spacing-seccion); }
+.proyecto > .marco + .marco { margin-top: clamp(1rem, 0.5rem + 2vw, 2.5rem); }
+.proyecto__texto { grid-column: 1 / span 5; display: grid; gap: 1.5rem; align-content: start; }
+.proyecto__fig { grid-column: 7 / -1; align-self: center; min-width: 0; }
+.proyecto--par .proyecto__texto { grid-column: 8 / -1; grid-row: 1; }
+.proyecto--par .proyecto__fig { grid-column: 1 / span 6; grid-row: 1; }
+.proyecto__n { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+.proyecto__n span { color: var(--tinta); }
+.proyecto__t {
+  font-size: clamp(2.75rem, 1.4rem + 5vw, 6rem); line-height: 0.92; letter-spacing: -0.045em; font-weight: var(--font-weight-titular);
+  text-transform: uppercase; font-feature-settings: "kern", "case"; margin-left: -0.05em;
+}
+.proyecto .lead { max-width: 26em; }
+.ficha--larga > div { grid-template-columns: minmax(6.5rem, 0.55fr) 1.6fr; }
+.ficha--larga dd { font-weight: 400; font-size: var(--text-s); line-height: 1.5; }
+.proyecto__captura { display: grid; gap: 0.35rem; font-size: var(--text-s); line-height: 1.5; }
+.proyecto__img { width: 100%; border-radius: var(--radius-marca); }
+@media (max-width: 61.99rem) {
+  .proyecto__texto, .proyecto__fig, .proyecto--par .proyecto__texto, .proyecto--par .proyecto__fig { grid-column: 1 / -1; grid-row: auto; }
+  .proyecto__fig { margin-top: 2.5rem; }
+}
+/* casos de clientes: la ficha que va a tener cada caso, con su estado, en lugar de un hueco */
+.clientes__dicho { font-weight: 600; }
+.clientes__ficha { grid-column: 8 / -1; align-self: start; display: grid; gap: 1.1rem; padding: clamp(1.25rem, 1rem + 1vw, 2rem); border: 1px solid var(--filete-fuerte); }
+.clientes__cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; }
+.clientes__cab .tabla__estado { margin: 0; }
+.clientes__ficha .ficha dd { font-weight: 400; color: var(--tinta-2); }
+.clientes__nota { font-size: var(--text-xs); line-height: 1.5; }
+@media (max-width: 61.99rem) { .clientes__ficha { grid-column: 1 / -1; margin-top: 2.5rem; } }
+
+/* ───── 4. Nosotros ───── */
+.seccion--sin-fin { padding-bottom: 0; }
+.personas { border-top: 1px solid var(--tinta); }
+.persona { grid-column: span 6; display: grid; gap: 1rem; align-content: start; position: relative; padding-block: clamp(1.5rem, 1rem + 1.8vw, 2.5rem); border-bottom: 1px solid var(--filete); }
+.persona:nth-child(even) { padding-left: clamp(0rem, -1rem + 2vw, 1.5rem); }
+.persona:nth-child(even)::before { content: ""; position: absolute; left: calc(var(--spacing-canal) / -2); top: 0; bottom: 0; width: 1px; background: var(--filete); }
+.persona__nombre { font-size: clamp(2rem, 1.2rem + 2.8vw, 3.75rem); line-height: 0.95; letter-spacing: -0.04em; font-weight: var(--font-weight-titular); text-transform: uppercase; font-feature-settings: "kern", "case"; }
+.persona__cargo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.9rem; }
+.persona__cargo b { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; letter-spacing: 0.02em; }
+.persona__cargo span { color: var(--tinta-2); font-size: var(--text-s); }
+.persona__bio { display: grid; gap: 0.35rem; max-width: 34rem; padding-top: 1rem; border-top: 1px dotted var(--filete-fuerte); font-size: var(--text-s); color: var(--tinta-2); }
+@media (max-width: 61.99rem) { .persona { grid-column: 1 / -1; } .persona:nth-child(even) { padding-left: 0; } .persona:nth-child(even)::before { display: none; } }
+.experiencia { padding-top: clamp(3.5rem, 2rem + 5vw, 7rem); }
+.experiencia__t { grid-column: 1 / span 6; }
+.experiencia__lado { grid-column: 8 / -1; align-self: end; }
+@media (max-width: 61.99rem) { .experiencia__t, .experiencia__lado { grid-column: 1 / -1; } .experiencia__lado { margin-top: 1.5rem; } }
+
+/* ───── 5. Contacto: las dos vías grandes a la izquierda, el formulario a la derecha ───── */
+.portada--contacto .pi { min-height: 0; align-content: start; row-gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
+.pi--contacto .pi__cab { grid-column: 1 / span 7; }
+.pi--contacto .pi__bajada { grid-column: 8 / -1; align-self: end; color: var(--tinta-2); max-width: 30em; }
+.contacto__datos { grid-column: 1 / span 5; display: grid; gap: 1.5rem; align-content: start; border-top: 1px solid var(--tinta); padding-top: 1.25rem; }
+.contacto__form { grid-column: 7 / -1; display: grid; gap: 1.75rem; align-content: start; border-top: 1px solid var(--tinta); padding-top: 1.25rem; }
+.contacto__form-cab { display: grid; gap: 0.75rem; }
+@media (max-width: 61.99rem) {
+  .pi--contacto .pi__cab, .pi--contacto .pi__bajada, .contacto__datos, .contacto__form { grid-column: 1 / -1; }
+  .contacto__form { margin-top: 1rem; }
+}
+.vias { border-top: 1px solid var(--filete-fuerte); }
+.via {
+  position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; row-gap: 0.4rem;
+  padding-block: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem); border-bottom: 1px solid var(--filete); transition: color var(--d-1) linear;
+}
+.via::before { content: ""; position: absolute; inset: 0 calc(var(--spacing-margen) * -0.5); z-index: -1; background: var(--color-powder); clip-path: inset(0 100% 0 0); transition: clip-path var(--d-3) var(--ease-sale-expo); }
+.via:hover::before, .via:focus-visible::before { clip-path: inset(0); }
+.via:hover, .via:focus-visible { --tinta: var(--color-raven); --tinta-2: var(--color-azul-tinta); --filete-fuerte: rgb(11 11 12 / 0.46); color: var(--color-raven); }
+.via:focus-visible { outline-offset: 2px; }
+.via__r { grid-column: 1; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); transition: color var(--d-1) linear; }
+.via__t { grid-column: 1; font-size: clamp(1.75rem, 1.05rem + 2.3vw, 3rem); line-height: 1; letter-spacing: -0.035em; font-weight: var(--font-weight-titular); text-transform: uppercase; font-feature-settings: "kern", "case"; text-wrap: balance; transition: transform var(--d-3) var(--ease-resorte); }
+.via__t--correo { text-transform: none; font-weight: 700; font-size: clamp(1.0625rem, 0.55rem + 1.55vw, 1.75rem); letter-spacing: -0.025em; overflow-wrap: anywhere; }
+.via__n { grid-column: 1; font-size: var(--text-s); color: var(--tinta-2); transition: color var(--d-1) linear; }
+.via__ir { grid-column: 2; grid-row: 1 / span 3; align-self: center; position: relative; width: 3rem; height: 3rem; flex: none; overflow: hidden; box-shadow: inset 0 0 0 1px var(--filete-fuerte); transition: transform var(--d-3) var(--ease-resorte); }
+.via--principal .via__ir { background: linear-gradient(135deg, var(--color-poppy-hondo) 0%, var(--color-poppy-boton) 100%); color: var(--color-claro); box-shadow: inset -3px 0 0 var(--color-orange); }
+.via__ir svg { position: absolute; inset: 0.85rem; width: 1.3rem; height: 1.3rem; transition: transform var(--d-3) var(--ease-resorte); }
+.via__ir svg + svg { transform: translateX(-260%); }
+.via:hover .via__ir svg:first-child, .via:focus-visible .via__ir svg:first-child { transform: translateX(260%); }
+.via:hover .via__ir svg + svg, .via:focus-visible .via__ir svg + svg { transform: none; }
+.via:hover .via__t, .via:focus-visible .via__t { transform: translateX(0.12em); }
+.via:active { transform: scale(0.99); }
+.contacto__datos address .ficha dd a { display: inline-flex; align-items: center; min-height: 2.75rem; margin-block: -0.7rem; }
+
+/* el formulario (FormularioContacto): campos sobre el negro, foco de la marca, errores en naranja claro */
+.contacto__form .formulario { display: grid; gap: 1.25rem; }
+.contacto__form .campo { display: grid; gap: 0.4rem; }
+.contacto__form .campo label { font-weight: 600; font-size: var(--text-s); }
+.contacto__form .oblig { font-weight: 400; color: var(--tinta-2); }
+.contacto__form :is(input[type="text"], select, textarea) {
+  width: 100%; min-height: 3rem; padding: 0.6rem 0.8rem; font: inherit; font-size: 1rem; color: var(--tinta);
+  background: var(--sup); border: 1px solid #8a8a90; border-radius: var(--radius-marca); transition: border-color var(--d-1), background-color var(--d-1);
+}
+.contacto__form textarea { min-height: 8.5rem; resize: vertical; line-height: 1.5; }
+.contacto__form :is(input[type="text"], select, textarea):hover { border-color: var(--tinta); }
+.contacto__form :is(input[type="text"], select, textarea):focus-visible { border-color: var(--tinta); background: var(--color-raven); outline-offset: 2px; }
+.contacto__form [aria-invalid="true"] { border-color: var(--color-orange); }
+.contacto__form .campo--consentimiento { grid-template-columns: auto 1fr; align-items: start; column-gap: 0.75rem; }
+.contacto__form .campo--consentimiento input { width: 1.5rem; height: 1.5rem; margin: 0.1rem 0 0; accent-color: var(--color-orange); }
+.contacto__form .campo--consentimiento label { font-weight: 400; color: var(--tinta-2); line-height: 1.55; }
+.contacto__form .campo--consentimiento label a { color: var(--tinta); text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-underline-offset: 0.22em; padding-block: 0.35em; }
+.contacto__form .campo--consentimiento label a:hover { text-decoration-color: var(--marca); }
+.contacto__form .campo--consentimiento .error-campo { grid-column: 1 / -1; }
+.contacto__form .ayuda { font-size: var(--text-xs); color: var(--tinta-2); }
+.contacto__form :is(.error-campo, .estado-envio[data-tipo="error"]) { color: #ff9d7a; font-size: var(--text-s); }
+.contacto__form :is(.aviso-prueba, .estado-envio[data-tipo="prueba"]) { border: 1px dashed var(--color-powder); border-radius: var(--radius-marca); padding: 0.75rem 1rem; color: var(--color-powder); font-size: var(--text-s); }
+.contacto__form .estado-envio:empty { display: none; }
+.contacto__form .estado-envio[data-tipo="ok"] { color: var(--tinta); font-weight: 600; }
+.contacto__form .trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.contacto__form button[type="submit"] { justify-self: start; min-width: 12rem; }
+@media (max-width: 47.99rem) { .contacto__form button[type="submit"] { justify-self: stretch; } }
+
+/* qué pasa después: los pasos y la Fig. 1 */
+.pasos-c { border-top: 1px solid var(--tinta); }
+.pasos-c li { display: grid; gap: 0.4rem; padding-block: 1.25rem; border-bottom: 1px solid var(--filete); }
+.pasos-c li > p:last-child { color: var(--tinta-2); font-size: var(--text-s); line-height: 1.55; max-width: 34em; }
+.despues__nota { font-size: var(--text-s); }
+.contacto__fig { grid-column: 8 / -1; align-self: center; justify-self: center; min-width: 0; }
+@media (max-width: 61.99rem) { .contacto__fig { grid-column: 1 / -1; justify-self: start; margin-top: 3rem; } }
+
+/* ───── 6. Lectura (aviso de privacidad): índice fijo a la izquierda, texto a 66 caracteres ───── */
+.portada--lectura .pi { min-height: 0; }
+.portada--lectura .pi__texto { grid-column: 1 / span 7; }
+.portada--lectura .pi__texto .lead { max-width: 36em; font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem); line-height: 1.45; color: var(--tinta-2); }
+.lectura-bloque { padding-block: var(--spacing-seccion-corta) var(--spacing-seccion); }
+.lectura__indice { grid-column: 1 / span 3; align-self: start; position: sticky; top: calc(var(--spacing-cabecera) + 2rem); display: grid; gap: 1rem; }
+.lectura__indice ol { border-top: 1px solid var(--tinta); }
+.lectura__indice a { display: grid; grid-template-columns: 2rem 1fr; align-items: baseline; min-height: 2.75rem; padding-block: 0.65rem; border-bottom: 1px solid var(--filete); font-size: var(--text-s); line-height: 1.35; transition: color var(--d-1); }
+.lectura__indice a b { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; color: var(--tinta-2); }
+.lectura__indice a:hover, .lectura__indice a:focus-visible { color: var(--marca-tinta); }
+.lectura__cuerpo { grid-column: 5 / span 7; max-width: 44rem; font-size: var(--text-cuerpo); line-height: 1.68; border-top: 1px solid var(--tinta); }
+.lectura__cuerpo section { padding-block: clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem); border-bottom: 1px solid var(--filete); }
+.lectura__cuerpo section:last-child { border-bottom: 0; }
+.lectura__h { display: grid; grid-template-columns: 3rem 1fr; align-items: baseline; margin-bottom: 1rem; font-size: var(--text-h3); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+.lectura__n { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); color: var(--tinta-2); }
+.lectura__cuerpo :is(p, ul) { margin-left: 3rem; max-width: 66ch; text-wrap: pretty; }
+.lectura__cuerpo p + p, .lectura__cuerpo ul + p { margin-top: 1em; }
+.lectura__cuerpo ul { margin-block: 0.9rem; display: grid; gap: 0.35rem; }
+.lectura__cuerpo li { position: relative; padding-left: 1.4rem; }
+.lectura__cuerpo li::before { content: ""; position: absolute; left: 0; top: 0.84em; width: 0.7rem; height: 1px; background: var(--tinta); }
+.lectura__cuerpo a { text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-decoration-thickness: 1px; text-underline-offset: 0.22em; padding-block: 0.3em; transition: text-decoration-color var(--d-1); }
+.lectura__cuerpo a:hover, .lectura__cuerpo a:focus-visible { text-decoration-color: var(--marca-tinta); }
+@media (max-width: 61.99rem) {
+  .portada--lectura .pi__texto, .lectura__indice, .lectura__cuerpo { grid-column: 1 / -1; }
+  .lectura__indice { position: static; margin-bottom: 3rem; }
+}
+@media (max-width: 47.99rem) {
+  .lectura__h { grid-template-columns: 2.25rem 1fr; }
+  .lectura__cuerpo :is(p, ul) { margin-left: 0; }
+}
+
+/* ───── 7. Gracias: una lámina ───── */
+.portada--gracias .pi { min-height: min(100svh, 46rem); }
+.gracias__ok { display: inline-flex; align-items: center; gap: 0.6em; }
+.gracias__ok::before { content: ""; width: 0.5rem; height: 0.5rem; background: var(--color-powder); transform: rotate(45deg); }

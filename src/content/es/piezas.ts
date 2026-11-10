@@ -186,4 +186,87 @@ export const piezas: Piezas = {
     fig4Rotulos: { etapa: 'Etapa {n} de 3', semana: 'Semana', confirma: 'Usted confirma', despues: 'Después de la entrega', opcional: 'opcional' },
     rangos: { titulo: 'Rangos de inversión por servicio', servicio: 'Servicio', plazo: 'Plazo', entregables: 'Entregables', rango: 'Rango, USD', estaPagina: 'Esta página' },
   },
+  // ───── Casos, Nosotros, Contacto, Privacidad y Gracias (rediseño, pag2) ─────
+  casos: {
+    fichaTitulo: 'Índice de proyectos',
+    proyecto: 'Proyecto',
+    clientes: 'Casos de clientes',
+    clientesValor: 'Todavía ninguno publicado',
+    captura: 'Captura',
+    figuras: {
+      ultron: {
+        pie: 'Cómo trabaja Ultron: los agentes preparan y una persona decide. Lo aprobado sale; lo rechazado vuelve a su agente con la nota.',
+        alt: 'Esquema de Ultron: cinco agentes dejan su trabajo en una cola de aprobación; una persona aprueba y el trabajo sale, o lo rechaza y vuelve al agente.',
+        r: ['Equipo propio', 'Investigan mercados', 'Buscan empresas', 'Redactan propuestas', 'Preparan contenido', 'Llevan el gasto', 'Agentes', 'Cola de aprobación', 'Aprueba una persona', 'Sale', 'Vuelve a su agente', 'Ollama, local', 'Claude por API, con tope'],
+      },
+      topspin: {
+        pie: 'La pista reglamentaria de pádel, de 20 × 10 m: el terreno de Top Spin, una app para el pádel en Costa Rica. Es un dibujo, no una captura de la app.',
+        alt: 'Planta de una pista de pádel de 20 por 10 metros, con la red, las líneas de saque y las paredes del fondo.',
+        r: ['Red', '20 m', '10 m', 'Línea de saque', 'Pared de fondo', 'Planta de la pista'],
+      },
+      realfood: {
+        pie: 'Comidas preparadas por suscripción, para la Gran Área Metropolitana. Un esquema de qué es, no una captura.',
+        alt: 'Esquema de RealFood: envases de comida con compartimentos, en planta, rodeados por la flecha de un ciclo que se repite.',
+        r: ['Comidas preparadas', 'Envase con compartimentos', 'Suscripción', 'Gran Área Metropolitana'],
+      },
+      viazo: {
+        pie: 'Rastreo de flotas: los buses de las rutas 51 y 53 marcan su posición por GPS. Es un esquema, no un mapa de las rutas.',
+        alt: 'Esquema de Viazo: dos líneas de ruta, la 51 y la 53, con paradas y buses que emiten su posición por GPS.',
+        r: ['Ruta 51', 'Ruta 53', 'Posición por GPS', 'Parada'],
+      },
+    },
+    plantilla: {
+      titulo: 'Ficha de un caso de cliente',
+      estado: 'Por publicar',
+      filas: [
+        { termino: 'Firma', valor: 'Con su permiso, o sin nombre' },
+        { termino: 'Flujo', valor: 'El que se automatizó en el piloto' },
+        { termino: 'Horas antes', valor: 'Medidas al empezar' },
+        { termino: 'Horas después', valor: 'Medidas al terminar' },
+      ],
+    },
+  },
+  nosotros: {
+    fichaTitulo: 'Datos del estudio',
+    estudio: 'Estudio',
+    estudioValor: 'Vion, Costa Rica',
+    persona: 'Persona',
+    bio: 'Biografía',
+    medida: {
+      pie: 'La misma tarea, medida antes y después sobre la misma cota. Lo que se ahorra sale de esa diferencia, no de una promesa.',
+      alt: 'Dos cotas: las horas de hoy de una tarea y las horas después de automatizarla, todavía por medir; al final, una decisión suya.',
+      r: ['Horas de hoy', 'Se automatiza un flujo, sobre sus proyectos', 'Horas después', 'Se mide', 'Se mide de nuevo', 'Usted decide si sigue'],
+    },
+    husos: {
+      pie: 'Una jornada de 8 a 17 h en cada lugar, dibujada en hora de Costa Rica, con el horario de invierno de EE.UU. En verano las barras de EE.UU. se corren una hora antes: Costa Rica no cambia la hora.',
+      alt: 'Barras de jornada laboral de Costa Rica y de las cuatro zonas horarias de Estados Unidos continental, con las horas en común.',
+      r: [],
+      zonas: [
+        { nombre: 'Costa Rica', desfase: 0 },
+        { nombre: 'EE.UU. Este', desfase: 1 },
+        { nombre: 'EE.UU. Centro', desfase: 0 },
+        { nombre: 'EE.UU. Montaña', desfase: -1 },
+        { nombre: 'EE.UU. Pacífico', desfase: -2 },
+      ],
+      jornada: 'Jornada de 8 a 17 h',
+      comun: 'en común',
+      hora: 'Hora de Costa Rica',
+    },
+  },
+  contacto: {
+    fichaTitulo: 'Para escribirnos',
+    respuesta: 'Quién lo lee',
+    respuestaValor: 'Una persona de Vion',
+    recorrido: {
+      pie: 'El recorrido de su mensaje: llega directo a Vion, lo lee una persona y le respondemos. Si tiene sentido, una llamada de 20 minutos; el diagnóstico empieza solo si usted decide.',
+      alt: 'Recorrido de un mensaje: llega a Vion, lo lee una persona, se responde, una llamada corta de 20 minutos y una decisión suya antes del diagnóstico.',
+      r: ['Su mensaje', 'Lo lee una persona', 'Le respondemos', 'Llamada corta', '20 min', 'Usted decide', 'Diagnóstico'],
+    },
+  },
+  privacidad: { fichaTitulo: 'Ficha del aviso', indice: 'En este aviso', estado: 'Estado', estadoValor: 'Borrador para revisión legal', ley: 'Marco legal', leyValor: 'Ley 8968 de Costa Rica y su reglamento' },
+  gracias: {
+    fichaTitulo: 'Su mensaje',
+    recibido: 'Estado',
+    recibidoValor: 'Recibido',
+  },
 };

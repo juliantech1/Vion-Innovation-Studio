@@ -290,4 +290,42 @@ export interface Piezas {
     fig4: string; fig4Rotulos: { etapa: string; semana: string; confirma: string; despues: string; opcional: string };
     rangos: { titulo: string; servicio: string; plazo: string; entregables: string; rango: string; estaPagina: string };
   };
+  // Casos, Nosotros, Contacto, Privacidad y Gracias (rediseño, pag2): un bloque por página.
+  casos: PiezasCasos;
+  nosotros: PiezasNosotros;
+  contacto: PiezasContacto;
+  privacidad: { fichaTitulo: string; indice: string; estado: string; estadoValor: string; ley: string; leyValor: string };
+  gracias: { fichaTitulo: string; recibido: string; recibidoValor: string };
+}
+
+/** Una figura dibujada: su leyenda y los rótulos que van dentro del dibujo (en orden). */
+export interface FiguraDibujada { pie: string; alt: string; r: string[] }
+
+export interface PiezasCasos {
+  fichaTitulo: string;
+  proyecto: string;
+  clientes: string;
+  clientesValor: string;
+  captura: string;
+  /** Los esquemas de cada proyecto propio, por id del proyecto. */
+  figuras: Record<'ultron' | 'topspin' | 'realfood' | 'viazo', FiguraDibujada>;
+  /** Cómo va a ser un caso de cliente cuando exista: la ficha vacía con su estado. */
+  plantilla: { titulo: string; estado: string; filas: { termino: string; valor: string }[] };
+}
+
+export interface PiezasNosotros {
+  fichaTitulo: string;
+  estudio: string;
+  estudioValor: string;
+  persona: string;
+  bio: string;
+  medida: FiguraDibujada;
+  husos: FiguraDibujada & { zonas: { nombre: string; desfase: number }[]; jornada: string; comun: string; hora: string };
+}
+
+export interface PiezasContacto {
+  fichaTitulo: string;
+  respuesta: string;
+  respuestaValor: string;
+  recorrido: FiguraDibujada;
 }
