@@ -1,0 +1,30 @@
+// Los casilleros: datos que solo Julian puede dar. Se ven en la página tal cual ({{…}}, marcados) y cada uno está en
+// PENDIENTES-JULIAN.md; `scripts/revisar-seo.mjs` falla si aparece uno que no esté en esa lista. Son los mismos en los
+// dos idiomas (son notas para Julian, no texto para el visitante) y nunca van en títulos, descripciones ni JSON-LD.
+export const P = {
+  razonSocial: '{{razón social y cédula jurídica}}',
+  domicilio: '{{domicilio legal}}',
+  regionVercel: '{{región de Vercel donde se procesa el formulario}}',
+  conservacion: '{{plazo de conservación de los datos}}',
+  plazoLegal: '{{plazo legal de respuesta a un pedido de acceso o borrado}}',
+  fechaAviso: '{{fecha de aprobación del aviso}}',
+  plazoRespuesta: '{{plazo de respuesta al formulario}}',
+  presencial: '{{¿reuniones presenciales? dónde}}',
+  bioJulian: '{{biografía de Julian Alvarez: formación, experiencia y qué hace en Vion}}',
+  bioMaite: '{{biografía de Maite Alvarez: formación, experiencia y qué hace en Vion}}',
+  experiencia: '{{experiencia del equipo: años, formación y proyectos anteriores que se pueden nombrar}}',
+  tecnologias: '{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}',
+  resultadoEjemplo: '{{resultado medido del diagnóstico de ejemplo}}',
+  casoCliente: '{{primer caso real de cliente, con permiso: firma, flujo automatizado y horas antes y después}}',
+  capturaUltron: '{{captura real de Ultron en modo demo, sin datos privados}}',
+  resultadosUltron: '{{resultados medidos de Ultron, si se publican}}',
+  estadoTopSpin: '{{estado de Top Spin y qué hace la app}}',
+  capturaTopSpin: '{{captura real de Top Spin}}',
+  resultadosTopSpin: '{{resultados medidos de Top Spin, si se publican}}',
+  estadoRealFood: '{{estado de RealFood y qué parte construyó Vion}}',
+  capturaRealFood: '{{captura real de RealFood}}',
+  resultadosRealFood: '{{resultados medidos de RealFood, si se publican}}',
+  estadoViazo: '{{estado de Viazo}}',
+  capturaViazo: '{{captura real de Viazo}}',
+  resultadosViazo: '{{resultados medidos de Viazo, si se publican}}',
+} as const;
