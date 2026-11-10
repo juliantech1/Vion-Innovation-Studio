@@ -66,6 +66,15 @@ main:focus { outline: none; }
 @media (max-width: 47.99rem) { html { --columnas: 4; --spacing-cabecera: 3.5rem; } }
 
 /* ───────────── 3. Tipografía ───────────── */
+/* Respaldo de los titulares mientras llega Geist (font-display: swap). El respaldo de next/font está calculado para el
+   texto corrido (Arial al 104,76 %); en MAYÚSCULAS de peso 800 dejaba el titular más ancho que Geist, y al llegar la
+   fuente cambiaban los renglones y la página saltaba (CLS 0,04 a 0,09 en celular). Medido con los TTF: Geist 800 en
+   mayúsculas mide lo mismo que Arial Bold (0,98 a 1,00) y 0,891 de DejaVu Sans Bold (los Linux sin Arial). Con estas
+   dos caras el titular ocupa los mismos renglones antes y después. Usan el nombre de familia que genera next/font
+   («Geist»); si una versión de Next lo cambia, se ajusta acá. */
+@font-face { font-family: "Geist Titular Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"); font-weight: 100 900; ascent-override: 100.5%; descent-override: 29.5%; line-gap-override: 0%; size-adjust: 100%; }
+@font-face { font-family: "Geist Titular Fallback DejaVu"; src: local("DejaVu Sans Bold"), local("DejaVuSans-Bold"); font-weight: 100 900; ascent-override: 112.8%; descent-override: 33.1%; line-gap-override: 0%; size-adjust: 90.2%; }
+.mega, .titular, .fila__t, .panel__t, .menu__lista a, .base h1, .base h2 { font-family: Geist, "Geist Titular Fallback", "Geist Titular Fallback DejaVu", "Helvetica Neue", Arial, sans-serif; }
 /* Titulares: MAYÚSCULAS, peso 800, a la izquierda, una o dos palabras en rojo (DESIGN.md). El interlineado deja
    lugar a las tildes de las mayúsculas (Í, Ó) y nada las recorta: ningún titular lleva overflow oculto. */
 .mega, .titular {
@@ -73,6 +82,9 @@ main:focus { outline: none; }
   font-feature-settings: "kern", "case"; hyphens: none; overflow-wrap: normal; word-break: normal;
 }
 .mega { font-size: var(--text-mega); line-height: var(--text-mega--line-height); letter-spacing: var(--text-mega--letter-spacing); margin-left: -0.04em; }
+/* En celular el titular parte renglones sin equilibrar: «balance» cambia los cortes con diferencias de ancho de 1 % y
+   eso hacía saltar la página cuando la fuente llegaba después del primer pintado. */
+@media (max-width: 61.99rem) { .mega, .base h1 { text-wrap: wrap; } }
 .mega--larga { font-size: clamp(2.125rem, 0.6rem + 4.3vw, 4.75rem); }
 .titular { font-size: var(--text-h2); line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing); margin-left: -0.03em; }
 .mega .acento, .titular .acento { color: var(--marca); }
@@ -253,8 +265,8 @@ html { interpolate-size: allow-keywords; }
 
 /* 4.10 Nube de revisión: una sola, en el cierre. Rodea la palabra con aire (no pisa letras: va por fuera de la caja). */
 .nube { position: relative; display: inline-block; white-space: nowrap; margin-inline: 0.12em; }
-.nube { margin-inline: 0.3em; }
-.nube svg { position: absolute; left: -0.3em; top: -0.12em; width: calc(100% + 0.6em); height: calc(100% + 0.3em); overflow: visible; pointer-events: none; max-width: none; }
+.nube { margin-inline: 0.4em; }
+.nube svg { position: absolute; left: -0.38em; top: -0.14em; width: calc(100% + 0.76em); height: calc(100% + 0.32em); overflow: visible; pointer-events: none; max-width: none; }
 .nube path { fill: none; stroke: var(--color-poppy); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
 
 /* ───────────── 5. Cabecera y menú ───────────── */
@@ -653,6 +665,7 @@ html { interpolate-size: allow-keywords; }
 .base .contenedor { width: min(100% - 2 * var(--spacing-margen), 72rem); margin-inline: auto; }
 .base a:not(.boton) { text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-underline-offset: 0.22em; text-decoration-thickness: 1px; transition: text-decoration-color var(--d-1); }
 .base a:not(.boton):hover { text-decoration-color: var(--color-poppy); }
+.base :is(p, dd, li) > a:not(.boton) { padding-block: 0.3em; }
 .base h1 { font-size: var(--text-mega); line-height: 0.94; letter-spacing: var(--text-mega--letter-spacing); font-weight: 800; text-transform: uppercase; text-wrap: balance; max-width: 16em; margin-left: -0.04em; }
 .base h2 { font-size: var(--text-h2); line-height: 0.98; letter-spacing: var(--text-h2--letter-spacing); font-weight: 800; text-transform: uppercase; text-wrap: balance; max-width: 18em; }
 .base h3 { font-size: var(--text-h3); line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; }

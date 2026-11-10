@@ -1,7 +1,7 @@
 # Pendientes de Julian
 
 Lo que el sitio necesita de vos para estar completo. Nada de esto se inventó: donde falta un dato, la página muestra un
-casillero `{{…}}` con borde punteado, y `scripts/revisar-seo.mjs` falla si aparece uno que no esté en esta lista (o en una
+casillero `{{…}}` discreto (letra mono chica con un filete de puntos, como el campo sin llenar de un cajetín), y `scripts/revisar-seo.mjs` falla si aparece uno que no esté en esta lista (o en una
 página que no sea la que dice acá). Ningún casillero va en títulos, descripciones, Open Graph ni datos estructurados.
 
 Cómo se llena: el texto de cada casillero está en `src/content/pendientes.ts` (constante `P`); se reemplaza el uso de

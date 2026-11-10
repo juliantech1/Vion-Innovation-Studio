@@ -5,6 +5,11 @@ El sitio de Vion (Vion Studio): Next.js 16.1.6 (App Router, React 19.2, React Co
 por idioma, metadatos, datos estructurados, imágenes Open Graph, formulario y controles. El estilo (`src/app/base.css`)
 es mínimo y neutro a propósito: el diseño se monta encima.
 
+**Diseño (rama `hefesto/rediseno`):** el sistema está explicado en [`DISENO.md`](DISENO.md): tokens en `src/app/globals.css`
+(`@theme`), piezas en `src/app/sistema.css` y `src/components/vion/`. La portada y Automatización de AutoCAD (es/en)
+están rediseñadas (`src/components/paginas/`); las demás páginas siguen con `PaginaContenido` y ya llevan la cabecera, el
+pie-cajetín y los tokens nuevos.
+
 Nada se publica sin la aprobación de Julian. Lo que falta de su parte está en [`PENDIENTES-JULIAN.md`](PENDIENTES-JULIAN.md).
 
 ## Mapa de URL
@@ -47,6 +52,7 @@ src/app/global-not-found.tsx   la 404 de todo el sitio (experimental.globalNotFo
                         forma de que la 404 salga en el HTML con lang y H1)
 src/app/og/[archivo]/   imágenes Open Graph 1200 × 630 por página e idioma (/og/es-inicio.png…), estáticas, next/og + Geist
 src/app/sitemap.ts · robots.ts · manifest.ts · llms.txt/   SEO técnico, todo desde la capa de contenido
+src/components/vion/    el sistema de diseño (ver DISENO.md) · src/components/paginas/  las páginas rediseñadas
 src/app/api/contacto/   el manejador del formulario (la lógica está en src/lib/contacto.ts)
 src/seo/metadatos.ts    generateMetadata de cada página: título, descripción, canónica, hreflang, OG, Twitter, robots
 src/seo/jsonld.ts       datos estructurados de cada página
