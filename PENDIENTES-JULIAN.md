@@ -98,7 +98,7 @@ dentro de un bloque de código (`<pre>` o `` `…` ``) no son casilleros: son pa
 | `{{licencia de la plantilla}}` | `/cursos/agentic-os-equipo-de-agentes` | agentic-os-equipo-de-agentes |
 | `{{versión con la que se grabó, se anota al grabar}}` | `/cursos/motion-design-con-claude` | motion-design-con-claude |
 | `{{licencia del kit, por decidir}}` | `/cursos/motion-design-con-claude` | motion-design-con-claude |
-| `{{MIT, por confirmar}}` | `/cursos/videos-3d-con-blender-y-claude` `/cursos/personaje-3d-que-habla` | personaje-3d-que-habla, videos-3d-con-blender-y-claude |
+| `{{MIT, por confirmar}}` | `/cursos/videos-3d-con-blender-y-claude` `/cursos/personaje-3d-que-habla`  `/cursos/canal-de-youtube-con-ia` | personaje-3d-que-habla, videos-3d-con-blender-y-claude, canal-de-youtube-con-ia |
 | `{{el precio para Costa Rica se confirma antes de publicar}}` | `/cursos/claude-autocad-planos-cantidades` | claude-autocad-planos-cantidades |
 | `{{cómo escribirnos: por confirmar}}` | `/cursos/claude-autocad-planos-cantidades` `/cursos/claude-autocad-planos-cantidades/7-rutinas-y-ahorro` | claude-autocad-planos-cantidades |
 | `{{se confirma antes de publicar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia` | cuantificacion-y-presupuestos-con-ia |
@@ -122,8 +122,8 @@ cuantificacion 2.3, seo-agentes 2.3) y `<repo de la plantilla de Vion>` (agentic
 
 ## Cursos: dónde se alojan los videos (decidir antes de publicar el primero)
 
-Los once cursos tienen 415 videos cortos previstos (unos 167 minutos en total, de los que unos 32 son de Chispa). **No van al
-repositorio**: pesan (el primero que llegó, 15 s en 1080p, pesa 6,3 MB: todo junto serían unos 4 GB tal como salen) y el
+Los once cursos tienen 457 videos cortos previstos (unos 186 minutos en total). **No van al
+repositorio**: pesan (el primero que llegó, 15 s en 1080p, pesa 6,3 MB: todo junto serían unos 4 a 5 GB tal como salen) y el
 repositorio es público. La página ya está lista para leerlos de `src/content/cursos/medios.json` (curso → lámina → URL
 del MP4, póster y subtítulos `.vtt`, o un id de YouTube o Vimeo); la CSP de `next.config.ts` suma sola el origen nuevo.
 Hoy ese archivo solo marca qué videos ya están hechos (`"producido": true`) y trae las imágenes fijas livianas.
@@ -134,7 +134,7 @@ Hoy ese archivo solo marca qué videos ya están hechos (`"producido": true`) y 
 | Vimeo | Plan pago (ver vimeo.com/upgrade; no lo comprobamos) | Reproductor limpio, sin publicidad | Cuesta todos los meses; también es un iframe |
 | Vercel Blob | Hobby: 1 GB y 10 GB de transferencia al mes incluidos (si se pasa, se corta 30 días). Pro: USD 0,023 por GB al mes guardado y desde USD 0,05 por GB transferido (vercel.com/docs/vercel-blob/usage-and-pricing) | Mismo proveedor que el sitio, MP4 propio con `<video>` | 4 GB no entran en Hobby; con tráfico, la transferencia se cobra |
 | Cloudflare R2 | USD 0,015 por GB al mes, **salida gratis**; 10 GB al mes gratis (developers.cloudflare.com/r2/pricing) | Lo más barato para MP4 propios: con ~2 a 4 GB entra en la capa gratis | Hay que abrir una cuenta de Cloudflare y un dominio o subdominio para los archivos |
-| Cloudflare Stream | USD 5 por cada 1.000 minutos guardados (al mes) y USD 1 por cada 1.000 minutos vistos (developers.cloudflare.com/stream/pricing) | Calidad adaptable y subtítulos; 167 min entran en el primer bloque de USD 5 | Es un iframe o HLS; cobra por minuto visto |
+| Cloudflare Stream | USD 5 por cada 1.000 minutos guardados (al mes) y USD 1 por cada 1.000 minutos vistos (developers.cloudflare.com/stream/pricing) | Calidad adaptable y subtítulos; 186 min entran en el primer bloque de USD 5 | Es un iframe o HLS; cobra por minuto visto |
 
 Recomendación: **Cloudflare R2** para los MP4 (con los videos recomprimidos a 720p o 1080p livianos) y los pósteres y
 subtítulos al lado; si se prefiere no abrir otra cuenta, **YouTube no listado**. Después de decidir: subir los archivos,
@@ -143,9 +143,8 @@ curso como publicado en `src/content/cursos/index.ts`.
 
 ## Cursos: otras decisiones abiertas (2026-11-10)
 
-- **B9 · Su canal de YouTube con IA**: aparece en `/cursos` con su ficha básica y «El temario se está escribiendo»,
-  sin lecciones ni página. Cuando su storyboard (`docs/planes/cursos/B9-canal-youtube.md` en la aldea) esté listo, se
-  carga como los demás (`src/content/cursos/<id>/`).
+- **B9 · Su canal de YouTube con IA**: cargado desde su storyboard como los demás (ruta B). Un curso cuyo storyboard
+  todavía no existe se puede mostrar igual en `/cursos` con su ficha básica (tipo `Previsto` en `src/content/cursos/index.ts`).
 - **Licencias de los kits y plantillas** (propuesta de los storyboards: MIT): están como casilleros en las fichas.
 - **La comunidad de Vion**: tres cursos cierran con «la comunidad de Vion está abierta» y su enlace es un casillero.
 - **La revisión de la ingeniera** en el curso de cuantificación (lección 7): los títulos dicen «revisión profesional»

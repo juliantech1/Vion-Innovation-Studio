@@ -24,6 +24,8 @@ import { curso as blender3d } from './blender-3d/curso';
 import { lecciones as leccionesBlender3d } from './blender-3d/lecciones';
 import { curso as personaje3d } from './personaje-3d/curso';
 import { lecciones as leccionesPersonaje3d } from './personaje-3d/lecciones';
+import { curso as canalYoutube } from './canal-youtube/curso';
+import { lecciones as leccionesCanalYoutube } from './canal-youtube/lecciones';
 import { curso as claudeAutocad } from './claude-autocad/curso';
 import { lecciones as leccionesClaudeAutocad } from './claude-autocad/lecciones';
 import { curso as cuantificacion } from './cuantificacion/curso';
@@ -70,28 +72,6 @@ interface Registro {
   lecciones: LeccionCurso[];
 }
 
-// B9 (pedido de Julian del 2026-11-10): su storyboard (docs/planes/cursos/B9-canal-youtube.md) todavía se está
-// escribiendo. Hasta que esté, el curso se muestra en /cursos con su ficha básica, sin lecciones y sin página.
-const canalYoutube: Previsto = {
-  es: {
-    corto: 'Canal de YouTube',
-    titulo: 'Su canal de YouTube con IA: crearlo y automatizarlo',
-    tituloSeo: 'Curso gratis: su canal de YouTube con IA | Vion',
-    descripcion: 'Curso gratis de Vion: cómo crear un canal de YouTube con IA y automatizar su producción. En preparación: el temario se está escribiendo.',
-    paraQuien: 'Quien quiere abrir un canal de YouTube y producir sus videos con IA.',
-    seLleva: 'El temario se está escribiendo: la ficha completa sale cuando esté listo.',
-    herramientas: 'Se detallan con el temario, con lo que cuesta cada una.',
-  },
-  en: {
-    corto: 'YouTube channel',
-    titulo: 'Your YouTube channel with AI: build it and automate it',
-    tituloSeo: 'Free course: your YouTube channel with AI | Vion',
-    descripcion: 'A free Vion course on building a YouTube channel with AI and automating its production. In preparation: the syllabus is being written.',
-    paraQuien: 'Anyone who wants to start a YouTube channel and produce its videos with AI.',
-    seLleva: 'The syllabus is being written: the full outline comes out when it is ready.',
-    herramientas: 'Listed with the syllabus, with what each one costs.',
-  },
-};
 
 /** El orden es el de la página: por ruta, y dentro de cada ruta por código (A0, el de Claude básico, primero). */
 const REGISTRO: Registro[] = [
@@ -101,7 +81,7 @@ const REGISTRO: Registro[] = [
   { id: 'motion', codigo: 'B1', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: motion, lecciones: leccionesMotion },
   { id: 'blender-3d', codigo: 'B2', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: blender3d, lecciones: leccionesBlender3d },
   { id: 'personaje-3d', codigo: 'B3', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: personaje3d, lecciones: leccionesPersonaje3d },
-  { id: 'canal-youtube', codigo: 'B9', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: canalYoutube, lecciones: [] },
+  { id: 'canal-youtube', codigo: 'B9', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: canalYoutube, lecciones: leccionesCanalYoutube },
   { id: 'claude-autocad', codigo: 'C1', ruta: 'C', lleva: 'consultoria', estado: 'produccion', texto: claudeAutocad, lecciones: leccionesClaudeAutocad },
   { id: 'cuantificacion', codigo: 'C2', ruta: 'C', lleva: 'autocad', estado: 'produccion', texto: cuantificacion, lecciones: leccionesCuantificacion },
   { id: 'seo-agentes', codigo: 'D1', ruta: 'D', lleva: 'apps', estado: 'produccion', texto: seoAgentes, lecciones: leccionesSeoAgentes },
