@@ -404,6 +404,7 @@ html { interpolate-size: allow-keywords; }
   position: absolute; inset: 1.5px; display: grid; place-content: center; justify-items: center; gap: 0.1rem; text-align: center;
   font-family: var(--font-mono); font-size: clamp(0.6875rem, 0.45rem + 0.3vw, 0.75rem); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.2;
   color: var(--color-claro); opacity: var(--o, 1); transition: background-color var(--d-1) linear, color var(--d-1) linear;
+  hyphens: auto; overflow-wrap: anywhere;   /* un ambiente angosto parte «CONSUL-TORÍA» en lugar de pisar al vecino */
 }
 .plano__ambientes li[data-fila="fondo"] :is(a, span.amb) { place-content: start center; padding-top: 9%; }
 .plano__ambientes li[data-amb="inicio"] span.amb { display: flex; align-items: center; justify-content: center; gap: 0.6em; padding-right: 32.5%; }

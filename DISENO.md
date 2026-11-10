@@ -12,7 +12,7 @@ Automatización de AutoCAD (`src/components/paginas/Autocad.tsx`).
 1. **El sitio se lee como una ficha técnica bien compuesta.** Cada afirmación lleva su unidad, su rango o su nota; el
    plazo y el precio del primer paso están en el primer pantallazo. Figuras numeradas (Fig. 0, 1, 2…) con su leyenda.
 2. **El sitio es un juego de láminas.** La portada trae la planta del sitio (cada ambiente es una página), el pie es un
-   cajetín (lámina n/07, revisión, quién dibujó) y pasar de página es cambiar de lámina.
+   cajetín (lámina n/09, revisión, quién dibujó) y pasar de página es cambiar de lámina.
 3. **El rojo quiere decir «acá decide una persona».** Los llamados, los rombos de «usted decide», el botón «Aprobar».
    Por eso aparece poco: un botón principal por pantalla y un solo campo rojo por página (el panel del cierre).
 
@@ -35,7 +35,8 @@ src/components/vion/         los componentes del sistema
   Comportamientos.tsx (cliente)  todo el JavaScript de comportamiento, en un solo lugar
   plano/                     la figura de firma: geometria.ts (datos), Plano.tsx (póster SVG, servidor),
                              PlanoVivo.tsx (cliente, carga diferida) y motor.ts (canvas 2D)
-src/components/paginas/      las páginas hechas a mano (Inicio, Autocad) y comun.ts
+src/components/paginas/      las páginas hechas a mano (Inicio, Autocad, Consultoria, Apps, Casos, Nosotros, Contacto,
+                             Privacidad, Gracias, Cursos, Blog, Articulo, Curso) y su CSS (estudio.css, aprender.css…)
 src/components/sitio/        la base de contenido: PaginaContenido (las páginas que todavía no se rediseñaron), Texto, JsonLd…
 src/content/                 TODO el texto. Las piezas del diseño tienen sus textos en es/piezas.ts y en/piezas.ts
 ```
@@ -112,7 +113,11 @@ muestra con sus medidas reales: úsenla para revisar cada página a 390, 768, 14
 | Pregunta | `<Preguntas preguntas={…} />` dentro de `.preguntas__l` | `<details>` de verdad. El texto es el mismo del JSON-LD `FAQPage`. |
 | Casillero | sale solo de `<Texto>` cuando el contenido trae `{{…}}`; suelto, `<Casillero texto />` | Ver abajo. |
 | Cierre | `<Cierre llamado={p.llamado} idioma />` | Una nube de revisión por página, acá y en ningún otro lado. |
-| Pie-cajetín | va solo en `Marco` | Proyecto, lámina n/07, revisión (fecha del build), índice, contacto, colofón medido. |
+| Pie-cajetín | va solo en `Marco` | Proyecto, lámina n/09 (el orden sale de `LAMINAS` en `rutas.ts`), revisión (fecha del build), índice, contacto, colofón medido. |
+| Estado de obra | `<p class="estado">` | Mono chica con un cuadro rayado: «En producción». `estado--publicado` lo llena. En voz baja, nunca rojo. |
+| Registro | `<table class="registro">` | El registro de emisiones de un juego de planos: N.º, título, fecha, minutos. Lo usa el blog (Fig. 1). |
+| Banda breve | `.aprende` con `.aprende__texto` y `.aprende__lista` | Texto a la izquierda, lista numerada con filetes a la derecha (portada: cursos y blog; artículo: otros artículos). |
+| Dibujo deslizable | `<Desliza etiqueta>` (paginas/estudio.tsx) y `dibujo--ancho` en la figura | Un dibujo denso que en el celular se ve 1:1 y se desliza de costado, en vez de achicar sus rótulos por debajo de 11 px. |
 | Retícula | va sola en `Marco` | Tecla G. |
 
 ### Casilleros `{{…}}`
@@ -145,12 +150,28 @@ Todo en CSS salvo lo indicado. Reglas duras:
 | Hover y foco | botón: luz que barre, flecha que se releva, filo naranja que crece · fila: se invierte · enlace: subrayado que se redibuja en rojo · pregunta: + a − · marca: gira 18° | 530 ms, resorte sin rebote |
 | Apretar | 0,98 | 80 ms |
 
+**Trazos y rótulos de las figuras (2026-11-10).** `.dib path` no usa `vector-effect: non-scaling-stroke`: con
+`pathLength=1`, Chrome medía el guion en la pantalla y en un dibujo que se ve más grande que su viewBox el trazo
+terminaba antes. El grosor está en unidades del dibujo: `--trazo` (1,4 por omisión; `.dib--fino` 0,72 y `.dib--rojo`
+1,15 veces). Una figura que se ve muy agrandada o muy achicada fija su `--trazo` (la Fig. 1 de AutoCAD usa 1,15).
+Los rótulos de las figuras llevan un halo del color del fondo (`paint-order: stroke`): el texto corta la línea que
+pasa, como en un plano. En pantalla, **ningún rótulo baja de 11 px**: la letra de cada figura se agranda en el
+celular donde el dibujo lo aguanta y, donde no, el dibujo se ve a su tamaño y se desliza (`Desliza`). El póster del
+plano y la nube no usan `pathLength` agrandado (el plano siempre se ve más chico que su viewBox), así que conservan
+`non-scaling-stroke`.
+
 **En reposo** lo único vivo es el plano (respira y sigue al puntero) y la cola (deja un trabajo nuevo cada 7 s si nadie
 la toca).
 
 ### La figura de firma: la planta del sitio
 
 `<Plano idioma />` (`components/vion/plano/`). Tres capas, cada una funciona sin la siguiente:
+
+Desde el 2026-11-10 la planta tiene **cuatro crujías de 4 m** (ejes A a E, 16 × 8 m): al frente Consultoría, AutoCAD,
+Apps y **Cursos**; al fondo Casos, Nosotros, **Blog** y Contacto; el pasillo es Inicio. La numeración de los ambientes
+es la de las láminas (01 Inicio … 09 Contacto). En el celular la planta llega a los bordes de la pantalla (se recorta
+el margen de las cotas laterales, que ahí no se dibujan) para que cada ambiente mida unos 80 px y su nombre entre a
+11 px; un nombre largo en un ambiente angosto se parte con guion (`hyphens: auto`).
 
 1. **Póster SVG, en el HTML del servidor**, con la planta entera. Se traza solo con CSS (2,3 s). Sin JavaScript queda así.
 2. **Ambientes**: una lista de enlaces de verdad a las páginas, posicionados sobre la planta (teclado y lectores).
@@ -178,7 +199,10 @@ Lo mínimo, y nada en el camino del LCP. Componentes de cliente: `Navegador` (p�
 `Lamina` (n/07), `Comportamientos` (cabecera, etiqueta de sección, lo que entra al asomar, colofón, retícula,
 transición), `Cola` (solo en la portada) y `PlanoVivo` + `motor.ts` (solo en la portada, diferido). **No se usa
 framer-motion ni ninguna librería de animación** en las páginas nuevas: no agreguen una para un efecto que CSS resuelve.
-Los componentes de `src/components/ui` (Spline y demás, de Julian) siguen en el repo, sin uso.
+Los componentes de `src/components/ui` (Spline y demás, de Julian) siguen en el repo, sin uso. **Su CSS (shadcn,
+tw-animate-css, variables y keyframes) está en `src/components/ui/legado.css` y no se carga**; Tailwind solo mira el
+código del sitio nuevo (`@source` en `globals.css`). Para volver a usar uno: importar `legado.css` desde `globals.css` y
+sumar su carpeta como `@source`.
 
 ## Cómo hacer una página nueva
 
