@@ -130,8 +130,10 @@ export function FormularioContacto({ idioma, textos: t, modo, consentimiento }: 
         <label htmlFor="f-sitio">{t.trampa}</label>
         <input id="f-sitio" name="sitio_web" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <input type="hidden" name="t" ref={abierto} defaultValue="" />
-      <input type="hidden" name="utm" ref={utm} defaultValue="" />
+      {/* Sin defaultValue: en un input escondido el valor es el atributo, y React lo volvía a "" en cada render (al
+          marcar un error), así que el envío siguiente salía sin tiempo y el manejador lo tomaba por un bot. */}
+      <input type="hidden" name="t" ref={abierto} />
+      <input type="hidden" name="utm" ref={utm} />
       <input type="hidden" name="idioma" value={idioma} />
       <div className="campo campo--consentimiento">
         <input id="f-consentimiento" type="checkbox" name="consentimiento" value="si" required aria-invalid={errores.consentimiento || undefined} aria-describedby="e-consentimiento" />
