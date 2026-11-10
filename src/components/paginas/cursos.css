@@ -232,3 +232,25 @@ html:not(.js) .pres__barra { position: static; }
 .aviso-borrador { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding-block: 0.5rem; }
 /* Los enlaces dentro de tablas: objetivo táctil de 44 px sin mover el renglón. */
 .md__tabla a { display: inline-block; padding-block: 0.8rem; margin-block: -0.8rem; }
+/* /cursos es larga (once cursos): lo que está lejos del primer pantallazo no se dibuja hasta acercarse. */
+.cursos-rutas .curso { content-visibility: auto; contain-intrinsic-size: auto 34rem; }
+.indice-lecciones > li, .recursos > li { content-visibility: auto; contain-intrinsic-size: auto 9rem; }
+/* En el celular el mando va abajo, fijo y en una sola línea (como el control de una presentación); el índice queda
+   arriba, sin fijar, para no comerse la pantalla. */
+@media (max-width: 61.99rem) {
+  .pres__barra { position: static; }
+  .js .pres__mando {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; flex-wrap: nowrap; justify-content: space-between; gap: 0.5rem;
+    padding: 0.5rem var(--spacing-margen) calc(0.5rem + env(safe-area-inset-bottom)); background: var(--fondo); border-top: 1px solid var(--tinta);
+  }
+  .js .pres__mando { transition: transform var(--d-3) var(--ease-sale-expo); }
+  .js .pres__mando[data-fuera] { transform: translateY(110%); visibility: hidden; transition: transform var(--d-3) var(--ease-sale-expo), visibility 0s var(--d-3); }
+  .js .presentacion { padding-bottom: calc(var(--spacing-seccion-corta, 4rem) + 4rem); }
+  .pres__cuenta strong { font-size: 1.5rem; }
+  .js .pres__mando .pres__cuenta .rotulo { display: none; }
+  .pres__cuenta span:last-child { white-space: nowrap; }
+  .js .pres__mando .pres__botones { flex-wrap: nowrap; }
+  .pres__modo { padding-inline: 0.6rem; }
+  .aviso-borrador { position: static; margin-top: var(--spacing-cabecera); }
+}
+@media (prefers-reduced-motion: reduce) { .js .pres__mando, .js .pres__mando[data-fuera] { transition: none; } }

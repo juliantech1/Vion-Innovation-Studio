@@ -104,6 +104,16 @@ export function Presentacion({ ids, titulos, t }: { ids: string[]; titulos: stri
     contenedor()?.classList.toggle('presentacion--todas', todas);
   }, [todas]);
 
+  // En el celular el mando va fijo abajo: se esconde cuando la presentación no está a la vista (cabecera, pie).
+  useEffect(() => {
+    const c = contenedor();
+    const r = raiz.current;
+    if (!c || !r) return;
+    const io = new IntersectionObserver(([e]) => r.toggleAttribute('data-fuera', !e.isIntersecting), { rootMargin: '0px 0px -40% 0px' });
+    io.observe(c.querySelector('.laminas') ?? c);
+    return () => io.disconnect();
+  }, []);
+
   const n2 = (k: number) => String(k).padStart(2, '0');
   return (
     <div ref={raiz} className="pres__mando">
