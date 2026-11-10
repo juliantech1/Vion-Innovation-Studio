@@ -1,5 +1,6 @@
 // /llms.txt: un resumen breve del sitio para modelos de lenguaje, armado desde la capa de contenido.
-import { ARTICULOS, CURSOS, IDIOMAS, cursoIndexable, indexables, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso } from '@/content';
+import { ARTICULOS, CURSOS, IDIOMAS, cursoIndexable, indexables, leccionesDe, urlLeccion, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso } from '@/content';
+import { descripcionLeccion } from '@/seo/metadatos';
 
 export const dynamic = 'force-static';
 
@@ -21,7 +22,10 @@ export function GET() {
     const cursos = CURSOS.filter(cursoIndexable);
     if (cursos.length) {
       lineas.push('', idioma === 'es' ? '### Cursos' : '### Courses', '');
-      for (const c of cursos) lineas.push(`- [${c[idioma].titulo}](${urlCurso(c[idioma].slug, idioma)}): ${c[idioma].descripcion}`);
+      for (const c of cursos) {
+        lineas.push(`- [${c[idioma].titulo}](${urlCurso(c[idioma].slug, idioma)}): ${c[idioma].descripcion}`);
+        for (const l of leccionesDe(c, idioma)) lineas.push(`  - [${l.titulo}](${urlLeccion(c[idioma].slug, l.slug, idioma)}): ${descripcionLeccion(l)}`);
+      }
     }
     lineas.push('');
   }

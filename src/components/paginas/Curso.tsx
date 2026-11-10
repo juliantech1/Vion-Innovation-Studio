@@ -1,55 +1,42 @@
 import Link from 'next/link';
-import { interfazDe, pagina, piezasDe, ruta, rutaCursos, type Curso as DatosCurso, type Idioma, type Leccion } from '@/content';
+import { cursoIndexable, interfazDe, leccionesDe, pagina, piezasDe, ruta, rutaCurso, rutaCursos, rutaLeccion, videosDe, type Curso as DatosCurso, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
-import { Acentuado, Texto } from '@/components/sitio/Texto';
+import { Acentuado } from '@/components/sitio/Texto';
+import { Md, Linea } from '@/components/cursos/Md';
 import { Cierre } from '@/components/vion/Cierre';
-import { Boton, Ficha, Titular } from '@/components/vion/piezas';
+import { Boton, Ficha, Flecha, Titular } from '@/components/vion/piezas';
 import { datosCurso } from '@/seo/jsonld';
 import './aprender.css';
 import './estudio.css';
+import './cursos.css';
 
-/** El video de una lección: un archivo propio (con su póster, sin cargar nada hasta que se reproduce) o el lugar vacío. */
-function Video({ l, titulo, vacio }: { l?: Leccion; titulo: string; vacio: string }) {
-  const v = l?.video;
-  if (v?.mp4) {
-    return (
-      <video controls preload="none" poster={v.poster} title={titulo} width={1280} height={720}>
-        <source src={v.mp4} type="video/mp4" />
-        {v.vtt && <track kind="captions" src={v.vtt} default />}
-      </video>
-    );
-  }
-  if (v?.youtube) {
-    // youtube-nocookie y solo al pedirlo: un enlace, para no meter un iframe de terceros (y su CSP) en la carga.
-    return (
-      <a className="leccion-video__vacio" href={`https://www.youtube-nocookie.com/watch?v=${encodeURIComponent(v.youtube)}`} rel="noopener">
-        {titulo}
-      </a>
-    );
-  }
-  return <p className="leccion-video__vacio">{vacio}</p>;
-}
+const n2 = (n: number) => String(n).padStart(2, '0');
 
 /**
- * La página de un curso publicado (/cursos/<slug>): portada con su ficha, la primera lección con video, la lista de
- * lecciones con su video, minutos y material, y la acción del final hacia el servicio al que lleva. Hoy solo la usa el
- * curso de ejemplo, que es un borrador y no se publica.
+ * La página de un curso (/cursos/<slug>): portada con su ficha (para quién, requisitos, lo que cuesta, duración y el
+ * estado de sus videos), el índice de lecciones, la puesta a punto, lo que cuesta pieza por pieza, los repos y skills
+ * recomendados, el kit y la acción del final. Cada lección es una presentación de láminas en su propia página.
  */
 export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
   const x = c[idioma];
-  const t = piezasDe(idioma);
-  const k = t.cursos;
+  const k = piezasDe(idioma).cursos;
+  const p = k.plantilla;
   const ui = interfazDe(idioma);
   const cursos = pagina('cursos', idioma);
-  const minutos = x.lecciones.reduce((s, l) => s + (l.minutos ?? 0), 0);
-  const primera = x.lecciones.find((l) => l.video);
   const lleva = pagina(c.lleva, idioma);
+  const cont = x.contenido;
+  const lecciones = leccionesDe(c, idioma);
+  const v = videosDe(c);
+  const laminas = lecciones.reduce((s, l) => s + l.laminas.length, 0);
+  const primera = lecciones[0];
+  const ruta_ = rutaCursos(c.ruta)[idioma];
+  const estado = `${k.estado[c.estado]}${c.estado === 'produccion' && v.total ? ` · ${k.videosListos.replace('{n}', String(v.listos)).replace('{total}', String(v.total))}` : ''}`;
   return (
     <>
       <JsonLd nodos={datosCurso(c, idioma)} />
-      {c.borrador && <p className="aviso-borrador" role="note">{k.plantilla.borrador}</p>}
-      <article className="pagina" data-pagina="cursos">
-        <section className="portada portada--interior tono-raven" aria-labelledby="titulo">
+      {!cursoIndexable(c) && <p className="aviso-borrador" role="note">{p.borrador}</p>}
+      <article className="pagina curso-pagina" data-pagina="cursos">
+        <section className="portada portada--interior tono-raven" aria-labelledby="titulo" data-seccion={x.corto}>
           <div className="marco pi">
             <div className="pi__cab">
               <nav className="miga" aria-label={ui.migas}>
@@ -59,24 +46,34 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
                   <li aria-current="page">{x.corto}</li>
                 </ol>
               </nav>
-              <p className="rotulo">{k.ruta} {c.ruta} · {rutaCursos(c.ruta)[idioma].nombre}</p>
+              <p className="rotulo">{k.ruta} {c.ruta} · {ruta_.nombre} · {c.codigo}</p>
               <h1 className={x.titulo.length > 40 ? 'mega mega--larga' : 'mega'} id="titulo">
                 <Acentuado texto={x.titulo} />
               </h1>
             </div>
-            <div className="pi__texto leccion-video">
-              <Video l={primera} titulo={primera?.titulo ?? x.titulo} vacio={k.plantilla.sinVideo} />
-              <p className="rotulo">{k.plantilla.video}{primera ? `: ${primera.titulo}` : ''}</p>
+            <div className="pi__texto">
+              <p className="lead"><Linea s={x.seLleva} idioma={idioma} /></p>
+              <div className="acciones">
+                {primera ? (
+                  <Link className="boton" href={rutaLeccion(x.slug, primera.slug, idioma)}>
+                    {p.empezar} {primera.n}
+                    <span className="boton__flecha" aria-hidden="true"><Flecha /></span>
+                  </Link>
+                ) : (
+                  <Link className="boton boton--linea" href={rutaCurso(c.es.slug, 'es')} hrefLang="es-CR">{p.verCastellano}</Link>
+                )}
+              </div>
+              {!cont && <p className="curso-pagina__nota">{p.soloCastellano}</p>}
             </div>
             <aside className="pi__ficha" aria-labelledby="ficha-t">
               <h2 className="rotulo" id="ficha-t">{x.corto}</h2>
               <Ficha
                 filas={[
-                  { termino: k.paraQuien, valor: x.paraQuien },
-                  { termino: k.seLleva, valor: x.seLleva },
-                  { termino: k.lecciones, valor: String(x.lecciones.length) },
-                  ...(minutos ? [{ termino: k.plantilla.duracion, valor: `${minutos} ${k.minutos}` }] : []),
-                  { termino: k.herramientas, valor: x.herramientas },
+                  { termino: k.paraQuien, valor: <Linea s={x.paraQuien} idioma={idioma} /> },
+                  ...(cont ? [{ termino: p.requisitos, valor: <Linea s={cont.ficha.requisitos} idioma={idioma} /> }] : []),
+                  { termino: p.costo, valor: <Linea s={cont ? cont.ficha.costo : x.herramientas} idioma={idioma} /> },
+                  ...(cont ? [{ termino: p.duracion, valor: <Linea s={cont.ficha.duracion} idioma={idioma} /> }] : []),
+                  { termino: k.estadoRotulo, valor: <span className={`estado${c.estado === 'publicado' ? ' estado--publicado' : ''}`}>{estado}</span> },
                 ]}
               />
             </aside>
@@ -86,54 +83,170 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
         <section className="seccion tono-powder" id="lecciones" aria-labelledby="t-lecciones" data-seccion={k.lecciones}>
           <div className="marco">
             <div className="encabezado">
-              <p className="rotulo">{x.corto}</p>
-              <Titular id="t-lecciones" texto={k.plantilla.indice} />
+              <p className="rotulo">{x.corto} · {x.lecciones.length} {k.lecciones.toLowerCase()}{laminas ? ` · ${laminas} ${p.laminas}` : ''}</p>
+              <Titular id="t-lecciones" texto={p.indice} />
             </div>
-            <ol className="lecciones" data-traza>
-              {x.lecciones.map((l, i) => (
-                <li key={l.titulo} id={`leccion-${i + 1}`}>
-                  <span className="lecciones__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="lecciones__t">{l.titulo}</h3>
-                  <span className="lecciones__m">{l.minutos ? `${l.minutos} ${k.minutos}` : ''}</span>
-                  {(l.video || l.material) && (
-                    <div className="lecciones__cuerpo">
-                      {l.video && l !== primera && <div className="leccion-video"><Video l={l} titulo={l.titulo} vacio={k.plantilla.sinVideo} /></div>}
-                      {l.material && (
-                        <p className="lecciones__material">
-                          <span className="rotulo">{k.plantilla.material}</span>
-                          {l.material.map((m) => <a key={m.href} className="enlace-linea" href={m.href}>{m.texto}</a>)}
-                        </p>
+            <ol className="indice-lecciones" data-traza>
+              {(lecciones.length ? lecciones : x.lecciones.map((l, i) => ({ n: i, titulo: l.titulo, slug: '', objetivo: '', resultado: undefined, laminas: [] as typeof lecciones[number]['laminas'] }))).map((l) => {
+                const videos = l.laminas.filter((y) => ['motion', 'grabacion', 'chispa'].includes(y.apoyo.tipo)).length;
+                return (
+                  <li key={l.titulo} id={l.slug ? `leccion-${l.n}` : undefined}>
+                    <span className="indice-lecciones__n" aria-hidden="true">{n2(l.n)}</span>
+                    <div className="indice-lecciones__cuerpo">
+                      <h3 className="indice-lecciones__t">
+                        {l.slug ? <Link href={rutaLeccion(x.slug, l.slug, idioma)}>{l.titulo}</Link> : l.titulo}
+                      </h3>
+                      {l.objetivo && <p><Linea s={l.objetivo} idioma={idioma} /></p>}
+                      {l.resultado && (
+                        <p className="indice-lecciones__res"><span className="rotulo">{p.resultado}</span> <Linea s={l.resultado} idioma={idioma} /></p>
                       )}
                     </div>
-                  )}
-                </li>
-              ))}
+                    {l.laminas.length > 0 && (
+                      <span className="indice-lecciones__m">{l.laminas.length} {p.laminas}<br />{videos} {p.videos}</span>
+                    )}
+                  </li>
+                );
+              })}
             </ol>
-            <p style={{ marginTop: '2rem' }}>
-              <Link className="enlace-linea" href={ruta('cursos', idioma)}>{k.plantilla.volver}</Link>
-            </p>
+            {!cont && (
+              <p className="curso-pagina__nota">
+                {p.soloCastellano}{' '}
+                <Link className="enlace-linea" href={rutaCurso(c.es.slug, 'es')} hrefLang="es-CR">{p.verCastellano}</Link>
+              </p>
+            )}
           </div>
         </section>
 
-        <section className="seccion tono-raven" id="siguiente" aria-labelledby="t-siguiente" data-seccion={lleva.nav}>
-          <div className="marco aprende">
-            <div className="aprende__texto">
-              <div className="encabezado">
-                <p className="rotulo">{lleva.nav}</p>
-                <Titular id="t-siguiente" texto={k.lleva} />
+        {cont && (
+          <>
+            <section className="seccion tono-raven" id="puesta-a-punto" aria-labelledby="t-puesta" data-seccion={p.puesta}>
+              <div className="marco reticula">
+                <div className="curso-pagina__lado">
+                  <div className="encabezado">
+                    <p className="rotulo">{k.leccion} {cont.puesta.leccion}</p>
+                    <Titular id="t-puesta" texto={p.puesta} />
+                  </div>
+                  {lecciones.find((l) => l.n === cont.puesta.leccion) && (
+                    <p>
+                      <Link className="enlace-linea" href={rutaLeccion(x.slug, lecciones.find((l) => l.n === cont.puesta.leccion)!.slug, idioma)}>
+                        {p.puestaIr}
+                        <span aria-hidden="true"><Flecha /></span>
+                      </Link>
+                    </p>
+                  )}
+                </div>
+                <div className="curso-pagina__md md">
+                  <Md texto={cont.puesta.texto} idioma={idioma} />
+                </div>
               </div>
-            </div>
-            <div className="aprende__lista texto">
-              <p><Texto idioma={idioma}>{lleva.bajada}</Texto></p>
-              <p style={{ marginTop: '1.5rem' }}>
-                <Boton accion={{ texto: lleva.esquema.servicio?.nombre ?? lleva.nav, destino: { pagina: c.lleva } }} idioma={idioma} variante="linea" flecha />
-              </p>
-            </div>
-          </div>
-        </section>
+            </section>
+
+            <section className="seccion tono-powder" id="costos" aria-labelledby="t-costos" data-seccion={p.costo}>
+              <div className="marco reticula">
+                <div className="curso-pagina__lado">
+                  <div className="encabezado">
+                    <p className="rotulo">{p.costo}</p>
+                    <Titular id="t-costos" texto={p.costos} />
+                  </div>
+                  <p className="lead-chico"><Linea s={cont.ficha.costo} idioma={idioma} /></p>
+                </div>
+                <div className="curso-pagina__md md">
+                  <div className="md__tabla" role="region" aria-label={p.costos} tabIndex={0}>
+                    <table>
+                      <thead>
+                        <tr><th scope="col">{p.costosCols.pieza}</th><th scope="col">{p.costosCols.costo}</th><th scope="col">{p.costosCols.fuente}</th></tr>
+                      </thead>
+                      <tbody>
+                        {cont.costos.map((f) => (
+                          <tr key={f.pieza}>
+                            <th scope="row"><Linea s={f.pieza} idioma={idioma} /></th>
+                            <td><Linea s={f.costo} idioma={idioma} /></td>
+                            <td>{f.fuente ? <Linea s={f.fuente} idioma={idioma} /> : '·'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="curso-pagina__pie">{p.costosFecha.replace('{fecha}', cont.costosFecha)}</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="seccion tono-raven" id="repos" aria-labelledby="t-repos" data-seccion={p.recursos}>
+              <div className="marco">
+                <div className="encabezado">
+                  <p className="rotulo">{p.recursosCols.nombre}</p>
+                  <Titular id="t-repos" texto={p.recursos} />
+                  <p className="intro">{p.recursosIntro}</p>
+                </div>
+                <ul className="recursos" data-traza>
+                  {cont.recursos.map((r) => (
+                    <li key={r.nombre}>
+                      <h3 className="recursos__t">
+                        {r.url ? (
+                          <a href={r.url} rel="noopener">
+                            <Linea s={r.nombre} idioma={idioma} />
+                            <span aria-hidden="true"><Flecha diagonal /></span>
+                          </a>
+                        ) : (
+                          <Linea s={r.nombre} idioma={idioma} />
+                        )}
+                      </h3>
+                      <p className="recursos__que"><Linea s={r.que} idioma={idioma} /></p>
+                      <dl className="recursos__datos">
+                        <div><dt>{p.recursosCols.licencia}</dt><dd><Linea s={r.licencia} idioma={idioma} /></dd></div>
+                        <div><dt>{p.recursosCols.revision}</dt><dd><Linea s={r.revision} idioma={idioma} /></dd></div>
+                        {r.lecciones && <div><dt>{p.recursosCols.lecciones}</dt><dd>{r.lecciones}</dd></div>}
+                      </dl>
+                    </li>
+                  ))}
+                </ul>
+                {cont.noRecomendamos && (
+                  <div className="recursos__no md">
+                    <h3 className="rotulo">{p.noRecomendamos}</h3>
+                    <Md texto={cont.noRecomendamos} idioma={idioma} nivel={4} />
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="seccion tono-powder" id="kit" aria-labelledby="t-kit" data-seccion={p.kit}>
+              <div className="marco reticula">
+                <div className="curso-pagina__lado">
+                  <div className="encabezado">
+                    <p className="rotulo">{p.kit}</p>
+                    <Titular id="t-kit" texto={p.kit} />
+                  </div>
+                  <div className="md"><Md texto={cont.kit.descripcion} idioma={idioma} /></div>
+                  <p className="estado">{p.kitNota}</p>
+                </div>
+                <div className="curso-pagina__md">
+                  <ul className="kit" data-traza>
+                    {cont.kit.archivos.map((a) => (
+                      <li key={a.nombre}>
+                        <code>{a.nombre}</code>
+                        <span><Linea s={a.que} idioma={idioma} /></span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="accion-final" aria-labelledby="t-accion">
+                    <p className="rotulo">{p.accion}</p>
+                    <h3 className="sub" id="t-accion">{cont.accion.titulo}</h3>
+                    <div className="md"><Md texto={cont.accion.texto} idioma={idioma} /></div>
+                    <p className="accion-final__lleva">
+                      <span>{k.lleva}:</span>{' '}
+                      <Boton accion={{ texto: lleva.esquema.servicio?.nombre ?? lleva.nav, destino: { pagina: c.lleva } }} idioma={idioma} variante="linea" flecha chico />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
 
         {cursos.llamado && <Cierre llamado={cursos.llamado} idioma={idioma} />}
       </article>
     </>
   );
 }
+

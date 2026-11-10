@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { ARTICULOS, CURSOS, IDIOMAS, alternativas, cursoIndexable, indexables, urlAbsoluta, urlArticulo, urlCurso } from '@/content';
-import { alternativasArticulo, alternativasCurso } from '@/seo/metadatos';
+import { ARTICULOS, CURSOS, IDIOMAS, alternativas, cursoIndexable, indexables, leccionesDe, urlAbsoluta, urlArticulo, urlCurso, urlLeccion } from '@/content';
+import { alternativasArticulo, alternativasCurso, metadatosLeccion } from '@/seo/metadatos';
 
 /**
  * Todas las páginas que se indexan, en los dos idiomas, cada una con sus alternativas (hreflang): las del sitio, los
@@ -28,5 +28,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
       alternates: { languages: alternativasCurso(c) },
     })),
+    // Las lecciones de los cursos publicados, en los idiomas que las tienen; sus alternativas, las mismas de su página.
+    ...CURSOS.filter(cursoIndexable).flatMap((c) =>
+      leccionesDe(c, idioma).map((l) => ({
+        url: urlLeccion(c[idioma].slug, l.slug, idioma),
+        lastModified: c.publicado,
+        changeFrequency: 'monthly' as const,
+        priority: 0.5,
+        alternates: { languages: metadatosLeccion(c, l, idioma).alternates?.languages as Record<string, string> },
+      })),
+    ),
   ]);
 }

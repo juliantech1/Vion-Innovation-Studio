@@ -1,10 +1,11 @@
 // Lo que comparten las rutas de los artículos y de los cursos en los dos idiomas: qué páginas se generan, sus
 // metadatos y la fuente RSS. Cada `page.tsx` es una línea que llama a esto con su idioma.
 import { notFound } from 'next/navigation';
-import { ARTICULOS, CURSOS, articuloPorSlug, cursoConPagina, cursoPorSlug, interfazDe, pagina, sitio, urlAbsoluta, urlArticulo, type Idioma } from '@/content';
-import { metadatosArticulo, metadatosCurso } from '@/seo/metadatos';
+import { ARTICULOS, CURSOS, articuloPorSlug, cursoConPagina, cursoPorSlug, interfazDe, leccionPorSlug, leccionesDe, pagina, sitio, urlAbsoluta, urlArticulo, type Idioma } from '@/content';
+import { metadatosArticulo, metadatosCurso, metadatosLeccion } from '@/seo/metadatos';
 import { Articulo } from './Articulo';
 import { Curso } from './Curso';
+import { Leccion } from './Leccion';
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -22,9 +23,9 @@ export const articulos = (idioma: Idioma) => ({
 });
 
 /**
- * Los cursos con página: solo los publicados. Un borrador (el curso de ejemplo) se genera únicamente al construir con
- * VION_BORRADORES=1, para revisar la plantilla, y sale con noindex. Si no hay ninguno, la ruta no genera nada y
- * cualquier /cursos/<algo> es la 404.
+ * Los cursos con página: los publicados. Los que están en producción se generan únicamente al construir con
+ * VION_BORRADORES=1, para revisarlos, y salen con noindex. Si no hay ninguno, la ruta no genera nada y cualquier
+ * /cursos/<algo> es la 404.
  */
 export const cursos = (idioma: Idioma) => ({
   generateStaticParams: () => CURSOS.filter(cursoConPagina).map((c) => ({ slug: c[idioma].slug })),
@@ -38,6 +39,31 @@ export const cursos = (idioma: Idioma) => ({
     return <Curso c={c} idioma={idioma} />;
   },
 });
+
+type ParamsLeccion = { params: Promise<{ slug: string; leccion: string }> };
+
+/** Las lecciones de los cursos con página, en los idiomas que tienen su contenido (hoy, castellano). */
+export const lecciones = (idioma: Idioma) => {
+  const buscar = async ({ params }: ParamsLeccion) => {
+    const { slug, leccion } = await params;
+    const c = cursoPorSlug(idioma, slug);
+    const l = c && leccionPorSlug(c, idioma, leccion);
+    return c && l ? { c, l } : undefined;
+  };
+  return {
+    generateStaticParams: () =>
+      CURSOS.filter(cursoConPagina).flatMap((c) => leccionesDe(c, idioma).map((l) => ({ slug: c[idioma].slug, leccion: l.slug }))),
+    generateMetadata: async (p: ParamsLeccion) => {
+      const x = await buscar(p);
+      return x ? metadatosLeccion(x.c, x.l, idioma) : {};
+    },
+    Page: async function Page(p: ParamsLeccion) {
+      const x = await buscar(p);
+      if (!x) notFound();
+      return <Leccion c={x.c} l={x.l} idioma={idioma} />;
+    },
+  };
+};
 
 const xml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const fechaRss = (iso: string) => new Date(`${iso}T12:00:00Z`).toUTCString();

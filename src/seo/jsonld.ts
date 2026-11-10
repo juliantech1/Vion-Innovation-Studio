@@ -1,7 +1,7 @@
 // Datos estructurados (schema.org) de cada página, armados desde su contenido: solo lo que la página muestra.
 // Sin reseñas, puntajes ni nada que no esté visible. `scripts/revisar-seo.mjs` revisa los tipos y sus campos.
-import { imagenOg, imagenOgArticulo, imagenOgCurso } from './metadatos';
-import { ARTICULOS, CURSOS, cursoIndexable, interfazDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, type Articulo, type Curso, type IdPagina, type Idioma } from '@/content';
+import { descripcionLeccion, imagenOg, imagenOgArticulo, imagenOgCurso, tituloLeccion } from './metadatos';
+import { ARTICULOS, CURSOS, cursoIndexable, interfazDe, leccionesDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, urlLeccion, type Articulo, type Curso, type IdPagina, type Idioma, type LeccionCurso } from '@/content';
 
 type Nodo = Record<string, unknown>;
 
@@ -247,8 +247,8 @@ export function datosArticulo(a: Articulo, idioma: Idioma): Nodo[] {
 }
 
 /**
- * Un curso con página: WebPage, migas y, si está publicado de verdad, `Course` (gratis, en línea, de Vion). Un
- * borrador no lleva `Course`: no existe para nadie más que quien revisa la plantilla.
+ * Un curso con página: WebPage, migas y, si está publicado, `Course` (gratis, en línea, de Vion) con sus lecciones.
+ * Un curso en producción que se construye para revisarlo no lleva `Course`: todavía no existe para nadie.
  */
 export function datosCurso(c: Curso, idioma: Idioma): Nodo[] {
   const x = c[idioma];
@@ -272,7 +272,7 @@ export function datosCurso(c: Curso, idioma: Idioma): Nodo[] {
     migas(url, idioma, 'cursos', x.titulo),
   ];
   if (cursoIndexable(c)) {
-    const minutos = x.lecciones.reduce((t, l) => t + (l.minutos ?? 0), 0);
+    const lecciones = leccionesDe(c, idioma);
     nodos.push({
       '@context': 'https://schema.org',
       '@type': 'Course',
@@ -280,20 +280,51 @@ export function datosCurso(c: Curso, idioma: Idioma): Nodo[] {
       name: x.titulo,
       description: x.descripcion,
       url,
-      inLanguage: ui.lang,
+      inLanguage: lecciones.length ? ui.lang : interfazDe('es').lang,
       provider: { '@id': ID_ORGANIZACION },
       isAccessibleForFree: true,
       offers: { '@type': 'Offer', category: 'Free', price: 0, priceCurrency: 'USD', url },
-      hasCourseInstance: {
-        '@type': 'CourseInstance',
-        courseMode: 'Online',
-        ...(minutos ? { courseWorkload: `PT${minutos}M` } : {}),
-      },
+      hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Online' },
       ...(c.publicado ? { datePublished: c.publicado } : {}),
-      syllabusSections: x.lecciones.map((l) => ({ '@type': 'Syllabus', name: l.titulo, ...(l.minutos ? { timeRequired: `PT${l.minutos}M` } : {}) })),
+      syllabusSections: (lecciones.length ? lecciones : x.lecciones).map((l) => ({ '@type': 'Syllabus', name: l.titulo, ...('objetivo' in l ? { description: l.objetivo } : {}) })),
     });
   }
   return nodos;
+}
+
+/** Una lección: WebPage (parte del curso) y migas de cuatro niveles: Inicio, Cursos, el curso y la lección. */
+export function datosLeccion(c: Curso, l: LeccionCurso, idioma: Idioma): Nodo[] {
+  const x = c[idioma];
+  const ui = interfazDe(idioma);
+  const url = urlLeccion(x.slug, l.slug, idioma);
+  const curso = urlCurso(x.slug, idioma);
+  return [
+    organizacion(idioma),
+    sitioWeb(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${url}#pagina`,
+      url,
+      name: tituloLeccion(c, l, idioma),
+      description: descripcionLeccion(l),
+      inLanguage: ui.lang,
+      isPartOf: cursoIndexable(c) ? { '@id': `${curso}#curso` } : { '@id': ID_SITIO },
+      breadcrumb: { '@id': `${url}#migas` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: imagenOgCurso(c, idioma), width: 1200, height: 630 },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#migas`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: pagina('inicio', idioma).nav, item: urlAbsoluta('inicio', idioma) },
+        { '@type': 'ListItem', position: 2, name: pagina('cursos', idioma).nav, item: urlAbsoluta('cursos', idioma) },
+        { '@type': 'ListItem', position: 3, name: x.titulo, item: curso },
+        { '@type': 'ListItem', position: 4, name: l.titulo, item: url },
+      ],
+    },
+  ];
 }
 
 /** JSON seguro dentro de un <script>. */

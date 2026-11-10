@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { alternativas, interfazDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, type Articulo, type Curso, type IdPagina, type Idioma } from '@/content';
+import { alternativas, interfazDe, leccionesDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, urlLeccion, type Articulo, type Curso, type IdPagina, type Idioma, type LeccionCurso } from '@/content';
 import { cursoIndexable } from '@/content/cursos';
 
 /** La imagen Open Graph de una página (la dibuja `app/og/[archivo]/route.tsx`, 1200 × 630). */
@@ -67,6 +67,40 @@ export function metadatosCurso(c: Curso, idioma: Idioma): Metadata {
     alt: x.titulo,
     idiomas: cursoIndexable(c) ? alternativasCurso(c) : undefined,
   });
+}
+
+/** El <title> de una lección (30 a 60): «Lección 3: título · Curso | Vion», recortando lo que no entre. */
+export function tituloLeccion(c: Curso, l: LeccionCurso, idioma: Idioma): string {
+  const leccion = idioma === 'es' ? 'Lección' : 'Lesson';
+  const base = `${leccion} ${l.n}: ${l.titulo}`;
+  for (const t of [`${base} · ${c[idioma].corto} | Vion`, `${base} | Vion`, base]) if (t.length <= 60) return t.length >= 30 ? t : `${t} · ${c[idioma].titulo}`.slice(0, 60);
+  const corto = base.slice(0, 58).replace(/\s+\S*$/, '');
+  return `${corto.replace(/[,:;·]$/, '')}…`;
+}
+
+/** La descripción de una lección (70 a 155): su objetivo y lo que queda al final, sin marcado. */
+export function descripcionLeccion(l: LeccionCurso): string {
+  const limpio = (s: string) => s.replace(/\*\*|`|\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\{\{[^}]*\}\}/g, '').replace(/\s+/g, ' ').trim();
+  let d = limpio(l.objetivo);
+  if (l.resultado && d.length < 110) d = `${d.replace(/\.$/, '')}. ${limpio(l.resultado)}`;
+  if (d.length > 155) d = `${d.slice(0, 152).replace(/\s+\S*$/, '').replace(/[,:;]$/, '')}…`;
+  if (d.length < 70) d = `${d} ${l.laminas.length} láminas con texto, comandos para copiar y videos cortos.`;
+  return d;
+}
+
+/** Una lección: se indexa con su curso; solo en los idiomas que tienen el contenido (hoy, castellano). */
+export function metadatosLeccion(c: Curso, l: LeccionCurso, idioma: Idioma): Metadata {
+  const url = urlLeccion(c[idioma].slug, l.slug, idioma);
+  const otro: Idioma = idioma === 'es' ? 'en' : 'es';
+  const par = leccionesDe(c, otro).find((y) => y.n === l.n);
+  const idiomas = cursoIndexable(c)
+    ? {
+        [interfazDe(idioma).lang]: url,
+        ...(par ? { [interfazDe(otro).lang]: urlLeccion(c[otro].slug, par.slug, otro) } : {}),
+        'x-default': idioma === 'es' ? url : par ? urlLeccion(c.es.slug, par.slug, 'es') : url,
+      }
+    : undefined;
+  return metadatosSub({ idioma, url, titulo: tituloLeccion(c, l, idioma), descripcion: descripcionLeccion(l), imagen: imagenOgCurso(c, idioma), alt: l.titulo, idiomas });
 }
 
 /** Lo que comparten todas las páginas de un idioma: va en el layout raíz de ese idioma. */
