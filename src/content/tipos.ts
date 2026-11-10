@@ -232,3 +232,40 @@ export interface Interfaz {
     trampa: string;
   };
 }
+
+/** Los textos de las piezas del diseño (ficha de la portada, figuras, cola de ejemplo, cajetín, colofón, transición). */
+export interface Piezas {
+  cabecera: { menu: string; cerrar: string; idioma: string; cta: string; seccion: string; descriptores: Partial<Record<IdPagina, string>> };
+  portada: {
+    fichaTitulo: string; primerPaso: string; plazo: string; rango: string; recibe: string; recibeValor: string;
+    figura: { nombre: string; pie: string; vistas: [string, string, string]; ambientes: string; escala: string };
+  };
+  fig: string;
+  nota: string;
+  fig1: { paso: string; semana: string; mesAMes: string; plazo: string; rango: string; decide: [string, string]; opcional: string; alMes: string; pie: string; notaRangos: string };
+  ultron: {
+    ficha: { termino: string; valor: string; detalle?: string }[];
+    cola: {
+      titulo: string; demo: string; esperan: string; salieron: string; volvieron: string; lista: string; aprobar: string; rechazar: string;
+      registro: string; ahora: string; inicial: string; vacia: string; reiniciar: string; deNuevo: [string, string];
+      aprobado: [string, string]; rechazado: [string, string]; preparado: [string, string];
+      /** Trabajos de ejemplo: [qué, área, para quién y qué]. No son clientes ni trabajos reales. */
+      trabajos: [string, string, string][];
+    };
+    pie: string; notaDemo: string;
+  };
+  trabajo: { ficha: { termino: string; valor: string }[] };
+  cierre: { rotulo: string; panel: string; vias: string };
+  pie: {
+    cajetin: string; proyecto: string; proyectoValor: string; lamina: string; indice: string; revision: string; dibujo: string; dibujoValor: string;
+    razon: string; colofon: string; colofonTexto: string; colofonEspera: string; colofonMedido: string; reticula: string; reticulaDato: string;
+  };
+  transicion: { lamina: string };
+  autocad: {
+    fig1: string; fig1Comando: string; fig2: string; fig3: string; fig3Archivo: string; fig3Rotulo: string; fig3Comando: string; fig3Codigo: string; fig3Comentario: string;
+    revisiones: string; rev: string; queSeMide: string; resultado: string; pendiente: string;
+    cotiza: { plazo: string; rango: string; recibe: string; para: string };
+    esquema: { archivos: string; plugin: string; hoja: string; sistema: string; alt: string };
+  };
+  noEncontrada: { indice: string };
+}

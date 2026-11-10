@@ -11,7 +11,7 @@ const proyectos: Proyecto[] = [
     filas: [
       {
         termino: 'How it works',
-        valor: 'It runs on a laptop with an 8 GB GPU. It uses local models with Ollama for what must not leave the machine and Claude through the API for what needs more capacity, with a monthly spending cap. Everything that goes out passes through an approval queue.',
+        valor: 'It runs on our own hardware, with no rented servers. It uses local models with Ollama for what must not leave the machine and Claude through the API for what needs more capacity, with a monthly spending cap. Everything that goes out passes through an approval queue.',
       },
       { termino: 'Results', valor: P.resultadosUltron },
     ],

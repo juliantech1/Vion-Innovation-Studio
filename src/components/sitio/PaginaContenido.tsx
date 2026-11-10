@@ -61,7 +61,7 @@ export function PaginaContenido({ id, idioma }: { id: IdPagina; idioma: Idioma }
   return (
     <>
       <JsonLd id={id} idioma={idioma} />
-      <article className="pagina" data-pagina={id}>
+      <article className="pagina base" data-pagina={id}>
         <header className="portada">
           <div className="contenedor">
             {id !== 'inicio' && (

@@ -48,6 +48,79 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   Vion · los tokens del sistema de diseño (ver DISENO.md). Fuente: docs/marca/DESIGN.md.
+   `static`: todos salen como variables CSS en :root aunque ninguna utilidad los use, porque las piezas de
+   `sistema.css` los leen con var(). También generan utilidades de Tailwind (bg-raven, text-poppy, font-mono,
+   text-h2, rounded-marca, ease-sale-expo…) para quien prefiera componer con clases.
+   ───────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+@theme static {
+  /* color */
+  --color-raven: #0b0b0c;          /* fondo base y tinta sobre claro */
+  --color-raven-2: #141416;        /* superficie sobre negro (la cola, el código) */
+  --color-raven-3: #1d1d20;
+  --color-powder: #c9dfee;         /* fondo alterno */
+  --color-powder-2: #dceaf4;       /* superficie sobre azul polvo */
+  --color-powder-3: #b9d3e5;
+  --color-claro: #fafafa;          /* tinta sobre negro */
+  --color-poppy: #e8341c;          /* acento: una o dos palabras del titular, el panel del cierre, los rombos */
+  --color-orange: #f0612a;         /* detalle: el final del degradado, el foco, el filo del botón */
+  --color-poppy-boton: #d62e17;    /* el rojo del botón: el amapola un paso más hondo para que el texto claro dé 4,7:1 */
+  --color-poppy-hondo: #c4260e;    /* arranque del degradado del botón (5,6:1 con el texto claro) */
+  --color-poppy-tinta: #b8200c;    /* rojo para texto chico sobre azul polvo (4,7:1) */
+  --color-gris-1: #b4b4b9;         /* texto secundario sobre negro (9,3:1) */
+  --color-gris-2: #8f8f96;         /* texto terciario sobre negro (6,1:1) */
+  --color-azul-tinta: #2f3c46;     /* texto secundario sobre azul polvo (8,2:1): teñido, nunca gris */
+  --color-azul-tinta-2: #42505a;
+
+  /* tipografía: Geist y Geist Mono variables (next/font, src/app/fuentes.ts) */
+  --font-sans: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-mega: clamp(2.5rem, 0.62rem + 5.2vw, 5.75rem);        /* h1: 40 → 80 (1440) → 92 */
+  --text-mega--line-height: 0.92;
+  --text-mega--letter-spacing: -0.035em;
+  --text-h2: clamp(2rem, 1.25rem + 2.9vw, 4rem);                /* títulos de sección: 32 → 60 → 64 */
+  --text-h2--line-height: 0.96;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);          /* subtítulos: 20 → 26 */
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: clamp(1.125rem, 1rem + 0.55vw, 1.5rem);          /* bajada: 18 → 24 */
+  --text-lead--line-height: 1.38;
+  --text-cuerpo: clamp(1rem, 0.96rem + 0.14vw, 1.125rem);       /* cuerpo: 16 → 18 */
+  --text-cuerpo--line-height: 1.55;
+  --text-s: 0.9375rem;                                           /* 15: tablas, fichas */
+  --text-xs: 0.8125rem;                                          /* 13: notas, pies de figura */
+  --text-rotulo: 0.75rem;                                        /* 12: rótulos en Geist Mono, mayúsculas, +0,08em */
+  --tracking-rotulo: 0.08em;
+  --font-weight-titular: 800;
+
+  /* espacio (la base de Tailwind es 4 px: p-4 = 16 px) y retícula */
+  --spacing-margen: clamp(1.25rem, 0.23rem + 4.2vw, 4rem);       /* 20 → 64 */
+  --spacing-canal: clamp(1rem, 0.81rem + 0.8vw, 1.5rem);         /* 16 → 24 */
+  --spacing-seccion: clamp(4.5rem, 2.6rem + 7.4vw, 9.5rem);      /* aire de sección: 72 → 152 */
+  --spacing-seccion-corta: clamp(3.5rem, 2.4rem + 4.4vw, 6.5rem);
+  --spacing-cabecera: 4rem;
+  --container-marco: 100rem;                                     /* 1600: en 1920 la página no se estira más */
+
+  /* forma y líneas */
+  --radius-marca: 6px;                                           /* el máximo de DESIGN.md; la estructura va en 0 */
+  --radius-0: 0px;
+  --linea: 1px;
+
+  /* movimiento: un verbo, «trazar». Todo llega y se queda, sin rebote. */
+  --ease-sale-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sale-cuarta: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-entra-sale: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-entra: cubic-bezier(0.5, 0, 0.75, 0);
+  --ease-resorte: linear(0, 0.065, 0.203, 0.363, 0.518, 0.651, 0.76, 0.843, 0.903, 0.945, 0.973, 0.991, 1.001, 1.006, 1.008, 1.008, 1.007, 1.006, 1.005, 1.004, 1.003, 1.002, 1.001, 1);
+  --d-1: 140ms;    /* color */
+  --d-2: 260ms;    /* desplazamientos chicos */
+  --d-3: 530ms;    /* resorte, inversión de fila */
+  --d-4: 900ms;    /* entradas */
+  --d-5: 1200ms;   /* trazos de figura */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -55,8 +128,6 @@
   --color-card-foreground: var(--card-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;

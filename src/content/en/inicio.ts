@@ -85,7 +85,7 @@ export const inicio: Pagina = {
       acento: 'agents',
       parrafos: [
         'We use it before we offer it. Ultron is the system of AI agents that Vion runs on.',
-        'It runs on a laptop with an 8 GB GPU: local models with Ollama for what must not leave the machine and Claude through the API for what needs more capacity, with a monthly spending cap.',
+        'It runs on our own hardware, with no rented servers: local models with Ollama for what must not leave the machine and Claude through the API for what needs more capacity, with a monthly spending cap. The data stays in house and the cost stays under control.',
         'Its agents research markets, look for companies that might need us, draft proposals and prepare content. **Nothing goes out until a person approves it.** We build client systems on the same principle.',
         '[See Ultron and our other in-house projects](@casos) or [meet the Vion team](@nosotros).',
       ],

@@ -88,9 +88,20 @@ export const inicio: Pagina = {
       acento: 'agentes',
       parrafos: [
         'Antes de ofrecerlo, lo usamos. Ultron es el sistema de agentes de IA con el que trabaja Vion.',
-        'Corre en una laptop con una GPU de 8 GB: modelos locales con Ollama para lo que no debe salir de la máquina y Claude por API para lo que necesita más capacidad, con un tope de gasto mensual.',
+        'Corre en equipo propio, sin servidores alquilados: modelos locales con Ollama para lo que no debe salir de la máquina y Claude por API para lo que necesita más capacidad, con un tope de gasto mensual. Los datos quedan en casa y el costo, bajo control.',
         'Sus agentes investigan mercados, buscan empresas que podrían necesitarnos, redactan borradores de propuestas y preparan contenido. **Nada sale sin que una persona lo apruebe.** Es el mismo principio con el que construimos los sistemas para clientes.',
         '[Ver Ultron y los demás proyectos propios](@casos) o [conocer al equipo de Vion](@nosotros).',
+      ],
+    },
+    {
+      tipo: 'texto',
+      id: 'como-trabajamos',
+      etiqueta: 'A distancia, desde Costa Rica',
+      titulo: 'Para firmas de Costa Rica y de Estados Unidos',
+      acento: 'Estados Unidos',
+      parrafos: [
+        'Trabajamos a distancia, en español y en inglés. Costa Rica está en UTC-6 todo el año, así que las reuniones caen en horario laboral de Centroamérica y de Estados Unidos, y los precios se cotizan en dólares.',
+        'El primer paso es siempre el mismo y es chico: [un diagnóstico de dos semanas](@consultoria#diagnostico) antes de cualquier compromiso mayor.',
       ],
     },
   ],

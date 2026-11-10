@@ -12,7 +12,7 @@ const proyectos: Proyecto[] = [
     filas: [
       {
         termino: 'Cómo funciona',
-        valor: 'Corre en una laptop con una GPU de 8 GB. Usa modelos locales con Ollama para lo que no debe salir de la máquina y Claude por API para lo que necesita más capacidad, con un tope de gasto mensual. Todo lo que sale pasa por una cola de aprobación.',
+        valor: 'Corre en equipo propio, sin servidores alquilados. Usa modelos locales con Ollama para lo que no debe salir de la máquina y Claude por API para lo que necesita más capacidad, con un tope de gasto mensual. Todo lo que sale pasa por una cola de aprobación.',
       },
       { termino: 'Resultados', valor: P.resultadosUltron },
     ],

@@ -10,4 +10,6 @@ import { nosotros } from './nosotros';
 import { privacidad } from './privacidad';
 
 export { interfaz } from './interfaz';
+export { piezas } from './piezas';
+export { servicios } from './catalogo';
 export const paginas: Record<IdPagina, Pagina> = { inicio, consultoria, autocad, apps, casos, nosotros, contacto, privacidad, gracias };

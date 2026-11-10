@@ -252,7 +252,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
 /** Las secciones de una página: cada una es un <section> con su H2 (y H3 adentro). */
 export function Secciones({ secciones, idioma }: { secciones: Seccion[]; idioma: Idioma }) {
   return secciones.map((s) => (
-    <section key={s.id} id={s.id} className={`seccion seccion--${s.tipo}`} aria-labelledby={`t-${s.id}`}>
+    <section key={s.id} id={s.id} className={`seccion seccion--${s.tipo}`} aria-labelledby={`t-${s.id}`} data-seccion={s.etiqueta ?? s.titulo}>
       <div className="contenedor">
         <header className="seccion__cabeza">
           {s.etiqueta && <p className="etiqueta">{s.etiqueta}</p>}
