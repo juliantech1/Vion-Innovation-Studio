@@ -44,7 +44,7 @@ export function Apoyo({ a, m, n, titulo, idioma }: { a: DatosApoyo; m?: Medio; n
         <div className="apoyo__marco">
           <Glifo tipo={a.tipo} />
           <p className="apoyo__tipo">{tipo}{duracion}</p>
-          <p className="estado">{video ? t.videoEnProduccion : t.imagenEnProduccion}</p>
+          <p className={`estado${m?.producido ? ' estado--publicado' : ''}`}>{video ? (m?.producido ? t.videoListo : t.videoEnProduccion) : t.imagenEnProduccion}</p>
         </div>
       )}
       <figcaption>

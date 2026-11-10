@@ -27,6 +27,8 @@ export interface Medio {
   imagen?: string;
   ancho?: number;
   alto?: number;
+  /** El video ya está hecho pero todavía no está alojado (scripts/medios-cursos.py): cuenta como listo. */
+  producido?: boolean;
 }
 
 const MEDIOS = datos as Record<string, Record<string, Medio>>;
@@ -44,7 +46,7 @@ export function videosDe(c: Curso) {
       if (!esVideo(x.apoyo.tipo)) continue;
       total++;
       const m = medioDe(c.id, x.n);
-      if (m && (m.video || m.youtube || m.vimeo)) listos++;
+      if (m && (m.video || m.youtube || m.vimeo || m.producido)) listos++;
     }
   }
   return { total, listos };

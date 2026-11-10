@@ -2,7 +2,80 @@
   "claude-basico": {},
   "agentic-os": {},
   "skills": {},
-  "motion": {},
+  "motion": {
+    "0.2": {
+      "producido": true
+    },
+    "0.3": {
+      "imagen": "/cursos/motion/L0-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "0.4": {
+      "imagen": "/cursos/motion/L0-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "0.10": {
+      "imagen": "/cursos/motion/L0-10.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.2": {
+      "imagen": "/cursos/motion/L1-02.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.6": {
+      "imagen": "/cursos/motion/L1-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.1": {
+      "producido": true
+    },
+    "2.3": {
+      "imagen": "/cursos/motion/L2-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.4": {
+      "producido": true
+    },
+    "2.6": {
+      "imagen": "/cursos/motion/L2-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.6": {
+      "imagen": "/cursos/motion/L3-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.3": {
+      "imagen": "/cursos/motion/L4-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.1": {
+      "producido": true
+    },
+    "5.2": {
+      "imagen": "/cursos/motion/L5-02.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.5": {
+      "imagen": "/cursos/motion/L5-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.4": {
+      "imagen": "/cursos/motion/L7-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    }
+  },
   "blender-3d": {},
   "personaje-3d": {},
   "claude-autocad": {},
