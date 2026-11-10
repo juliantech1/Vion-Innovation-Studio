@@ -26,14 +26,21 @@
 }
 
 /* ───── 2. Dibujos: línea de la marca, rótulos en Geist Mono, un trazo rojo donde decide una persona ───── */
-.dibujo svg path { vector-effect: none; }   /* con non-scaling-stroke y pathLength, Chrome corta el final del trazo al agrandar */
 .dibujo svg { width: 100%; height: auto; max-width: 33rem; overflow: visible; }
 .dibujo--vertical svg { max-width: 19rem; }
-.dibujo text { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--tinta); }
+.dibujo text { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; fill: var(--tinta); }
 .dibujo text.d-fuerte { font-weight: 600; }
 .dibujo text.d-tenue { fill: var(--tinta-2); }
 .dibujo text.d-rojo { fill: var(--marca-tinta); font-weight: 600; }
 .dibujo .d-relleno { fill: var(--tinta); opacity: 0.14; }
+/* En el celular, rótulos de 11 px como mínimo en la pantalla: los dibujos sueltos agrandan su letra; los densos
+   (.dibujo--ancho) se ven a su tamaño y se deslizan de costado, para no encimar rótulos. */
+@media (max-width: 47.99rem) {
+  .dibujo:not(.dibujo--ancho) text { font-size: 13.4px; letter-spacing: 0.02em; }
+  .desliza { overflow-x: auto; overscroll-behavior-x: contain; margin-right: calc(-1 * var(--spacing-margen)); padding-right: var(--spacing-margen); padding-bottom: 0.5rem; }
+  .desliza svg { width: 420px; max-width: none; }
+  .desliza:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+}
 
 /* ───── 3. Casos: un proyecto por lámina, texto y figura en espejo ───── */
 .proyecto { padding-block: var(--spacing-seccion); }

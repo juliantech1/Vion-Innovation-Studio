@@ -6,7 +6,7 @@ import { Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
 import { Cabeza, Ficha, Figura, Titular } from '@/components/vion/piezas';
 import { seccion } from './comun';
-import { caja, circulo, marcasCota, PortadaInterior, punta, rombo, T } from './estudio';
+import { caja, circulo, marcasCota, PortadaInterior, punta, rombo, T, Desliza } from './estudio';
 
 type Rotulos = string[];
 const n2 = (i: number) => String(i + 1).padStart(2, '0');
@@ -167,10 +167,18 @@ export function Casos({ idioma }: { idioma: Idioma }) {
             )}
           </div>
           {d && f && (
-            <Figura id={`fig${i + 1}-pie`} numero={i + 1} rotulo={fig} leyenda={f.pie} clase="dibujo proyecto__fig" dibuja>
-              <svg viewBox={d.vb} role="img" aria-label={f.alt}>
-                <d.D r={f.r} />
-              </svg>
+            <Figura id={`fig${i + 1}-pie`} numero={i + 1} rotulo={fig} leyenda={f.pie} clase={x.id === 'ultron' ? 'dibujo dibujo--ancho proyecto__fig' : 'dibujo proyecto__fig'} dibuja>
+              {x.id === 'ultron' ? (
+                <Desliza etiqueta={f.alt}>
+                  <svg viewBox={d.vb} role="img" aria-label={f.alt}>
+                    <d.D r={f.r} />
+                  </svg>
+                </Desliza>
+              ) : (
+                <svg viewBox={d.vb} role="img" aria-label={f.alt}>
+                  <d.D r={f.r} />
+                </svg>
+              )}
             </Figura>
           )}
         </div>

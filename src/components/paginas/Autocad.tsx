@@ -100,12 +100,12 @@ export function Autocad({ idioma }: { idioma: Idioma }) {
                     <g className="dib">
                       <path pathLength={1} d="M12 60h316v224H12Z" />
                       <path pathLength={1} d="M22 70h296v204H22Z" />
-                      <path pathLength={1} d="M220 274v-44h98M220 252h98M270 230v44" />
+                      <path pathLength={1} d="M220 274v-44h98M220 252h98M278 230v44" />
                       <path pathLength={1} d="M34 82h130v84H34ZM176 82h130v136H176ZM34 178h130v84H34Z" />
                       <path pathLength={1} d="M46 96h70v40H46ZM82 96v40M46 116h36M190 100h100M190 118h100M190 136h100M190 154h100M190 172h60M48 196h44v50H48ZM104 196h44v24h-44Z" />
                     </g>
-                    <text x="228" y="246">{t.transicion.lamina.toUpperCase()}</text>
-                    <text x="278" y="268" className="juego__num">A-01</text>
+                    <text x="226" y="246">{t.transicion.lamina.toUpperCase()}</text>
+                    <text x="285" y="268" className="juego__num">A-01</text>
                     <path className="dib dib--rojo" pathLength={1} d="M12 310l8 5-8 5" />
                     <text className="juego__cmd" x="30" y="320">{a.fig1Comando}</text>
                   </svg>
@@ -185,10 +185,10 @@ export function Autocad({ idioma }: { idioma: Idioma }) {
                 </g>
                 <g className="dib dib--rojo"><path pathLength={1} d="M110 70l100 60m-11-1 11 1-5-10M330 130l80-60m-10 2 10-2-4 10M330 170l80 60m-11-1 11 1-5-10" /></g>
                 <g aria-hidden="true">
-                  <text x="20" y="104">{a.esquema.archivos}</text>
+                  <text x="20" y="130">{a.esquema.archivos}</text>
                   <text x="270" y="155" textAnchor="middle">{a.esquema.plugin}</text>
-                  <text x="410" y="114">{a.esquema.hoja}</text>
-                  <text x="410" y="292">{a.esquema.sistema}</text>
+                  <text x="500" y="18" textAnchor="end">{a.esquema.hoja}</text>
+                  <text x="500" y="292" textAnchor="end">{a.esquema.sistema}</text>
                 </g>
               </svg>
             </figure>
