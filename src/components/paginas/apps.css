@@ -1,0 +1,106 @@
+/* Apps a la medida: las piezas propias de esta página (Apps.tsx). Leen los roles de tono de sistema.css y no pisan
+   nada de ahí: todo va con nombres de esta página. */
+
+/* Fig. 1 · El prototipo en línea, con sus cotas */
+.proto svg { width: 100%; height: auto; overflow: visible; }
+.proto text { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; fill: var(--tinta-2); }
+.proto text.proto__t { fill: var(--tinta); font-weight: 600; }
+.proto__fondo { fill: var(--fondo); }
+.proto__boton { fill: var(--color-poppy-boton); }
+.proto text.proto__boton-t { fill: var(--color-claro); font-weight: 700; font-size: 11px; }
+
+/* Fig. 2 · Cuatro tipos de trabajo, cada uno con su dibujo */
+.cuatro { border-top: 1px solid var(--tinta); }
+.cuatro li { grid-column: span 3; position: relative; display: grid; align-content: start; gap: 0.6rem; padding-block: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); border-bottom: 1px solid var(--filete); }
+.cuatro li + li::before { content: ""; position: absolute; left: calc(var(--spacing-canal) / -2); top: 0; bottom: 0; width: 1px; background: var(--filete); }
+.cuatro svg { width: 100%; max-width: 13rem; height: auto; margin-bottom: 0.9rem; }
+.cuatro .rotulo span { margin-right: 0.75rem; color: var(--tinta); }
+.cuatro li > p:last-child { color: var(--tinta-2); font-size: var(--text-s); line-height: 1.5; max-width: 26em; text-wrap: pretty; }
+@media (max-width: 74.99rem) { .cuatro li { grid-column: span 6; } .cuatro li:nth-child(odd)::before { display: none; } }
+@media (max-width: 47.99rem) { .cuatro li { grid-column: 1 / -1; } .cuatro li::before { display: none; } .cuatro svg { max-width: 11rem; } }
+
+/* Fig. 3 · El flujo: el agente prepara dentro del perímetro, queda en el registro, una persona decide */
+.flujo { align-self: center; justify-self: center; width: 100%; max-width: 31rem; }
+.flujo svg { width: 100%; height: auto; overflow: visible; }
+.flujo text { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; fill: var(--tinta-2); }
+.flujo text.flujo__t { fill: var(--tinta); font-weight: 600; }
+.flujo text.flujo__chico { font-size: 11px; }
+.flujo text.flujo__rojo { fill: var(--marca-tinta); }
+.flujo__perimetro { fill: none; stroke: var(--tinta-3); stroke-width: 1; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
+.flujo__rombo { fill: var(--color-poppy); transform-box: fill-box; transform-origin: center; }
+.flujo__lema { font-weight: 600; }
+
+/* Fig. 4 · Las tres etapas sobre el plazo habitual */
+.etapas { display: grid; gap: 3.25rem; }
+.etapas__escala, .etapas__l { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--spacing-canal); }
+.etapas__plazo { grid-column: span 2; }
+.etapas__plazo, .etapas__despues { display: grid; gap: 0.45rem; align-content: end; }
+.etapas__escala .eje { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--tinta-2); }
+.etapas__d { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--tinta-2); line-height: 1.3; }
+.etapas__carril {
+  position: relative; height: 1.25rem;
+  background-image: repeating-linear-gradient(to right, var(--filete-fuerte) 0 1px, transparent 1px 25%);
+  background-size: calc(100% + 1px) 100%;
+}
+.etapas__despues .etapas__carril { background-image: none; }
+.etapas__barra { position: absolute; top: 0; bottom: 0; left: calc(var(--ini) / 12 * 100%); width: calc((var(--fin) - var(--ini)) / 12 * 100%); background: var(--tinta); transform-origin: 0 50%; }
+.etapas__barra--raya { background: repeating-linear-gradient(135deg, var(--tinta) 0 1.5px, transparent 1.5px 5px); box-shadow: inset 0 0 0 1px var(--tinta); }
+.etapas__barra--sigue { background: linear-gradient(to right, var(--tinta-2) 30%, transparent); }
+.etapas__cifra { font-size: var(--text-s); font-weight: 600; font-variant-numeric: tabular-nums; }
+.etapas__despues .etapas__cifra { font-weight: 400; color: var(--tinta-2); font-size: var(--text-xs); }
+.etapas__l li { position: relative; display: grid; align-content: start; gap: 0.6rem; padding-top: 1.4rem; border-top: 1px solid var(--tinta); }
+.etapas__l li:last-child { border-top-style: dashed; border-top-color: var(--tinta-2); }
+.etapas__l li > p:last-child { color: var(--tinta-2); font-size: var(--text-s); line-height: 1.5; max-width: 28em; text-wrap: pretty; }
+.etapas__confirma {
+  position: absolute; top: 0; left: calc(var(--spacing-canal) / -2); translate: -0.5rem -50%;
+  display: flex; align-items: center; gap: 0.5rem; padding-right: 0.4rem; background: var(--fondo);
+  font-size: 0.75rem; font-weight: 600; line-height: 1; color: var(--marca-tinta); white-space: nowrap;
+}
+.etapas__confirma i { width: 0.9rem; height: 0.9rem; margin: 0.05rem; background: var(--color-poppy); rotate: 45deg; box-shadow: 0 0 0 3px var(--fondo); }
+@media (max-width: 47.99rem) {
+  .etapas__l { grid-template-columns: minmax(0, 1fr); row-gap: 2.5rem; }
+  .etapas__escala { grid-template-columns: 2fr 1fr; }
+  .etapas__plazo { grid-column: auto; }
+  .etapas__confirma { left: 0; translate: -0.45rem -50%; }
+}
+
+/* Rangos: la tabla de los cuatro servicios, con esta página marcada */
+.rangos th:first-child { padding-left: 1rem; }
+.rangos tr > :last-child { padding-right: 1rem; }
+.rangos tbody th { font-weight: 600; }
+.rangos__der, .rangos td.rangos__der { text-align: right; }
+.rangos td.cifra { color: var(--tinta); font-weight: 600; white-space: nowrap; }
+.rangos__plazo { white-space: nowrap; }
+.rangos__ent { max-width: 34em; }
+.rangos__ent ul { display: grid; gap: 0.2rem; }
+.rangos__ent li { position: relative; padding-left: 1.1rem; }
+.rangos__ent li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.5rem; height: 1px; background: var(--tinta-3); }
+.rangos__esta > * { background: var(--sup); }
+.rangos__esta th { box-shadow: inset 3px 0 0 var(--color-orange); }
+.rangos__esta td { color: var(--tinta); }
+.rangos__marca { display: block; margin-top: 0.35rem; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--color-orange); }
+.rangos__notas { margin-top: 1.25rem; }
+@media (max-width: 47.99rem) {
+  .rangos tbody tr { grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; padding-inline: 1rem; }
+  .rangos th:first-child { padding-left: 0; }
+  .rangos tr > :last-child { padding-right: 0; }
+  .rangos tbody th { grid-column: 1; grid-row: 1; }
+  .rangos td.rangos__der { grid-column: 2; grid-row: 1; }
+  .rangos td.rangos__plazo { grid-column: 1 / -1; grid-row: 2; }
+  .rangos td.rangos__ent { grid-column: 1 / -1; grid-row: 3; }
+  .rangos__esta > * { background: none; }
+  .rangos__esta { background: var(--sup); box-shadow: inset 3px 0 0 var(--color-orange); }
+  .rangos__esta th { box-shadow: none; }
+}
+
+/* Movimiento: las barras se trazan y el rombo cae en su lugar. Sin JS o con menos movimiento, todo quieto. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .fig:not(.visto) .etapas__barra { transform: scaleX(0); }
+  .etapas__barra { transition: transform var(--d-5) var(--ease-sale-expo) 300ms; }
+  .etapas__barra--raya { transition-delay: 900ms; }
+  .etapas__barra--sigue { transition-delay: 1300ms; }
+  .js .fig:not(.visto) .etapas__confirma i { opacity: 0; scale: 0.4; }
+  .etapas__confirma i { transition: opacity var(--d-2) 1100ms, scale var(--d-3) var(--ease-resorte) 1100ms; }
+  .js .flujo:not(.visto) .flujo__rombo { opacity: 0; transform: scale(0.4); }
+  .flujo__rombo { transition: opacity var(--d-2) 900ms, transform var(--d-3) var(--ease-resorte) 900ms; }
+}

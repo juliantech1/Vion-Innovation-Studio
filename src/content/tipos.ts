@@ -268,4 +268,26 @@ export interface Piezas {
     esquema: { archivos: string; plugin: string; hoja: string; sistema: string; alt: string };
   };
   noEncontrada: { indice: string };
+  /** Consultoría IA + AutoCAD/BIM (components/paginas/Consultoria.tsx). */
+  consultoria: {
+    ficha: { titulo: string; plazo: string; rango: string; recibe: string };
+    fig1: string; fig1General: string; fig1Detalle: string; fig1Semana: string; fig1Dias: string[];
+    /** Las tres partes del diagnóstico, en orden (una por entregable del catálogo). */
+    fig1Tramos: [string, string, string];
+    revisa: { titulo: string; que: string; donde: string; sale: string; filas: [string, string][] };
+    fig2: string; fig2Antes: string; fig2Despues: string; fig2NombreAntes: string;
+    /** Los campos del nombre: [código de ejemplo, qué es]. */
+    fig2Campos: [string, string][];
+    fig2Rutina: string; fig2Lista: string; notaGeneral: string;
+    fig3: string; fig3Entra: string; fig3Sale: string; fig3Sistema: string; fig3Persona: string;
+  };
+  /** Apps a la medida (components/paginas/Apps.tsx). */
+  apps: {
+    ficha: { titulo: string; para: string; plazo: string; rango: string; recibe: string };
+    fig1: string; fig1Rotulos: { panel: string; datos: string; asistente: string; aprobar: string; lamina: string; escritorio: string; celular: string };
+    fig2: string;
+    fig3: string; fig3Rotulos: { pedido: string; agente: string; perimetro: string; registro: string; decide: string; sale: string; vuelve: string };
+    fig4: string; fig4Rotulos: { etapa: string; semana: string; confirma: string; despues: string; opcional: string };
+    rangos: { titulo: string; servicio: string; plazo: string; entregables: string; rango: string; estaPagina: string };
+  };
 }
