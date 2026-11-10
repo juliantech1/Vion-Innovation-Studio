@@ -49,7 +49,7 @@
 .revisa { align-self: end; }
 .revisa__t { margin-bottom: 1.5rem; max-width: 20em; }
 .revisa .tabla tbody th { font-weight: 600; max-width: 18em; }
-.revisa__der, .revisa .tabla td.revisa__sale { text-align: right; padding-right: 0; }
+.revisa__der, .revisa .tabla td.revisa__sale { text-align: right; padding-right: 0; white-space: nowrap; }
 .revisa__sale span[aria-hidden] { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 600; letter-spacing: var(--tracking-rotulo); color: var(--tinta); }
 .revisa__sale span[aria-hidden]::before { content: ""; width: 1.25rem; height: 1px; background: var(--tinta-2); }
 @media (max-width: 47.99rem) {
@@ -72,14 +72,14 @@
 .nombre-iso__campos { display: flex; flex-wrap: wrap; row-gap: 1.25rem; font-family: var(--font-mono); }
 .nombre-iso__campos li { display: grid; justify-items: start; gap: 0.55rem; }
 .nombre-iso__campos code { font-size: clamp(1.25rem, 0.85rem + 1.35vw, 2.125rem); line-height: 1; font-weight: 500; letter-spacing: -0.02em; color: var(--tinta); }
-.nombre-iso__campos li + li:not(.nombre-iso__ext) code::before { content: "-"; color: var(--tinta-3); }
-.nombre-iso__campos li + li:not(.nombre-iso__ext) span { margin-left: 0.6em; }
+.nombre-iso__campos li + li code::before { content: "-"; color: var(--tinta-3); }
+.nombre-iso__campos li + li span { margin-left: 0.6em; }
 .nombre-iso__campos span {
   writing-mode: vertical-rl; rotate: 180deg; min-height: 6.25rem; padding-bottom: 0.45rem;
   border-right: 1px solid var(--filete-fuerte); padding-right: 0.3rem;
   font-size: var(--text-rotulo); letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); text-align: right; line-height: 1;
 }
-.nombre-iso__ext code { color: var(--tinta-3); }
+.nombre-iso__ext { font-style: normal; color: var(--tinta-3); }
 .nombre-iso__rutina { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.4rem; padding-top: 1rem; border-top: 1px solid var(--filete); font-size: var(--text-s); font-weight: 600; }
 .nombre-iso__rutina svg { width: 1rem; height: 1rem; flex: none; fill: none; stroke: var(--color-orange); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -124,3 +124,6 @@
   .reparto__lleno rect:nth-child(5) { transition-delay: 1200ms; }
   .reparto__rombo { transition: opacity var(--d-2) 950ms, transform var(--d-3) var(--ease-resorte) 950ms; }
 }
+
+/* Los trazos escalan con su dibujo (ver apps.css: con non-scaling-stroke el guion quedaba corto al agrandar). */
+:is(.reparto, .nombre-iso) :is(.dib path, path.dib) { vector-effect: none; }

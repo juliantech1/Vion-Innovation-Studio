@@ -82,11 +82,13 @@ function NombreIso({ idioma }: { idioma: Idioma }) {
         <ol className="nombre-iso__campos" aria-label={c.fig2Lista}>
           {c.fig2Campos.map(([codigo, que], i) => (
             <li key={que} style={{ '--i': i } as Estilo}>
-              <code>{codigo}</code>
+              <code>
+                {codigo}
+                {i === c.fig2Campos.length - 1 && <i className="nombre-iso__ext">.dwg</i>}
+              </code>
               <span>{que}</span>
             </li>
           ))}
-          <li className="nombre-iso__ext" aria-hidden="true"><code>.dwg</code></li>
         </ol>
       </div>
       <p className="nombre-iso__rutina">

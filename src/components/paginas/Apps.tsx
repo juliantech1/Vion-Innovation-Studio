@@ -49,9 +49,9 @@ function Prototipo({ idioma }: { idioma: Idioma }) {
       <g className="dib dib--fino"><path pathLength={1} d="M286 330h116M286 324v12M402 324v12" /></g>
       <text x="344" y="350" textAnchor="middle">{r.celular.toUpperCase()} · 390</text>
       {/* la lámina */}
-      <g className="dib dib--fino"><path pathLength={1} d="M12 270h112v28H12ZM68 270v28" /></g>
+      <g className="dib dib--fino"><path pathLength={1} d="M12 270h126v28H12ZM84 270v28" /></g>
       <text x="22" y="288">{piezasDe(idioma).transicion.lamina.toUpperCase()}</text>
-      <text x="78" y="288" className="proto__t">{r.lamina}</text>
+      <text x="94" y="288" className="proto__t">{r.lamina}</text>
     </svg>
   );
 }

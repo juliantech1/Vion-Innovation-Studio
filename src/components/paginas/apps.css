@@ -61,6 +61,7 @@
   .etapas__l { grid-template-columns: minmax(0, 1fr); row-gap: 2.5rem; }
   .etapas__escala { grid-template-columns: 2fr 1fr; }
   .etapas__plazo { grid-column: auto; }
+  .etapas__escala .eje span:nth-child(even) { visibility: hidden; }
   .etapas__confirma { left: 0; translate: -0.45rem -50%; }
 }
 
@@ -104,3 +105,9 @@
   .js .flujo:not(.visto) .flujo__rombo { opacity: 0; transform: scale(0.4); }
   .flujo__rombo { transition: opacity var(--d-2) 900ms, transform var(--d-3) var(--ease-resorte) 900ms; }
 }
+
+/* Los trazos de las figuras escalan con su dibujo: con vector-effect non-scaling-stroke y pathLength, Chrome mide el
+   guion en la pantalla y en un dibujo agrandado el trazo quedaba corto (faltaban lados de los recuadros). */
+:is(.proto, .flujo, .cuatro) :is(.dib path, path.dib) { vector-effect: none; }
+.proto .dib path, .flujo .dib path { stroke-width: 1.15; }
+.proto .dib--fino path, .flujo .dib--fino path { stroke-width: 0.9; }
