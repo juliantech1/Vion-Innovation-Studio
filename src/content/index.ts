@@ -16,5 +16,8 @@ export const interfazDe = (idioma: Idioma): Interfaz => TODO[idioma].interfaz;
 export const indexables = (idioma: Idioma): Pagina[] => Object.values(TODO[idioma].paginas).filter((p) => p.indexar);
 
 export * from './rutas';
+export * from './slugs';
 export * from './sitio';
 export * from './tipos';
+export { ARTICULOS, articuloPorSlug, minutosDeLectura } from './blog';
+export { CURSOS, RUTAS_CURSOS, cursoConPagina, cursoIndexable, cursoPorSlug, cursosVisibles, rutaCursos } from './cursos';

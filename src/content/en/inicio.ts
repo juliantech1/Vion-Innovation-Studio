@@ -101,6 +101,24 @@ export const inicio: Pagina = {
         'The first step is always the same small one: [a two-week assessment](@consultoria#assessment) before any larger commitment.',
       ],
     },
+    {
+      tipo: 'texto',
+      id: 'cursos',
+      etiqueta: 'Courses · free',
+      titulo: 'Free AI courses',
+      acento: 'Free',
+      parrafos: [
+        'We are going to publish free courses, with videos and materials, on what we already do: AI agents, motion and 3D, and AutoCAD for engineering and architecture. The first five are in production and do not have a date yet.',
+      ],
+    },
+    {
+      tipo: 'texto',
+      id: 'blog',
+      etiqueta: 'Blog',
+      titulo: 'Latest from the blog',
+      acento: 'blog',
+      parrafos: ['Articles on ISO 19650, AutoCAD and AI agents, written from our everyday work, with sources at the end.'],
+    },
   ],
   llamado: {
     titulo: 'Which task takes the most hours from your team?',

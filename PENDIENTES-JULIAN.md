@@ -13,7 +13,7 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 
 | Casillero | Dónde aparece | Archivo |
 |---|---|---|
-| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` | `interfaz.ts`, `privacidad.ts` |
+| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
 | `{{domicilio legal}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{región de Vercel donde se procesa el formulario}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{plazo de conservación de los datos}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
@@ -62,3 +62,25 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
   «Vion Innovation Studio» (el nombre del sitio anterior). Si la marca es solo «Vion», se cambia en `sitio.ts`.
 - **Search Console:** después de publicar, enviar `https://vion-studio.com/sitemap.xml` y pedir la indexación de las
   URL nuevas; las viejas ya redirigen con 308.
+
+## Cursos y blog (2026-11-10)
+
+- **Leer los tres artículos antes de publicar** (es y en; `src/content/blog/`): «Cómo nombrar archivos con ISO 19650
+  sin volverse loco», «Qué automatizar primero en AutoCAD y cómo medir el ahorro» y «Un equipo de agentes de IA con
+  aprobación humana». Están escritos en «usted», firmados por Vion, sin cifras ni clientes, y lo que dicen de normas y
+  programas tiene su fuente al pie (revisadas el 2026-11-10). Conviene que los lea alguien que trabaje con ISO 19650 y
+  AutoCAD. Su fecha de publicación dice 2026-11-10: si salen otro día, se cambia `publicado` en cada archivo.
+- **El de agentes describe Ultron solo como patrón** (cola de aprobación, topes, bitácora, «la página es un dato»):
+  nada de su código, prompts ni datos. Confirmar que está bien mostrar eso (es lo mismo que ya dicen la portada y Casos).
+- **Cursos: decisiones del plan que siguen abiertas** (`~/aldea/docs/planes/2026-11-10-cursos-vion.md`, §6). La página
+  no las da por tomadas:
+  1. **Usted o tú.** La página y los títulos de los cursos están en «usted», como el resto del sitio (el plan los
+     tenía en voseo: «Tu agentic OS… para vos» pasó a «Su agentic OS… para usted»). Si los cursos van a tutear, se
+     cambia en `src/content/cursos.ts` y `src/content/es/cursos.ts`.
+  2. **Correo o todo abierto, y la plataforma de la comunidad.** Hoy «avisarme cuando salga» es WhatsApp o el
+     formulario de contacto con el mensaje ya escrito; no hay suscripción ni lista de correo.
+  3. **Inglés.** La página en inglés existe, pero no promete cursos en inglés ni fechas.
+  4. **Herramientas pagas.** Cada curso dice qué herramienta cobra (Claude Code, AutoCAD); revisar que la lista sea la
+     correcta cuando se grabe cada uno.
+- **Publicar un curso**: ver «Publicar un curso» en el README. El curso de ejemplo (`ejemplo` en `cursos.ts`) es un
+  borrador que nunca se publica; se puede borrar cuando exista el primer curso de verdad.

@@ -6,9 +6,8 @@ por idioma, metadatos, datos estructurados, imágenes Open Graph, formulario y c
 es mínimo y neutro a propósito: el diseño se monta encima.
 
 **Diseño (rama `hefesto/rediseno`):** el sistema está explicado en [`DISENO.md`](DISENO.md): tokens en `src/app/globals.css`
-(`@theme`), piezas en `src/app/sistema.css` y `src/components/vion/`. La portada y Automatización de AutoCAD (es/en)
-están rediseñadas (`src/components/paginas/`); las demás páginas siguen con `PaginaContenido` y ya llevan la cabecera, el
-pie-cajetín y los tokens nuevos.
+(`@theme`), piezas en `src/app/sistema.css` y `src/components/vion/`. Todas las páginas (es/en) están hechas a mano
+con ese sistema en `src/components/paginas/`, también Cursos, Blog, la plantilla de un artículo y la de un curso.
 
 Nada se publica sin la aprobación de Julian. Lo que falta de su parte está en [`PENDIENTES-JULIAN.md`](PENDIENTES-JULIAN.md).
 
@@ -27,13 +26,18 @@ alternativas. El selector de idioma lleva a la misma página en el otro idioma.
 | Casos | `/casos` | `/en/work` | sí |
 | Nosotros | `/nosotros` | `/en/about` | sí |
 | Contacto | `/contacto` | `/en/contact` | sí |
+| Cursos (gratis, en producción) | `/cursos` | `/en/courses` | sí |
+| Un curso publicado | `/cursos/<slug>` | `/en/courses/<slug>` | sí, recién cuando se publique (hoy ninguno) |
+| Blog | `/blog` | `/en/blog` | sí |
+| Un artículo | `/blog/<slug>` | `/en/blog/<slug>` | sí (3 artículos) |
+| RSS del blog | `/blog/rss.xml` | `/en/blog/rss.xml` | (fuente) |
 | Aviso de privacidad (borrador legal) | `/privacidad` | `/en/privacy` | no, hasta que lo apruebe una abogada |
 | Gracias (formulario sin JavaScript) | `/gracias` | `/en/thanks` | no |
 | 404 (bilingüe) | cualquier otra | cualquier otra | no |
 
 Redirecciones 308 de las URL del sitio anterior (`next.config.ts`): `/work` → `/casos`, `/about` → `/nosotros`,
-`/how-it-works` → `/consultoria-ia-autocad-bim`, `/contact` → `/contacto`, `/services` → `/#servicios`, `/blog` y
-`/blog/…` → `/`.
+`/how-it-works` → `/consultoria-ia-autocad-bim`, `/contact` → `/contacto`, `/services` → `/#servicios`. `/blog` ya no
+redirige: desde el 2026-11-10 es el blog.
 
 ## Cómo está armado
 
@@ -45,6 +49,9 @@ src/content/            LA fuente de todo el texto
   sitio.ts              datos fijos (correo, WhatsApp, Instagram, colores) y `publicarRangos`
   catalogo.ts           montos del catálogo de Orión y ayudas (pasos, precio para JSON-LD, preguntas con precio)
   pendientes.ts         los casilleros {{…}} (ver PENDIENTES-JULIAN.md)
+  cursos.ts             los cursos (rutas A a D, los cinco primeros, el curso de ejemplo borrador) y quién tiene página
+  blog/                 los artículos (uno por archivo, es y en, cuerpo en Markdown mínimo y fuentes) e index.ts
+  slugs.ts              las direcciones de cada artículo y curso por idioma (las usa también el selector de idioma)
   es/ · en/             una página por archivo + catalogo.ts (servicios) + interfaz.ts (cabecera, pie, formulario, 404)
 src/app/(es)/           layout raíz con <html lang="es-CR"> y las páginas en español
 src/app/(en)/en/        layout raíz con <html lang="en"> (en `(en)/layout.tsx`) y las páginas en inglés
@@ -58,7 +65,7 @@ src/seo/metadatos.ts    generateMetadata de cada página: título, descripción,
 src/seo/jsonld.ts       datos estructurados de cada página
 src/components/sitio/   la estructura semántica: Cabecera, Navegacion (selector de idioma), Pie, PaginaContenido,
                         Secciones, Texto (marcado mínimo), FormularioContacto, NoEncontrada, JsonLd
-src/components/ui/      los componentes de Julian (Spline, etc.): intactos, hoy sin uso en las páginas
+src/components/ui/      los componentes de Julian (Spline, etc.): intactos, hoy sin uso; su CSS está en legado.css y no se carga
 ```
 
 Cada página de `src/app` es una línea: `<PaginaContenido id="…" idioma="…" />` y `generateMetadata` desde el contenido.
@@ -67,10 +74,28 @@ El diseño puede reemplazar `PaginaContenido` por páginas hechas a mano usando 
 **Marcado del texto** (`components/sitio/Texto.tsx`): `**negrita**`, `[texto](@casos#ultron)` (enlace interno por id de
 página, se resuelve a la URL del idioma; un id que no existe rompe el build), `[texto](https://…)`, `{{casillero}}`.
 
+**Sumar un artículo:** un archivo en `src/content/blog/` (copiar uno: `publicado`, `relacion`, y en `es` y `en`
+título de 30 a 60, descripción de 70 a 155, bajada, etiquetas, cuerpo y fuentes), su id en `ARTICULOS`
+(`blog/index.ts`) y sus dos direcciones en `slugs.ts`. Página, sitemap, hreflang, RSS, OG, JSON-LD y llms.txt salen
+solos. El cuerpo: un bloque por párrafo; `## ` título (entra al índice), `- ` lista, `1. ` lista numerada, `> ` nota,
+`| a | b |` tabla (la primera fila es el encabezado) y `` `código` ``; dentro, el marcado de `Texto`.
+
+**Publicar un curso:** en `src/content/cursos.ts`, cargar en los dos idiomas `tituloSeo`, `descripcion` y cada lección
+con su `video` (`mp4` + `poster` + subtítulos `vtt`, o `youtube`), `minutos` y `material`; poner `estado: 'publicado'` y `publicado:
+'AAAA-MM-DD'`. Con eso tiene su página (`components/paginas/Curso.tsx`), entra al sitemap, a llms.txt, a la lista de
+`/cursos` con enlace y lleva JSON-LD `Course` (gratis, en línea) y la lista `ItemList` en `/cursos`. Para revisar la
+plantilla sin publicar nada: construir con `VION_BORRADORES=1` (en Vercel no tiene efecto) y abrir
+`/cursos/curso-de-ejemplo`, que sale con noindex.
+
 **Sumar una página:** su id en `PAGINAS` (`tipos.ts`), sus dos URL en `rutas.ts`, el contenido en `es/` y `en/` (y en
 sus `index.ts`), y su carpeta en `src/app/(es)` y `src/app/(en)/en`. El sitemap, hreflang, OG y llms.txt la toman solos.
 
 ### Datos estructurados
+
+Blog: `CollectionPage` + `Blog` con sus `BlogPosting`; cada artículo: `WebPage` + `BlogPosting` (autor y editor:
+Vion, fecha, imagen, palabras, las fuentes como `citation`) y migas de tres niveles. Cursos: `CollectionPage` sin
+`ItemList` mientras no haya cursos con página (una lista de cursos que no existen no sirve; el resultado de cursos
+pide una página por curso); un curso publicado lleva `Course`.
 
 En todas: `Organization` + `ProfessionalService` (Vion, con contacto, zona de servicio CR y EE.UU., `sameAs` de
 Instagram, `alternateName` «Vion Studio») y `WebSite`. Además, por página: el nodo de la página (`WebPage`,
@@ -103,7 +128,8 @@ apagado con `prefers-reduced-motion`.
 ~/hefesto/herramientas/sitio.sh ~/hefesto/wt/base instalar          # npm ci --ignore-scripts
 ~/hefesto/herramientas/sitio.sh ~/hefesto/wt/base build             # next build
 PUERTO=4510 ~/hefesto/herramientas/sitio.sh ~/hefesto/wt/base start # next start en 127.0.0.1:4510
-node scripts/revisar-seo.mjs http://127.0.0.1:4510                   # con el sitio servido (Node 22, sin dependencias)
+node scripts/revisar-seo.mjs http://127.0.0.1:4510                   # con el sitio servido (Node 22, sin dependencias;
+                                                                     # desde un contenedor, con --network host)
 node --test scripts/probar-contacto.mjs                              # el formulario, sin red (Node ≥ 22.18)
 ~/hefesto/herramientas/sitio.sh ~/hefesto/wt/base parar
 ```

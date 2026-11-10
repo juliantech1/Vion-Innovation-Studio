@@ -43,15 +43,25 @@ export function Texto({ children, idioma }: { children: string; idioma: Idioma }
   });
 }
 
+/**
+ * Pega cada palabra de una o dos letras a la que sigue (espacio duro): en un titular en mayúsculas, «Y», «A» o «DE»
+ * no quedan colgando al final de un renglón.
+ */
+export const ligar = (s: string) => {
+  let antes = '';
+  while (antes !== s) { antes = s; s = s.replace(/(^|[\s\u00a0])([\p{L}]{1,2}) (?=\S)/gu, '$1$2\u00a0'); }
+  return s;
+};
+
 /** Un título con su palabra de acento marcada (el diseño decide cómo se ve). */
 export function Acentuado({ texto, acento }: { texto: string; acento?: string }): ReactNode {
-  if (!acento || !texto.includes(acento)) return texto;
+  if (!acento || !texto.includes(acento)) return ligar(texto);
   const i = texto.indexOf(acento);
   return (
     <>
-      {texto.slice(0, i)}
-      <span className="acento">{acento}</span>
-      {texto.slice(i + acento.length)}
+      {ligar(texto.slice(0, i))}
+      <span className="acento">{ligar(acento)}</span>
+      {ligar(texto.slice(i + acento.length))}
     </>
   );
 }

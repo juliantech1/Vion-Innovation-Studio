@@ -104,6 +104,24 @@ export const inicio: Pagina = {
         'El primer paso es siempre el mismo y es chico: [un diagnóstico de dos semanas](@consultoria#diagnostico) antes de cualquier compromiso mayor.',
       ],
     },
+    {
+      tipo: 'texto',
+      id: 'cursos',
+      etiqueta: 'Cursos · gratis',
+      titulo: 'Cursos de IA, gratis',
+      acento: 'gratis',
+      parrafos: [
+        'Vamos a publicar cursos gratis, con videos y material, sobre lo que ya hacemos: agentes de IA, motion y 3D, y AutoCAD para ingeniería y arquitectura. Los cinco primeros están en producción y todavía no tienen fecha.',
+      ],
+    },
+    {
+      tipo: 'texto',
+      id: 'blog',
+      etiqueta: 'Blog',
+      titulo: 'Lo último del blog',
+      acento: 'blog',
+      parrafos: ['Artículos sobre ISO 19650, AutoCAD y agentes de IA, escritos desde el trabajo de todos los días y con las fuentes al pie.'],
+    },
   ],
   llamado: {
     titulo: '¿Qué tarea le quita más horas a su equipo?',

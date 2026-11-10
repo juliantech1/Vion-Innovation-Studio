@@ -12,7 +12,7 @@ Automatización de AutoCAD (`src/components/paginas/Autocad.tsx`).
 1. **El sitio se lee como una ficha técnica bien compuesta.** Cada afirmación lleva su unidad, su rango o su nota; el
    plazo y el precio del primer paso están en el primer pantallazo. Figuras numeradas (Fig. 0, 1, 2…) con su leyenda.
 2. **El sitio es un juego de láminas.** La portada trae la planta del sitio (cada ambiente es una página), el pie es un
-   cajetín (lámina n/07, revisión, quién dibujó) y pasar de página es cambiar de lámina.
+   cajetín (lámina n/09, revisión, quién dibujó) y pasar de página es cambiar de lámina.
 3. **El rojo quiere decir «acá decide una persona».** Los llamados, los rombos de «usted decide», el botón «Aprobar».
    Por eso aparece poco: un botón principal por pantalla y un solo campo rojo por página (el panel del cierre).
 
@@ -35,7 +35,8 @@ src/components/vion/         los componentes del sistema
   Comportamientos.tsx (cliente)  todo el JavaScript de comportamiento, en un solo lugar
   plano/                     la figura de firma: geometria.ts (datos), Plano.tsx (póster SVG, servidor),
                              PlanoVivo.tsx (cliente, carga diferida) y motor.ts (canvas 2D)
-src/components/paginas/      las páginas hechas a mano (Inicio, Autocad) y comun.ts
+src/components/paginas/      las páginas hechas a mano (Inicio, Autocad, Consultoria, Apps, Casos, Nosotros, Contacto,
+                             Privacidad, Gracias, Cursos, Blog, Articulo, Curso) y su CSS (estudio.css, aprender.css…)
 src/components/sitio/        la base de contenido: PaginaContenido (las páginas que todavía no se rediseñaron), Texto, JsonLd…
 src/content/                 TODO el texto. Las piezas del diseño tienen sus textos en es/piezas.ts y en/piezas.ts
 ```
@@ -112,7 +113,11 @@ muestra con sus medidas reales: úsenla para revisar cada página a 390, 768, 14
 | Pregunta | `<Preguntas preguntas={…} />` dentro de `.preguntas__l` | `<details>` de verdad. El texto es el mismo del JSON-LD `FAQPage`. |
 | Casillero | sale solo de `<Texto>` cuando el contenido trae `{{…}}`; suelto, `<Casillero texto />` | Ver abajo. |
 | Cierre | `<Cierre llamado={p.llamado} idioma />` | Una nube de revisión por página, acá y en ningún otro lado. |
-| Pie-cajetín | va solo en `Marco` | Proyecto, lámina n/07, revisión (fecha del build), índice, contacto, colofón medido. |
+| Pie-cajetín | va solo en `Marco` | Proyecto, lámina n/09 (el orden sale de `LAMINAS` en `rutas.ts`), revisión (fecha del build), índice, contacto, colofón medido. |
+| Estado de obra | `<p class="estado">` | Mono chica con un cuadro rayado: «En producción». `estado--publicado` lo llena. En voz baja, nunca rojo. |
+| Registro | `<table class="registro">` | El registro de emisiones de un juego de planos: N.º, título, fecha, minutos. Lo usa el blog (Fig. 1). |
+| Banda breve | `.aprende` con `.aprende__texto` y `.aprende__lista` | Texto a la izquierda, lista numerada con filetes a la derecha (portada: cursos y blog; artículo: otros artículos). |
+| Dibujo deslizable | `<Desliza etiqueta>` (paginas/estudio.tsx) y `dibujo--ancho` en la figura | Un dibujo denso que en el celular se ve 1:1 y se desliza de costado, en vez de achicar sus rótulos por debajo de 11 px. |
 | Retícula | va sola en `Marco` | Tecla G. |
 
 ### Casilleros `{{…}}`
@@ -145,12 +150,28 @@ Todo en CSS salvo lo indicado. Reglas duras:
 | Hover y foco | botón: luz que barre, flecha que se releva, filo naranja que crece · fila: se invierte · enlace: subrayado que se redibuja en rojo · pregunta: + a − · marca: gira 18° | 530 ms, resorte sin rebote |
 | Apretar | 0,98 | 80 ms |
 
+**Trazos y rótulos de las figuras (2026-11-10).** `.dib path` no usa `vector-effect: non-scaling-stroke`: con
+`pathLength=1`, Chrome medía el guion en la pantalla y en un dibujo que se ve más grande que su viewBox el trazo
+terminaba antes. El grosor está en unidades del dibujo: `--trazo` (1,4 por omisión; `.dib--fino` 0,72 y `.dib--rojo`
+1,15 veces). Una figura que se ve muy agrandada o muy achicada fija su `--trazo` (la Fig. 1 de AutoCAD usa 1,15).
+Los rótulos de las figuras llevan un halo del color del fondo (`paint-order: stroke`): el texto corta la línea que
+pasa, como en un plano. En pantalla, **ningún rótulo baja de 11 px**: la letra de cada figura se agranda en el
+celular donde el dibujo lo aguanta y, donde no, el dibujo se ve a su tamaño y se desliza (`Desliza`). El póster del
+plano y la nube no usan `pathLength` agrandado (el plano siempre se ve más chico que su viewBox), así que conservan
+`non-scaling-stroke`.
+
 **En reposo** lo único vivo es el plano (respira y sigue al puntero) y la cola (deja un trabajo nuevo cada 7 s si nadie
 la toca).
 
 ### La figura de firma: la planta del sitio
 
 `<Plano idioma />` (`components/vion/plano/`). Tres capas, cada una funciona sin la siguiente:
+
+Desde el 2026-11-10 la planta tiene **cuatro crujías de 4 m** (ejes A a E, 16 × 8 m): al frente Consultoría, AutoCAD,
+Apps y **Cursos**; al fondo Casos, Nosotros, **Blog** y Contacto; el pasillo es Inicio. La numeración de los ambientes
+es la de las láminas (01 Inicio … 09 Contacto). En el celular la planta llega a los bordes de la pantalla (se recorta
+el margen de las cotas laterales, que ahí no se dibujan) para que cada ambiente mida unos 80 px y su nombre entre a
+11 px; un nombre largo en un ambiente angosto se parte con guion (`hyphens: auto`).
 
 1. **Póster SVG, en el HTML del servidor**, con la planta entera. Se traza solo con CSS (2,3 s). Sin JavaScript queda así.
 2. **Ambientes**: una lista de enlaces de verdad a las páginas, posicionados sobre la planta (teclado y lectores).
@@ -178,7 +199,10 @@ Lo mínimo, y nada en el camino del LCP. Componentes de cliente: `Navegador` (p�
 `Lamina` (n/07), `Comportamientos` (cabecera, etiqueta de sección, lo que entra al asomar, colofón, retícula,
 transición), `Cola` (solo en la portada) y `PlanoVivo` + `motor.ts` (solo en la portada, diferido). **No se usa
 framer-motion ni ninguna librería de animación** en las páginas nuevas: no agreguen una para un efecto que CSS resuelve.
-Los componentes de `src/components/ui` (Spline y demás, de Julian) siguen en el repo, sin uso.
+Los componentes de `src/components/ui` (Spline y demás, de Julian) siguen en el repo, sin uso. **Su CSS (shadcn,
+tw-animate-css, variables y keyframes) está en `src/components/ui/legado.css` y no se carga**; Tailwind solo mira el
+código del sitio nuevo (`@source` en `globals.css`). Para volver a usar uno: importar `legado.css` desde `globals.css` y
+sumar su carpeta como `@source`.
 
 ## Cómo hacer una página nueva
 
@@ -203,21 +227,22 @@ Degradados violeta-azul, sombras, tarjetas dentro de tarjetas, píldoras, ícono
 tercer color de fondo, más de un botón rojo por pantalla, más de una nube de revisión por página, 3D o WebGL en el
 camino del LCP, cifras o clientes que no existan, stock de personas, jerga interna a la vista («1 semana = 104 px»).
 
-## Medido (2026-11-10, `next start` local)
+## Medido (2026-11-10, `next start` local, después de Cursos y Blog)
 
-| Control | Portada es / en | AutoCAD es / en |
-|---|---|---|
-| `npm run revisar` | 0 fallas (18 páginas) | |
-| axe (jury) | 0 / 0 | 0 / 0 |
-| Desborde, objetivos táctiles chicos, foco invisible, texto oculto con movimiento reducido | 0 | 0 |
-| LCP en celular frenado (CPU ×4, 4G lenta aplicada; jury) | 1,46 s / 1,49 s | 1,21 s / 1,43 s |
-| CLS (escritorio y celular) | 0 | 0 |
-| Lighthouse celular: SEO · accesibilidad · buenas prácticas | 100 · 100 · 100 | 100 · 100 · 100 |
-| Lighthouse celular: rendimiento (LCP simulado) | 93 (2,1 s) / 84 (2,6 s) | 90 (2,6 s) / 84 (3,1 s) |
-| JavaScript transferido al cargar | 153 kB, de los cuales unos 150 son React y Next; el motor del plano (5 kB) llega después de `load` | 150 kB |
+| Control | Resultado |
+|---|---|
+| `npm run revisar` · `npm test` | 0 fallas en 28 páginas (24 indexables) · 6 de 6 |
+| axe, desborde, objetivos táctiles chicos, foco invisible, texto oculto con movimiento reducido (jury: portada, Cursos, Blog y un artículo, es/en) | 0 en todas |
+| LCP en celular frenado (jury, CPU ×4 y 4G lenta) | 0,8 a 1,4 s · CLS 0 a 0,015 |
+| Lighthouse celular, 28 páginas: rendimiento | 96 a 99 (antes de este trabajo, 95 a 99 en 18 páginas) |
+| Lighthouse celular: accesibilidad · buenas prácticas · SEO | 100 · 100 · 100 (SEO 69 en privacidad y gracias: `noindex` a propósito) |
+| Lighthouse escritorio, 28 páginas | 100 en rendimiento |
+| CSS que bloquea el primer pintado | 72 kB (15 kB con gzip), antes 126 kB (24,5 kB): sin shadcn ni tw-animate |
+| Rótulos de figura a 390 px | ninguno por debajo de 11 px |
 
-El LCP de Lighthouse es simulado sobre una medición hecha en local, donde todo el JavaScript llega antes del primer
-pintado y el modelo lo cuenta como bloqueo (una página con la base, sin nada de este diseño, da 96 y 2,0 s). El observado
-es igual al FCP. Conviene volver a medir en la vista previa de Vercel. Lo que más ayudaría a subirlo: sacar de
-`globals.css` los `@import` de `tw-animate-css` y `shadcn/tailwind.css` cuando los componentes de `src/components/ui`
-dejen de existir (hoy la mitad del CSS que bloquea el primer pintado es de ellos).
+El LCP de Lighthouse en celular es simulado (2,0 a 2,8 s) sobre una carga local donde el observado es de 0,1 a 0,2 s:
+la diferencia la pone el modelo de red de Lighthouse (cuenta el CSS y las fuentes como si llegaran por 4G lenta), y
+salta entre 2,0 y 2,8 s de una corrida a otra en la misma página. Se probó poner el CSS en línea
+(`experimental.inlineCss`): el HTML pasa de 30 a 300 kB y el rendimiento baja (95 a 97), así que se dejó afuera.
+La tabla completa, antes y después: `~/hefesto/informes/rediseno/lighthouse/TABLA-FINAL.md`. Conviene volver a medir en la vista
+previa de Vercel.

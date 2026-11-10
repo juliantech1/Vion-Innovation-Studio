@@ -5,7 +5,7 @@ import { Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
 import { Cabeza, Ficha, Figura, FilaServicio, Titular } from '@/components/vion/piezas';
 import { seccion } from './comun';
-import { caja, marcasCota, PortadaInterior, punta, punteada, rombo, T } from './estudio';
+import { caja, marcasCota, PortadaInterior, punta, punteada, rombo, T, Desliza } from './estudio';
 
 const numero = (id: IdPagina) => String(MENU.indexOf(id) + 2).padStart(2, '0');
 
@@ -144,10 +144,12 @@ export function Nosotros({ idioma }: { idioma: Idioma }) {
                 {como.parrafos.slice(1).map((s) => <p key={s}>{tx(s)}</p>)}
               </div>
             </div>
-            <Figura id="fig1-pie" numero={1} rotulo={t.fig} leyenda={n.medida.pie} clase="dibujo partido__fig" dibuja>
-              <svg viewBox="0 0 420 250" role="img" aria-label={n.medida.alt}>
-                <Medida r={n.medida.r} />
-              </svg>
+            <Figura id="fig1-pie" numero={1} rotulo={t.fig} leyenda={n.medida.pie} clase="dibujo dibujo--ancho partido__fig" dibuja>
+              <Desliza etiqueta={n.medida.alt}>
+                <svg viewBox="0 0 420 250" role="img" aria-label={n.medida.alt}>
+                  <Medida r={n.medida.r} />
+                </svg>
+              </Desliza>
             </Figura>
           </div>
         </section>
@@ -193,10 +195,12 @@ export function Nosotros({ idioma }: { idioma: Idioma }) {
                 {pais.parrafos.slice(1).map((s) => <p key={s}>{tx(s)}</p>)}
               </div>
             </div>
-            <Figura id="fig2-pie" numero={2} rotulo={t.fig} leyenda={n.husos.pie} clase="dibujo partido__fig" dibuja>
-              <svg viewBox="0 0 420 252" role="img" aria-label={n.husos.alt}>
-                <Husos h={n.husos} idioma={idioma} />
-              </svg>
+            <Figura id="fig2-pie" numero={2} rotulo={t.fig} leyenda={n.husos.pie} clase="dibujo dibujo--ancho partido__fig" dibuja>
+              <Desliza etiqueta={n.husos.alt}>
+                <svg viewBox="0 0 420 252" role="img" aria-label={n.husos.alt}>
+                  <Husos h={n.husos} idioma={idioma} />
+                </svg>
+              </Desliza>
             </Figura>
           </div>
         </section>

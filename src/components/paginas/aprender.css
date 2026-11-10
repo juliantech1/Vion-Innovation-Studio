@@ -1,0 +1,147 @@
+/* Cursos, Blog, la página de un curso y la de un artículo (2026-11-10). Solo compone con los tokens de globals.css y
+   las piezas de sistema.css y estudio.css: no redefine colores ni tipografía.
+   1 cursos (lista de láminas) · 2 Fig. 1 de las rutas · 3 registro de artículos · 4 artículo · 5 un curso · 6 portada */
+
+/* ───── 1. Los cursos: una ficha por curso, con su estado de obra ───── */
+.cursos { border-top: 1px solid var(--tinta); }
+.curso {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--spacing-canal); row-gap: 1.5rem;
+  padding-block: clamp(2rem, 1.25rem + 2.4vw, 3.5rem); border-bottom: 1px solid var(--filete); scroll-margin-top: calc(var(--spacing-cabecera) + 1rem);
+}
+.curso__marca { grid-column: 1 / span 2; display: grid; align-content: start; gap: 0.75rem; }
+.curso__n { font-family: var(--font-mono); font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem); font-weight: 500; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.curso__cuerpo { grid-column: 3 / span 5; display: grid; gap: 1.25rem; align-content: start; }
+.curso__t { font-size: var(--text-h3); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+.curso__t small { display: block; margin-top: 0.4rem; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.curso .ficha--larga > div { grid-template-columns: minmax(7rem, 0.5fr) 1.6fr; }
+.curso__lecciones { grid-column: 9 / -1; display: grid; gap: 0.75rem; align-content: start; }
+.curso__lecciones ol { counter-reset: leccion; border-top: 1px solid var(--tinta); }
+.curso__lecciones li {
+  counter-increment: leccion; display: grid; grid-template-columns: 2.25rem 1fr; align-items: baseline; padding-block: 0.55rem;
+  border-bottom: 1px solid var(--filete); font-size: var(--text-s); line-height: 1.4; text-wrap: pretty;
+}
+.curso__lecciones li::before { content: counter(leccion, decimal-leading-zero); font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; color: var(--tinta-2); }
+.curso__avisar { grid-column: 3 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; padding-top: 0.25rem; }
+.curso__avisar p { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.enlace-linea {
+  display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.75rem; font-weight: 500;
+  text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-decoration-thickness: 1px; text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--d-1) linear, color var(--d-1) linear;
+}
+.enlace-linea:hover, .enlace-linea:focus-visible { text-decoration-color: var(--marca-tinta); }
+.enlace-linea svg { width: 0.85rem; height: 0.85rem; flex: none; }
+.enlace-linea svg + svg { display: none; }
+/* El estado de obra: un casillero en voz baja, con el cuadro rayado de lo que está en construcción. */
+.estado { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta); }
+.estado::before {
+  content: ""; width: 0.8rem; height: 0.8rem; flex: none; border: 1px dashed var(--tinta);
+  background: repeating-linear-gradient(135deg, transparent 0 3px, var(--filete-fuerte) 3px 4px);
+}
+.estado--publicado::before { border-style: solid; background: var(--tinta); }
+.ruta-letra {
+  display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border: 1px solid var(--tinta); border-radius: 50%;
+  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600;
+}
+.curso__ruta { display: flex; align-items: center; gap: 0.6rem; font-size: var(--text-xs); color: var(--tinta-2); }
+@media (max-width: 61.99rem) {
+  .curso__marca { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+  .curso__cuerpo { grid-column: 1 / -1; }
+  .curso__lecciones { grid-column: 1 / -1; }
+  .curso__avisar { grid-column: 1 / -1; }
+}
+
+/* ───── 2. Fig. 1 de Cursos: las cuatro rutas como ejes y los cursos como piezas en obra ───── */
+.rutas-fig { --trazo: 1.2; }
+.rutas-fig svg { width: 100%; height: auto; overflow: visible; }
+.rutas-fig .rutas-fig__alto { display: none; }
+.rutas-fig text { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--tinta); }
+.rutas-fig text.r-tenue { fill: var(--tinta-2); }
+.rutas-fig text.r-n { font-size: 13px; font-weight: 600; }
+.rutas-fig .r-obra { fill: var(--fondo); stroke: var(--tinta); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.rutas-fig .r-letra { fill: none; stroke: var(--tinta); stroke-width: 1.2; }
+@media (max-width: 47.99rem) {
+  .rutas-fig .rutas-fig__ancho { display: none; }
+  .rutas-fig .rutas-fig__alto { display: block; max-width: 24rem; }
+}
+.rutas { margin-top: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
+.rutas .mayor__n { font-family: var(--font-mono); }
+
+/* ───── 3. El registro de artículos (Fig. 1 del blog) y las filas de artículo ───── */
+.registro { width: 100%; border-collapse: collapse; border-top: 1px solid var(--tinta); }
+.registro th { padding: 0.7rem 0.75rem 0.7rem 0; text-align: left; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); border-bottom: 1px solid var(--filete); }
+.registro td { padding: 1.25rem 0.75rem 1.25rem 0; border-bottom: 1px solid var(--filete); vertical-align: top; }
+.registro td.registro__n, .registro td.registro__f { font-family: var(--font-mono); font-size: var(--text-xs); font-variant-numeric: tabular-nums; color: var(--tinta-2); white-space: nowrap; }
+.registro__t a { display: block; font-size: var(--text-h3); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 0.2em; transition: text-decoration-color var(--d-1) linear; }
+.registro__t a:hover, .registro__t a:focus-visible { text-decoration-color: var(--marca-tinta); }
+.registro__t p { margin-top: 0.5rem; max-width: 62ch; font-size: var(--text-s); line-height: 1.5; color: var(--tinta-2); }
+.registro__temas { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-top: 0.75rem; font-family: var(--font-mono); font-size: var(--text-rotulo); letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+@media (max-width: 47.99rem) {
+  .registro thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .registro, .registro tbody, .registro tr, .registro td { display: block; }
+  .registro tr { display: grid; grid-template-columns: auto 1fr auto; column-gap: 0.75rem; padding-block: 1.25rem; border-bottom: 1px solid var(--filete); }
+  .registro td { padding: 0; border: 0; }
+  .registro td.registro__t { grid-column: 1 / -1; grid-row: 2; margin-top: 0.6rem; }
+  .registro td.registro__m { grid-column: 3; grid-row: 1; text-align: right; }
+}
+.rss { display: inline-flex; align-items: center; gap: 0.5rem; }
+.rss svg { width: 0.95rem; height: 0.95rem; }
+
+/* ───── 4. El artículo: índice a la izquierda, cuerpo de lectura, fuentes al pie ───── */
+.articulo .lectura__cuerpo { padding-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.75rem); }
+.articulo .lectura__cuerpo > * + * { margin-top: 1em; }
+.articulo .lectura__cuerpo :is(p, ul, ol, blockquote, .tabla-art) { margin-left: 0; }
+.articulo .lectura__cuerpo h2 { margin-top: 2.6rem; font-size: var(--text-h3); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; scroll-margin-top: calc(var(--spacing-cabecera) + 1rem); }
+.articulo .lectura__cuerpo h3 { margin-top: 1.8rem; font-size: var(--text-cuerpo); font-weight: 700; }
+.articulo .lectura__cuerpo h2 + *, .articulo .lectura__cuerpo h3 + * { margin-top: 0.8rem; }
+.articulo .lectura__cuerpo ol { counter-reset: paso; display: grid; gap: 0.6rem; margin-block: 0.9rem; }
+.articulo .lectura__cuerpo ol > li { counter-increment: paso; position: relative; padding-left: 2.25rem; }
+.articulo .lectura__cuerpo ol > li::before { content: counter(paso, decimal-leading-zero); position: absolute; left: 0; top: 0.12em; width: auto; height: auto; background: none; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; color: var(--tinta-2); }
+.articulo .lectura__cuerpo code { font-family: var(--font-mono); font-size: 0.86em; padding: 0.1em 0.35em; border: 1px solid var(--filete); border-radius: 3px; overflow-wrap: anywhere; }
+.articulo .lectura__cuerpo blockquote { padding-left: 1.25rem; border-left: 2px solid var(--marca-tinta); }
+.tabla-art { overflow-x: auto; }
+.tabla-art table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--tinta); font-size: var(--text-s); line-height: 1.4; }
+.tabla-art th { text-align: left; padding: 0.6rem 0.75rem 0.6rem 0; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); border-bottom: 1px solid var(--filete); }
+.tabla-art td { padding: 0.65rem 0.75rem 0.65rem 0; border-bottom: 1px solid var(--filete); vertical-align: top; }
+.tabla-art td:last-child { font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; }
+.fuentes { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--tinta); }
+.articulo .lectura__cuerpo .fuentes h2 { margin-top: 0; font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.fuentes ol { margin-top: 1rem; }
+.fuentes li { font-size: var(--text-s); line-height: 1.5; }
+.fuentes a { overflow-wrap: anywhere; }
+.fuentes p { margin-top: 1rem; font-size: var(--text-xs); color: var(--tinta-2); }
+@media (max-width: 47.99rem) {
+  .tabla-art td:last-child { white-space: normal; }
+}
+
+/* ───── 5. La página de un curso: la lección con su video y la lista de lecciones ───── */
+.aviso-borrador { padding: 0.75rem var(--spacing-margen); background: var(--color-orange); color: var(--color-raven); font-family: var(--font-mono); font-size: var(--text-xs); text-align: center; }
+.leccion-video { display: grid; gap: 0.75rem; }
+.leccion-video video, .leccion-video__vacio { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--tinta); background: var(--color-raven); }
+.leccion-video__vacio { display: grid; place-items: center; padding: 1.5rem; text-align: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--tinta-2); border-style: dashed; }
+.lecciones { border-top: 1px solid var(--tinta); }
+.lecciones > li { display: grid; grid-template-columns: 3rem 1fr auto; gap: 0.5rem 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--filete); }
+.lecciones__n { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; color: var(--tinta-2); padding-top: 0.2em; }
+.lecciones__t { font-weight: 600; }
+.lecciones__m { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--tinta-2); }
+.lecciones__cuerpo { grid-column: 2 / -1; display: grid; gap: 1rem; }
+.lecciones__material { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+
+/* ───── 6. La portada: cursos y blog en dos bandas breves ───── */
+.aprende { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--spacing-canal); row-gap: 2rem; }
+.aprende__texto { grid-column: 1 / span 5; display: grid; gap: 1.5rem; align-content: start; }
+.aprende__lista { grid-column: 7 / -1; }
+.aprende__lista ol { border-top: 1px solid var(--tinta); }
+.aprende__lista li { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: baseline; gap: 0.25rem 1rem; padding-block: 0.95rem; border-bottom: 1px solid var(--filete); }
+.aprende__lista li > span:first-child { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; color: var(--tinta-2); }
+.aprende__lista a { font-weight: 600; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 0.25em; transition: text-decoration-color var(--d-1) linear; }
+.aprende__lista a:hover, .aprende__lista a:focus-visible { text-decoration-color: var(--marca-tinta); }
+.aprende__lista .estado { justify-self: end; }
+.aprende__lista time { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--tinta-2); white-space: nowrap; }
+@media (max-width: 61.99rem) {
+  .aprende__texto, .aprende__lista { grid-column: 1 / -1; }
+}
+@media (max-width: 29.99rem) {
+  .aprende__lista li { grid-template-columns: 2rem 1fr; }
+  .aprende__lista li > :last-child { grid-column: 2; }
+  .aprende__lista .estado { justify-self: start; }
+}

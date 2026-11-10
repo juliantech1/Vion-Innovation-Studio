@@ -7,8 +7,6 @@ const VIEJAS: [string, string][] = [
   ["/how-it-works", "/consultoria-ia-autocad-bim"],
   ["/contact", "/contacto"],
   ["/services", "/#servicios"],
-  ["/blog", "/"],
-  ["/blog/:resto*", "/"],
 ];
 
 const desarrollo = process.env.NODE_ENV !== "production";

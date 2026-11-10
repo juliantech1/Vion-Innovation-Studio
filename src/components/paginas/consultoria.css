@@ -125,5 +125,3 @@
   .reparto__rombo { transition: opacity var(--d-2) 950ms, transform var(--d-3) var(--ease-resorte) 950ms; }
 }
 
-/* Los trazos escalan con su dibujo (ver apps.css: con non-scaling-stroke el guion quedaba corto al agrandar). */
-:is(.reparto, .nombre-iso) :is(.dib path, path.dib) { vector-effect: none; }

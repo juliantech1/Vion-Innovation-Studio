@@ -106,8 +106,11 @@
   .flujo__rombo { transition: opacity var(--d-2) 900ms, transform var(--d-3) var(--ease-resorte) 900ms; }
 }
 
-/* Los trazos de las figuras escalan con su dibujo: con vector-effect non-scaling-stroke y pathLength, Chrome mide el
-   guion en la pantalla y en un dibujo agrandado el trazo quedaba corto (faltaban lados de los recuadros). */
-:is(.proto, .flujo, .cuatro) :is(.dib path, path.dib) { vector-effect: none; }
-.proto .dib path, .flujo .dib path { stroke-width: 1.15; }
-.proto .dib--fino path, .flujo .dib--fino path { stroke-width: 0.9; }
+/* Las figuras se ven algo más grandes que su viewBox: el trazo del sistema (sistema.css, .dib) un poco más fino. */
+.proto, .flujo { --trazo: 1.15; }
+
+/* En el celular las figuras se ven a 4/5 de su viewBox: rótulos de 11 px como mínimo en la pantalla. */
+@media (max-width: 47.99rem) {
+  .proto text, .proto text.proto__boton-t { font-size: 14px; letter-spacing: 0.02em; }
+  .flujo text, .flujo text.flujo__chico { font-size: 13.2px; letter-spacing: 0.02em; }
+}

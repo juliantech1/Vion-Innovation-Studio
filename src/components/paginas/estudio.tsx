@@ -92,3 +92,15 @@ export function T({ d, rojo, fino, i }: { d: string; rojo?: boolean; fino?: bool
     </g>
   );
 }
+
+/**
+ * Un dibujo que en el celular se ve a su tamaño (1:1, rótulos de 11 px) y se desliza de costado, en lugar de achicarse
+ * hasta que sus rótulos no se leen. Se puede enfocar con el teclado para moverlo con las flechas.
+ */
+export function Desliza({ etiqueta, children }: { etiqueta: string; children: ReactNode }) {
+  return (
+    <div className="desliza" tabIndex={0} role="group" aria-label={etiqueta}>
+      {children}
+    </div>
+  );
+}
