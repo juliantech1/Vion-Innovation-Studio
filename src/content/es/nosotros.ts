@@ -21,6 +21,10 @@ export const nosotros: Pagina = {
   acento: 'IA',
   bajada:
     'Vion, también conocido como Vion Studio, es un estudio de inteligencia artificial de Costa Rica. Construimos sistemas y agentes de IA, llevamos la IA a la ingeniería y la arquitectura, y desarrollamos apps a la medida.',
+  acciones: [
+    { texto: 'Pedir diagnóstico', destino: { pagina: 'contacto' } },
+    { texto: 'Ver los proyectos propios', destino: { pagina: 'casos' } },
+  ],
   secciones: [
     {
       tipo: 'personas',
@@ -64,6 +68,17 @@ export const nosotros: Pagina = {
         { titulo: 'Las horas repetitivas valen plata', texto: 'El trabajo que se repite igual cada semana se puede automatizar, y esas horas vuelven a lo que sí necesita a una persona.' },
         { titulo: 'Seguro, medible y con aprobación', texto: 'Un sistema de IA tiene que poder medirse, no exponer sus datos y dejar que una persona apruebe lo importante.' },
         { titulo: 'Al alcance de Costa Rica', texto: 'La tecnología de punta tiene que estar al alcance de las empresas de Costa Rica, no solo de las grandes.' },
+      ],
+    },
+    {
+      tipo: 'texto',
+      id: 'costa-rica-y-estados-unidos',
+      etiqueta: 'Desde Costa Rica',
+      titulo: 'Costa Rica y Estados Unidos',
+      acento: 'Estados Unidos',
+      parrafos: [
+        'Vion está en Costa Rica y trabaja a distancia, en español y en inglés, para firmas de aquí y de Estados Unidos.',
+        'Costa Rica usa la misma hora todo el año (UTC-6), así que una jornada de aquí comparte entre siete y nueve horas con cualquier zona de Estados Unidos continental. Los precios se cotizan en dólares.',
       ],
     },
     {

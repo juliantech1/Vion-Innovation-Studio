@@ -65,6 +65,7 @@ export const casos: Pagina = {
   acento: 'automation',
   bajada:
     'We start at home: these are Vion’s own projects, built in Costa Rica. Client cases will be added here when they exist and the client allows it.',
+  acciones: [{ texto: 'Request an assessment', destino: { pagina: 'contacto' } }],
   secciones: [
     {
       tipo: 'proyectos',

@@ -20,6 +20,10 @@ export const nosotros: Pagina = {
   acento: 'AI',
   bajada:
     'Vion, also known as Vion Studio, is an AI studio based in Costa Rica. We build AI systems and agents, bring AI to engineering and architecture, and develop custom apps.',
+  acciones: [
+    { texto: 'Request an assessment', destino: { pagina: 'contacto' } },
+    { texto: 'See our own projects', destino: { pagina: 'casos' } },
+  ],
   secciones: [
     {
       tipo: 'personas',
@@ -64,6 +68,17 @@ export const nosotros: Pagina = {
         { titulo: 'Repetitive hours are worth money', texto: 'Work that repeats the same way every week can be automated, and those hours go back to what really needs a person.' },
         { titulo: 'Safe, measurable and approved', texto: 'An AI system has to be measurable, must not expose your data and has to let a person approve what matters.' },
         { titulo: 'Within reach', texto: 'Advanced technology has to be within reach of companies in Costa Rica, not only the large ones.' },
+      ],
+    },
+    {
+      tipo: 'texto',
+      id: 'costa-rica-and-the-us',
+      etiqueta: 'From Costa Rica',
+      titulo: 'Costa Rica and the United States',
+      acento: 'United States',
+      parrafos: [
+        'Vion is based in Costa Rica and works remotely, in English and Spanish, for firms here and in the United States.',
+        'Costa Rica keeps the same time all year (UTC-6), so a workday here shares seven to nine hours with any time zone in the continental United States. Prices are quoted in US dollars.',
       ],
     },
     {

@@ -132,4 +132,89 @@ export const piezas: Piezas = {
     },
   },
   noEncontrada: { indice: 'Index' },
+  // ───── Work, About, Contact, Privacy and Thanks (redesign, pag2) ─────
+  casos: {
+    fichaTitulo: 'Project index',
+    proyecto: 'Project',
+    clientes: 'Client case studies',
+    clientesValor: 'None published yet',
+    captura: 'Screenshot',
+    figuras: {
+      ultron: {
+        pie: 'How Ultron works: the agents prepare and a person decides. What is approved goes out; what is rejected goes back to its agent with the note.',
+        alt: 'Diagram of Ultron: five agents leave their work in an approval queue; a person approves it and it goes out, or rejects it and it goes back to the agent.',
+        r: ['Our own hardware', 'Research markets', 'Find companies', 'Draft proposals', 'Prepare content', 'Track spending', 'Agents', 'Approval queue', 'A person approves', 'Goes out', 'Back to its agent', 'Ollama, local', 'Claude via API, capped'],
+      },
+      topspin: {
+        pie: 'A regulation padel court, 20 × 10 m: the ground Top Spin is built for, an app for padel in Costa Rica. It is a drawing, not a screenshot of the app.',
+        alt: 'Plan of a 20 by 10 metre padel court, with the net, the service lines and the back walls.',
+        r: ['Net', '20 m', '10 m', 'Service line', 'Back wall', 'Court plan'],
+      },
+      realfood: {
+        pie: 'Prepared meals by subscription, for the Greater Metropolitan Area of Costa Rica. A diagram of what it is, not a screenshot.',
+        alt: 'Diagram of RealFood: meal containers with compartments, in plan, inside the arrow of a repeating cycle.',
+        r: ['Prepared meals', 'Container with compartments', 'Subscription', 'Greater Metropolitan Area'],
+      },
+      viazo: {
+        pie: 'Fleet tracking: the buses on routes 51 and 53 report their position by GPS. It is a diagram, not a map of the routes.',
+        alt: 'Diagram of Viazo: two route lines, 51 and 53, with stops and buses sending their position by GPS.',
+        r: ['Route 51', 'Route 53', 'GPS position', 'Stop'],
+      },
+    },
+    plantilla: {
+      titulo: 'Client case sheet',
+      estado: 'To be published',
+      filas: [
+        { termino: 'Firm', valor: 'With their permission, or unnamed' },
+        { termino: 'Workflow', valor: 'The one automated in the pilot' },
+        { termino: 'Hours before', valor: 'Measured at the start' },
+        { termino: 'Hours after', valor: 'Measured at the end' },
+      ],
+    },
+  },
+  nosotros: {
+    fichaTitulo: 'Studio facts',
+    estudio: 'Studio',
+    estudioValor: 'Vion, Costa Rica',
+    persona: 'Person',
+    bio: 'Biography',
+    medida: {
+      pie: 'The same task, measured before and after on the same dimension line. The savings come from that difference, not from a promise.',
+      alt: 'Two dimension lines: today’s hours for a task and the hours after automating it, still to be measured; at the end, your decision.',
+      r: ['Hours today', 'One workflow is automated, on your projects', 'Hours after', 'Measured', 'Measured again', 'You decide whether to continue'],
+    },
+    husos: {
+      pie: 'An 8 am to 5 pm workday in each place, drawn in Costa Rica time, with US standard time. During US daylight saving time the US bars move one hour earlier: Costa Rica does not change its clocks.',
+      alt: 'Workday bars for Costa Rica and the four time zones of the continental United States, with the hours they share.',
+      r: [],
+      zonas: [
+        { nombre: 'Costa Rica', desfase: 0 },
+        { nombre: 'US Eastern', desfase: 1 },
+        { nombre: 'US Central', desfase: 0 },
+        { nombre: 'US Mountain', desfase: -1 },
+        { nombre: 'US Pacific', desfase: -2 },
+      ],
+      jornada: '8 am to 5 pm workday',
+      comun: 'shared',
+      hora: 'Costa Rica time',
+    },
+  },
+  contacto: {
+    fichaTitulo: 'To reach us',
+    respuesta: 'Who reads it',
+    respuestaValor: 'A person at Vion',
+    recorrido: {
+      pie: 'The path of your message: it goes straight to Vion, a person reads it and we reply. If it makes sense, a 20-minute call; the assessment starts only if you decide.',
+      alt: 'Path of a message: it reaches Vion, a person reads it, we reply, a short 20-minute call and your decision before the assessment.',
+      r: ['Your message', 'A person reads it', 'We reply', 'Short call', '20 min', 'You decide', 'Assessment'],
+    },
+  },
+  privacidad: { fichaTitulo: 'About this notice', indice: 'In this notice', estado: 'Status', estadoValor: 'Draft for legal review', ley: 'Legal framework', leyValor: 'Costa Rica Law 8968 and its regulations' },
+  gracias: {
+    fichaTitulo: 'Your message',
+    recibido: 'Status',
+    recibidoValor: 'Received',
+    responde: 'Who replies',
+    respondeValor: 'A person at Vion, through the channel you gave us',
+  },
 };
