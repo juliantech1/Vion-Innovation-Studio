@@ -324,6 +324,7 @@ export interface PiezasCursos {
   fig1Alt: string;
   fig1Rotulos: { ruta: string; curso: string; estado: string; hoy: string };
   estadoRotulo: string;
+  temarioEnPreparacion: string;
   /** Los videos que ya están: «{n} de {total} videos listos». */
   videosListos: string;
   /** La página de un curso. */
@@ -338,7 +339,7 @@ export interface PiezasCursos {
   leccionUi: {
     anterior: string; siguiente: string; de: string; lamina: string; indice: string; copiar: string; copiado: string;
     verTodas: string; verDeAUna: string; proxima: string; fin: string; volverCurso: string; teclas: string;
-    apoyo: Record<TipoApoyo, string>; conChispa: string; videoEnProduccion: string; imagenEnProduccion: string;
+    apoyo: Record<TipoApoyo, string>; conChispa: string; videoEnProduccion: string; videoListo: string; imagenEnProduccion: string;
     dice: string; vozEnOff: string; transcripcion: string; reproducir: string; segundos: string;
     bloque: Record<Bloque['tipo'], string>;
   };

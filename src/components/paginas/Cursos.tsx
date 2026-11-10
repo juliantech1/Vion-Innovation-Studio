@@ -41,8 +41,10 @@ function FiguraRutas({ cursos, idioma }: { cursos: Curso[]; idioma: Idioma }) {
   const t = piezasDe(idioma).cursos;
   const letras = RUTAS_CURSOS.map((r) => r.letra);
   const pos = cursos.map((c) => [letras.indexOf(c.ruta), cursos.filter((y) => y.ruta === c.ruta).indexOf(c)] as const);
-  const W = 780, H = 290, x0 = 140, dx = 210, y0 = 50, dy = 64;
-  const w = 340, h = 330, cx0 = 66, cdx = 72, cy0 = 112, cdy = 76;
+  const x0 = 140, dx = 210, y0 = 50, dy = 64, H = 290;
+  const W = x0 + (Math.max(...pos.map((p) => p[1])) + 1) * dx;
+  const w = 340, cx0 = 66, cdx = 72, cy0 = 112, cdy = 76;
+  const h = cy0 + Math.max(...pos.map((p) => p[1])) * cdy + 44;
   const cuadro = (x: number, y: number, c: Curso, k: number, i: number) => {
     const v = videosDe(c);
     const lleno = v.total ? (28 * v.listos) / v.total : 0;
@@ -141,6 +143,7 @@ export function Cursos({ idioma }: { idioma: Idioma }) {
                           </div>
                           <div className="curso__lecciones">
                             <h5 className="rotulo">{x.estado === 'publicado' ? c.lecciones : c.leccionesPrevistas}</h5>
+                            {d.lecciones.length === 0 && <p className="curso__videos">{c.temarioEnPreparacion}</p>}
                             <ol>
                               {(x[idioma].contenido?.lecciones ?? d.lecciones.map((l, k) => ({ ...l, n: k }))).map((l) => (
                                 <li key={l.titulo} data-n={String(l.n).padStart(2, '0')}>{l.titulo}</li>

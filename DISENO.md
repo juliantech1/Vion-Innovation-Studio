@@ -221,6 +221,25 @@ sumar su carpeta como `@source`.
 Las páginas que siguen con `PaginaContenido` llevan la clase `.base`: ya tienen cabecera, pie, tokens y tipografía
 nuevos (sección 11 de `sistema.css`). Al rediseñar una, se saca de ahí; cuando no quede ninguna, se borra esa sección.
 
+## Los cursos como presentaciones (2026-11-10)
+
+Pedido de Julian: «presentaciones explicativas, con texto, de cómo hacer las cosas, con los videos dentro como aporte
+visual». Piezas en `src/components/cursos/` y estilos en `src/components/paginas/cursos.css`:
+
+| Pieza | Qué hace |
+|---|---|
+| `Leccion.tsx` (página) | Portada corta (lección, objetivo, al final) y la sección `.presentacion` (azul polvo): barra fija con el mando, las marcas de cada lámina (escritorio) o el índice desplegable (celular), la lista de láminas y las lecciones vecinas al pie. |
+| `Presentacion.tsx` (cliente) | Convierte la lista en presentación: una lámina a la vez, botones, ← →, deslizar con el dedo, «Ver todas las láminas». Escribe el ancla con `replaceState` (no llena el historial). Antes de hidratar, el CSS ya muestra la primera lámina o la del ancla (`:target`): no hay salto. Sin JavaScript se leen todas, en orden. Con movimiento reducido, sin animación de entrada. |
+| `.lamina` | Retícula de 12: título y texto a la izquierda (5 columnas), apoyo visual a la derecha (7, fijo al bajar). En celular: título, apoyo, texto. |
+| `Apoyo.tsx` | Con archivo: la imagen (su descripción es el texto alternativo) o `VideoLamina`. Sin archivo: un marco de obra 16:9 (punteado, rayado tenue, esquinas de lámina) con el dibujo del tipo, «Video en producción» en voz baja y, debajo, lo que se ve y lo que dice Chispa (la lámina se entiende sin el video). |
+| `VideoLamina.tsx` (cliente) | Fachada: póster perezoso y botón; el `<video>` (con `<track>` de subtítulos) o el iframe de YouTube sin cookies o Vimeo recién al pedirlo. Los videos sin voz arrancan mudos y en bucle cuando la lámina está a la vista (no con movimiento reducido). |
+| `Bloques.tsx` + `Copiar.tsx` | Bloques copiables siempre en negro, con su rótulo (Comando · Windows, Pedido a Claude…) y «Copiar» (avisa «Copiado» también a lectores de pantalla). Los pedidos a Claude llevan el cuadrito naranja y van en letra de lectura. |
+| `Md.tsx` | El Markdown mínimo de las láminas y de las secciones del curso (párrafos, listas, tildes ✓, tablas que se deslizan con foco de teclado, `código`, *cursiva*). |
+
+La página de un curso alterna los tonos: portada (negro), lecciones (azul), puesta a punto (negro), lo que cuesta
+(azul), repos y skills (negro), kit y acción final (azul) y el cierre. `/cursos` agrupa los cursos por ruta, cada uno con
+su estado de obra y cuántos videos están listos; la Fig. 1 llena cada cuadro según esa parte.
+
 ## Lo que no va
 
 Degradados violeta-azul, sombras, tarjetas dentro de tarjetas, píldoras, íconos en cuadraditos, texto centrado, un

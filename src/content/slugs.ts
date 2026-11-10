@@ -17,6 +17,7 @@ export const SLUGS_CURSOS: Record<string, Record<Idioma, string>> = {
   motion: { es: 'motion-design-con-claude', en: 'motion-design-with-claude' },
   'blender-3d': { es: 'videos-3d-con-blender-y-claude', en: '3d-videos-with-blender-and-claude' },
   'personaje-3d': { es: 'personaje-3d-que-habla', en: 'talking-3d-character' },
+  'canal-youtube': { es: 'canal-de-youtube-con-ia', en: 'youtube-channel-with-ai' },
   'claude-autocad': { es: 'claude-autocad-planos-cantidades', en: 'claude-autocad-drawings-quantities' },
   cuantificacion: { es: 'cuantificacion-y-presupuestos-con-ia', en: 'quantity-takeoff-and-estimates-with-ai' },
   'seo-agentes': { es: 'seo-con-agentes', en: 'seo-with-ai-agents' },

@@ -56,6 +56,9 @@ export const RUTAS_CURSOS: RutaCursos[] = [
   },
 ];
 
+/** Un curso previsto cuyo storyboard todavía se está escribiendo: solo su ficha básica, sin lecciones ni página. */
+type Previsto = Record<Idioma, Pick<CursoIdioma, 'corto' | 'titulo' | 'tituloSeo' | 'descripcion' | 'paraQuien' | 'seLleva' | 'herramientas'>>;
+
 interface Registro {
   id: string;
   codigo: string;
@@ -63,9 +66,32 @@ interface Registro {
   lleva: Curso['lleva'];
   estado: Curso['estado'];
   publicado?: string;
-  texto: CursoTexto;
+  texto: CursoTexto | Previsto;
   lecciones: LeccionCurso[];
 }
+
+// B9 (pedido de Julian del 2026-11-10): su storyboard (docs/planes/cursos/B9-canal-youtube.md) todavía se está
+// escribiendo. Hasta que esté, el curso se muestra en /cursos con su ficha básica, sin lecciones y sin página.
+const canalYoutube: Previsto = {
+  es: {
+    corto: 'Canal de YouTube',
+    titulo: 'Su canal de YouTube con IA: crearlo y automatizarlo',
+    tituloSeo: 'Curso gratis: su canal de YouTube con IA | Vion',
+    descripcion: 'Curso gratis de Vion: cómo crear un canal de YouTube con IA y automatizar su producción. En preparación: el temario se está escribiendo.',
+    paraQuien: 'Quien quiere abrir un canal de YouTube y producir sus videos con IA.',
+    seLleva: 'El temario se está escribiendo: la ficha completa sale cuando esté listo.',
+    herramientas: 'Se detallan con el temario, con lo que cuesta cada una.',
+  },
+  en: {
+    corto: 'YouTube channel',
+    titulo: 'Your YouTube channel with AI: build it and automate it',
+    tituloSeo: 'Free course: your YouTube channel with AI | Vion',
+    descripcion: 'A free Vion course on building a YouTube channel with AI and automating its production. In preparation: the syllabus is being written.',
+    paraQuien: 'Anyone who wants to start a YouTube channel and produce its videos with AI.',
+    seLleva: 'The syllabus is being written: the full outline comes out when it is ready.',
+    herramientas: 'Listed with the syllabus, with what each one costs.',
+  },
+};
 
 /** El orden es el de la página: por ruta, y dentro de cada ruta por código (A0, el de Claude básico, primero). */
 const REGISTRO: Registro[] = [
@@ -75,6 +101,7 @@ const REGISTRO: Registro[] = [
   { id: 'motion', codigo: 'B1', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: motion, lecciones: leccionesMotion },
   { id: 'blender-3d', codigo: 'B2', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: blender3d, lecciones: leccionesBlender3d },
   { id: 'personaje-3d', codigo: 'B3', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: personaje3d, lecciones: leccionesPersonaje3d },
+  { id: 'canal-youtube', codigo: 'B9', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: canalYoutube, lecciones: [] },
   { id: 'claude-autocad', codigo: 'C1', ruta: 'C', lleva: 'consultoria', estado: 'produccion', texto: claudeAutocad, lecciones: leccionesClaudeAutocad },
   { id: 'cuantificacion', codigo: 'C2', ruta: 'C', lleva: 'autocad', estado: 'produccion', texto: cuantificacion, lecciones: leccionesCuantificacion },
   { id: 'seo-agentes', codigo: 'D1', ruta: 'D', lleva: 'apps', estado: 'produccion', texto: seoAgentes, lecciones: leccionesSeoAgentes },
@@ -84,7 +111,11 @@ const REGISTRO: Registro[] = [
 function armar(r: Registro): Curso {
   const s = SLUGS_CURSOS[r.id];
   if (!s) throw new Error(`El curso «${r.id}» no tiene sus direcciones en slugs.ts`);
-  const { es, en } = r.texto;
+  if (!('ficha' in r.texto.es)) {
+    const p = r.texto as Previsto;
+    return { id: r.id, codigo: r.codigo, ruta: r.ruta, estado: r.estado, lleva: r.lleva, es: { ...p.es, slug: s.es, lecciones: [] }, en: { ...p.en, slug: s.en, lecciones: [] } };
+  }
+  const { es, en } = r.texto as CursoTexto;
   const { corto, titulo, subtitulo, tituloSeo, descripcion, paraQuien, seLleva, herramientas, ...resto } = es;
   const cursoEs: CursoIdioma = {
     slug: s.es, corto, titulo, subtitulo, tituloSeo, descripcion, paraQuien, seLleva, herramientas,
@@ -108,7 +139,7 @@ export const CON_BORRADORES = process.env.VION_BORRADORES === '1' && !process.en
 /** Lo que se indexa: un curso marcado como publicado. */
 export const cursoIndexable = (c: Curso) => c.estado === 'publicado';
 /** Un curso tiene páginas (la suya y las de sus lecciones) si está publicado, o si se construye para revisarlo. */
-export const cursoConPagina = (c: Curso) => cursoIndexable(c) || CON_BORRADORES;
+export const cursoConPagina = (c: Curso) => (cursoIndexable(c) || CON_BORRADORES) && !!c.es.contenido;
 /** Las lecciones de un curso en un idioma (vacío si ese idioma todavía no tiene el contenido). */
 export const leccionesDe = (c: Curso, idioma: Idioma) => c[idioma].contenido?.lecciones ?? [];
 /** Lo que aparece en las listas del sitio: todos los cursos, en su orden. */

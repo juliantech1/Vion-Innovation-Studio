@@ -230,3 +230,5 @@ html:not(.js) .pres__barra { position: static; }
 
 /* El aviso de las páginas de revisión (VION_BORRADORES=1): abajo, para no tapar la cabecera. */
 .aviso-borrador { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding-block: 0.5rem; }
+/* Los enlaces dentro de tablas: objetivo táctil de 44 px sin mover el renglón. */
+.md__tabla a { display: inline-block; padding-block: 0.8rem; margin-block: -0.8rem; }

@@ -43,13 +43,16 @@ export function Presentacion({ ids, titulos, t }: { ids: string[]; titulos: stri
   // Al cargar: la lámina del ancla, si hay.
   useEffect(() => {
     const k = ids.indexOf(location.hash.slice(1));
-    mostrar(k >= 0 ? k : 0, false);
+    const cuadro = requestAnimationFrame(() => mostrar(k >= 0 ? k : 0, false));
     const alCambiar = () => {
       const j = ids.indexOf(location.hash.slice(1));
       if (j >= 0) mostrar(j, false);
     };
     addEventListener('hashchange', alCambiar);
-    return () => removeEventListener('hashchange', alCambiar);
+    return () => {
+      cancelAnimationFrame(cuadro);
+      removeEventListener('hashchange', alCambiar);
+    };
   }, [ids, mostrar]);
 
   // Teclado, marcas y dedo.

@@ -28,6 +28,7 @@ alternativas. El selector de idioma lleva a la misma página en el otro idioma.
 | Contacto | `/contacto` | `/en/contact` | sí |
 | Cursos (gratis, en producción) | `/cursos` | `/en/courses` | sí |
 | Un curso publicado | `/cursos/<slug>` | `/en/courses/<slug>` | sí, recién cuando se publique (hoy ninguno) |
+| Una lección (presentación de láminas) | `/cursos/<slug>/<lección>` | `/en/courses/<slug>/<lesson>` cuando exista la traducción | sí, con su curso |
 | Blog | `/blog` | `/en/blog` | sí |
 | Un artículo | `/blog/<slug>` | `/en/blog/<slug>` | sí (3 artículos) |
 | RSS del blog | `/blog/rss.xml` | `/en/blog/rss.xml` | (fuente) |
@@ -80,12 +81,20 @@ título de 30 a 60, descripción de 70 a 155, bajada, etiquetas, cuerpo y fuente
 solos. El cuerpo: un bloque por párrafo; `## ` título (entra al índice), `- ` lista, `1. ` lista numerada, `> ` nota,
 `| a | b |` tabla (la primera fila es el encabezado) y `` `código` ``; dentro, el marcado de `Texto`.
 
-**Publicar un curso:** en `src/content/cursos.ts`, cargar en los dos idiomas `tituloSeo`, `descripcion` y cada lección
-con su `video` (`mp4` + `poster` + subtítulos `vtt`, o `youtube`), `minutos` y `material`; poner `estado: 'publicado'` y `publicado:
-'AAAA-MM-DD'`. Con eso tiene su página (`components/paginas/Curso.tsx`), entra al sitemap, a llms.txt, a la lista de
-`/cursos` con enlace y lleva JSON-LD `Course` (gratis, en línea) y la lista `ItemList` en `/cursos`. Para revisar la
-plantilla sin publicar nada: construir con `VION_BORRADORES=1` (en Vercel no tiene efecto) y abrir
-`/cursos/curso-de-ejemplo`, que sale con noindex.
+**Cursos (2026-11-10):** once cursos en cuatro rutas (`src/content/cursos/`). Cada uno tiene su carpeta con
+`curso.ts` (ficha, lo que cuesta, puesta a punto, repos y skills, kit, acción final; ficha también en inglés) y
+`lecciones.ts` (las lecciones con todas sus láminas, desde los storyboards de la aldea). Los dos archivos son TypeScript
+con JSON estricto adentro: `python3 scripts/validar-cursos.py` los revisa sin Node (forma, rayas, jerga interna, largos
+para buscadores). Los videos e imágenes van aparte, en `src/content/cursos/medios.json` (curso → lámina → URL);
+`python3 scripts/medios-cursos.py` trae las imágenes fijas listas de `~/hefesto/cursos-media/`. Los videos no van al
+repositorio (ver PENDIENTES-JULIAN.md). Una lección es una presentación: una lámina a la vez con botones, flechas del
+teclado y el dedo; cada lámina tiene su ancla (`#lamina-1-3`) para compartirla; sin JavaScript se leen todas.
+
+**Publicar un curso:** con sus videos alojados y cargados en `medios.json`, poner `estado: 'publicado'` y `publicado:
+'AAAA-MM-DD'` en su línea de `REGISTRO` (`src/content/cursos/index.ts`). Con eso salen su página y las de sus lecciones,
+entran al sitemap y a llms.txt, la lista de `/cursos` los enlaza y el curso lleva su JSON-LD `Course`. Para revisarlos
+antes: `npm run build:borradores` (`VION_BORRADORES=1`; en Vercel no tiene efecto) construye todos los cursos en
+producción con noindex, y `npm run revisar:borradores` los revisa.
 
 **Sumar una página:** su id en `PAGINAS` (`tipos.ts`), sus dos URL en `rutas.ts`, el contenido en `es/` y `en/` (y en
 sus `index.ts`), y su carpeta en `src/app/(es)` y `src/app/(en)/en`. El sitemap, hreflang, OG y llms.txt la toman solos.

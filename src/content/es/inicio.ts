@@ -111,7 +111,7 @@ export const inicio: Pagina = {
       titulo: 'Cursos de IA, gratis',
       acento: 'gratis',
       parrafos: [
-        'Vamos a publicar cursos gratis, con videos y material, sobre lo que ya hacemos: agentes de IA, motion y 3D, y AutoCAD para ingeniería y arquitectura. Son diez cursos, de Claude básico a AutoCAD, y están en producción, todavía sin fecha.',
+        'Vamos a publicar cursos gratis, con videos y material, sobre lo que ya hacemos: agentes de IA, motion y 3D, y AutoCAD para ingeniería y arquitectura. Son once cursos, de Claude básico a AutoCAD, y están en producción, todavía sin fecha.',
       ],
     },
     {

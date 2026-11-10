@@ -15,7 +15,7 @@ const vistaPrevia = process.env.VERCEL_ENV === "preview";
 
 // Los orígenes de los videos e imágenes de los cursos (src/content/cursos/medios.json): un CDN nuevo entra solo a
 // media-src e img-src; YouTube (sin cookies) y Vimeo, a frame-src, recién cuando algún curso los use.
-const piezas = Object.values(medios as Record<string, Record<string, Record<string, string | number>>>).flatMap((c) => Object.values(c));
+const piezas = Object.values(medios as unknown as Record<string, Record<string, Record<string, unknown>>>).flatMap((c) => Object.values(c));
 const origenes = (claves: string[]) =>
   [...new Set(piezas.flatMap((m) => claves.map((k) => m[k]).filter((v): v is string => typeof v === "string" && v.startsWith("https://")).map((v) => new URL(v).origin)))].map((o) => ` ${o}`).join("");
 const conYoutube = piezas.some((m) => m.youtube) ? " https://www.youtube-nocookie.com" : "";

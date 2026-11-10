@@ -12,7 +12,7 @@ export const cursos: Pagina = {
   h1: 'Free AI courses, built on what Vion already does',
   acento: 'Free',
   bajada:
-    'We are going to publish free artificial intelligence courses, with videos and materials, made in Costa Rica. We only teach what we have already built and use every day. There are ten courses in four tracks, and all of them are in production today.',
+    'We are going to publish free artificial intelligence courses, with videos and materials, made in Costa Rica. We only teach what we have already built and use every day. There are eleven courses in four tracks, and all of them are in production today.',
   acciones: [
     { texto: 'Notify me on WhatsApp', destino: { whatsapp: 'Hi Vion. Please let me know when you publish the first course.' } },
     { texto: 'See the courses', destino: { pagina: 'cursos', ancla: 'cursos' } },
@@ -21,11 +21,11 @@ export const cursos: Pagina = {
     {
       tipo: 'texto',
       id: 'cursos',
-      etiqueta: 'Ten courses, four tracks',
+      etiqueta: 'Eleven courses, four tracks',
       titulo: 'The courses we are recording',
       acento: 'recording',
       intro:
-        'None is published yet. Here are all ten, grouped by track and starting with Claude basics, with their planned lessons and how many of their videos are ready. When one comes out, it gets its own page with every lesson.',
+        'None is published yet. Here are all eleven, grouped by track and starting with Claude basics, with their planned lessons and how many of their videos are ready. When one comes out, it gets its own page with every lesson.',
       parrafos: [],
     },
     {
@@ -62,7 +62,7 @@ export const cursos: Pagina = {
         },
         {
           p: 'When does the first course come out?',
-          r: 'We do not have a date yet. All ten are in production. If you message us on WhatsApp or through the form, we will let you know when the one you want is out.',
+          r: 'We do not have a date yet. All eleven are in production. If you message us on WhatsApp or through the form, we will let you know when the one you want is out.',
         },
         {
           p: 'What do I need to know to take them?',

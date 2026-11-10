@@ -14,7 +14,7 @@ export const cursos: Pagina = {
   h1: 'Cursos de IA gratis, con lo que Vion ya hizo',
   acento: 'gratis',
   bajada:
-    'Vamos a publicar cursos de inteligencia artificial gratis, con videos y material, hechos en Costa Rica. Solo enseñamos lo que ya construimos y usamos todos los días. Son diez cursos en cuatro rutas, y hoy están todos en producción.',
+    'Vamos a publicar cursos de inteligencia artificial gratis, con videos y material, hechos en Costa Rica. Solo enseñamos lo que ya construimos y usamos todos los días. Son once cursos en cuatro rutas, y hoy están todos en producción.',
   acciones: [
     { texto: 'Avisarme por WhatsApp', destino: { whatsapp: 'Hola, Vion. Avísenme cuando publiquen el primer curso.' } },
     { texto: 'Ver los cursos', destino: { pagina: 'cursos', ancla: 'cursos' } },
@@ -23,11 +23,11 @@ export const cursos: Pagina = {
     {
       tipo: 'texto',
       id: 'cursos',
-      etiqueta: 'Diez cursos, cuatro rutas',
+      etiqueta: 'Once cursos, cuatro rutas',
       titulo: 'Los cursos que estamos grabando',
       acento: 'grabando',
       intro:
-        'Ninguno está publicado todavía. Estos son los diez, agrupados por ruta y empezando por Claude básico, con sus lecciones previstas y cuántos de sus videos ya están listos. Cuando uno salga, va a tener su propia página con cada lección.',
+        'Ninguno está publicado todavía. Estos son los once, agrupados por ruta y empezando por Claude básico, con sus lecciones previstas y cuántos de sus videos ya están listos. Cuando uno salga, va a tener su propia página con cada lección.',
       parrafos: [],
     },
     {
@@ -64,7 +64,7 @@ export const cursos: Pagina = {
         },
         {
           p: '¿Cuándo sale el primer curso?',
-          r: 'Todavía no tenemos fecha. Los diez están en producción. Si nos escribe por WhatsApp o por el formulario, le avisamos cuando salga el que le interesa.',
+          r: 'Todavía no tenemos fecha. Los once están en producción. Si nos escribe por WhatsApp o por el formulario, le avisamos cuando salga el que le interesa.',
         },
         {
           p: '¿Qué se necesita saber para tomarlos?',
