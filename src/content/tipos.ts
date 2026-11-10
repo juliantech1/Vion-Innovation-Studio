@@ -5,8 +5,8 @@
 export const IDIOMAS = ['es', 'en'] as const;
 export type Idioma = (typeof IDIOMAS)[number];
 
-/** Las 7 páginas del plan de Feme, más el aviso de privacidad y la página de gracias. */
-export const PAGINAS = ['inicio', 'consultoria', 'autocad', 'apps', 'casos', 'nosotros', 'contacto', 'privacidad', 'gracias'] as const;
+/** Las 7 páginas del plan de Feme, Cursos y Blog (pedido de Julian del 2026-11-10), el aviso de privacidad y gracias. */
+export const PAGINAS = ['inicio', 'consultoria', 'autocad', 'apps', 'cursos', 'casos', 'nosotros', 'blog', 'contacto', 'privacidad', 'gracias'] as const;
 export type IdPagina = (typeof PAGINAS)[number];
 
 /**
@@ -296,6 +296,145 @@ export interface Piezas {
   contacto: PiezasContacto;
   privacidad: { fichaTitulo: string; indice: string; estado: string; estadoValor: string; ley: string; leyValor: string };
   gracias: { fichaTitulo: string; recibido: string; recibidoValor: string };
+  cursos: PiezasCursos;
+  blog: PiezasBlog;
+}
+
+/** Los rótulos de Cursos (índice, plantilla de un curso y la sección de la portada). */
+export interface PiezasCursos {
+  fichaTitulo: string;
+  ficha: { termino: string; valor: string }[];
+  ruta: string;
+  estado: Record<EstadoCurso, string>;
+  paraQuien: string;
+  seLleva: string;
+  herramientas: string;
+  lecciones: string;
+  leccionesPrevistas: string;
+  leccion: string;
+  minutos: string;
+  avisar: string;
+  avisarWhatsapp: string;
+  avisarFormulario: string;
+  /** El mensaje que va escrito al pedir el aviso. Lleva {curso}. */
+  mensajeAviso: string;
+  lleva: string;
+  verCurso: string;
+  fig1: string;
+  fig1Alt: string;
+  fig1Rotulos: { ruta: string; curso: string; estado: string; hoy: string };
+  /** La plantilla de un curso publicado. */
+  plantilla: { video: string; sinVideo: string; material: string; indice: string; volver: string; borrador: string; duracion: string };
+  portada: { ver: string; blog: string };
+}
+
+export interface PiezasBlog {
+  fichaTitulo: string;
+  ficha: { termino: string; valor: string }[];
+  articulos: string;
+  publicado: string;
+  actualizado: string;
+  lectura: string;
+  autor: string;
+  fuentes: string;
+  fuentesNota: string;
+  leer: string;
+  indice: string;
+  volver: string;
+  rss: string;
+  otros: string;
+  fig1: string;
+}
+
+// ───── Cursos ─────
+
+export type EstadoCurso = 'produccion' | 'publicado';
+
+/** Una lección: el título siempre; el video y el material, cuando existan. */
+export interface Leccion {
+  titulo: string;
+  /** Minutos del video, cuando el video exista (nunca estimados a la vista). */
+  minutos?: number;
+  /** El video publicado: un archivo propio (MP4 en /public o un CDN) con su póster, o un video de YouTube por su id. */
+  video?: { mp4?: string; youtube?: string; poster?: string; subidoEl?: string };
+  material?: { texto: string; href: string }[];
+}
+
+/** Lo que cambia de un curso entre idiomas. */
+export interface CursoIdioma {
+  slug: string;
+  titulo: string;
+  /** El nombre corto, para los rótulos de las figuras (dos palabras como mucho). */
+  corto: string;
+  /** El término en inglés (o en castellano en la versión inglesa) para que se encuentre en búsquedas. */
+  subtitulo?: string;
+  /** <title> de su página (30 a 60) y descripción (70 a 155): solo hacen falta al publicarlo. */
+  tituloSeo: string;
+  descripcion: string;
+  paraQuien: string;
+  seLleva: string;
+  herramientas: string;
+  lecciones: Leccion[];
+}
+
+export interface Curso {
+  id: string;
+  ruta: 'A' | 'B' | 'C' | 'D';
+  estado: EstadoCurso;
+  /**
+   * Un borrador no se publica nunca: fuera del sitemap, de las rutas generadas y de las listas. Solo se construye con
+   * VION_BORRADORES=1 (para revisar la plantilla), y aun así sale con noindex.
+   */
+  borrador?: boolean;
+  /** Fecha de publicación (AAAA-MM-DD), recién cuando el curso exista. */
+  publicado?: string;
+  /** El servicio al que lleva el curso (la acción del final). */
+  lleva: IdPagina;
+  es: CursoIdioma;
+  en: CursoIdioma;
+}
+
+export interface RutaCursos {
+  letra: 'A' | 'B' | 'C' | 'D';
+  es: { nombre: string; texto: string };
+  en: { nombre: string; texto: string };
+}
+
+// ───── Blog ─────
+
+/**
+ * El cuerpo de un artículo: Markdown mínimo, un bloque por párrafo (separados por una línea en blanco). `## ` y
+ * `### ` son títulos, `- ` una lista, `1. ` una lista numerada, `> ` una nota, ` ``` ` un bloque de código, y
+ * `| a | b |` una tabla (la primera fila es el encabezado). Dentro del texto vale el marcado de `Texto`.
+ */
+export type CuerpoArticulo = string;
+
+export interface ArticuloIdioma {
+  slug: string;
+  /** El H1 y el <title> (30 a 60, sin «| Vion»: lo pone la plantilla si entra). */
+  titulo: string;
+  /** Meta descripción (70 a 155). */
+  descripcion: string;
+  /** La bajada bajo el H1 (puede ser más larga que la descripción). */
+  bajada: string;
+  /** Palabra del título en rojo. */
+  acento?: string;
+  /** El título corto de la imagen Open Graph. */
+  og: string;
+  etiquetas: string[];
+  cuerpo: CuerpoArticulo;
+  fuentes: { titulo: string; url: string; nota?: string }[];
+}
+
+export interface Articulo {
+  id: string;
+  /** AAAA-MM-DD */
+  publicado: string;
+  actualizado?: string;
+  /** El servicio con el que se relaciona (enlace al final). */
+  relacion: IdPagina;
+  es: ArticuloIdioma;
+  en: ArticuloIdioma;
 }
 
 /** Una figura dibujada: su leyenda y los rótulos que van dentro del dibujo (en orden). */

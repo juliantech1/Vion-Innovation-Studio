@@ -1,7 +1,7 @@
 // Datos estructurados (schema.org) de cada página, armados desde su contenido: solo lo que la página muestra.
 // Sin reseñas, puntajes ni nada que no esté visible. `scripts/revisar-seo.mjs` revisa los tipos y sus campos.
-import { imagenOg } from './metadatos';
-import { interfazDe, pagina, sitio, urlAbsoluta, type IdPagina, type Idioma } from '@/content';
+import { imagenOg, imagenOgArticulo, imagenOgCurso } from './metadatos';
+import { ARTICULOS, CURSOS, cursoIndexable, interfazDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, type Articulo, type Curso, type IdPagina, type Idioma } from '@/content';
 
 type Nodo = Record<string, unknown>;
 
@@ -90,6 +90,16 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
   if (p.palabrasClave.length) web.keywords = p.palabrasClave.join(', ');
   if (conMigas) web.breadcrumb = { '@id': idMigas };
   if (p.esquema.tipo === 'ContactPage' || p.esquema.tipo === 'AboutPage') web.mainEntity = { '@id': ID_ORGANIZACION };
+  // Cursos: la lista de los cursos publicados (con su página). Los que están en producción NO van: una lista de
+  // cursos sin página no le sirve a un buscador y el resultado enriquecido de cursos pide una página por curso.
+  const publicados = id === 'cursos' ? CURSOS.filter(cursoIndexable) : [];
+  if (publicados.length) {
+    web.mainEntity = {
+      '@type': 'ItemList',
+      numberOfItems: publicados.length,
+      itemListElement: publicados.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[idioma].titulo, url: urlCurso(c[idioma].slug, idioma) })),
+    };
+  }
   if (p.esquema.lista?.length) {
     web.mainEntity = {
       '@type': 'ItemList',
@@ -143,6 +153,30 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
     });
   }
 
+  // Blog: el blog y sus artículos (cada uno con su página).
+  if (id === 'blog') {
+    nodos.push({
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': `${url}#blog`,
+      url,
+      name: p.titulo,
+      description: p.descripcion,
+      inLanguage: ui.lang,
+      publisher: { '@id': ID_ORGANIZACION },
+      mainEntityOfPage: { '@id': `${url}#pagina` },
+      blogPost: ARTICULOS.map((a) => ({
+        '@type': 'BlogPosting',
+        '@id': `${urlArticulo(a[idioma].slug, idioma)}#articulo`,
+        headline: a[idioma].titulo,
+        url: urlArticulo(a[idioma].slug, idioma),
+        datePublished: a.publicado,
+        dateModified: a.actualizado ?? a.publicado,
+        author: { '@id': ID_ORGANIZACION },
+      })),
+    });
+  }
+
   // FAQPage: exactamente las preguntas visibles de la página.
   const preguntas = p.secciones.flatMap((x) => (x.tipo === 'preguntas' ? x.preguntas : []));
   if (preguntas.length) {
@@ -153,6 +187,110 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
       inLanguage: ui.lang,
       isPartOf: { '@id': `${url}#pagina` },
       mainEntity: preguntas.map((q) => ({ '@type': 'Question', name: q.p, acceptedAnswer: { '@type': 'Answer', text: q.r } })),
+    });
+  }
+  return nodos;
+}
+
+const migas = (url: string, idioma: Idioma, madre: IdPagina, nombre: string): Nodo => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${url}#migas`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: pagina('inicio', idioma).nav, item: urlAbsoluta('inicio', idioma) },
+    { '@type': 'ListItem', position: 2, name: pagina(madre, idioma).nav, item: urlAbsoluta(madre, idioma) },
+    { '@type': 'ListItem', position: 3, name: nombre, item: url },
+  ],
+});
+
+/** Un artículo: WebPage + BlogPosting (autor y editor: Vion), migas y las fuentes como citas. */
+export function datosArticulo(a: Articulo, idioma: Idioma): Nodo[] {
+  const x = a[idioma];
+  const ui = interfazDe(idioma);
+  const url = urlArticulo(x.slug, idioma);
+  const imagen = { '@type': 'ImageObject', url: imagenOgArticulo(a, idioma), width: 1200, height: 630 };
+  return [
+    organizacion(idioma),
+    sitioWeb(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${url}#pagina`,
+      url,
+      name: x.titulo,
+      description: x.descripcion,
+      inLanguage: ui.lang,
+      isPartOf: { '@id': ID_SITIO },
+      breadcrumb: { '@id': `${url}#migas` },
+      primaryImageOfPage: imagen,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      '@id': `${url}#articulo`,
+      mainEntityOfPage: { '@id': `${url}#pagina` },
+      headline: x.titulo,
+      description: x.descripcion,
+      image: imagen,
+      inLanguage: ui.lang,
+      datePublished: a.publicado,
+      dateModified: a.actualizado ?? a.publicado,
+      author: { '@id': ID_ORGANIZACION },
+      publisher: { '@id': ID_ORGANIZACION },
+      isPartOf: { '@type': 'Blog', '@id': `${urlAbsoluta('blog', idioma)}#blog` },
+      keywords: x.etiquetas.join(', '),
+      wordCount: x.cuerpo.split(/\s+/).filter(Boolean).length,
+      citation: x.fuentes.map((f) => f.url),
+    },
+    migas(url, idioma, 'blog', x.titulo),
+  ];
+}
+
+/**
+ * Un curso con página: WebPage, migas y, si está publicado de verdad, `Course` (gratis, en línea, de Vion). Un
+ * borrador no lleva `Course`: no existe para nadie más que quien revisa la plantilla.
+ */
+export function datosCurso(c: Curso, idioma: Idioma): Nodo[] {
+  const x = c[idioma];
+  const ui = interfazDe(idioma);
+  const url = urlCurso(x.slug, idioma);
+  const nodos: Nodo[] = [
+    organizacion(idioma),
+    sitioWeb(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${url}#pagina`,
+      url,
+      name: x.tituloSeo,
+      description: x.descripcion,
+      inLanguage: ui.lang,
+      isPartOf: { '@id': ID_SITIO },
+      breadcrumb: { '@id': `${url}#migas` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: imagenOgCurso(c, idioma), width: 1200, height: 630 },
+    },
+    migas(url, idioma, 'cursos', x.titulo),
+  ];
+  if (cursoIndexable(c)) {
+    const minutos = x.lecciones.reduce((t, l) => t + (l.minutos ?? 0), 0);
+    nodos.push({
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      '@id': `${url}#curso`,
+      name: x.titulo,
+      description: x.descripcion,
+      url,
+      inLanguage: ui.lang,
+      provider: { '@id': ID_ORGANIZACION },
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', category: 'Free', price: 0, priceCurrency: 'USD', url },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: 'Online',
+        ...(minutos ? { courseWorkload: `PT${minutos}M` } : {}),
+      },
+      ...(c.publicado ? { datePublished: c.publicado } : {}),
+      syllabusSections: x.lecciones.map((l) => ({ '@type': 'Syllabus', name: l.titulo, ...(l.minutos ? { timeRequired: `PT${l.minutos}M` } : {}) })),
     });
   }
   return nodos;

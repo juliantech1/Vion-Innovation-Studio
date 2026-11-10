@@ -13,7 +13,7 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 
 | Casillero | Dónde aparece | Archivo |
 |---|---|---|
-| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` | `interfaz.ts`, `privacidad.ts` |
+| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
 | `{{domicilio legal}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{región de Vercel donde se procesa el formulario}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{plazo de conservación de los datos}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |

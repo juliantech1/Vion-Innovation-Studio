@@ -4,30 +4,50 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
-import { IDIOMAS, PAGINAS, pagina, sitio, type IdPagina, type Idioma } from '@/content';
+import { ARTICULOS, CURSOS, IDIOMAS, PAGINAS, cursoConPagina, pagina, sitio, type IdPagina, type Idioma } from '@/content';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return IDIOMAS.flatMap((idioma) => PAGINAS.map((id) => ({ archivo: `${idioma}-${id}.png` })));
+  return IDIOMAS.flatMap((idioma) => [
+    ...PAGINAS.map((id) => ({ archivo: `${idioma}-${id}.png` })),
+    ...ARTICULOS.map((a) => ({ archivo: `${idioma}-articulo-${a.id}.png` })),
+    ...CURSOS.filter(cursoConPagina).map((c) => ({ archivo: `${idioma}-curso-${c.id}.png` })),
+  ]);
+}
+
+/** El título corto y la palabra en rojo de cada imagen: una página, un artículo o un curso. */
+function datosDe(archivo: string): { idioma: Idioma; titulo: string; acento?: string; rotulo?: string } {
+  const nombre = archivo.replace(/\.png$/, '');
+  const idioma = nombre.slice(0, 2) as Idioma;
+  const resto = nombre.slice(3);
+  if (resto.startsWith('articulo-')) {
+    const a = ARTICULOS.find((x) => x.id === resto.slice(9))!;
+    return { idioma, titulo: a[idioma].og, acento: a[idioma].acento, rotulo: 'Blog' };
+  }
+  if (resto.startsWith('curso-')) {
+    const c = CURSOS.find((x) => x.id === resto.slice(6))!;
+    return { idioma, titulo: c[idioma].titulo, rotulo: idioma === 'es' ? 'Curso gratis' : 'Free course' };
+  }
+  const p = pagina(resto as IdPagina, idioma);
+  return { idioma, titulo: p.og.titulo, acento: p.og.acento };
 }
 
 const archivo = (ruta: string) => readFile(path.join(process.cwd(), ruta));
 const limpiar = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}/]/gu, '');
 
 export async function GET(_: Request, { params }: { params: Promise<{ archivo: string }> }) {
-  const [idioma, id] = (await params).archivo.replace(/\.png$/, '').split('-') as [Idioma, IdPagina];
-  const p = pagina(id, idioma);
+  const { idioma, titulo, acento: acentoDe, rotulo } = datosDe((await params).archivo);
   const [negrita, normal, simbolo] = await Promise.all([
     archivo('src/seo/fuentes/Geist-Bold.ttf'),
     archivo('src/seo/fuentes/Geist-Regular.ttf'),
     archivo(`public${sitio.simbolo.src}`),
   ]);
   const c = sitio.colores;
-  const acento = new Set((p.og.acento ?? '').split(/\s+/).filter(Boolean).map(limpiar));
-  const palabras = p.og.titulo.split(/\s+/);
-  const grande = p.og.titulo.length > 26 ? 76 : 92;
+  const acento = new Set((acentoDe ?? '').split(/\s+/).filter(Boolean).map(limpiar));
+  const palabras = titulo.split(/\s+/);
+  const grande = titulo.length > 40 ? 64 : titulo.length > 26 ? 76 : 92;
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: c.negro, color: c.claro, padding: '64px 72px 0', fontFamily: 'Geist' }}>
@@ -38,7 +58,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ archivo: s
             <div style={{ marginLeft: 18, fontSize: 40, fontWeight: 700, letterSpacing: 6 }}>VION</div>
           </div>
           <div style={{ fontSize: 24, letterSpacing: 3, textTransform: 'uppercase', color: c.azul }}>
-            {idioma === 'es' ? 'Estudio de IA · Costa Rica' : 'AI studio · Costa Rica'}
+            {rotulo ? `${rotulo} · Vion` : idioma === 'es' ? 'Estudio de IA · Costa Rica' : 'AI studio · Costa Rica'}
           </div>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: grande, fontWeight: 700, lineHeight: 1.04, letterSpacing: -2, textTransform: 'uppercase', maxWidth: 1000 }}>

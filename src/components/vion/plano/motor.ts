@@ -1,7 +1,7 @@
 // El plano vivo: canvas 2D a mano, proyección ortogonal. Se carga después del LCP y toma el relevo del póster SVG
 // (el mismo dibujo): respira en reposo, sigue al puntero y, con el scroll, la cámara pasa de planta a isométrica y
 // a corte A-A. Si este archivo no llega a cargar, el póster queda entero: la portada nunca depende de él.
-import { ALTO, AMBIENTES, ANCHO, FONDO, VISTA, XS, YC, YS, segmentos, type P3 } from './geometria';
+import { ALTO, AMBIENTES, ANCHO, EJES, FONDO, VISTA, XS, YC, YS, segmentos, type P3 } from './geometria';
 
 const C = { claro: '250,250,250', azul: '201,223,238', rojo: '232,52,28', naranja: '240,97,42' };
 const RAD = Math.PI / 180;
@@ -62,14 +62,17 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
     ctx!.lineWidth = lw; ctx!.strokeStyle = `rgba(${col},${a.toFixed(3)})`;
     return a > 0.004;
   }
+  // Cada rótulo lleva un halo del color del fondo: así una cota que cae sobre un eje se sigue leyendo.
   const texto = (s: string, x: number, y: number, alfa: number, col = C.claro, alin: CanvasTextAlign = 'center') => {
-    ctx!.fillStyle = `rgba(${col},${alfa.toFixed(3)})`; ctx!.textAlign = alin; ctx!.fillText(s, x, y);
+    ctx!.setLineDash([]); ctx!.textAlign = alin;
+    ctx!.lineWidth = 4; ctx!.lineJoin = 'round'; ctx!.strokeStyle = `rgba(11,11,12,${Math.min(1, alfa * 1.1).toFixed(3)})`; ctx!.strokeText(s, x, y);
+    ctx!.fillStyle = `rgba(${col},${alfa.toFixed(3)})`; ctx!.fillText(s, x, y);
   };
   const burbuja = (pt: [number, number], s: string, alfa: number) => {
     if (alfa < 0.01) return;
     ctx!.setLineDash([]); ctx!.lineWidth = 1; ctx!.strokeStyle = `rgba(${C.azul},${(0.7 * alfa).toFixed(3)})`;
-    ctx!.beginPath(); ctx!.arc(pt[0], pt[1], 0.35 * esc, 0, 6.2832); ctx!.stroke();
-    texto(s, pt[0], pt[1] + 3.5, 0.9 * alfa);
+    ctx!.beginPath(); ctx!.arc(pt[0], pt[1], Math.max(0.35 * esc, 9.5), 0, 6.2832); ctx!.stroke();
+    texto(s, pt[0], pt[1] + 4, 0.9 * alfa);
   };
   const cota = (a: [number, number], b: [number, number], dx: number, dy: number, rot: string, alfa: number, lado?: 'izq') => {
     if (alfa < 0.01) return;
@@ -89,7 +92,7 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
     c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
     sp = Math.sin(phi * RAD); cp = Math.cos(phi * RAD); st = Math.sin(theta * RAD); ct = Math.cos(theta * RAD);
     baja = (1 - sp) * (movil ? 1.6 : 2.3) * esc;
-    c.font = `500 ${movil ? 9.5 : 10.5}px ${fuente}`;
+    c.font = `500 ${movil ? 11 : 11.5}px ${fuente}`;
     if ('letterSpacing' in c) (c as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = '0.6px';
     c.lineCap = 'round'; c.lineJoin = 'round';
     const enCorte = 1 - suave(1, 9, phi), planta = suave(30, 62, phi);
@@ -102,7 +105,7 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
     }
     if (enCorte > 0.01) {
       c.fillStyle = `rgba(${C.azul},${(0.92 * enCorte).toFixed(3)})`;
-      [[-0.3, -0.25, ANCHO + 0.3, 0], [-0.7, ALTO, ANCHO + 0.7, ALTO + 0.3], [0, 0, 0.22, ALTO], [ANCHO - 0.22, 0, ANCHO, ALTO], [3.94, 0, 4.06, ALTO], [7.94, 0, 8.06, ALTO]].forEach((b) => {
+      [[-0.3, -0.25, ANCHO + 0.3, 0], [-0.7, ALTO, ANCHO + 0.7, ALTO + 0.3], [0, 0, 0.22, ALTO], [ANCHO - 0.22, 0, ANCHO, ALTO], ...XS.slice(1, -1).map((x) => [x - 0.06, 0, x + 0.06, ALTO])].forEach((b) => {
         const a = proy([b[0], YC, b[1]]), d = proy([b[2], YC, b[3]]); c.fillRect(a[0], d[1], d[0] - a[0], a[1] - d[1]);
       });
       const g0 = proy([-1.9, YC, -0.25]), g1 = proy([ANCHO + 1.9, YC, -0.25]);
@@ -130,8 +133,8 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
       XS.forEach((x) => { const a = proy([x - 0.13, YC, -0.25]), b = proy([x + 0.13, YC, -1.1]); c.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); });
     }
     XS.forEach((x, k) => {
-      burbuja(proy([x, FONDO + 1.75, 0]), 'ABCD'[k], planta);
-      burbuja([proy([x, 0, 0])[0], proy([x, YC, -1.5])[1] + 2.05 * esc], 'ABCD'[k], enCorte);
+      burbuja(proy([x, FONDO + 1.75, 0]), EJES[k], planta);
+      burbuja([proy([x, 0, 0])[0], proy([x, YC, -1.5])[1] + 2.05 * esc], EJES[k], enCorte);
     });
     if (lateral) YS.forEach((y, k) => burbuja(proy([ANCHO + 1.75, y, 0]), String(k + 1), planta));
     const base = (x: number): [number, number] => {
@@ -139,14 +142,16 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
       if (enCorte > 0) { const g = proy([x, YC, -1.5]); q = [q[0] + (g[0] - q[0]) * enCorte, q[1] + (g[1] - q[1]) * enCorte]; }
       return q;
     };
-    for (let i = 0; i < 3; i++) cota(base(XS[i]), base(XS[i + 1]), 0, 1.45 * esc * (1 - enCorte * 0.55), '4.00', 1);
-    cota(base(0), base(ANCHO), 0, 2.5 * esc * (1 - enCorte * 0.5), '12.00', 1);
+    for (let i = 0; i < XS.length - 1; i++) cota(base(XS[i]), base(XS[i + 1]), 0, 1.45 * esc * (1 - enCorte * 0.55), (XS[i + 1] - XS[i]).toFixed(2), 1);
+    cota(base(0), base(ANCHO), 0, 2.5 * esc * (1 - enCorte * 0.5), ANCHO.toFixed(2), 1);
     if (lateral && planta > 0.01) for (let i = 0; i < 3; i++) cota(proy([0, YS[i], 0]), proy([0, YS[i + 1], 0]), -1.45 * esc, 0, ['4.50', '1.00', '2.50'][i], planta, 'izq');
     if (enCorte > 0.01) ([[0, '+0.00'], [ALTO, '+3.20']] as [number, string][]).forEach((n) => {
       const q = proy([ANCHO + 1.2, YC, n[0]]);
       c.setLineDash([]); c.lineWidth = 1; c.strokeStyle = `rgba(${C.azul},${(0.7 * enCorte).toFixed(3)})`;
       c.beginPath(); c.moveTo(q[0] - 14, q[1]); c.lineTo(q[0] + 40, q[1]); c.moveTo(q[0], q[1]); c.lineTo(q[0] - 5, q[1] - 7); c.lineTo(q[0] + 5, q[1] - 7); c.closePath(); c.stroke();
-      texto(n[1], q[0] + 10, q[1] - 6, 0.9 * enCorte, C.claro, 'left');
+      // en una pantalla angosta el rótulo del nivel no se sale: se corre a la izquierda lo que haga falta
+      const borde = innerWidth - lienzo.getBoundingClientRect().left - 6;
+      texto(n[1], Math.min(q[0] + 10, borde - c.measureText(n[1]).width), q[1] - 6, 0.9 * enCorte, C.claro, 'left');
     });
     const kx = suave(0.2, 0.6, sp);
     if (kx > 0.01) [-1.1, ANCHO + 1.1].forEach((x) => {

@@ -1,4 +1,5 @@
-import { MENU, catalogoDe, pagina, piezasDe, publicarRangos, ruta, type IdPagina, type Idioma } from '@/content';
+import Link from 'next/link';
+import { ARTICULOS, MENU, catalogoDe, cursosVisibles, pagina, piezasDe, publicarRangos, ruta, rutaArticulo, type IdPagina, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
@@ -6,7 +7,9 @@ import { Cola } from '@/components/vion/Cola';
 import { Pasos } from '@/components/vion/Pasos';
 import { Boton, Cabeza, Ficha, Figura, FilaServicio, LlamadaNota, Nota, Titular } from '@/components/vion/piezas';
 import { Plano } from '@/components/vion/plano/Plano';
+import { fechaLarga } from './fechas';
 import { seccion } from './comun';
+import './aprender.css';
 
 const numero = (id: IdPagina) => String(MENU.indexOf(id) + 2).padStart(2, '0');
 
@@ -20,6 +23,9 @@ export function Inicio({ idioma }: { idioma: Idioma }) {
   const empieza = seccion(p, 2, 'pasos');
   const ultron = seccion(p, 3, 'texto');
   const trabajo = seccion(p, 4, 'texto');
+  const cursos = seccion(p, 5, 'texto');
+  const blog = seccion(p, 6, 'texto');
+  const tc = t.cursos;
   const tx = (s: string) => <Texto idioma={idioma}>{s}</Texto>;
   return (
     <>
@@ -145,6 +151,64 @@ export function Inicio({ idioma }: { idioma: Idioma }) {
               </div>
             </div>
             <Ficha filas={t.trabajo.ficha} clase="trabajo__ficha" />
+          </div>
+        </section>
+
+        {/* 7 · Cursos de IA, gratis (en producción): breve, con el enlace a la página de cursos */}
+        <section className="seccion tono-raven" id={cursos.id} aria-labelledby={`t-${cursos.id}`} data-seccion={cursos.etiqueta}>
+          <div className="marco aprende">
+            <div className="aprende__texto">
+              <div className="encabezado">
+                <p className="rotulo">{cursos.etiqueta}</p>
+                <Titular id={`t-${cursos.id}`} texto={cursos.titulo} acento={cursos.acento} />
+              </div>
+              <div className="texto" data-entra>
+                {cursos.parrafos.map((x) => <p key={x}>{tx(x)}</p>)}
+              </div>
+              <p>
+                <Link className="enlace-linea" href={ruta('cursos', idioma)}>{tc.portada.ver}</Link>
+              </p>
+            </div>
+            <div className="aprende__lista">
+              <ol data-traza>
+                {cursosVisibles().map((c, i) => (
+                  <li key={c.id}>
+                    <span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                    <Link href={ruta('cursos', idioma, c.id)}>{c[idioma].titulo}</Link>
+                    <span className="estado">{tc.estado[c.estado]}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        {/* 8 · Lo último del blog */}
+        <section className="seccion tono-powder" id={blog.id} aria-labelledby={`t-${blog.id}`} data-seccion={blog.etiqueta}>
+          <div className="marco aprende">
+            <div className="aprende__texto">
+              <div className="encabezado">
+                <p className="rotulo">{blog.etiqueta}</p>
+                <Titular id={`t-${blog.id}`} texto={blog.titulo} acento={blog.acento} />
+              </div>
+              <div className="texto" data-entra>
+                {blog.parrafos.map((x) => <p key={x}>{tx(x)}</p>)}
+              </div>
+              <p>
+                <Link className="enlace-linea" href={ruta('blog', idioma)}>{tc.portada.blog}</Link>
+              </p>
+            </div>
+            <div className="aprende__lista">
+              <ol data-traza>
+                {ARTICULOS.slice(0, 3).map((a, i) => (
+                  <li key={a.id}>
+                    <span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                    <Link href={rutaArticulo(a[idioma].slug, idioma)}>{a[idioma].titulo}</Link>
+                    <time dateTime={a.publicado}>{fechaLarga(a.publicado, idioma)}</time>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
 

@@ -125,7 +125,7 @@ const descripciones = new Map();
 const hreflangDe = new Map();
 const casillerosVistos = new Map();
 const imagenesOg = new Set();
-const TIPOS_LD = new Set(['Organization', 'ProfessionalService', 'WebSite', 'WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'BreadcrumbList', 'Service', 'FAQPage']);
+const TIPOS_LD = new Set(['Organization', 'ProfessionalService', 'WebSite', 'WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'BreadcrumbList', 'Service', 'FAQPage', 'Blog', 'BlogPosting', 'Course']);
 const PROHIBIDAS = ['elevate', 'seamless', 'potencie su negocio', 'revolucionario', 'disruptivo', 'siguiente nivel', 'garantizado', 'WhatsApp Business', 'next level', 'game-changer', 'cutting-edge'];
 const ENLACE_VAGO = /^(aqu[ií]|ac[aá]|click|clic|haga clic|here|click here|more|m[aá]s|leer m[aá]s|read more|ver m[aá]s|link|enlace)$/i;
 
@@ -345,20 +345,51 @@ for (const icono of ['/favicon.ico', '/apple-touch-icon.png', '/icono-32.png', '
 }
 
 // redirecciones 308 de las URL del sitio anterior
-const REDIRECCIONES = { '/work': '/casos', '/about': '/nosotros', '/how-it-works': '/consultoria-ia-autocad-bim', '/contact': '/contacto', '/services': '/#servicios', '/blog': '/', '/blog/algo': '/' };
+// (/blog ya no redirige: desde el 2026-11-10 es el blog de verdad.)
+const REDIRECCIONES = { '/work': '/casos', '/about': '/nosotros', '/how-it-works': '/consultoria-ia-autocad-bim', '/contact': '/contacto', '/services': '/#servicios' };
 for (const [vieja, nueva] of Object.entries(REDIRECCIONES)) {
   const r = await pedir(vieja);
   if (r.estado !== 308 || r.headers.get('location') !== nueva) falla(vieja, `responde ${r.estado} → ${r.headers.get('location')} (se esperaba 308 → ${nueva})`);
 }
 
 // la 404 (una sola, bilingüe: app/global-not-found.tsx) para cualquier dirección que no existe
-for (const ruta of ['/no-existe-esta-pagina', '/en/no-such-page', '/casos/no-existe']) {
+// También un artículo y un curso que no existen, el curso de ejemplo (borrador: no se publica) y el lugar vacío de la ruta.
+for (const ruta of ['/no-existe-esta-pagina', '/en/no-such-page', '/casos/no-existe', '/blog/no-existe', '/en/blog/no-such-post', '/cursos/no-existe', '/cursos/curso-de-ejemplo', '/en/courses/sample-course']) {
   const r = await pedir(ruta);
   if (r.estado !== 404) falla(ruta, `responde ${r.estado} (se esperaba 404)`);
   if (!/<html lang="es-CR"/.test(r.cuerpo)) falla(ruta, 'la 404 no tiene lang="es-CR"');
   if (!/<section[^>]*\blang="en"/.test(r.cuerpo)) falla(ruta, 'la 404 no tiene la ayuda en inglés (lang="en")');
   if (!/<meta name="robots" content="noindex/.test(r.cuerpo)) falla(ruta, 'la 404 sin noindex');
   if ((r.cuerpo.match(/<h1\b/g) || []).length !== 1) falla(ruta, 'la 404 no tiene un H1');
+}
+
+// el blog: la fuente RSS de cada idioma, válida y con cada artículo del sitemap; el JSON-LD de cada artículo
+for (const [rss, prefijo] of [['/blog/rss.xml', '/blog/'], ['/en/blog/rss.xml', '/en/blog/']]) {
+  const r = await pedir(rss);
+  if (r.estado !== 200 || !/application\/rss\+xml/.test(r.tipo)) falla(rss, `responde ${r.estado} ${r.tipo}`);
+  else {
+    if (!/^<\?xml[^>]*\?>\s*<rss version="2.0"/.test(r.cuerpo)) falla(rss, 'no es RSS 2.0');
+    const enlaces = [...r.cuerpo.matchAll(/<item>[\s\S]*?<link>([^<]+)<\/link>/g)].map((m) => local(m[1]));
+    const articulos = [...enSitemap.keys()].filter((x) => x.startsWith(prefijo));
+    for (const a of articulos) if (!enlaces.includes(a)) falla(rss, `no lista ${a}`);
+    for (const e of enlaces) if (!paginas.has(e)) falla(rss, `lista ${e}, que no responde`);
+  }
+  const indice = paginas.get(prefijo.slice(0, -1));
+  if (indice && !indice.html.includes(`type="application/rss+xml"`)) falla(prefijo.slice(0, -1), 'no anuncia su RSS (link rel=alternate)');
+}
+for (const [ruta, { html }] of paginas) {
+  if (!/^\/(en\/)?blog\/[^/]+$/.test(ruta)) continue;
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  const post = ld.find((n) => n['@type'] === 'BlogPosting');
+  if (!post) falla(ruta, 'artículo sin BlogPosting');
+  else if (!post.headline || !post.datePublished || !post.author || !post.publisher || !post.image) falla(ruta, 'BlogPosting incompleto (headline, datePublished, author, publisher, image)');
+  if ((ld.find((n) => n['@type'] === 'BreadcrumbList')?.itemListElement || []).length !== 3) falla(ruta, 'las migas de un artículo tienen que ser Inicio, Blog y el artículo');
+  if (!/<meta property="og:type" content="article"/.test(html)) falla(ruta, 'og:type no es article');
+}
+// Un curso «En producción» no lleva Course ni ItemList: no existe todavía como página.
+for (const ruta of ['/cursos', '/en/courses']) {
+  const html = paginas.get(ruta)?.html || '';
+  if (/"@type":"Course"/.test(html)) falla(ruta, 'JSON-LD Course en la lista de cursos (va solo en la página de un curso publicado)');
 }
 
 // encabezados de seguridad

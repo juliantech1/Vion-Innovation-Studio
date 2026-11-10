@@ -1,3 +1,4 @@
+import { SLUGS_BLOG, SLUGS_CURSOS } from './slugs';
 import { sitio } from './sitio';
 import type { IdPagina, Idioma } from './tipos';
 
@@ -14,12 +15,16 @@ export const RUTAS: Record<IdPagina, Record<Idioma, string>> = {
   casos: { es: '/casos', en: '/en/work' },
   nosotros: { es: '/nosotros', en: '/en/about' },
   contacto: { es: '/contacto', en: '/en/contact' },
+  cursos: { es: '/cursos', en: '/en/courses' },
+  blog: { es: '/blog', en: '/en/blog' },
   privacidad: { es: '/privacidad', en: '/en/privacy' },
   gracias: { es: '/gracias', en: '/en/thanks' },
 };
 
-/** Las páginas del menú principal, en orden. */
-export const MENU: IdPagina[] = ['consultoria', 'autocad', 'apps', 'casos', 'nosotros', 'contacto'];
+/** Las páginas del menú principal, en orden. También es el orden de las láminas (Inicio es la 01) y de la planta. */
+export const MENU: IdPagina[] = ['consultoria', 'autocad', 'apps', 'cursos', 'casos', 'nosotros', 'blog', 'contacto'];
+/** Todas las láminas del juego, en orden: Inicio y el menú. */
+export const LAMINAS: IdPagina[] = ['inicio', ...MENU];
 
 export const ruta = (id: IdPagina, idioma: Idioma, ancla?: string) => RUTAS[id][idioma] + (ancla ? `#${ancla}` : '');
 
@@ -36,11 +41,28 @@ export const alternativas = (id: IdPagina) => ({
   'x-default': urlAbsoluta(id, 'es'),
 });
 
-/** De una ruta cualquiera del sitio a su página (o nada si no es una página conocida). */
-export function paginaDeRuta(pathname: string): { id: IdPagina; idioma: Idioma } | undefined {
+/** La dirección de un artículo del blog o de un curso: debajo de la página que los reúne. */
+export const rutaArticulo = (slug: string, idioma: Idioma) => `${RUTAS.blog[idioma]}/${slug}`;
+export const rutaCurso = (slug: string, idioma: Idioma) => `${RUTAS.cursos[idioma]}/${slug}`;
+const absolutaDe = (r: string) => (r === '/' ? sitio.url : `${sitio.url}${r}`);
+export const urlArticulo = (slug: string, idioma: Idioma) => absolutaDe(rutaArticulo(slug, idioma));
+export const urlCurso = (slug: string, idioma: Idioma) => absolutaDe(rutaCurso(slug, idioma));
+
+/**
+ * De una ruta cualquiera del sitio a su página (o nada si no es una página conocida). Un artículo o un curso es de su
+ * página madre (Blog o Cursos), y `sub` dice cuál es, para llevar al mismo artículo en el otro idioma.
+ */
+export function paginaDeRuta(pathname: string): { id: IdPagina; idioma: Idioma; sub?: string } | undefined {
   const limpia = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
   for (const id of Object.keys(RUTAS) as IdPagina[]) {
-    for (const idioma of ['es', 'en'] as const) if (RUTAS[id][idioma] === limpia) return { id, idioma };
+    for (const idioma of ['es', 'en'] as const) {
+      if (RUTAS[id][idioma] === limpia) return { id, idioma };
+      if ((id === 'blog' || id === 'cursos') && limpia.startsWith(`${RUTAS[id][idioma]}/`)) {
+        const slug = limpia.slice(RUTAS[id][idioma].length + 1);
+        const existe = Object.values(id === 'blog' ? SLUGS_BLOG : SLUGS_CURSOS).some((x) => x[idioma] === slug);
+        if (existe) return { id, idioma, sub: slug };
+      }
+    }
   }
   return undefined;
 }
@@ -48,5 +70,10 @@ export function paginaDeRuta(pathname: string): { id: IdPagina; idioma: Idioma }
 /** La misma página en el otro idioma; si la ruta no es una página conocida (404), la portada de ese idioma. */
 export function equivalente(pathname: string, destino: Idioma): string {
   const p = paginaDeRuta(pathname);
-  return p ? RUTAS[p.id][destino] : RUTAS.inicio[destino];
+  if (!p) return RUTAS.inicio[destino];
+  if (p.sub) {
+    const x = Object.values(p.id === 'blog' ? SLUGS_BLOG : SLUGS_CURSOS).find((s) => s[p.idioma] === p.sub);
+    if (x) return (p.id === 'blog' ? rutaArticulo : rutaCurso)(x[destino], destino);
+  }
+  return RUTAS[p.id][destino];
 }

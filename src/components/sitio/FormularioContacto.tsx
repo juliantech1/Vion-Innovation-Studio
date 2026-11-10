@@ -25,6 +25,7 @@ export function FormularioContacto({ idioma, textos: t, modo, consentimiento }: 
   const [estado, setEstado] = useState<Estado>({ tipo: 'nada', texto: '' });
   const abierto = useRef<HTMLInputElement>(null);
   const utm = useRef<HTMLInputElement>(null);
+  const mensaje = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (abierto.current) abierto.current.value = String(Date.now());
@@ -35,6 +36,9 @@ export function FormularioContacto({ idioma, textos: t, modo, consentimiento }: 
       if (v) u[k] = v.slice(0, 120);
     }
     if (utm.current) utm.current.value = Object.keys(u).length ? JSON.stringify(u) : '';
+    // Un enlace del sitio puede traer el mensaje ya escrito (por ejemplo, «avísenme cuando salga el curso…»).
+    const previo = q.get('mensaje');
+    if (previo && mensaje.current && !mensaje.current.value) mensaje.current.value = previo.slice(0, 300);
   }, []);
 
   async function enviar(ev: FormEvent<HTMLFormElement>) {
@@ -120,7 +124,7 @@ export function FormularioContacto({ idioma, textos: t, modo, consentimiento }: 
       </div>
       <div className="campo">
         <label htmlFor="f-mensaje">{t.mensaje}</label>
-        <textarea id="f-mensaje" name="mensaje" maxLength={2000} rows={5} aria-describedby="a-mensaje" />
+        <textarea id="f-mensaje" name="mensaje" ref={mensaje} maxLength={2000} rows={5} aria-describedby="a-mensaje" />
         <span className="ayuda" id="a-mensaje">
           {t.ejemploMensaje}
         </span>

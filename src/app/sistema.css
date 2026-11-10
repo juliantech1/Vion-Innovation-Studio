@@ -369,7 +369,7 @@ html { interpolate-size: allow-keywords; }
 
 /* El plano: póster SVG (se traza solo con CSS y queda entero), ambientes que son enlaces y, encima, el lienzo vivo. */
 .plano { position: relative; }
-.plano__caja { position: relative; aspect-ratio: 1700 / 1340; }
+.plano__caja { position: relative; aspect-ratio: 2100 / 1340; }   /* VISTA.ancho × VISTA.alto (geometria.ts) */
 .plano__poster { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transition: opacity 240ms linear; }
 .plano__poster * { vector-effect: non-scaling-stroke; }
 .plano__poster .p-eje { stroke: rgb(201 223 238 / 0.32); stroke-width: 1; stroke-dasharray: 12 4 2 4; fill: none; }
@@ -382,10 +382,19 @@ html { interpolate-size: allow-keywords; }
 .plano__poster .p-corte { stroke: var(--color-poppy); stroke-width: 1.5; stroke-dasharray: 14 4 3 4; fill: none; }
 .plano__poster .p-flecha { stroke: var(--color-poppy); stroke-width: 1.5; fill: none; }
 .plano__poster .p-burbuja { stroke: rgb(201 223 238 / 0.7); stroke-width: 1; fill: none; }
-.plano__poster text { font-family: var(--font-mono); font-size: 34px; font-weight: 500; letter-spacing: 0.06em; fill: rgb(250 250 250 / 0.9); text-anchor: middle; }
+/* Rótulos de 11 px como mínimo en pantalla (el póster se ve a 1/4 de su tamaño en escritorio y a 1/6 en celular),
+   con un halo del color del fondo para que una cota sobre un eje se siga leyendo. */
+.plano__poster text { font-family: var(--font-mono); font-size: 46px; font-weight: 500; letter-spacing: 0.04em; fill: rgb(250 250 250 / 0.9); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--color-raven); stroke-width: 4; stroke-linejoin: round; }
 .plano__poster text.p-rojo { fill: var(--color-poppy); }
-@media (max-width: 61.99rem) { .plano__poster text { font-size: 44px; } }
-@media (max-width: 29.99rem) { .plano__poster .p-lateral { display: none; } }
+.plano__poster .p-burbuja { r: 40px; }
+@media (max-width: 61.99rem) { .plano__poster text { font-size: 62px; } .plano__poster .p-burbuja { r: 50px; } }
+@media (max-width: 29.99rem) {
+  .plano__poster .p-lateral { display: none; }
+  /* En el celular la planta llega a los bordes de la pantalla y se recorta el margen de las cotas laterales (que no
+     se dibujan): se ve de x = -1,6 m a 17,6 m. Así cada ambiente mide unos 80 px y su nombre entra a 11 px. */
+  .plano__caja { width: calc(100vw * 21 / 19.2); margin-left: calc(-1 * var(--spacing-margen) - 100vw * 0.9 / 19.2); }
+  .plano__ambientes :is(a, span.amb) { letter-spacing: 0.03em; }
+}
 .plano__lienzo { font-family: var(--font-mono); position: absolute; left: -8%; top: -24%; width: 116%; height: 148%; max-width: none; pointer-events: none; opacity: 0; transition: opacity 240ms linear; }
 .plano[data-vivo] .plano__lienzo { opacity: 1; }
 .plano[data-vivo] .plano__poster { opacity: 0; }
@@ -393,7 +402,7 @@ html { interpolate-size: allow-keywords; }
 .plano__ambientes li { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); }
 .plano__ambientes a, .plano__ambientes span.amb {
   position: absolute; inset: 1.5px; display: grid; place-content: center; justify-items: center; gap: 0.1rem; text-align: center;
-  font-family: var(--font-mono); font-size: clamp(0.5625rem, 0.4rem + 0.42vw, 0.6875rem); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2;
+  font-family: var(--font-mono); font-size: clamp(0.6875rem, 0.45rem + 0.3vw, 0.75rem); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.2;
   color: var(--color-claro); opacity: var(--o, 1); transition: background-color var(--d-1) linear, color var(--d-1) linear;
 }
 .plano__ambientes li[data-fila="fondo"] :is(a, span.amb) { place-content: start center; padding-top: 9%; }
@@ -560,11 +569,15 @@ html { interpolate-size: allow-keywords; }
 .miga a:hover, .miga a:focus-visible { color: var(--tinta); text-decoration-color: currentColor; }
 .miga li + li::before { content: ""; display: inline-block; width: 0.9rem; height: 1px; background: var(--filete-fuerte); margin-right: 0.6rem; vertical-align: middle; }
 .miga [aria-current] { color: var(--tinta); }
-/* los dibujos de línea: se trazan al asomar */
-.dib path, path.dib { fill: none; stroke: var(--tinta); stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
-.dib--fino path { stroke: var(--tinta-3); stroke-width: 1; }
-.dib--rojo path, path.dib--rojo { stroke: var(--marca); stroke-width: 1.6; }
+/* Los dibujos de línea: se trazan al asomar (pathLength=1, guion de 1 y su desplazamiento de 1 a 0).
+   Sin vector-effect: non-scaling-stroke, a propósito: con él, Chrome mide el guion en la pantalla y en un dibujo que se
+   ve más grande que su viewBox el trazo terminaba antes (faltaban lados y finales). El grosor queda en unidades del
+   dibujo: `--trazo` (1.4 por omisión) lo ajusta cada figura según cuánto se agranda o se achica. */
+.dib path, path.dib { fill: none; stroke: var(--tinta); stroke-width: var(--trazo, 1.4); vector-effect: none; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.dib--fino path { stroke: var(--tinta-3); stroke-width: calc(var(--trazo, 1.4) * 0.72); }
+.dib--rojo path, path.dib--rojo { stroke: var(--marca); stroke-width: calc(var(--trazo, 1.4) * 1.15); }
 .juego svg { width: 100%; height: auto; }
+.juego { --trazo: 1.15; }
 .juego__fondo { fill: var(--fondo); }
 .juego text { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; fill: var(--tinta-2); }
 .juego text.juego__num { fill: var(--tinta); font-size: 11px; font-weight: 600; }
@@ -597,6 +610,15 @@ html { interpolate-size: allow-keywords; }
 @keyframes cursor { 50% { opacity: 0; } }
 .esquema svg { width: 100%; height: auto; }
 .esquema text { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; fill: var(--tinta-2); text-transform: uppercase; }
+/* Los rótulos de todas las figuras llevan un halo del color del fondo: como en un plano, el texto interrumpe la línea
+   que cruza (una cota, una flecha) en lugar de quedar tachado por ella. */
+:is(.esquema, .juego, .proto, .flujo, .dibujo, .rutas-fig) text { paint-order: stroke; stroke: var(--fondo); stroke-width: 4px; stroke-linejoin: round; }
+.proto text.proto__boton-t { stroke: none; }
+/* En el celular los dibujos se ven a 2/3 o 4/5 de su viewBox: los rótulos crecen en unidades del dibujo para no bajar de 11 px. */
+@media (max-width: 47.99rem) {
+  .esquema text { font-size: 16.5px; letter-spacing: 0; }
+  .juego text, .juego text.juego__num, .juego text.juego__cmd { font-size: 13.5px; letter-spacing: 0; }
+}
 /* Cómo se cotiza: la ficha del piloto con la cifra grande */
 .cotiza__cifra { font-family: var(--font-mono); font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3.25rem); line-height: 1; font-weight: 500; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .cotiza__lado { grid-column: 8 / -1; display: grid; gap: 1.25rem; align-content: start; }
@@ -631,7 +653,14 @@ html { interpolate-size: allow-keywords; }
 .conmutador i::after { content: ""; position: absolute; top: 0.2rem; left: 0.2rem; width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--tinta); transition: transform var(--d-3) var(--ease-resorte), background-color var(--d-2); }
 .conmutador[aria-pressed="true"] i { background: var(--color-poppy); box-shadow: none; }
 .conmutador[aria-pressed="true"] i::after { transform: translateX(0.85rem); background: var(--color-raven); }
-.conmutador:hover, .conmutador:focus-visible { text-decoration: underline; text-underline-offset: 0.3em; }
+/* Al pasar: el riel se marca y la perilla se asoma hacia donde va. Con teclado: el anillo de foco rodea el riel. */
+.conmutador:hover i, .conmutador:focus-visible i { box-shadow: inset 0 0 0 1px var(--tinta); }
+.conmutador:hover i::after, .conmutador:focus-visible i::after { transform: translateX(0.2rem); }
+.conmutador[aria-pressed="true"]:hover i::after, .conmutador[aria-pressed="true"]:focus-visible i::after { transform: translateX(0.65rem); }
+.conmutador:hover, .conmutador:focus-visible { text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-underline-offset: 0.3em; }
+.conmutador:focus-visible { outline: none; }
+.conmutador:focus-visible i { outline: 2px solid var(--foco); outline-offset: 3px; }
+.conmutador:active i::after { transform: translateX(0.2rem) scale(0.9); }
 .legal { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 2rem; margin-top: 1.5rem; font-size: var(--text-xs); color: var(--tinta-2); }
 .legal a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: underline; text-decoration-color: var(--filete-fuerte); text-underline-offset: 0.25em; }
 .legal a:hover, .legal a:focus-visible { color: var(--tinta); text-decoration-color: currentColor; }

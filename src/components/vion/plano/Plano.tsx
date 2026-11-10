@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { MENU, pagina, piezasDe, ruta, type IdPagina, type Idioma } from '@/content';
-import { AMBIENTES, ANCHO, FONDO, VISTA, XS, YC, YS, segmentos } from './geometria';
+import { AMBIENTES, ANCHO, EJES, FONDO, VISTA, XS, YC, YS, segmentos } from './geometria';
 import { PlanoVivo } from './PlanoVivo';
 
 // Unidades del póster: 100 por metro. La caja de la figura tiene esta misma proporción.
@@ -21,9 +21,9 @@ function Cota({ x0, y0, x1, y1, rotulo, lateral }: { x0: number; y0: number; x1:
       <path className="p-cota" d={`M${X(x0)} ${Y(y0)}L${X(x1)} ${Y(y1)}`} />
       <path className="p-tic" d={`${tic(x0, y0)}${tic(x1, y1)}`} />
       {lateral ? (
-        <text x={X(x0) - 22} y={Y((y0 + y1) / 2) + 12} style={{ textAnchor: 'end' }}>{rotulo}</text>
+        <text x={X(x0) - 22} y={Y((y0 + y1) / 2)} style={{ textAnchor: 'end' }}>{rotulo}</text>
       ) : (
-        <text x={X((x0 + x1) / 2)} y={Y(y0) - 20}>{rotulo}</text>
+        <text x={X((x0 + x1) / 2)} y={Y(y0) - 42}>{rotulo}</text>
       )}
     </g>
   );
@@ -52,7 +52,7 @@ export function Plano({ idioma }: { idioma: Idioma }) {
             {XS.map((x, k) => (
               <g key={x}>
                 <circle className="p-burbuja" cx={X(x)} cy={Y(FONDO + 1.75)} r={35} />
-                <text x={X(x)} y={Y(FONDO + 1.75) + 12}>{'ABCD'[k]}</text>
+                <text x={X(x)} y={Y(FONDO + 1.75)}>{EJES[k]}</text>
               </g>
             ))}
           </g>
@@ -60,18 +60,18 @@ export function Plano({ idioma }: { idioma: Idioma }) {
             {YS.map((y, k) => (
               <g key={y}>
                 <circle className="p-burbuja" cx={X(ANCHO + 1.75)} cy={Y(y)} r={35} />
-                <text x={X(ANCHO + 1.75)} y={Y(y) + 12}>{k + 1}</text>
+                <text x={X(ANCHO + 1.75)} y={Y(y)}>{k + 1}</text>
               </g>
             ))}
           </g>
-          {[0, 1, 2].map((i) => <Cota key={i} x0={XS[i]} y0={-1.45} x1={XS[i + 1]} y1={-1.45} rotulo="4.00" />)}
-          <Cota x0={0} y0={-2.5} x1={ANCHO} y1={-2.5} rotulo="12.00" />
+          {XS.slice(0, -1).map((x, i) => <Cota key={i} x0={x} y0={-1.45} x1={XS[i + 1]} y1={-1.45} rotulo={(XS[i + 1] - x).toFixed(2)} />)}
+          <Cota x0={0} y0={-2.5} x1={ANCHO} y1={-2.5} rotulo={ANCHO.toFixed(2)} />
           {[0, 1, 2].map((i) => <Cota key={i} lateral x0={-1.45} y0={YS[i]} x1={-1.45} y1={YS[i + 1]} rotulo={['4.50', '1.00', '2.50'][i]} />)}
           <g className="p-tarde" style={tarde(2100)}>
             {[-1.1, ANCHO + 1.1].map((x) => (
               <g key={x}>
                 <path className="p-flecha" d={`M${X(x)} ${Y(YC)}L${X(x)} ${Y(YC + 0.8)}M${X(x) - 13} ${Y(YC + 0.8) + 22}L${X(x)} ${Y(YC + 0.8)}L${X(x) + 13} ${Y(YC + 0.8) + 22}`} />
-                <text className="p-rojo" x={X(x) + (x < 0 ? -36 : 36)} y={Y(YC) + 13}>A</text>
+                <text className="p-rojo" x={X(x) + (x < 0 ? -40 : 40)} y={Y(YC)}>A</text>
               </g>
             ))}
           </g>

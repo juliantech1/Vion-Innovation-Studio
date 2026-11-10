@@ -30,7 +30,7 @@ export const interfaz: Interfaz = {
   noEncontrada: {
     titulo: 'Página no encontrada | Vion',
     descripcion:
-      'Esta página no existe o cambió de dirección. Desde aquí puede ir a cualquiera de las siete páginas del sitio de Vion.',
+      'Esta página no existe o cambió de dirección. Desde aquí puede ir a cualquiera de las páginas del sitio de Vion: servicios, cursos y blog.',
     etiqueta: 'Error 404',
     h1: 'Esta página no existe',
     acento: 'no existe',

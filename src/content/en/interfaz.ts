@@ -29,7 +29,7 @@ export const interfaz: Interfaz = {
   contacto: { whatsapp: 'WhatsApp', correo: 'Email', instagram: 'Instagram' },
   noEncontrada: {
     titulo: 'Page not found | Vion',
-    descripcion: 'This page does not exist or has moved. From here you can go to any of the seven pages of the Vion website.',
+    descripcion: 'This page does not exist or has moved. From here you can go to any page of the Vion website: services, courses and blog.',
     etiqueta: 'Error 404',
     h1: 'This page does not exist',
     acento: 'does not exist',
