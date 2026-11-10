@@ -1,0 +1,73 @@
+import { P } from '../pendientes';
+import type { Interfaz } from '../tipos';
+
+export const interfaz: Interfaz = {
+  idioma: 'en',
+  lang: 'en',
+  localeOg: 'en_US',
+  saltar: 'Skip to content',
+  inicio: 'Vion, home',
+  navPrincipal: 'Main',
+  navPie: 'Footer',
+  migas: 'You are here',
+  otroIdioma: { texto: 'Español', etiqueta: 'Leer esta página en español' },
+  pie: {
+    lema: 'Vion Studio is an AI studio based in Costa Rica. AI systems and agents, AI for engineering and architecture, and custom apps.',
+    servicios: 'Services',
+    estudio: 'Studio',
+    contacto: 'Contact',
+    formulario: 'Contact form',
+    legal: `Vion. ${P.razonSocial}`,
+    privacidad: 'Privacy notice',
+  },
+  llamado: {
+    whatsapp: 'Message us on WhatsApp',
+    correo: 'Email',
+    formulario: 'See the contact form and details',
+  },
+  etiquetas: { paso: 'Step {n} of {total}', plazo: 'Timeline', rango: 'Indicative investment', entregables: 'What you receive' },
+  contacto: { whatsapp: 'WhatsApp', correo: 'Email', instagram: 'Instagram' },
+  noEncontrada: {
+    titulo: 'Page not found | Vion',
+    descripcion: 'This page does not exist or has moved. From here you can go to any of the seven pages of the Vion website.',
+    etiqueta: 'Error 404',
+    h1: 'This page does not exist',
+    acento: 'does not exist',
+    bajada: 'The address does not exist or has changed. These are the pages of the site:',
+    lista: 'Pages of the site',
+  },
+  formulario: {
+    avisoPrueba:
+      'Test mode: you can fill in the form, but it does not send anything yet. In the meantime, message us on WhatsApp or by email.',
+    nombre: 'Name',
+    empresa: 'Company',
+    contacto: 'Email or WhatsApp',
+    ayudaContacto: 'Wherever you prefer us to reply.',
+    servicio: 'What you are interested in',
+    opciones: [
+      'Automation assessment',
+      'AutoCAD automation',
+      'BIM and ISO 19650 consulting',
+      'Custom app or software',
+      'AI system or agent',
+      'Other',
+    ],
+    mensaje: 'Message',
+    ejemploMensaje: 'Which task repeats, in which software and how many people do it.',
+    obligatorio: 'required',
+    consentimiento: 'I agree that Vion may use these details only to reply to me, as described in the [privacy notice](@privacidad).',
+    enviar: 'Send message',
+    enviando: 'Sending…',
+    errores: {
+      nombre: 'Enter your name.',
+      contacto: 'Enter an email or a number so we can reply.',
+      consentimiento: 'We need your consent to be able to reply.',
+      revisar: 'Check the highlighted fields.',
+      envio: 'It could not be sent. Write to consultorias@vion-studio.com or message us on WhatsApp.',
+    },
+    exito: 'Thank you. We received your message and a person will reply.',
+    exitoPrueba:
+      'Test mode: everything is filled in correctly, but the form is not connected yet and your message was not sent. Message us on WhatsApp or by email.',
+    trampa: 'Do not fill in this field',
+  },
+};
