@@ -71,8 +71,8 @@ export const casos: Pagina = {
       tipo: 'proyectos',
       id: 'in-house-projects',
       etiqueta: 'Custom apps and AI agents',
-      titulo: 'AI apps and in-house projects',
-      acento: 'in-house',
+      titulo: 'AI apps and our own projects',
+      acento: 'own',
       proyectos,
     },
     {

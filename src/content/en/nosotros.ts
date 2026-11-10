@@ -43,7 +43,6 @@ export const nosotros: Pagina = {
         'We talk like engineers who explain, not like salespeople.',
         'We start by understanding how your team works today and how many hours go into each task. Then we automate a single workflow, on your own projects, and measure again. Those numbers decide whether to continue.',
         'We work the same way at home: Vion runs on [Ultron, our system of AI agents](@casos#ultron), where everything that goes out passes through a person first.',
-        'Costa Rica is on Central Standard Time all year (UTC-6). We work remotely, in English and Spanish.',
       ],
     },
     {

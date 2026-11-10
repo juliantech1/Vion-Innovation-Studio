@@ -22,7 +22,6 @@ export function Gracias({ idioma }: { idioma: Idioma }) {
             <Ficha
               filas={[
                 { termino: g.recibido, valor: <span className="gracias__ok">{g.recibidoValor}</span> },
-                { termino: g.responde, valor: g.respondeValor },
                 { termino: ui.contacto.whatsapp, valor: <a href={enlaceWhatsapp()} rel="noopener">{ui.llamado.whatsapp}</a> },
                 { termino: ui.contacto.correo, valor: <a href={`mailto:${sitio.correo}`}>{sitio.correo}</a> },
               ]}

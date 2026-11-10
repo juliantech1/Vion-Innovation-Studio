@@ -273,7 +273,7 @@ export interface Piezas {
   nosotros: PiezasNosotros;
   contacto: PiezasContacto;
   privacidad: { fichaTitulo: string; indice: string; estado: string; estadoValor: string; ley: string; leyValor: string };
-  gracias: { fichaTitulo: string; recibido: string; recibidoValor: string; responde: string; respondeValor: string };
+  gracias: { fichaTitulo: string; recibido: string; recibidoValor: string };
 }
 
 /** Una figura dibujada: su leyenda y los rótulos que van dentro del dibujo (en orden). */

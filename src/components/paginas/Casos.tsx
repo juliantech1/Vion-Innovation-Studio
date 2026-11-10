@@ -79,7 +79,7 @@ function RealFood({ r }: { r: Rotulos }) {
         <text x="210" y="40" textAnchor="middle" className="d-fuerte">{r[0]}</text>
         <text x="279" y="88" textAnchor="middle" className="d-rojo">{r[2]}</text>
         <text x="111" y="266" textAnchor="middle">{r[1]}</text>
-        <text x="392" y="266" textAnchor="end" className="d-tenue">{r[3]}</text>
+        <text x="392" y="290" textAnchor="end" className="d-tenue">{r[3]}</text>
       </g>
     </>
   );
@@ -112,7 +112,7 @@ function Viazo({ r }: { r: Rotulos }) {
 const DIBUJOS: Record<string, { vb: string; D: (x: { r: Rotulos }) => React.ReactNode }> = {
   ultron: { vb: '0 0 420 300', D: Ultron },
   topspin: { vb: '0 0 420 312', D: TopSpin },
-  realfood: { vb: '0 0 420 280', D: RealFood },
+  realfood: { vb: '0 0 420 300', D: RealFood },
   viazo: { vb: '0 0 420 300', D: Viazo },
 };
 

@@ -214,7 +214,5 @@ export const piezas: Piezas = {
     fichaTitulo: 'Su mensaje',
     recibido: 'Estado',
     recibidoValor: 'Recibido',
-    responde: 'Quién responde',
-    respondeValor: 'Una persona de Vion, por el medio que nos indicó',
   },
 };
