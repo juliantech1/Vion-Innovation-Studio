@@ -323,8 +323,25 @@ export interface PiezasCursos {
   fig1: string;
   fig1Alt: string;
   fig1Rotulos: { ruta: string; curso: string; estado: string; hoy: string };
-  /** La plantilla de un curso publicado. */
-  plantilla: { video: string; sinVideo: string; material: string; indice: string; volver: string; borrador: string; duracion: string };
+  estadoRotulo: string;
+  /** Los videos que ya están: «{n} de {total} videos listos». */
+  videosListos: string;
+  /** La página de un curso. */
+  plantilla: {
+    indice: string; volver: string; borrador: string; duracion: string; empezar: string; requisitos: string; costo: string;
+    laminas: string; videos: string; contenido: string; objetivo: string; resultado: string; puesta: string; puestaIr: string; costos: string;
+    costosFecha: string; costosCols: { pieza: string; costo: string; fuente: string };
+    recursos: string; recursosIntro: string; recursosCols: { nombre: string; que: string; licencia: string; revision: string; lecciones: string };
+    noRecomendamos: string; kit: string; kitNota: string; accion: string; soloCastellano: string; verCastellano: string;
+  };
+  /** La página de una lección: la presentación de láminas. */
+  leccionUi: {
+    anterior: string; siguiente: string; de: string; lamina: string; indice: string; copiar: string; copiado: string;
+    verTodas: string; verDeAUna: string; proxima: string; fin: string; volverCurso: string; teclas: string;
+    apoyo: Record<TipoApoyo, string>; conChispa: string; videoEnProduccion: string; imagenEnProduccion: string;
+    dice: string; vozEnOff: string; transcripcion: string; reproducir: string; segundos: string;
+    bloque: Record<Bloque['tipo'], string>;
+  };
   portada: { ver: string; blog: string };
 }
 
@@ -348,6 +365,7 @@ export interface PiezasBlog {
 
 // ───── Cursos ─────
 
+/** «produccion»: sin página pública (se ve en /cursos con su estado). «publicado»: con sus páginas, en el sitemap. */
 export type EstadoCurso = 'produccion' | 'publicado';
 
 /** Una lección: el título siempre; el video y el material, cuando existan. */
@@ -358,6 +376,107 @@ export interface Leccion {
   /** El video publicado: un archivo propio (MP4 en /public o un CDN) con su póster, o un video de YouTube por su id. */
   video?: { mp4?: string; youtube?: string; poster?: string; subidoEl?: string; /** Subtítulos WebVTT (hacen falta para publicar: accesibilidad). */ vtt?: string };
   material?: { texto: string; href: string }[];
+}
+
+// ───── El contenido de un curso: lecciones como presentaciones de láminas (formato de Julian del 2026-11-10) ─────
+//
+// «Los cursos son como presentaciones explicativas, con texto, de cómo hacer las cosas, y con los videos dentro como
+// aporte visual.» Cada lección es una secuencia de láminas; cada lámina tiene su título, su texto (Markdown mínimo, ver
+// `CuerpoArticulo`), sus bloques copiables y un apoyo visual. Los videos y las imágenes NO van acá: salen de
+// `src/content/cursos/medios.json` (curso → lámina → archivo o URL), para poder sumarlos sin tocar el texto.
+
+/** El tipo de apoyo visual de una lámina, como lo marca el storyboard. */
+export type TipoApoyo = 'imagen' | 'diagrama' | 'captura' | 'motion' | 'grabacion' | 'chispa';
+
+export interface Apoyo {
+  tipo: TipoApoyo;
+  /** Chispa encima de otro video (en capa) o en un video que no es de Chispa (motion + Chispa en capa). */
+  conChispa?: boolean;
+  /** Duración prevista del video, en segundos (la del storyboard; la real sale del archivo). */
+  segundos?: number;
+  /** Qué se ve: la descripción que deja entender la lámina sin el video o la imagen (también sirve de texto alternativo). */
+  seVe?: string;
+  /** Lo que dice Chispa, palabra por palabra: la transcripción (y la base de los subtítulos). */
+  dice?: string;
+  /** Si la voz es de Chispa en off (sobre un video donde no aparece). */
+  vozEnOff?: boolean;
+}
+
+/** Un bloque copiable: un comando, un pedido a Claude, un archivo o un trozo de código. */
+export interface Bloque {
+  tipo: 'comando' | 'pedido' | 'archivo' | 'codigo';
+  /** Lo que dice arriba del bloque (por ejemplo «Windows, en PowerShell» o «CLAUDE.md»). */
+  etiqueta?: string;
+  /** Lenguaje, para el rótulo (powershell, bash, markdown, json, python…). */
+  lenguaje?: string;
+  texto: string;
+}
+
+export interface Lamina {
+  /** Número de la lámina, como en el storyboard: «0.3», «4.11». Da el ancla (#lamina-0-3) y la clave en medios.json. */
+  n: string;
+  titulo: string;
+  /** El texto que se lee, completo, en Markdown mínimo (párrafos, listas, tablas, **negrita**, `código`, enlaces, {{…}}). */
+  cuerpo: string;
+  apoyo: Apoyo;
+  bloques?: Bloque[];
+}
+
+export interface LeccionCurso {
+  n: number;
+  /** La dirección de la lección debajo de la del curso: /cursos/<curso>/<slug>. */
+  slug: string;
+  titulo: string;
+  /** Para qué sirve la lección (una o dos frases). Es también la base de su descripción. */
+  objetivo: string;
+  /** Lo que queda al final (lo que se ve terminado). */
+  resultado?: string;
+  laminas: Lamina[];
+}
+
+/** Un repo, una skill o una herramienta recomendada, con lo que hace falta saber antes de instalarla. */
+export interface Recurso {
+  nombre: string;
+  url?: string;
+  /** Qué hace y para qué sirve en el curso. */
+  que: string;
+  licencia: string;
+  /** Si lo revisamos y cómo (o que no lo revisamos). */
+  revision: string;
+  /** En qué lecciones se usa («2, 7»). */
+  lecciones?: string;
+}
+
+export interface ContenidoCurso {
+  /** La ficha del curso. */
+  ficha: {
+    requisitos: string;
+    /** «8 lecciones, 60 láminas con 44 videos cortos, unos 45 min de lectura, más la práctica». */
+    duracion: string;
+    /** Lo que cuesta de verdad, en una frase (la tabla va en `costos`). */
+    costo: string;
+  };
+  /** Lo que cuesta, pieza por pieza, con su fuente y la fecha en que se comprobó. */
+  costos: { pieza: string; costo: string; fuente?: string }[];
+  costosFecha: string;
+  /** La puesta a punto: en qué lección está y un resumen (Markdown mínimo: qué se instala, en qué sistema, cómo se comprueba). */
+  puesta: { leccion: number; texto: string };
+  recursos: Recurso[];
+  /** Lo que no recomendamos y por qué (Markdown mínimo). */
+  noRecomendamos?: string;
+  /** El kit descargable: qué trae. Los archivos se publican con el curso. */
+  kit: { descripcion: string; archivos: { nombre: string; que: string }[] };
+  /** La acción del final: qué hacer después del curso (y, si lo prefiere, que lo haga Vion: `Curso.lleva`). */
+  accion: { titulo: string; texto: string };
+  lecciones: LeccionCurso[];
+}
+
+/** Lo que se escribe a mano de un curso (src/content/cursos/<id>/curso.ts): la ficha y su contenido sin las lecciones. */
+type FichaIdioma = Pick<CursoIdioma, 'corto' | 'titulo' | 'subtitulo' | 'tituloSeo' | 'descripcion' | 'paraQuien' | 'seLleva' | 'herramientas'>;
+export interface CursoTexto {
+  es: FichaIdioma & Omit<ContenidoCurso, 'lecciones'>;
+  /** En inglés, por ahora solo la ficha y los títulos de las lecciones (en el orden de lecciones.ts). */
+  en: FichaIdioma & { lecciones: string[] };
 }
 
 /** Lo que cambia de un curso entre idiomas. */
@@ -375,17 +494,19 @@ export interface CursoIdioma {
   seLleva: string;
   herramientas: string;
   lecciones: Leccion[];
+  /**
+   * El curso entero (ficha, puesta a punto, repos, lecciones con sus láminas, kit). En castellano está cargado desde los
+   * storyboards; en inglés queda previsto y sin traducir: mientras falte, las lecciones solo existen en castellano.
+   */
+  contenido?: ContenidoCurso;
 }
 
 export interface Curso {
   id: string;
+  /** El código del storyboard (A0, B1…): da el orden dentro de la ruta. */
+  codigo: string;
   ruta: 'A' | 'B' | 'C' | 'D';
   estado: EstadoCurso;
-  /**
-   * Un borrador no se publica nunca: fuera del sitemap, de las rutas generadas y de las listas. Solo se construye con
-   * VION_BORRADORES=1 (para revisar la plantilla), y aun así sale con noindex.
-   */
-  borrador?: boolean;
   /** Fecha de publicación (AAAA-MM-DD), recién cuando el curso exista. */
   publicado?: string;
   /** El servicio al que lleva el curso (la acción del final). */

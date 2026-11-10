@@ -47,6 +47,10 @@ export const rutaCurso = (slug: string, idioma: Idioma) => `${RUTAS.cursos[idiom
 const absolutaDe = (r: string) => (r === '/' ? sitio.url : `${sitio.url}${r}`);
 export const urlArticulo = (slug: string, idioma: Idioma) => absolutaDe(rutaArticulo(slug, idioma));
 export const urlCurso = (slug: string, idioma: Idioma) => absolutaDe(rutaCurso(slug, idioma));
+/** Una lección: debajo de su curso. El ancla de una lámina es #lamina-<n> («0.3» → #lamina-0-3). */
+export const rutaLeccion = (curso: string, leccion: string, idioma: Idioma) => `${rutaCurso(curso, idioma)}/${leccion}`;
+export const urlLeccion = (curso: string, leccion: string, idioma: Idioma) => absolutaDe(rutaLeccion(curso, leccion, idioma));
+export const anclaLamina = (n: string) => `lamina-${n.replace(/\./g, '-')}`;
 
 /**
  * De una ruta cualquiera del sitio a su página (o nada si no es una página conocida). Un artículo o un curso es de su
@@ -58,7 +62,8 @@ export function paginaDeRuta(pathname: string): { id: IdPagina; idioma: Idioma; 
     for (const idioma of ['es', 'en'] as const) {
       if (RUTAS[id][idioma] === limpia) return { id, idioma };
       if ((id === 'blog' || id === 'cursos') && limpia.startsWith(`${RUTAS[id][idioma]}/`)) {
-        const slug = limpia.slice(RUTAS[id][idioma].length + 1);
+        // Una lección (/cursos/<curso>/<lección>) es de su curso: el otro idioma lleva a la página del curso.
+        const slug = limpia.slice(RUTAS[id][idioma].length + 1).split('/')[0];
         const existe = Object.values(id === 'blog' ? SLUGS_BLOG : SLUGS_CURSOS).some((x) => x[idioma] === slug);
         if (existe) return { id, idioma, sub: slug };
       }

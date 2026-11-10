@@ -20,4 +20,5 @@ export * from './slugs';
 export * from './sitio';
 export * from './tipos';
 export { ARTICULOS, articuloPorSlug, minutosDeLectura } from './blog';
-export { CURSOS, RUTAS_CURSOS, cursoConPagina, cursoIndexable, cursoPorSlug, cursosVisibles, rutaCursos } from './cursos';
+export { CON_BORRADORES, CURSOS, RUTAS_CURSOS, cursoConPagina, cursoIndexable, cursoPorSlug, cursosVisibles, leccionPorSlug, leccionesDe, rutaCursos } from './cursos';
+export { medioDe, videosDe, type Medio } from './cursos/medios';
