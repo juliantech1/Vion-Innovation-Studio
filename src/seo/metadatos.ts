@@ -64,8 +64,14 @@ export function metadatosDe(id: IdPagina, idioma: Idioma): Metadata {
   };
 }
 
-/** La página 404 de un idioma: sin indexar y sin canónica. */
-export function metadatosNoEncontrada(idioma: Idioma): Metadata {
-  const t = interfazDe(idioma).noEncontrada;
-  return { title: { absolute: t.titulo }, description: t.descripcion, robots: { index: false, follow: true } };
+/** La página 404 (bilingüe, ver `app/global-not-found.tsx`): sin indexar y sin canónica. */
+export function metadatosNoEncontrada(): Metadata {
+  const es = interfazDe('es').noEncontrada;
+  const en = interfazDe('en').noEncontrada;
+  return {
+    ...metadatosBase('es'),
+    title: { absolute: `${es.titulo.replace(/ \| Vion$/, '')} · ${en.titulo}` },
+    description: es.descripcion,
+    robots: { index: false, follow: true },
+  };
 }

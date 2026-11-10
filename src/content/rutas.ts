@@ -23,10 +23,10 @@ export const MENU: IdPagina[] = ['consultoria', 'autocad', 'apps', 'casos', 'nos
 
 export const ruta = (id: IdPagina, idioma: Idioma, ancla?: string) => RUTAS[id][idioma] + (ancla ? `#${ancla}` : '');
 
-/** URL absoluta y canónica (sin barra final, salvo la raíz). */
+/** URL absoluta y canónica, sin barra final (la raíz es `https://vion-studio.com`, como la escribe Next en la canónica). */
 export const urlAbsoluta = (id: IdPagina, idioma: Idioma) => {
   const r = RUTAS[id][idioma];
-  return r === '/' ? `${sitio.url}/` : `${sitio.url}${r}`;
+  return r === '/' ? sitio.url : `${sitio.url}${r}`;
 };
 
 /** hreflang → URL de una página: es-CR, en y x-default (el español, que es la raíz). */

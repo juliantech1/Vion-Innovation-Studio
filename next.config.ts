@@ -34,6 +34,7 @@ const csp = [
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  experimental: { globalNotFound: true },
   poweredByHeader: false,
   images: {
     remotePatterns: [

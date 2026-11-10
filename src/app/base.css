@@ -65,6 +65,7 @@ img { max-width: 100%; height: auto; }
 .prosa { max-width: 68ch; display: grid; gap: 1rem; }
 .prosa ul { display: grid; gap: 0.4rem; padding-left: 1.25rem; list-style: disc; }
 .nota { max-width: 68ch; margin-top: 2rem; }
+.intro + .items { margin-top: 2rem; }
 .items, .pasos, .preguntas { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
 .items > li, .paso, .preguntas > div { display: grid; gap: 0.6rem; align-content: start; }
 .paso ul { padding-left: 1.25rem; list-style: disc; font-size: 1rem; }
