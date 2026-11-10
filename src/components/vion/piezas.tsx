@@ -160,9 +160,9 @@ export function Preguntas({ preguntas }: { preguntas: DatosPregunta[] }) {
 export function Nube({ children, largo }: { children: ReactNode; largo: number }) {
   const W = Math.max(160, Math.round(largo * 62) + 40);
   const H = 120;
-  const r = 16;
-  const nx = Math.max(3, Math.round((W - 2 * r) / 34));
-  const ny = 3;
+  const r = 20;
+  const nx = Math.max(3, Math.round((W - 2 * r) / 46));
+  const ny = 2;
   const dx = (W - 2 * r) / nx;
   const dy = (H - 2 * r) / ny;
   const arco = (x: number, y: number) => `a${Math.abs(x || y) * 0.62} ${Math.abs(x || y) * 0.62} 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)}`;

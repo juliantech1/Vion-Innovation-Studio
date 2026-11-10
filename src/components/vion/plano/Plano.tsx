@@ -87,7 +87,7 @@ export function Plano({ idioma }: { idioma: Idioma }) {
             } as React.CSSProperties;
             const nombre = pagina(id, idioma).nav;
             return (
-              <li key={id} data-amb={id} style={estilo}>
+              <li key={id} data-amb={id} data-fila={caja[1] >= 5.5 ? 'fondo' : undefined} style={estilo}>
                 {id === 'inicio' ? (
                   <span className="amb" aria-current="page">{nombre} <b>{n}</b></span>
                 ) : (

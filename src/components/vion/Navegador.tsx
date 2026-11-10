@@ -48,11 +48,11 @@ export function Navegador({ idioma, textos, enlaces, inicio, contacto, otro, sim
           <span aria-current="true" lang={idioma}>{idioma.toUpperCase()}</span>
           <i aria-hidden="true" />
           {/* <a> y no <Link>: cada idioma tiene su propio layout raíz (<html lang>), así que cambia el documento entero. */}
-          <a href={otroHref} hrefLang={otro.lang} lang={otro.lang} aria-label={otro.etiqueta}>
+          <a href={otroHref} hrefLang={otro.lang} lang={otro.lang} title={otro.etiqueta}>
             {otro.corto}
           </a>
         </div>
-        <Link className="boton boton--chico" href={contacto} aria-current={aqui(contacto)}>
+        <Link className="boton boton--linea boton--chico" href={contacto} aria-current={aqui(contacto)}>
           {textos.cta}
         </Link>
         <button

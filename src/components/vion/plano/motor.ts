@@ -159,7 +159,9 @@ export function montar(figura: HTMLElement, vistas: string[]): () => void {
     // los ambientes (enlaces de verdad) siguen al plano
     const oa = suave(0.28, 0.5, sp).toFixed(2);
     items.forEach((el) => {
-      const r = cajaDe(el.dataset.amb!), mx = (r[0] + r[2]) / 2, my = (r[1] + r[3]) / 2;
+      // el ancla es el punto de la planta donde está el rótulo (los del fondo van arriba, lejos de las puertas)
+      const r = cajaDe(el.dataset.amb!), pasillo = el.dataset.amb === 'inicio';
+      const mx = pasillo ? 4.05 : (r[0] + r[2]) / 2, my = el.dataset.fila === 'fondo' ? r[3] - 0.7 : (r[1] + r[3]) / 2;
       const a = proy([mx, my, 0]), b = enPlanta(mx, my);
       const tr = `translate(${(a[0] - b[0]).toFixed(1)}px,${(a[1] - b[1]).toFixed(1)}px)`;
       if (el.dataset.t !== tr) { el.dataset.t = tr; el.style.transform = tr; }

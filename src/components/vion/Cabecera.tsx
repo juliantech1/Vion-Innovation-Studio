@@ -19,9 +19,9 @@ export function Cabecera({ idioma }: { idioma: Idioma }) {
           <Image src={sitio.simbolo.src} alt="" width={30} height={29} loading="eager" />
           <span>Vion</span>
         </Link>
-        <p className="aqui" data-aqui aria-hidden="true">
+        <div className="aqui" data-aqui aria-hidden="true">
           <span />
-        </p>
+        </div>
         <Navegador
           idioma={idioma}
           textos={{ nav: ui.navPrincipal, menu: t.menu, cerrar: t.cerrar, idioma: t.idioma, cta: t.cta, inicio: pagina('inicio', idioma).nav, marca: ui.inicio }}
