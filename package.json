@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "revisar": "node scripts/revisar-seo.mjs",
+    "test": "node --test scripts/probar-contacto.mjs"
   },
   "dependencies": {
     "@21st-sdk/agent": "^0.0.6",
