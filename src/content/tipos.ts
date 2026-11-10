@@ -356,7 +356,7 @@ export interface Leccion {
   /** Minutos del video, cuando el video exista (nunca estimados a la vista). */
   minutos?: number;
   /** El video publicado: un archivo propio (MP4 en /public o un CDN) con su póster, o un video de YouTube por su id. */
-  video?: { mp4?: string; youtube?: string; poster?: string; subidoEl?: string };
+  video?: { mp4?: string; youtube?: string; poster?: string; subidoEl?: string; /** Subtítulos WebVTT (hacen falta para publicar: accesibilidad). */ vtt?: string };
   material?: { texto: string; href: string }[];
 }
 

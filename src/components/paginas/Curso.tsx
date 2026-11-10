@@ -13,9 +13,9 @@ function Video({ l, titulo, vacio }: { l?: Leccion; titulo: string; vacio: strin
   const v = l?.video;
   if (v?.mp4) {
     return (
-      // eslint-disable-next-line jsx-a11y/media-has-caption
       <video controls preload="none" poster={v.poster} title={titulo} width={1280} height={720}>
         <source src={v.mp4} type="video/mp4" />
+        {v.vtt && <track kind="captions" src={v.vtt} default />}
       </video>
     );
   }

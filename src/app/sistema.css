@@ -84,7 +84,7 @@ main:focus { outline: none; }
 .mega { font-size: var(--text-mega); line-height: var(--text-mega--line-height); letter-spacing: var(--text-mega--letter-spacing); margin-left: -0.04em; }
 /* En celular el titular parte renglones sin equilibrar: «balance» cambia los cortes con diferencias de ancho de 1 % y
    eso hacía saltar la página cuando la fuente llegaba después del primer pintado. */
-@media (max-width: 61.99rem) { .mega, .base h1 { text-wrap: wrap; } }
+@media (max-width: 61.99rem) { .mega, .base h1 { text-wrap: pretty; } }   /* sin una palabra sola en el último renglón */
 .mega--larga { font-size: clamp(2.125rem, 0.6rem + 4.3vw, 4.75rem); }
 .titular { font-size: var(--text-h2); line-height: var(--text-h2--line-height); letter-spacing: var(--text-h2--letter-spacing); margin-left: -0.03em; }
 .mega .acento, .titular .acento { color: var(--marca); }

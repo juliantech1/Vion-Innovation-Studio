@@ -81,7 +81,7 @@ solos. El cuerpo: un bloque por párrafo; `## ` título (entra al índice), `- `
 `| a | b |` tabla (la primera fila es el encabezado) y `` `código` ``; dentro, el marcado de `Texto`.
 
 **Publicar un curso:** en `src/content/cursos.ts`, cargar en los dos idiomas `tituloSeo`, `descripcion` y cada lección
-con su `video` (`mp4` + `poster`, o `youtube`), `minutos` y `material`; poner `estado: 'publicado'` y `publicado:
+con su `video` (`mp4` + `poster` + subtítulos `vtt`, o `youtube`), `minutos` y `material`; poner `estado: 'publicado'` y `publicado:
 'AAAA-MM-DD'`. Con eso tiene su página (`components/paginas/Curso.tsx`), entra al sitemap, a llms.txt, a la lista de
 `/cursos` con enlace y lleva JSON-LD `Course` (gratis, en línea) y la lista `ItemList` en `/cursos`. Para revisar la
 plantilla sin publicar nada: construir con `VION_BORRADORES=1` (en Vercel no tiene efecto) y abrir

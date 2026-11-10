@@ -227,21 +227,22 @@ Degradados violeta-azul, sombras, tarjetas dentro de tarjetas, píldoras, ícono
 tercer color de fondo, más de un botón rojo por pantalla, más de una nube de revisión por página, 3D o WebGL en el
 camino del LCP, cifras o clientes que no existan, stock de personas, jerga interna a la vista («1 semana = 104 px»).
 
-## Medido (2026-11-10, `next start` local)
+## Medido (2026-11-10, `next start` local, después de Cursos y Blog)
 
-| Control | Portada es / en | AutoCAD es / en |
-|---|---|---|
-| `npm run revisar` | 0 fallas (18 páginas) | |
-| axe (jury) | 0 / 0 | 0 / 0 |
-| Desborde, objetivos táctiles chicos, foco invisible, texto oculto con movimiento reducido | 0 | 0 |
-| LCP en celular frenado (CPU ×4, 4G lenta aplicada; jury) | 1,46 s / 1,49 s | 1,21 s / 1,43 s |
-| CLS (escritorio y celular) | 0 | 0 |
-| Lighthouse celular: SEO · accesibilidad · buenas prácticas | 100 · 100 · 100 | 100 · 100 · 100 |
-| Lighthouse celular: rendimiento (LCP simulado) | 93 (2,1 s) / 84 (2,6 s) | 90 (2,6 s) / 84 (3,1 s) |
-| JavaScript transferido al cargar | 153 kB, de los cuales unos 150 son React y Next; el motor del plano (5 kB) llega después de `load` | 150 kB |
+| Control | Resultado |
+|---|---|
+| `npm run revisar` · `npm test` | 0 fallas en 28 páginas (24 indexables) · 6 de 6 |
+| axe, desborde, objetivos táctiles chicos, foco invisible, texto oculto con movimiento reducido (jury: portada, Cursos, Blog y un artículo, es/en) | 0 en todas |
+| LCP en celular frenado (jury, CPU ×4 y 4G lenta) | 0,8 a 1,4 s · CLS 0 a 0,015 |
+| Lighthouse celular, 28 páginas: rendimiento | 96 a 99 (antes de este trabajo, 95 a 99 en 18 páginas) |
+| Lighthouse celular: accesibilidad · buenas prácticas · SEO | 100 · 100 · 100 (SEO 69 en privacidad y gracias: `noindex` a propósito) |
+| Lighthouse escritorio, 28 páginas | 100 en rendimiento |
+| CSS que bloquea el primer pintado | 72 kB (15 kB con gzip), antes 126 kB (24,5 kB): sin shadcn ni tw-animate |
+| Rótulos de figura a 390 px | ninguno por debajo de 11 px |
 
-El LCP de Lighthouse es simulado sobre una medición hecha en local, donde todo el JavaScript llega antes del primer
-pintado y el modelo lo cuenta como bloqueo (una página con la base, sin nada de este diseño, da 96 y 2,0 s). El observado
-es igual al FCP. Conviene volver a medir en la vista previa de Vercel. Lo que más ayudaría a subirlo: sacar de
-`globals.css` los `@import` de `tw-animate-css` y `shadcn/tailwind.css` cuando los componentes de `src/components/ui`
-dejen de existir (hoy la mitad del CSS que bloquea el primer pintado es de ellos).
+El LCP de Lighthouse en celular es simulado (2,0 a 2,8 s) sobre una carga local donde el observado es de 0,1 a 0,2 s:
+la diferencia la pone el modelo de red de Lighthouse (cuenta el CSS y las fuentes como si llegaran por 4G lenta), y
+salta entre 2,0 y 2,8 s de una corrida a otra en la misma página. Se probó poner el CSS en línea
+(`experimental.inlineCss`): el HTML pasa de 30 a 300 kB y el rendimiento baja (95 a 97), así que se dejó afuera.
+La tabla completa, antes y después: `~/hefesto/informes/rediseno/lighthouse/TABLA-FINAL.md`. Conviene volver a medir en la vista
+previa de Vercel.
