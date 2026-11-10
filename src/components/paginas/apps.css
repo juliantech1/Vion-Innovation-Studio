@@ -2,7 +2,7 @@
    nada de ahí: todo va con nombres de esta página. */
 
 /* Fig. 1 · El prototipo en línea, con sus cotas */
-.proto svg { width: 100%; height: auto; overflow: visible; }
+.proto svg { width: 100%; max-width: 34rem; height: auto; overflow: visible; }
 .proto text { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; fill: var(--tinta-2); }
 .proto text.proto__t { fill: var(--tinta); font-weight: 600; }
 .proto__fondo { fill: var(--fondo); }
