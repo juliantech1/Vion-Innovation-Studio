@@ -12,7 +12,7 @@ export const cursos: Pagina = {
   h1: 'Free AI courses, built on what Vion already does',
   acento: 'Free',
   bajada:
-    'We are going to publish free artificial intelligence courses, with videos and materials, made in Costa Rica. We only teach what we have already built and use every day. The first five are in production today.',
+    'We are going to publish free artificial intelligence courses, with videos and materials, made in Costa Rica. We only teach what we have already built and use every day. There are ten courses in four tracks, and all of them are in production today.',
   acciones: [
     { texto: 'Notify me on WhatsApp', destino: { whatsapp: 'Hi Vion. Please let me know when you publish the first course.' } },
     { texto: 'See the courses', destino: { pagina: 'cursos', ancla: 'cursos' } },
@@ -21,11 +21,11 @@ export const cursos: Pagina = {
     {
       tipo: 'texto',
       id: 'cursos',
-      etiqueta: 'The first five',
+      etiqueta: 'Ten courses, four tracks',
       titulo: 'The courses we are recording',
       acento: 'recording',
       intro:
-        'None is published yet. These are the first five, in the order we are preparing them, with their planned lessons. When one comes out, it gets its own page with the videos and materials.',
+        'None is published yet. Here are all ten, grouped by track and starting with Claude basics, with their planned lessons and how many of their videos are ready. When one comes out, it gets its own page with every lesson.',
       parrafos: [],
     },
     {
@@ -44,6 +44,7 @@ export const cursos: Pagina = {
       titulo: 'Actually free, with the costs spelled out',
       acento: 'free',
       parrafos: [
+        'Every lesson is a slide deck you go through at your own pace: the text explains the step, commands and prompts for Claude copy with one button, and every slide has its visual: a screenshot, a diagram, a short motion or screen video, or Chispa, our character, explaining the hard part. Everything is covered, from what to download and how to connect it to the repos and skills we use.',
         'The videos and materials for every course will be free. What can cost money are some of the tools: Claude Code requires a paid Anthropic plan and AutoCAD needs an Autodesk license. Every course says so before the first lesson, so nobody finds out halfway through.',
         'We teach the craft, not just the tool: every course ends in something you can use, such as an on-brand animation, an agent system with an approval queue, or a quantity table pulled from a drawing. The AI courses for architecture and engineering always include a person reviewing the work before anything reaches a site or a client.',
         'In the meantime, [the blog](@blog) covers the same ground: ISO 19650, AutoCAD and AI agents with human approval.',
@@ -61,7 +62,7 @@ export const cursos: Pagina = {
         },
         {
           p: 'When does the first course come out?',
-          r: 'We do not have a date yet. The first five are in production. If you message us on WhatsApp or through the form, we will let you know when the one you want is out.',
+          r: 'We do not have a date yet. All ten are in production. If you message us on WhatsApp or through the form, we will let you know when the one you want is out.',
         },
         {
           p: 'What do I need to know to take them?',

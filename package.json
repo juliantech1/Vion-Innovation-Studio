@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:borradores": "VION_BORRADORES=1 next build",
     "start": "next start",
     "lint": "eslint",
     "revisar": "node scripts/revisar-seo.mjs",
+    "revisar:borradores": "node scripts/revisar-seo.mjs --borradores",
     "test": "node --test scripts/probar-contacto.mjs"
   },
   "dependencies": {

@@ -14,7 +14,7 @@ export const cursos: Pagina = {
   h1: 'Cursos de IA gratis, con lo que Vion ya hizo',
   acento: 'gratis',
   bajada:
-    'Vamos a publicar cursos de inteligencia artificial gratis, con videos y material, hechos en Costa Rica. Solo enseñamos lo que ya construimos y usamos todos los días. Hoy los cinco primeros están en producción.',
+    'Vamos a publicar cursos de inteligencia artificial gratis, con videos y material, hechos en Costa Rica. Solo enseñamos lo que ya construimos y usamos todos los días. Son diez cursos en cuatro rutas, y hoy están todos en producción.',
   acciones: [
     { texto: 'Avisarme por WhatsApp', destino: { whatsapp: 'Hola, Vion. Avísenme cuando publiquen el primer curso.' } },
     { texto: 'Ver los cursos', destino: { pagina: 'cursos', ancla: 'cursos' } },
@@ -23,11 +23,11 @@ export const cursos: Pagina = {
     {
       tipo: 'texto',
       id: 'cursos',
-      etiqueta: 'Los primeros cinco',
+      etiqueta: 'Diez cursos, cuatro rutas',
       titulo: 'Los cursos que estamos grabando',
       acento: 'grabando',
       intro:
-        'Ninguno está publicado todavía. Estos son los cinco primeros, en el orden en que los preparamos, con sus lecciones previstas. Cuando uno salga, va a tener su propia página con los videos y el material.',
+        'Ninguno está publicado todavía. Estos son los diez, agrupados por ruta y empezando por Claude básico, con sus lecciones previstas y cuántos de sus videos ya están listos. Cuando uno salga, va a tener su propia página con cada lección.',
       parrafos: [],
     },
     {
@@ -46,6 +46,7 @@ export const cursos: Pagina = {
       titulo: 'Gratis de verdad, y con lo que cuesta dicho',
       acento: 'Gratis',
       parrafos: [
+        'Cada lección es una presentación de láminas que se recorre a su ritmo: el texto explica el paso, los comandos y los pedidos a Claude se copian con un botón, y cada lámina trae su apoyo visual: una captura, un diagrama, un video corto de motion o de la pantalla, o Chispa, nuestro personaje, explicando el punto difícil. Todo explicado, desde qué descargar y cómo conectarlo hasta los repos y skills que usamos.',
         'Los videos y el material de cada curso van a ser gratis. Lo que sí puede costar son algunas herramientas que se usan: Claude Code pide un plan pago de Anthropic y AutoCAD su licencia de Autodesk. Cada curso lo dice antes de la primera lección, para que nadie se entere a la mitad.',
         'Enseñamos el oficio y no solo la herramienta: cada curso termina en un resultado que se puede usar, como una animación con su marca, un sistema de agentes con cola de aprobación o una tabla de cantidades sacada de un plano. Los cursos de IA para arquitectura e ingeniería siempre llevan la revisión de una persona antes de que algo llegue a una obra o a un cliente.',
         'Mientras tanto, en [el blog](@blog) publicamos artículos sobre lo mismo: ISO 19650, AutoCAD y agentes de IA con aprobación humana.',
@@ -63,7 +64,7 @@ export const cursos: Pagina = {
         },
         {
           p: '¿Cuándo sale el primer curso?',
-          r: 'Todavía no tenemos fecha. Los cinco primeros están en producción. Si nos escribe por WhatsApp o por el formulario, le avisamos cuando salga el que le interesa.',
+          r: 'Todavía no tenemos fecha. Los diez están en producción. Si nos escribe por WhatsApp o por el formulario, le avisamos cuando salga el que le interesa.',
         },
         {
           p: '¿Qué se necesita saber para tomarlos?',

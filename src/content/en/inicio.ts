@@ -108,7 +108,7 @@ export const inicio: Pagina = {
       titulo: 'Free AI courses',
       acento: 'Free',
       parrafos: [
-        'We are going to publish free courses, with videos and materials, on what we already do: AI agents, motion and 3D, and AutoCAD for engineering and architecture. The first five are in production and do not have a date yet.',
+        'We are going to publish free courses, with videos and materials, on what we already do: AI agents, motion and 3D, and AutoCAD for engineering and architecture. There are ten courses, from Claude basics to AutoCAD, in production and without a date yet.',
       ],
     },
     {

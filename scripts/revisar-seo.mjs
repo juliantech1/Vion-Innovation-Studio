@@ -21,6 +21,10 @@ import { fileURLToPath } from 'node:url';
 const args = process.argv.slice(2);
 const BASE = (args.find((a) => /^https?:\/\//.test(a)) || 'http://127.0.0.1:4510').replace(/\/$/, '');
 const ESTRICTO = args.includes('--estricto');
+// --borradores: el sitio se construyó con VION_BORRADORES=1 (los cursos en producción tienen páginas, con noindex).
+const BORRADORES = args.includes('--borradores');
+// Una lección de un curso: puede existir en un solo idioma (hoy, castellano).
+const esLeccion = (ruta) => /^\/(cursos|en\/courses)\/[^/]+\/[^/]+$/.test(ruta);
 const SITIO = 'https://vion-studio.com';
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -72,6 +76,7 @@ else {
   for (const linea of fs.readFileSync(archivoPendientes, 'utf8').split('\n')) {
     if (!linea.startsWith('|')) continue;
     const casilleros = [...linea.matchAll(/`(\{\{[^}]+\}\})`/g)].map((m) => m[1]);
+    // Una ruta que termina en /* vale para todo lo que cuelga de ella (las lecciones de un curso).
     const rutas = [...linea.matchAll(/`(\/[^`]*)`/g)].map((m) => m[1]);
     for (const c of casilleros) permitidos.set(c, new Set([...(permitidos.get(c) || []), ...rutas]));
   }
@@ -163,9 +168,9 @@ for (const [ruta, { html }] of paginas) {
   const alt = {};
   for (const l of links.filter((l) => l.rel === 'alternate' && l.hreflang)) alt[l.hreflang] = l.href;
   if (!noindex) {
-    for (const h of ['es-CR', 'en', 'x-default']) if (!alt[h]) mal(`falta hreflang="${h}"`);
+    for (const h of esLeccion(ruta) ? [ingles ? 'en' : 'es-CR', 'x-default'] : ['es-CR', 'en', 'x-default']) if (!alt[h]) mal(`falta hreflang="${h}"`);
     if (alt[ingles ? 'en' : 'es-CR'] !== absoluta(ruta)) mal('el hreflang de su propio idioma no apunta a sí misma');
-    if (alt['x-default'] !== alt['es-CR']) mal('x-default tiene que ser la versión en español');
+    if (alt['es-CR'] && alt['x-default'] !== alt['es-CR']) mal('x-default tiene que ser la versión en español');
     const s = enSitemap.get(ruta);
     if (s && JSON.stringify(Object.entries(s).sort()) !== JSON.stringify(Object.entries(alt).sort())) mal('los alternates del sitemap no coinciden con los hreflang de la página');
     hreflangDe.set(ruta, alt);
@@ -289,9 +294,12 @@ for (const [ruta, { html }] of paginas) {
   // texto visible: marca y casilleros
   if (/[—–]/.test(visible)) mal('raya o guion largo en el texto visible (usar punto, coma o dos puntos)');
   for (const frase of PROHIBIDAS) if (normal(visible).includes(normal(frase))) mal(`frase prohibida por la marca: «${frase}»`);
-  for (const m of visible.matchAll(/\{\{[^}]+\}\}/g)) {
+  // El código (<pre> y <code>) se muestra tal cual: un {{…}} ahí es parte de una plantilla del alumno, no un casillero.
+  const sinCodigo = textoVisible(html.replace(/<pre\b[\s\S]*?<\/pre>|<code\b[\s\S]*?<\/code>/gi, ' '));
+  for (const m of sinCodigo.matchAll(/\{\{[^}]+\}\}/g)) {
     casillerosVistos.set(m[0], [...(casillerosVistos.get(m[0]) || []), ruta]);
-    if (!permitidos.get(m[0])?.has(ruta)) mal(`casillero que PENDIENTES-JULIAN.md no lista para esta página: ${m[0]}`);
+    const vale = [...(permitidos.get(m[0]) || [])].some((r) => r === ruta || (r.endsWith('/*') && ruta.startsWith(r.slice(0, -1))));
+    if (!vale) mal(`casillero que PENDIENTES-JULIAN.md no lista para esta página: ${m[0]}`);
   }
   if (/\{\{|\}\}/.test(titulo + desc + Object.values(og).join(' '))) mal('casillero en el título, la descripción o el Open Graph');
 }
@@ -317,7 +325,7 @@ for (const ruta of imagenesOg) {
 for (const ruta of enSitemap.keys()) if (!paginas.has(ruta)) falla('/sitemap.xml', `${ruta} no responde 200`);
 const indexables = [...hreflangDe.keys()];
 if (enSitemap.size !== indexables.length) falla('/sitemap.xml', `${enSitemap.size} URL en el sitemap y ${indexables.length} páginas indexables`);
-for (const [ruta, alt] of enSitemap) if (!alt['es-CR'] || !alt.en || !alt['x-default']) falla('/sitemap.xml', `${ruta} sin sus tres alternates`);
+for (const [ruta, alt] of enSitemap) if (!esLeccion(ruta) && (!alt['es-CR'] || !alt.en || !alt['x-default'])) falla('/sitemap.xml', `${ruta} sin sus tres alternates`);
 
 // robots.txt
 const robots = await pedir('/robots.txt');
@@ -353,8 +361,10 @@ for (const [vieja, nueva] of Object.entries(REDIRECCIONES)) {
 }
 
 // la 404 (una sola, bilingüe: app/global-not-found.tsx) para cualquier dirección que no existe
-// También un artículo y un curso que no existen, el curso de ejemplo (borrador: no se publica) y el lugar vacío de la ruta.
-for (const ruta of ['/no-existe-esta-pagina', '/en/no-such-page', '/casos/no-existe', '/blog/no-existe', '/en/blog/no-such-post', '/cursos/no-existe', '/cursos/curso-de-ejemplo', '/en/courses/sample-course']) {
+// También un artículo, un curso y una lección que no existen y, salvo con --borradores, un curso en producción y una de
+// sus lecciones (no tienen página hasta que se publiquen).
+const EN_PRODUCCION = ['/cursos/motion-design-con-claude', '/cursos/motion-design-con-claude/0-puesta-a-punto', '/en/courses/motion-design-with-claude'];
+for (const ruta of ['/no-existe-esta-pagina', '/en/no-such-page', '/casos/no-existe', '/blog/no-existe', '/en/blog/no-such-post', '/cursos/no-existe', '/cursos/no-existe/no-existe', ...(BORRADORES ? [] : EN_PRODUCCION)]) {
   const r = await pedir(ruta);
   if (r.estado !== 404) falla(ruta, `responde ${r.estado} (se esperaba 404)`);
   if (!/<html lang="es-CR"/.test(r.cuerpo)) falla(ruta, 'la 404 no tiene lang="es-CR"');
@@ -390,6 +400,12 @@ for (const [ruta, { html }] of paginas) {
 for (const ruta of ['/cursos', '/en/courses']) {
   const html = paginas.get(ruta)?.html || '';
   if (/"@type":"Course"/.test(html)) falla(ruta, 'JSON-LD Course en la lista de cursos (va solo en la página de un curso publicado)');
+}
+for (const [ruta, { html }] of paginas) {
+  if (!/^\/(cursos|en\/courses)\/[^/]+/.test(ruta)) continue;
+  const noindex = /<meta name="robots" content="noindex/.test(html);
+  if (noindex && /"@type":"Course"/.test(html)) falla(ruta, 'JSON-LD Course en un curso que no está publicado');
+  if (esLeccion(ruta) && !/data-presentacion/.test(html)) falla(ruta, 'la lección no tiene sus láminas');
 }
 
 // encabezados de seguridad

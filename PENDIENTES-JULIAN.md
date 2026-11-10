@@ -13,7 +13,7 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 
 | Casillero | Dónde aparece | Archivo |
 |---|---|---|
-| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
+| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/cursos/*` `/en/courses/*` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
 | `{{domicilio legal}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{región de Vercel donde se procesa el formulario}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{plazo de conservación de los datos}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
@@ -84,3 +84,38 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
      correcta cuando se grabe cada uno.
 - **Publicar un curso**: ver «Publicar un curso» en el README. El curso de ejemplo (`ejemplo` en `cursos.ts`) es un
   borrador que nunca se publica; se puede borrar cuando exista el primer curso de verdad.
+
+## Cursos: casilleros de los diez cursos (2026-11-10)
+
+Los cursos están en producción: sus páginas solo se construyen con `VION_BORRADORES=1` (noindex), así que estos
+casilleros no se ven en el sitio publicado. Hay que llenarlos antes de marcar cada curso como publicado. Están en
+`src/content/cursos/<id>/lecciones.ts` o `curso.ts` (la columna «Curso» da el slug de su página). Los `{{…}}` que van
+dentro de un bloque de código (`<pre>` o `` `…` ``) no son casilleros: son partes de una plantilla que llena el alumno.
+
+| Casillero | Dónde aparece | Curso |
+|---|---|---|
+| `{{enlace de la comunidad}}` | `/cursos/claude-basico-chat-cowork-code` `/cursos/claude-basico-chat-cowork-code/6-cual-uso-para-que` | claude-basico-chat-cowork-code |
+| `{{licencia de la plantilla}}` | `/cursos/agentic-os-equipo-de-agentes` | agentic-os-equipo-de-agentes |
+| `{{versión con la que se grabó, se anota al grabar}}` | `/cursos/motion-design-con-claude` | motion-design-con-claude |
+| `{{licencia del kit, por decidir}}` | `/cursos/motion-design-con-claude` | motion-design-con-claude |
+| `{{MIT, por confirmar}}` | `/cursos/videos-3d-con-blender-y-claude` `/cursos/personaje-3d-que-habla` | personaje-3d-que-habla, videos-3d-con-blender-y-claude |
+| `{{el precio para Costa Rica se confirma antes de publicar}}` | `/cursos/claude-autocad-planos-cantidades` | claude-autocad-planos-cantidades |
+| `{{cómo escribirnos: por confirmar}}` | `/cursos/claude-autocad-planos-cantidades` `/cursos/claude-autocad-planos-cantidades/7-rutinas-y-ahorro` | claude-autocad-planos-cantidades |
+| `{{se confirma antes de publicar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia` | cuantificacion-y-presupuestos-con-ia |
+| `{{la acción del cierre: por confirmar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia` `/cursos/cuantificacion-y-presupuestos-con-ia/7-revision-y-entrega` | cuantificacion-y-presupuestos-con-ia |
+| `{{enlace a la comunidad de Vion}}` | `/cursos/sitio-web-con-claude-code` `/cursos/sitio-web-con-claude-code/7-un-rediseno-en-serio` | sitio-web-con-claude-code |
+| `{{el tiempo medido al grabar}}` | `/cursos/claude-basico-chat-cowork-code/5-pagina-web-y-herramienta` | claude-basico-chat-cowork-code |
+| `{{el menú se comprueba al grabar}}` | `/cursos/skills-propias-de-claude/7-biblioteca-con-versiones` | skills-propias-de-claude |
+| `{{el commit revisado se publica con el curso}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` | claude-autocad-planos-cantidades |
+| `{{la dirección del kit se publica con el curso}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` `/cursos/cuantificacion-y-presupuestos-con-ia/2-puesta-a-punto` | claude-autocad-planos-cantidades, cuantificacion-y-presupuestos-con-ia |
+| `{{los nombres exactos de las herramientas en los permisos se confirman al revisar el servidor}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` | claude-autocad-planos-cantidades |
+| `{{el comando se comprueba al grabar}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` | claude-autocad-planos-cantidades |
+| `{{el error real que haya encontrado en la grabación, solo si pasó}}` | `/cursos/claude-autocad-planos-cantidades/4-cantidades-a-excel` | claude-autocad-planos-cantidades |
+| `{{lo que llevó contarlo a mano, solo si se midió completo al grabar}}` | `/cursos/claude-autocad-planos-cantidades/7-rutinas-y-ahorro` | claude-autocad-planos-cantidades |
+| `{{sus condiciones de uso se confirman antes de publicar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia/2-puesta-a-punto` | cuantificacion-y-presupuestos-con-ia |
+| `{{quién revisa en pantalla: por confirmar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia/7-revision-y-entrega` | cuantificacion-y-presupuestos-con-ia |
+| `{{las dos cifras, cuando se midan al grabar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia/7-revision-y-entrega` | cuantificacion-y-presupuestos-con-ia |
+
+**Marcadores dentro de bloques copiables** (no los revisa `revisar-seo`, pero hay que cambiarlos al publicar):
+`<SHA-REVISADO>` (claude-autocad, lámina 2.5: el commit revisado del servidor MCP), `<URL-DEL-KIT>` (claude-autocad 2.8,
+cuantificacion 2.3, seo-agentes 2.3) y `<repo de la plantilla de Vion>` (agentic-os 2.9).
