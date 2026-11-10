@@ -7,7 +7,7 @@ export const inicio: Pagina = {
   nav: 'Home',
   titulo: 'Vion Studio: AI, AutoCAD/BIM automation and custom apps',
   descripcion:
-    'AI consulting, AutoCAD and BIM automation, and custom apps for engineering and architecture firms. A Costa Rica studio on US Central time.',
+    'AI consulting, AutoCAD and BIM automation, and custom apps for engineering and architecture firms. A Costa Rica studio on UTC-6 all year.',
   palabrasClave: ['AI software development Costa Rica', 'AutoCAD automation', 'BIM consulting'],
   indexar: true,
   etiqueta: 'Vion · AI studio · Costa Rica',

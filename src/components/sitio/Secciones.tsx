@@ -52,28 +52,28 @@ function Pasos({ pasos, idioma }: { pasos: Paso[]; idioma: Idioma }) {
 
 function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
   const ui = interfazDe(idioma);
-  const T = ({ children }: { children: string }) => <Texto idioma={idioma}>{children}</Texto>;
+  const t = (texto: string) => <Texto idioma={idioma}>{texto}</Texto>;
   switch (s.tipo) {
     case 'texto':
       return (
         <div className="prosa">
           {s.parrafos.map((p) => (
             <p key={p}>
-              <T>{p}</T>
+              {t(p)}
             </p>
           ))}
           {s.lista && (
             <ul>
               {s.lista.map((x) => (
                 <li key={x}>
-                  <T>{x}</T>
+                  {t(x)}
                 </li>
               ))}
             </ul>
           )}
           {s.cierre?.map((p) => (
             <p key={p}>
-              <T>{p}</T>
+              {t(p)}
             </p>
           ))}
         </div>
@@ -86,7 +86,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               {x.etiqueta && <p className="etiqueta">{x.etiqueta}</p>}
               <h3>{x.enlace ? <Link href={ruta(x.enlace.pagina, idioma, x.enlace.ancla)}>{x.titulo}</Link> : x.titulo}</h3>
               <p>
-                <T>{x.texto}</T>
+                {t(x.texto)}
               </p>
             </li>
           ))}
@@ -98,7 +98,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
           <Pasos pasos={s.pasos} idioma={idioma} />
           {s.nota && (
             <p className="nota">
-              <T>{s.nota}</T>
+              {t(s.nota)}
             </p>
           )}
         </>
@@ -111,14 +111,14 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               <div key={f.termino}>
                 <dt>{f.termino}</dt>
                 <dd>
-                  <T>{f.valor}</T>
+                  {t(f.valor)}
                 </dd>
               </div>
             ))}
           </dl>
           {s.nota && (
             <p className="nota">
-              <T>{s.nota}</T>
+              {t(s.nota)}
             </p>
           )}
         </>
@@ -131,14 +131,14 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               <p className="etiqueta">{p.linea}</p>
               <h3 id={`t-${p.id}`}>{p.nombre}</h3>
               <p>
-                <T>{p.que}</T>
+                {t(p.que)}
               </p>
               <dl className="ficha">
                 {p.filas.map((f) => (
                   <div key={f.termino}>
                     <dt>{f.termino}</dt>
                     <dd>
-                      <T>{f.valor}</T>
+                      {t(f.valor)}
                     </dd>
                   </div>
                 ))}
@@ -148,7 +148,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               ) : (
                 p.captura && (
                   <p className="hueco">
-                    <T>{p.captura}</T>
+                    {t(p.captura)}
                   </p>
                 )
               )}
@@ -164,7 +164,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               <h3>{p.nombre}</h3>
               <p className="etiqueta">{p.cargo}</p>
               <p>
-                <T>{p.bio}</T>
+                {t(p.bio)}
               </p>
             </li>
           ))}
@@ -184,7 +184,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
           </ul>
           {s.nota && (
             <p className="nota">
-              <T>{s.nota}</T>
+              {t(s.nota)}
             </p>
           )}
         </>
@@ -230,7 +230,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
               <div key={f.termino}>
                 <dt>{f.termino}</dt>
                 <dd>
-                  <T>{f.valor}</T>
+                  {t(f.valor)}
                 </dd>
               </div>
             ))}
@@ -243,7 +243,7 @@ function Cuerpo({ s, idioma }: { s: Seccion; idioma: Idioma }) {
           idioma={idioma}
           textos={ui.formulario}
           modo={formularioConectado() ? 'real' : 'prueba'}
-          consentimiento={<T>{ui.formulario.consentimiento}</T>}
+          consentimiento={t(ui.formulario.consentimiento)}
         />
       );
   }

@@ -375,7 +375,7 @@ const ajeno = await pedir('/api/contacto', { method: 'POST', headers: { origin: 
 if (ajeno.estado !== 403) falla('/api/contacto', `POST de otro origen responde ${ajeno.estado} (se esperaba 403)`);
 
 // ---------- informe ----------
-for (const [c, rutas] of permitidos) if (!casillerosVistos.has(c)) avisos.push(`PENDIENTES-JULIAN.md lista ${c}, que ya no aparece en ninguna página`);
+for (const c of permitidos.keys()) if (!casillerosVistos.has(c)) avisos.push(`PENDIENTES-JULIAN.md lista ${c}, que ya no aparece en ninguna página`);
 const total = [...casillerosVistos.values()].reduce((a, v) => a + v.length, 0);
 console.log(`revisar-seo: ${paginas.size} páginas (${indexables.length} indexables), ${imagenesOg.size} imágenes OG, ${fallas.length} fallas, ${total} casilleros (${casillerosVistos.size} distintos)`);
 for (const a of avisos) console.log(`  aviso: ${a}`);

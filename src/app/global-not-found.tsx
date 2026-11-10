@@ -9,7 +9,7 @@ import { Cabecera } from '@/components/sitio/Cabecera';
 import { NoEncontrada } from '@/components/sitio/NoEncontrada';
 import { Pie } from '@/components/sitio/Pie';
 import { interfazDe } from '@/content';
-import { metadatosBase, metadatosNoEncontrada, viewport as vista } from '@/seo/metadatos';
+import { metadatosNoEncontrada, viewport as vista } from '@/seo/metadatos';
 import './globals.css';
 import './base.css';
 
