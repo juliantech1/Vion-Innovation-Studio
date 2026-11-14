@@ -8,13 +8,14 @@ export const curso: CursoTexto = {
     "titulo": "Su sitio web con Claude Code (y nada se publica sin su OK)",
     "subtitulo": "Next.js, GitHub y Vercel, con vista previa y su aprobación",
     "tituloSeo": "Curso gratis: su sitio web con Claude Code | Vion",
-    "descripcion": "Curso gratis de Vion: publique su sitio con Claude Code, GitHub y Vercel, y que ningún cambio salga sin su aprobación. En producción.",
+    "descripcion": "Curso gratis de Vion: publique su sitio con Claude Code, GitHub y Vercel, y que ningún cambio salga sin su aprobación.",
     "paraQuien": "Dueños de negocio, profesionales y agencias chicas que quieren un sitio propio y cambiarlo sin depender de nadie, pero sin que una IA publique algo que no vieron.",
     "seLleva": "Su sitio publicado (Next.js en GitHub y Vercel) y el circuito: le pide un cambio a Claude Code en palabras, Claude lo hace en una rama, Vercel arma una vista previa, usted la mira y solo cuando usted aprueba se publica. Con la rama principal protegida, controles automáticos (build, SEO y Lighthouse), la forma de volver atrás y el kit.",
     "herramientas": "Claude Code (plan pago de Anthropic, desde USD 20 al mes); GitHub gratis (proteger un repositorio privado pide GitHub Pro); Vercel Hobby gratis solo para uso personal, Pro USD 20 al mes para un negocio.",
+    "explica": "Un **sitio web** es su vitrina en internet. En este curso usted hace el suyo **pidiéndoselo en palabras** a Claude Code (el asistente de Claude que trabaja en su computadora) y lo publica con dos servicios gratis para empezar: **GitHub**, donde se guarda el sitio con todas sus versiones, y **Vercel**, que lo pone en internet.\n\nLa idea central del curso es una regla: **nada se publica sin que usted lo vea y diga que sí**. Cada cambio se hace aparte, en una copia del sitio llamada **rama**; Vercel le muestra cómo queda en una **vista previa**, y solo cuando usted aprueba pasa al sitio de verdad. Si algo sale mal, se vuelve atrás con un botón.\n\n### Al terminar el curso va a poder\n\n- tener su sitio de cuatro páginas publicado en internet, hecho por Claude con sus datos;\n- pedir cambios en palabras y verlos en una vista previa, también en el celular;\n- proteger su sitio para que nadie publique sin su aprobación, ni Claude ni usted por error;\n- aprobar y publicar con un botón, y deshacer un cambio si hace falta;\n- sumar controles automáticos que revisan cada cambio antes de que usted lo mire.\n\n### Lo que necesita\n\nUna computadora con Windows, Mac o Linux, una cuenta de Claude con plan pago (Pro, desde USD 20 al mes) y cuentas gratis de GitHub y Vercel. No hace falta saber programar: los comandos se copian de cada lámina y el código lo escribe Claude.",
     "ficha": {
       "requisitos": "Windows 10 (1809) o más nuevo, macOS 13 o más nuevo, o Ubuntu 20.04 o más nuevo; 4 GB de RAM para Claude Code (8 recomendados); conexión a internet; un celular para mirar las vistas previas.",
-      "duracion": "8 lecciones, 57 láminas con 36 videos cortos (unos 16 min de video), unos 50 min de lectura, más una tarde de práctica.",
+      "duracion": "8 lecciones, 57 láminas con videos cortos, más el tráiler.",
       "costo": "Claude Code pide un plan pago (desde USD 20 al mes). GitHub es gratis, pero proteger la rama de un repositorio privado pide GitHub Pro. Vercel Hobby es gratis solo para uso personal, no comercial: el sitio de un negocio pide Vercel Pro (USD 20 al mes). El dominio, lo que cobre su registrador."
     },
     "costos": [
@@ -173,7 +174,7 @@ export const curso: CursoTexto = {
     },
     "accion": {
       "titulo": "Su sitio, con su permiso",
-      "texto": "Ya tiene el circuito: usted pide, Claude hace, usted mira, usted aprueba. Úselo en cada cambio de su sitio, también en el próximo rediseño. Si quiere mostrarnos su sitio, la comunidad de Vion está abierta: {{enlace a la comunidad de Vion}}."
+      "texto": "Ya tiene el circuito: usted pide, Claude hace, usted mira, usted aprueba. Úselo en cada cambio de su sitio, también en el próximo rediseño. Si quiere mostrarnos su sitio, la comunidad de Vion está abierta."
     }
   },
   "en": {
@@ -181,7 +182,7 @@ export const curso: CursoTexto = {
     "titulo": "Ship your site with Claude Code",
     "subtitulo": "Next.js, GitHub and Vercel, with previews and your approval",
     "tituloSeo": "Free course: ship your website with Claude Code | Vion",
-    "descripcion": "A free Vion course: publish your site with Claude Code, GitHub and Vercel, and nothing goes live without your OK. In production.",
+    "descripcion": "A free Vion course: publish your site with Claude Code, GitHub and Vercel, and nothing goes live without your OK.",
     "paraQuien": "Business owners, professionals and small agencies who want their own site and want to change it on their own, without an AI publishing anything they have not seen.",
     "seLleva": "Your site live (Next.js on GitHub and Vercel) and the loop: you ask Claude Code for a change in plain words, Claude makes it on a branch, Vercel builds a preview, you review it, and it only goes live when you approve. Plus a protected main branch, automated checks (build, SEO and Lighthouse), a way to roll back, and the kit.",
     "herramientas": "Claude Code (paid Anthropic plan, from USD 20 a month); GitHub is free (protecting a private repository needs GitHub Pro); Vercel Hobby is free for personal use only, Pro is USD 20 a month for a business.",
