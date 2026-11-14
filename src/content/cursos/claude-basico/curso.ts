@@ -8,13 +8,13 @@ export const curso: CursoTexto = {
     "titulo": "Claude desde cero: Chat, Cowork y Code, y cuál usar para qué",
     "subtitulo": "Curso de Claude para principiantes · Claude Code en la terminal paso a paso",
     "tituloSeo": "Curso gratis: Claude desde cero, Chat, Cowork y Code",
-    "descripcion": "Curso gratis de Vion: qué hacen Chat, Cowork y Code de Claude, cuál usar para qué, cuánto cuesta y cómo instalar Claude Code. En producción.",
+    "descripcion": "Curso gratis de Vion: qué hacen Chat, Cowork y Code de Claude, cuál usar para qué, cuánto cuesta y cómo instalar Claude Code.",
     "paraQuien": "Alguien que nunca usó Claude (o solo lo probó como un buscador): dueños de negocio, profesionales, estudiantes. No hace falta saber programar ni haber abierto una terminal.",
     "seLleva": "Sabe qué es Chat, Cowork y Code, cuál usar para cada cosa y cuánto cuesta; hizo una tarea real con cada uno (un PDF analizado con su correo, un Excel armado con sus facturas y una página web); tiene Claude Code instalado y sabe abrirlo en la terminal; y sabe qué curso de Vion sigue.",
     "herramientas": "Claude: Chat con el plan gratis; Cowork y Claude Code piden un plan pago (Pro, USD 20 al mes).",
     "ficha": {
       "requisitos": "Una computadora con Windows 10 (versión 1809 o más nueva) o macOS 13 o más nuevo, 4 GB de RAM, internet y un correo para la cuenta. Para las lecciones 3 a 5, un plan pago de Claude (Pro o más). Estar en un país donde Claude está disponible ([anthropic.com/supported-countries](https://www.anthropic.com/supported-countries)).",
-      "duracion": "6 lecciones en 49 láminas, con 34 videos cortos; unos 30 min de recorrido, más el tiempo de hacer los ejercicios (unos 45 min).",
+      "duracion": "6 lecciones, 49 láminas con videos cortos, más el tráiler.",
       "costo": "Ver el curso es gratis y la lección 2 se hace con el plan Free de Claude; las lecciones 3, 4 y 5 piden un plan pago, y el más barato es Pro: USD 20 al mes (o USD 17 al mes pagando el año), sin impuestos."
     },
     "costos": [
@@ -52,7 +52,7 @@ export const curso: CursoTexto = {
     "costosFecha": "2026-11-10",
     "puesta": {
       "leccion": 4,
-      "texto": "La cuenta y la app se arman en la lección 2, Cowork en la 3 y la terminal con Claude Code en la 4. Todo junto:\n\n1. **La cuenta:** en **claude.ai**, «Continuar con Google» o su correo. Queda en el plan Free; para pasar a Pro, el menú con su nombre → Configuración → Facturación (o «Mejorar plan»), con tarjeta.\n2. **Las apps** (opcional para Chat; necesaria para Cowork con carpetas de su compu): Claude para escritorio en Windows (x64 o ARM64, también en la Microsoft Store) y Mac desde [claude.com/download](https://claude.com/download); en Linux, en beta para Ubuntu y Debian ([code.claude.com/docs/en/desktop-linux](https://code.claude.com/docs/en/desktop-linux)); en el celular, la app «Claude» de Anthropic.\n3. **Cowork** (plan pago): en la caja de mensaje elija Cowork y conecte una carpeta de prueba. Si no ve la opción, ya tiene la versión nueva: pídaselo directo.\n4. **Claude Code en la terminal** (plan pago), con la guía oficial ([code.claude.com/docs/en/terminal-guide](https://code.claude.com/docs/en/terminal-guide)):\n\n| Paso | Windows | Mac |\n| Abrir la terminal | Win + X → «Terminal» o «Windows PowerShell» (la línea empieza con PS) | Cmd + Espacio, «Terminal», Enter |\n| Instalar | El comando de PowerShell de la lámina 4.4 (hay otro para CMD) | El comando de la lámina 4.9 |\n| Esperar | No muestra avance; termina con «Claude Code successfully installed!» | Igual |\n| Comprobar | Una terminal **nueva** y `claude --version`: sale un número y «(Claude Code)» | Igual |\n| Primera carpeta y abrir | `mkdir mi-primer-proyecto`, `cd mi-primer-proyecto` y `claude` | Igual |\n| Iniciar sesión | La primera vez se abre el navegador: entre con su cuenta (Pro o más) | Igual |\n| Ver la carpeta | `explorer .` | `open .` |\n\nGit para Windows es opcional: sin él, Claude Code usa PowerShell y anda igual. Si algo falla, la tabla de errores está en la lámina 4.11 y en la chuleta del kit."
+      "texto": "La cuenta y la app se arman en la lección 2, Cowork en la 3 y la terminal con Claude Code en la 4. Todo junto:\n\n1. **La cuenta:** en **claude.ai**, «Continuar con Google» o su correo. Queda en el plan Free; para pasar a Pro, el menú con su nombre → Configuración → Facturación (o «Mejorar plan»), con tarjeta.\n2. **Las apps** (opcional para Chat; necesaria para Cowork con carpetas de su compu): Claude para escritorio en Windows (x64 o ARM64, también en la Microsoft Store) y Mac desde [claude.com/download](https://claude.com/download); en Linux, en beta para Ubuntu y Debian ([code.claude.com/docs/en/desktop-linux](https://code.claude.com/docs/en/desktop-linux)); en el celular, la app «Claude» de Anthropic.\n3. **Cowork** (plan pago): ya es parte de Claude. En la app de escritorio, pida la tarea y dele acceso a una carpeta de prueba; si la tarea es con archivos, Claude trabaja con ellos.\n4. **Claude Code en la terminal** (plan pago), con la guía oficial ([code.claude.com/docs/en/terminal-guide](https://code.claude.com/docs/en/terminal-guide)):\n\n| Paso | Windows | Mac |\n| Abrir la terminal | Win + X → «Terminal» o «Windows PowerShell» (la línea empieza con PS) | Cmd + Espacio, «Terminal», Enter |\n| Instalar | El comando de PowerShell de la lámina 4.4 (hay otro para CMD) | El comando de la lámina 4.9 |\n| Esperar | No muestra avance; termina con «Claude Code successfully installed!» | Igual |\n| Comprobar | Una terminal **nueva** y `claude --version`: sale un número y «(Claude Code)» | Igual |\n| Primera carpeta y abrir | `mkdir mi-primer-proyecto`, `cd mi-primer-proyecto` y `claude` | Igual |\n| Iniciar sesión | La primera vez se abre el navegador: entre con su cuenta (Pro o más) y confíe en la carpeta | Igual |\n| Ver la carpeta | `explorer .` | `open .` |\n\nGit para Windows es opcional: sin él, Claude Code usa PowerShell y anda igual. Si algo falla, la tabla de errores está en la lámina 4.11 y en la chuleta del kit."
     },
     "recursos": [
       {
@@ -85,7 +85,7 @@ export const curso: CursoTexto = {
       "archivos": [
         {
           "nombre": "chuleta-instalacion.pdf",
-          "que": "Una hoja por sistema (Windows y Mac): abrir la terminal, el comando oficial, comprobar, la primera carpeta y la tabla de errores, con la fecha de la comprobación y el enlace oficial."
+          "que": "Una hoja por sistema (Windows y Mac): abrir la terminal, el comando oficial, comprobar, la primera carpeta y la tabla de errores y el enlace oficial."
         },
         {
           "nombre": "cual-uso-para-que.pdf",
@@ -101,7 +101,7 @@ export const curso: CursoTexto = {
         },
         {
           "nombre": "fotos-obra.zip",
-          "que": "20 fotos de una obra, con la fecha en los datos de cada foto, para la herramienta de la lección 5."
+          "que": "20 imágenes de una obra (dibujadas en 3D por Vion), con la fecha guardada en los datos de cada una, para la herramienta de la lección 5."
         },
         {
           "nombre": "pedidos-para-empezar.md",
@@ -111,15 +111,16 @@ export const curso: CursoTexto = {
     },
     "accion": {
       "titulo": "Elija su siguiente curso",
-      "texto": "Con la tabla de la lección 6, elija el curso que sigue según lo que quiera hacer. Si no sabe cuál, empiece por **A1 · Claude Code sin programar**. Y súmese a la comunidad de Vion: {{enlace de la comunidad}}."
-    }
+      "texto": "Con la tabla de la lección 6, elija el curso que sigue según lo que quiera hacer: un equipo de agentes para su negocio, sus propias skills, su sitio web o sus planos en AutoCAD."
+    },
+    "explica": "**Claude** es una inteligencia artificial de la empresa Anthropic: usted le escribe en castellano, como a una persona, y le responde o hace trabajos por usted.\n\nSe usa de tres formas. En el **chat** conversa y le pide textos o que le lea un documento. Con **Cowork** le da acceso a una carpeta y hace tareas con sus archivos, como ordenar descargas o armar un Excel. Con **Claude Code** construye cosas nuevas, como una página web o una herramienta, desde la terminal de su computadora.\n\n### Al terminar el curso va a poder\n\n- elegir cuál de las tres formas usar para cada tarea;\n- resumir un PDF y pedirle un correo listo para mandar;\n- ordenar una carpeta y armar un Excel con facturas;\n- instalar Claude Code y hacer su primera página web.\n\n### Lo que necesita\n\nUna computadora con Windows o Mac e internet. La lección 2 se hace con el plan gratis de Claude; para las lecciones 3 a 5 hace falta un plan pago (Pro, desde USD 20 al mes). No hace falta saber programar ni haber abierto nunca una terminal."
   },
   "en": {
     "corto": "Claude basics",
     "titulo": "Claude basics: Chat, Cowork and Code, and when to use each",
     "subtitulo": "Claude for beginners · Claude Code in the terminal, step by step",
     "tituloSeo": "Free course: Claude basics, Chat, Cowork and Code",
-    "descripcion": "A free Vion course: what Claude's Chat, Cowork and Code do, when to use each, what they cost and how to install Claude Code. In production.",
+    "descripcion": "A free Vion course: what Claude's Chat, Cowork and Code do, when to use each, what they cost and how to install Claude Code.",
     "paraQuien": "Anyone who has never used Claude (or only tried it like a search engine): business owners, professionals, students. No coding or terminal experience needed.",
     "seLleva": "You know what Chat, Cowork and Code are, which one to use for what and what each costs; you did a real task with each (a PDF reviewed with a reply email, a spreadsheet built from your invoices and a web page); Claude Code is installed and you can open it in the terminal.",
     "herramientas": "Claude: Chat on the free plan; Cowork and Claude Code need a paid plan (Pro, USD 20 a month).",

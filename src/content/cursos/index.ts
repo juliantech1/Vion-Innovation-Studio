@@ -75,7 +75,7 @@ interface Registro {
 
 /** El orden es el de la página: por ruta, y dentro de cada ruta por código (A0, el de Claude básico, primero). */
 const REGISTRO: Registro[] = [
-  { id: 'claude-basico', codigo: 'A0', ruta: 'A', lleva: 'apps', estado: 'produccion', texto: claudeBasico, lecciones: leccionesClaudeBasico },
+  { id: 'claude-basico', codigo: 'A0', ruta: 'A', lleva: 'apps', estado: 'publicado', publicado: '2026-11-14', texto: claudeBasico, lecciones: leccionesClaudeBasico },
   { id: 'agentic-os', codigo: 'A2', ruta: 'A', lleva: 'apps', estado: 'publicado', publicado: '2026-11-14', texto: agenticOs, lecciones: leccionesAgenticOs },
   { id: 'skills', codigo: 'A3', ruta: 'A', lleva: 'apps', estado: 'publicado', publicado: '2026-11-13', texto: skills, lecciones: leccionesSkills },
   { id: 'motion', codigo: 'B1', ruta: 'B', lleva: 'apps', estado: 'publicado', publicado: '2026-11-14', texto: motion, lecciones: leccionesMotion },
