@@ -1285,7 +1285,255 @@
       "producido": true
     }
   },
-  "seo-agentes": {},
+  "seo-agentes": {
+    "1.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L1-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L1-01-video-poster.webp"
+    },
+    "1.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L1-02-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L1-02-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L1-02-chispa.vtt"
+    },
+    "1.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L1-03-video.mp4",
+      "poster": "/cursos/seo-agentes/L1-03-video-poster.webp"
+    },
+    "1.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L1-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L1-04-video-poster.webp"
+    },
+    "1.5": {
+      "imagen": "/cursos/seo-agentes/L1-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L1-06-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L1-06-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L1-06-chispa.vtt"
+    },
+    "1.7": {
+      "imagen": "/cursos/seo-agentes/L1-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L2-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L2-01-video-poster.webp"
+    },
+    "2.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L2-03-video.mp4",
+      "poster": "/cursos/seo-agentes/L2-03-video-poster.webp"
+    },
+    "2.8": {
+      "imagen": "/cursos/seo-agentes/L2-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-01-video-poster.webp"
+    },
+    "3.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-02-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-02-video-poster.webp"
+    },
+    "3.3": {
+      "imagen": "/cursos/seo-agentes/L3-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-04-video-poster.webp"
+    },
+    "3.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-05-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L3-05-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L3-05-chispa.vtt"
+    },
+    "3.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-06-video-poster.webp"
+    },
+    "3.9": {
+      "imagen": "/cursos/seo-agentes/L3-09.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L4-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L4-01-video-poster.webp"
+    },
+    "4.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L4-02-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L4-02-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L4-02-chispa.vtt"
+    },
+    "4.3": {
+      "imagen": "/cursos/seo-agentes/L4-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L4-05-video.mp4",
+      "poster": "/cursos/seo-agentes/L4-05-video-poster.webp"
+    },
+    "4.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L4-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L4-06-video-poster.webp"
+    },
+    "4.7": {
+      "imagen": "/cursos/seo-agentes/L4-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-02-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L5-02-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L5-02-chispa.vtt"
+    },
+    "5.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-03-video.mp4",
+      "poster": "/cursos/seo-agentes/L5-03-video-poster.webp"
+    },
+    "5.5": {
+      "imagen": "/cursos/seo-agentes/L5-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.8": {
+      "imagen": "/cursos/seo-agentes/L5-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "6.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-01-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L6-01-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L6-01-chispa.vtt"
+    },
+    "6.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-02-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-02-video-poster.webp"
+    },
+    "6.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-03-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-03-video-poster.webp"
+    },
+    "6.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-04-video-poster.webp"
+    },
+    "6.5": {
+      "imagen": "/cursos/seo-agentes/L6-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "6.9": {
+      "imagen": "/cursos/seo-agentes/L6-09.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L7-01-video-poster.webp"
+    },
+    "7.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-02-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L7-02-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L7-02-chispa.vtt"
+    },
+    "7.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-03-video.mp4",
+      "poster": "/cursos/seo-agentes/L7-03-video-poster.webp"
+    },
+    "7.4": {
+      "imagen": "/cursos/seo-agentes/L7-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L7-06-video-poster.webp"
+    },
+    "tráiler": {
+      "producido": true
+    },
+    "2.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L2-02-video.mp4",
+      "poster": "/cursos/seo-agentes/L2-02-video-poster.webp"
+    },
+    "2.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L2-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L2-04-video-poster.webp"
+    },
+    "2.5": {
+      "imagen": "/cursos/seo-agentes/L2-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L2-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L2-06-video-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L2-06-video.vtt"
+    },
+    "2.7": {
+      "imagen": "/cursos/seo-agentes/L2-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-07-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-07-video-poster.webp"
+    },
+    "3.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L3-08-video.mp4",
+      "poster": "/cursos/seo-agentes/L3-08-video-poster.webp"
+    },
+    "4.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L4-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L4-04-video-poster.webp"
+    },
+    "5.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-01-video.mp4",
+      "poster": "/cursos/seo-agentes/L5-01-video-poster.webp"
+    },
+    "5.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-04-video.mp4",
+      "poster": "/cursos/seo-agentes/L5-04-video-poster.webp"
+    },
+    "5.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L5-06-video-poster.webp"
+    },
+    "5.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L5-07-video.mp4",
+      "poster": "/cursos/seo-agentes/L5-07-video-poster.webp"
+    },
+    "6.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-06-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-06-video-poster.webp"
+    },
+    "6.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-07-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-07-video-poster.webp"
+    },
+    "6.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L6-08-video.mp4",
+      "poster": "/cursos/seo-agentes/L6-08-video-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L6-08-video.vtt"
+    },
+    "7.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-05-video.mp4",
+      "poster": "/cursos/seo-agentes/L7-05-video-poster.webp"
+    },
+    "7.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/seo-agentes/L7-07-chispa.mp4",
+      "poster": "/cursos/seo-agentes/L7-07-chispa-poster.webp",
+      "subtitulos": "/cursos/seo-agentes/L7-07-chispa.vtt"
+    }
+  },
   "sitio-claude-code": {
     "0.1": {
       "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/sitio-claude-code/L0-01-chispa.mp4",

@@ -8,13 +8,14 @@ export const curso: CursoTexto = {
     "titulo": "SEO con agentes: auditoría, Google y arreglos",
     "subtitulo": "Auditoría SEO con Claude Code, Lighthouse y Search Console, paso a paso",
     "tituloSeo": "Curso gratis: SEO con agentes y Claude Code | Vion",
-    "descripcion": "Curso gratis de Vion: audite su sitio, mídalo con Lighthouse, lea Search Console sin riesgo y apruebe cada arreglo. En producción.",
+    "descripcion": "Curso gratis de Vion: audite su sitio, mídalo con Lighthouse, lea Search Console sin riesgo y apruebe cada arreglo.",
     "paraQuien": "Dueños de sitios de servicios (estudios, consultorías, comercios) y quien les hace el sitio. Sirve para cualquier sitio público; los arreglos de la lección 6 necesitan que el sitio esté en Git (GitHub).",
     "seLleva": "Una auditoría técnica de su sitio con puntaje por sección (un programa que recorre el sitio como un buscador), su línea base de Lighthouse bien medida, Search Console conectado sin permiso de escritura, un verificador que corre antes de cada publicación y el ciclo: el agente propone en una rama, usted aprueba la vista previa, se publica y se mide de nuevo.",
     "herramientas": "Claude Code (plan pago de Anthropic, desde USD 20 al mes); Search Console, Lighthouse, PageSpeed Insights y Node, gratis; GitHub y una vista previa por rama (Vercel, Netlify u otra) para los arreglos.",
+    "explica": "**SEO** (del inglés *search engine optimization*) es todo lo que se hace para que Google entienda su sitio y lo muestre a quien busca lo que usted ofrece. No es magia ni trucos: es que cada página diga con claridad qué es, que cargue rápido y que no tenga errores.\n\nEn este curso usted arma un **agente**: Claude Code (el asistente de Claude que trabaja en su computadora) con un kit de programas que **revisa su sitio solo**, lee lo que Google sabe de él y **propone** los arreglos. La regla es la misma de punta a punta: el agente propone y **usted aprueba**; nada se publica sin su visto bueno.\n\nLe mostramos el método con nuestro propio sitio, vion-studio.com, con sus cifras medidas antes y después y lo que todavía no sabemos.\n\n### Al terminar el curso va a poder\n\n- auditar su sitio con un programa y ver qué arreglar primero, sección por sección;\n- medir su sitio con Lighthouse de una forma que se pueda repetir;\n- leer los datos de Google (Search Console) con una cuenta que no puede cambiar nada;\n- pedir los arreglos en una rama aparte, revisarlos en una vista previa y aprobarlos;\n- comparar antes y después con honestidad.\n\n### Lo que necesita\n\nUna computadora con Windows, Mac o Linux, una cuenta de Claude con plan pago (Pro, desde USD 20 al mes), su sitio en internet y acceso a su dominio para verificarlo en Search Console. No hace falta saber programar: los comandos se copian de cada lámina y los arreglos los escribe Claude.",
     "ficha": {
       "requisitos": "Windows 10 (1809 o más nuevo), macOS 13 o más nuevo, o Linux; Chrome; una cuenta de Claude con Claude Code (plan pago); una cuenta de Google con acceso de propietario al dominio (para verificar Search Console). Para la lección 6: el sitio en un repo de GitHub y una vista previa por rama (Vercel, Netlify o la que tenga).",
-      "duracion": "7 lecciones, 55 láminas con 43 videos cortos (unos 20 min de video en total). Hacerlo con su sitio: estimado, una tarde, más la espera de Google (semanas) para la lección 7.",
+      "duracion": "7 lecciones, 55 láminas con videos cortos, más el tráiler.",
       "costo": "Claude Pro (USD 20 al mes, o USD 200 al año); Search Console, Lighthouse, PageSpeed Insights y Node son gratis, y GitHub también para lo del curso. Vercel Hobby es gratis pero solo para uso personal y no comercial: el sitio de un negocio va en Pro (USD 20 al mes) o en el hosting que ya tenga."
     },
     "costos": [
@@ -199,7 +200,7 @@ export const curso: CursoTexto = {
     "titulo": "SEO with AI agents: audit, Google and fixes",
     "subtitulo": "SEO audit with Claude Code, Lighthouse and Search Console, step by step",
     "tituloSeo": "Free course: SEO with AI agents and Claude Code | Vion",
-    "descripcion": "A free Vion course: audit your site, measure it with Lighthouse, read Search Console safely and approve every fix. In production.",
+    "descripcion": "A free Vion course: audit your site, measure it with Lighthouse, read Search Console safely and approve every fix.",
     "paraQuien": "Owners of service business websites (studios, consultancies, shops) and whoever builds their site. It works for any public site; the fixes in lesson 6 need the site in Git (GitHub).",
     "seLleva": "A technical audit of your site scored by section, a Lighthouse baseline measured the right way, Search Console connected with no write access, a checker that runs before every release, and the loop: the agent proposes on a branch, you approve the preview, it ships and gets measured again.",
     "herramientas": "Claude Code (paid Anthropic plan, from USD 20 a month); Search Console, Lighthouse, PageSpeed Insights and Node are free; GitHub and a per-branch preview (Vercel, Netlify or similar) for the fixes.",

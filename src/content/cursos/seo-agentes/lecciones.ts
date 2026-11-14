@@ -23,7 +23,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.2",
         "titulo": "Por qué contamos el nuestro",
-        "cuerpo": "No tenemos clientes que mostrar en este curso. Tenemos nuestro sitio, con todo medido. Le contamos qué estaba mal, qué hicimos y lo que **todavía no** sabemos.",
+        "cuerpo": "No tenemos clientes para mostrar en este curso. Tenemos nuestro sitio, con todo medido. Le contamos qué estaba mal, qué hicimos y lo que **todavía no** sabemos.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 25,
@@ -34,7 +34,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.3",
         "titulo": "Lo que encontró la auditoría",
-        "cuerpo": "El 2026-10-16, nuestro agente de SEO recorrió 5 páginas y dio **51/100**: el mismo título «Vion» y la misma descripción «Bienvenido a Vion» en todas, sin H1, el idioma declarado en inglés con el texto en español, sin sitemap ni robots.txt, sin datos estructurados. Costo: cero (son reglas, no IA).",
+        "cuerpo": "El 2026-10-16, nuestro agente de SEO recorrió 5 páginas de vion-studio.com y le dio **51/100**. Encontró el mismo título («Vion») y la misma descripción («Bienvenido a Vion») en todas las páginas, ninguna con un título principal (H1), el idioma declarado en inglés con el texto en español, y faltaban el sitemap (la lista de páginas para Google), el robots.txt (las reglas para los buscadores) y los datos estructurados (información ordenada para Google). No costó nada: son reglas de un programa, no IA.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
@@ -44,7 +44,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.4",
         "titulo": "Lo que dijo Google",
-        "cuerpo": "En las tres semanas siguientes (del 2026-10-16 al 2026-11-07), Search Console registró **42 impresiones y 0 clics**. Casi todas de quien buscaba el nombre: «vion studio», 34 veces, en el puesto medio 8,1. Google no tenía de qué mostrarnos.",
+        "cuerpo": "En las tres semanas siguientes (del 2026-10-16 al 2026-11-07), **Search Console**, la herramienta gratis de Google para ver cómo aparece su sitio, registró **42 impresiones y 0 clics** (una impresión es una vez que el sitio salió en una búsqueda). Casi todas fueron de quien buscaba el nombre: «vion studio», 34 veces, en el puesto medio 8,1. Google no tenía de qué mostrarnos.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -92,7 +92,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.1",
         "titulo": "Cinco piezas",
-        "cuerpo": "Claude Code · Node 22 · Chrome · Search Console · el kit. Si ya hizo otro curso de Vion con Claude Code, ya lo tiene instalado.",
+        "cuerpo": "Cinco piezas: Claude Code, Node 22 (el programa con el que corren los programas del kit), Chrome, Search Console y el kit del curso. Si ya hizo otro curso de Vion con Claude Code, ya lo tiene instalado.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
@@ -102,23 +102,17 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.2",
         "titulo": "Claude Code",
-        "cuerpo": "**Windows:** `winget install Anthropic.ClaudeCode` (o, en PowerShell, `irm https://claude.ai/install.ps1 | iex`) · **Mac:** `brew install --cask claude-code` · después `claude doctor` · y `claude` para entrar con la cuenta paga (Pro, USD 20 al mes; el plan gratis no lo incluye).",
+        "cuerpo": "Claude Code se instala con un solo comando en la **terminal** (la ventana donde se escriben comandos; en Windows, PowerShell):\n\n- **Windows:** `winget install Anthropic.ClaudeCode`\n- **Mac:** `brew install --cask claude-code` (necesita [Homebrew](https://brew.sh))\n\nCierre la terminal, ábrala de nuevo y compruebe con `claude doctor`. Después escriba `claude` y entre con su cuenta paga (Pro, USD 20 al mes; el plan gratis no incluye Claude Code).",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "La instalación de Claude Code, `claude doctor` y el inicio de sesión con la cuenta paga."
+          "seVe": "PowerShell instala Claude Code con winget y el Terminal de Mac con Homebrew; después claude --version, claude doctor y la primera vez de claude."
         },
         "bloques": [
           {
             "tipo": "comando",
             "etiqueta": "Windows",
             "texto": "winget install Anthropic.ClaudeCode"
-          },
-          {
-            "tipo": "comando",
-            "etiqueta": "Windows, en PowerShell (otra forma)",
-            "lenguaje": "powershell",
-            "texto": "irm https://claude.ai/install.ps1 | iex"
           },
           {
             "tipo": "comando",
@@ -168,26 +162,26 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.4",
         "titulo": "Search Console: su sitio",
-        "cuerpo": "Agregar propiedad → **Dominio** → copiar el TXT → pegarlo en el DNS → Verificar. Sin acceso al DNS: **Prefijo de URL** con un archivo o una etiqueta.\n\n1. Entre a [search.google.com/search-console](https://search.google.com/search-console) → **Agregar propiedad**.\n2. **Dominio** (recomendado: cubre `www`, sin `www`, `http` y `https`): Google da un registro **TXT** para el DNS; se pega en el panel de su proveedor de dominio y se espera a que propague. **Prefijo de URL** (si no tiene acceso al DNS): un archivo HTML, una etiqueta `<meta>`, Google Analytics o Tag Manager.",
+        "cuerpo": "Search Console necesita saber que el sitio es suyo. Entre a [search.google.com/search-console](https://search.google.com/search-console) → **Agregar propiedad**:\n\n- **Dominio** (recomendado: cubre todas las variantes de su dirección): Google le da un registro **TXT** que se pega en el panel donde administra su dominio. Es la única forma de verificar una propiedad de dominio.\n- **Prefijo de URL**, si no tiene acceso a ese panel: un archivo HTML, una etiqueta `<meta>`, Google Analytics o Tag Manager.\n\nDespués apriete **Verificar**. Si todavía no pasa, espere a que el registro se actualice y vuelva a intentar.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 45,
-          "seVe": "La verificación completa de un dominio de prueba en Search Console, con los datos del panel del DNS tapados."
+          "seVe": "La ayuda oficial de Google para verificar la propiedad de un sitio en Search Console."
         }
       },
       {
         "n": "2.5",
         "titulo": "El sitemap",
-        "cuerpo": "Sitemaps → `https://su-sitio.com/sitemap.xml` → Enviar. Si da error, su sitio no tiene: la lección 6 lo arregla.",
+        "cuerpo": "El **sitemap** es un archivo de su sitio que le dice a Google qué páginas conocer. En Search Console, el informe **Sitemaps**: escriba la dirección del suyo (por ejemplo `https://su-sitio.com/sitemap.xml`) y **Enviar**. Si da error, su sitio no tiene sitemap: la lección 6 lo arregla.",
         "apoyo": {
           "tipo": "captura",
-          "seVe": "El informe de sitemaps de Search Console con un sitemap enviado."
+          "seVe": "La ayuda oficial de Google sobre el informe Sitemaps."
         }
       },
       {
         "n": "2.6",
         "titulo": "¿Y el agente?",
-        "cuerpo": "El agente va a **leer** Search Console. Leer, nada más. Eso se arma con una cuenta aparte en la lección 5.\n\nPara eso va a necesitar **Configuración → Usuarios y permisos** (solo lo ve el propietario de la propiedad): ahí se agrega la cuenta de solo lectura.",
+        "cuerpo": "El agente va a **leer** Search Console. Leer, nada más. Eso se arma con una cuenta aparte en la lección 5.\n\nPara eso va a usar **Configuración → Usuarios y permisos** (solo lo ve el dueño de la propiedad): ahí se agrega la cuenta de solo lectura.",
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
@@ -199,10 +193,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.7",
         "titulo": "Comprobar",
-        "cuerpo": "Las tres comprobaciones:\n\n- `node auditar.mjs https://su-sitio.com` termina con un puntaje y `salida/auditoria.md`.\n- Chrome → su sitio → DevTools → Lighthouse → «Mobile» → Analizar: sale el informe.\n- `node gsc.mjs sitios` muestra `sc-domain:su-sitio.com` (o la URL) con permiso `siteRestrictedUser` (esta, después de la lección 5).",
+        "cuerpo": "Tres comprobaciones:\n\n- `node auditar.mjs https://su-sitio.com` termina con un puntaje y escribe `salida/auditoria.md`. En el sitio de prueba del kit dio 91/100.\n- Chrome → su sitio → herramientas para desarrolladores → Lighthouse → «Mobile» → Analizar: sale el informe.\n- `node gsc.mjs sitios` muestra su propiedad con el permiso `siteRestrictedUser`. Esta se hace después de la lección 5, cuando ya tenga la cuenta de solo lectura.",
         "apoyo": {
           "tipo": "captura",
-          "seVe": "Las tres comprobaciones en verde: la auditoría con su puntaje, el informe de Lighthouse y la propiedad listada con permiso restringido."
+          "seVe": "La auditoría del kit corrida sobre el sitio de prueba, con su puntaje, y el informe de Lighthouse del mismo sitio."
         },
         "bloques": [
           {
@@ -220,7 +214,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.8",
         "titulo": "Si algo no anda",
-        "cuerpo": "Los errores típicos, con su causa y su solución:\n\n| Error | Causa | Solución |\n| --- | --- | --- |\n| `node` no se reconoce | Terminal abierta antes de instalar | Cerrar y abrir una nueva |\n| La verificación de dominio no pasa | El TXT todavía no propagó, o quedó en un subdominio | Esperar (puede tardar horas); revisar que el registro esté en la raíz del dominio |\n| `gsc.mjs` da 403 «User does not have sufficient permission» | La cuenta de servicio no está agregada a la propiedad, o se agregó a otra (con o sin `www`) | Agregarla en la propiedad que corresponde |\n| `gsc.mjs` da 403 «insufficient authentication scopes» al intentar escribir | **Así tiene que ser**: el token pide solo lectura | Nada: es la primera barrera (lección 5) |\n| Search Console no muestra datos | Propiedad nueva: los datos empiezan a llegar en días | Esperar; la lección 7 explica los tiempos |\n| Lighthouse da puntajes muy distintos cada vez | Otras pestañas, extensiones o la compu ocupada | Ventana de incógnito, sin extensiones, una medición por vez, y anotar las condiciones |\n| `auditar.mjs` se corta por tiempo | El sitio tarda o bloquea robots automáticos | `--espera 5` (segundos entre pedidos); nunca más rápido que eso con un sitio ajeno |",
+        "cuerpo": "Los errores típicos, con su causa y su solución:\n\n| Error | Causa | Solución |\n| --- | --- | --- |\n| `node` no se reconoce | Terminal abierta antes de instalar | Cerrar y abrir una nueva |\n| La verificación de dominio no pasa | El TXT todavía no propagó, o quedó en un subdominio | Esperar y volver a intentar; revisar que el registro esté en la raíz del dominio |\n| `gsc.mjs` da 403 «User does not have sufficient permission» | La cuenta de servicio no está agregada a la propiedad, o se agregó a otra (con o sin `www`) | Agregarla en la propiedad que corresponde |\n| `gsc.mjs` da 403 «insufficient authentication scopes» al intentar escribir | **Así tiene que ser**: el token pide solo lectura | Nada: es la primera barrera (lección 5) |\n| Search Console no muestra datos | Propiedad nueva: los datos empiezan a llegar en días | Esperar; la lección 7 explica los tiempos |\n| Lighthouse da puntajes muy distintos cada vez | Otras pestañas, extensiones o la compu ocupada | Ventana de incógnito, sin extensiones, una medición por vez, y anotar las condiciones |\n| `auditar.mjs` se corta por tiempo | El sitio tarda o bloquea robots automáticos | `--espera 5` (segundos entre pedidos); nunca más rápido que eso con un sitio ajeno |",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "Tarjetas con cada error típico, su causa y su solución."
@@ -238,7 +232,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.1",
         "titulo": "¿Qué ve Google de su sitio?",
-        "cuerpo": "No lo que usted ve. Ve el HTML: el título, la descripción, los encabezados, el texto, los enlaces, el idioma declarado. En nuestro sitio, el de antes, eso era **«Vion»** y 11 palabras.",
+        "cuerpo": "Google no ve lo que usted ve. Ve el **HTML**, el texto con el que está hecha la página: el título, la descripción, los encabezados, el texto, los enlaces, el idioma declarado. En nuestro sitio, el de antes, eso era **«Vion»** y 11 palabras.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -248,7 +242,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.2",
         "titulo": "Un programa, no una opinión",
-        "cuerpo": "`auditar.mjs` recorre hasta 10 páginas de su dominio, despacio (una cada 3 s), y por cada una mira: título, descripción, canónica, idioma, H1 a H6, imágenes sin texto alternativo, datos estructurados, Open Graph, palabras, enlaces rotos. Y el sitio: robots.txt y sitemap.xml.\n\nAudite **su** sitio. El programa va despacio y se identifica; auditar un sitio ajeno es responsabilidad de quien lo corre.",
+        "cuerpo": "`auditar.mjs` recorre hasta 10 páginas de su sitio, despacio y una por vez, y en cada una revisa: título, descripción, dirección principal (canónica), idioma, encabezados, imágenes sin texto alternativo, datos estructurados, la vista previa para redes, cantidad de palabras y enlaces rotos. Y del sitio: robots.txt y sitemap.xml.\n\nAudite **su** sitio. El programa va despacio y se identifica; auditar un sitio ajeno es responsabilidad de quien lo corre.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
@@ -312,21 +306,21 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.7",
         "titulo": "Lo que el programa no ve",
-        "cuerpo": "Si su sitio arma el texto con JavaScript, el HTML del servidor puede estar casi vacío aunque en pantalla se vea todo. `auditar.mjs --navegador` compara las palabras del HTML con las que se ven después de cargar (con playwright-cli).",
+        "cuerpo": "Si su sitio arma el texto con JavaScript (código que corre en el navegador), el HTML que entrega el servidor puede estar casi vacío aunque en pantalla se vea todo. Google lo resuelve en dos pasos: primero lee el HTML y después ejecuta el JavaScript y mira de nuevo. El programa del kit lee solo el HTML, así que en un sitio así puede ver menos de lo que ve usted. Para comprobarlo, compare en Chrome «Ver código fuente» con lo que se ve en la página.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "La comparación sobre una página de prueba: «HTML: 11 palabras · en pantalla: 160»."
+          "seVe": "La documentación oficial de Google sobre cómo procesa el JavaScript."
         }
       },
       {
         "n": "3.8",
         "titulo": "Lo mismo en Vion",
-        "cuerpo": "En Vion, nuestro agente de SEO hace esto solo, guarda cada auditoría y Ultron muestra las secciones con su flecha contra la anterior. Usted tiene lo mismo en un archivo.",
+        "cuerpo": "En Vion, nuestro agente de SEO hace esto solo y guarda cada auditoría. Ultron muestra las secciones con su puntaje y, en las que no llegan, un botón «Enviar a mejorar» que le pasa el pedido al agente de sitios. Usted tiene lo mismo en un archivo.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 20,
-          "seVe": "Ultron en modo demo: el tablero «Por sección», con una barra y su botón «Enviar a mejorar»."
+          "seVe": "La sala de nuestro agente de SEO en Ultron, en modo demo, con los puntajes por sección del sitio de prueba y el botón «Enviar a mejorar»."
         }
       },
       {
@@ -380,11 +374,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.4",
         "titulo": "Medir en Chrome",
-        "cuerpo": "DevTools (F12) → Lighthouse → **Mobile** → Analizar. En una ventana de **incógnito**, sin extensiones, sin otras pestañas pesadas. Anote: fecha, celular o escritorio, versión.",
+        "cuerpo": "En Chrome, abra su sitio en una ventana de **incógnito** (sin extensiones ni otras pestañas pesadas) → F12 → **Lighthouse** → **Mobile** → Analizar. El informe da cuatro puntajes; debajo de cada uno, lo que falla. En el sitio de prueba del kit dio 100 en rendimiento, 92 en accesibilidad (un botón con poco contraste), 100 en buenas prácticas y 100 en SEO. Anote la fecha, si fue celular o escritorio, y la versión.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "La medición completa con Lighthouse en Chrome sobre un sitio de prueba."
+          "seVe": "El informe real de Lighthouse del sitio de prueba, con la accesibilidad abierta y lo que falla."
         }
       },
       {
@@ -417,7 +411,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.6",
         "titulo": "Lo que mueve el número",
-        "cuerpo": "Una medición puede moverse 5 a 10 puntos entre corridas. Una escena 3D sin GPU hunde el rendimiento. Antes y después se comparan **en las mismas condiciones**, y se dice cuáles.",
+        "cuerpo": "Una medición puede moverse 5 a 10 puntos de una vez a otra. Una escena 3D en una computadora sin tarjeta gráfica hunde el rendimiento. Antes y después se comparan **en las mismas condiciones**, y se dice cuáles.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 25,
@@ -445,11 +439,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.1",
         "titulo": "Un error que es bueno",
-        "cuerpo": "«403: insufficient authentication scopes». El agente intentó escribir en Search Console y Google se lo negó. Así tiene que ser.\n\nEl kit trae esa prueba: `--probar-escritura` manda **un** pedido de escritura inofensivo y **tiene** que volver con 403. Si no vuelve con 403, la cuenta tiene más permiso del debido y el programa lo dice en rojo.",
+        "cuerpo": "«403: insufficient authentication scopes». El agente intentó escribir en Search Console y Google se lo negó. Así tiene que ser: la cuenta del agente es de **usuario restringido**, que según Google solo puede ver los datos.\n\nEl kit trae esa prueba: `--probar-escritura` manda **un** pedido de escritura inofensivo y **tiene** que volver con 403. Si no vuelve con 403, la cuenta tiene más permiso del debido y el programa lo dice en rojo.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 20,
-          "seVe": "`gsc.mjs` intenta borrar el sitemap (una prueba armada a propósito) y recibe el 403; zoom al mensaje."
+          "seVe": "La ayuda oficial de Google sobre los permisos de Search Console, con el usuario restringido resaltado."
         },
         "bloques": [
           {
@@ -483,11 +477,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.4",
         "titulo": "Crear la cuenta",
-        "cuerpo": "Google Cloud → proyecto → habilitar la API → cuenta de servicio sin roles → clave JSON → `claves/`. En Search Console: agregar el correo de la cuenta como **Restringido**. Paso a paso:\n\n1. En [console.cloud.google.com](https://console.cloud.google.com), un proyecto nuevo → **habilitar «Google Search Console API»**.\n2. **IAM → Cuentas de servicio → Crear**: sin roles en el proyecto. **Claves → Agregar clave → JSON**: se descarga un archivo. **Es una contraseña**: va a la carpeta `claves/` del kit (en `.gitignore`), nunca a un repo ni a un chat.\n3. En Search Console, **Usuarios y permisos → Agregar usuario**: el correo de la cuenta de servicio, permiso **Restringido** («Has simple view rights on most data», según la ayuda de Google).\n4. `node gsc.mjs sitios` tiene que listar su propiedad; `node gsc.mjs consultas --dias 28` trae la tabla.",
+        "cuerpo": "La cuenta del agente es una **cuenta de servicio** de Google Cloud: una cuenta para programas, no para personas.\n\n1. En [console.cloud.google.com](https://console.cloud.google.com), un proyecto nuevo → **habilitar la API de Search Console**.\n2. **IAM → Cuentas de servicio → Crear**, sin roles en el proyecto. **Claves → Agregar clave → JSON**: se descarga un archivo. **Es una contraseña**: va a la carpeta `claves/` del kit (que Git ignora), nunca a un repositorio ni a un chat.\n3. En Search Console, **Usuarios y permisos → Agregar usuario**: el correo de la cuenta de servicio, como **Restringido**.\n\nCompruebe con `node gsc.mjs sitios`.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 50,
-          "seVe": "La creación entera en una cuenta de Google de prueba, con la clave tapada."
+          "seVe": "La documentación oficial de Google sobre lo que hace falta para usar la API de Search Console: un proyecto, credenciales y la API habilitada."
         },
         "bloques": [
           {
@@ -509,11 +503,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.6",
         "titulo": "Leer",
-        "cuerpo": "`node gsc.mjs consultas --dias 28` → consultas y páginas con clics, impresiones, CTR y puesto medio. Los datos llegan con 2 a 3 días de atraso; Google guarda 16 meses; las consultas anónimas no aparecen.",
+        "cuerpo": "`node gsc.mjs consultas --dias 28` le pide a Google las búsquedas de los últimos 28 días y escribe `salida/consultas.md`: consultas y páginas, con clics, impresiones, CTR (qué parte de las impresiones terminó en clic) y puesto medio. Los datos de Google llegan con unos días de atraso, se guardan 16 meses y las búsquedas anónimas no aparecen.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "El comando y la tabla de consultas de un sitio de prueba; zoom al puesto de una consulta."
+          "seVe": "La documentación oficial de la consulta de Search Analytics que usa el programa: los resultados ordenados por clics y agrupados por dimensiones."
         },
         "bloques": [
           {
@@ -526,11 +520,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.7",
         "titulo": "Que Claude lo lea",
-        "cuerpo": "Pídale a Claude que busque, en sus consultas, las que tienen impresiones pero no clics, sin cambiar nada (el pedido, en el bloque de abajo).",
+        "cuerpo": "Pídale a Claude que busque, en sus consultas, las que tienen impresiones pero casi no tienen clics, sin cambiar nada (el pedido está abajo). Son las búsquedas donde Google ya lo muestra pero la gente no entra: casi siempre se mejoran con un título o una descripción más claros.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "El pedido en Claude Code y su respuesta."
+          "seVe": "La documentación oficial de la consulta de Search Analytics: de ahí salen las columnas que lee Claude."
         },
         "bloques": [
           {
@@ -597,7 +591,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.3",
         "titulo": "Una rama, no la principal",
-        "cuerpo": "`git switch -c seo/titulos` → Claude hace **solo** las propuestas aprobadas → commits que dicen qué y por qué. La rama principal no se toca.",
+        "cuerpo": "Para los arreglos, una **rama**: una copia del sitio para trabajar sin tocar el original. `git switch -c seo/titulos` la crea; Claude hace **solo** las propuestas aprobadas y guarda cada cambio en un **commit** que dice qué y por qué. La rama principal no se toca.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
@@ -638,11 +632,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.6",
         "titulo": "La vista previa",
-        "cuerpo": "`git push` de la rama → su hosting arma una **vista previa** (en Vercel, una URL por rama). Ahí mira el cambio de verdad y corre Lighthouse y `/jury` sobre la vista previa, no sobre su compu.",
+        "cuerpo": "Al subir la rama (`git push`), su servicio de publicación arma una **vista previa**: el sitio con el cambio, en una dirección aparte. En Vercel, cada rama y cada pull request tienen la suya, y el enlace aparece como comentario en el pull request. Ahí mira el cambio de verdad y mide con Lighthouse sobre la vista previa, no sobre su computadora.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "El push, la URL de la vista previa, la página abierta y Lighthouse corriendo sobre ella."
+          "seVe": "La documentación oficial de Vercel sobre las vistas previas y su enlace en el pull request."
         },
         "bloques": [
           {
@@ -655,17 +649,17 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.7",
         "titulo": "Aprobar",
-        "cuerpo": "Usted aprueba con un **pull request**: mira el cambio, lo acepta, y recién ahí se mezcla con la principal y se publica. Si su plan de GitHub lo permite, proteja la rama principal para que nadie (tampoco un agente) publique sin ese paso.",
+        "cuerpo": "Usted aprueba con un **pull request**: mira el cambio, lo acepta con **Squash and merge** y **Confirm squash and merge**, y recién ahí se une a la rama principal y se publica. Si su plan de GitHub lo permite, proteja la rama principal para que nadie, tampoco un agente, publique sin ese paso.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "El pull request en GitHub con el resumen de Claude, el botón «Merge» y la publicación de producción."
+          "seVe": "La documentación oficial de GitHub para fusionar un pull request."
         }
       },
       {
         "n": "6.8",
         "titulo": "Así lo tenemos en Vion",
-        "cuerpo": "En Vion lo hace nuestro agente de desarrollo web: Julian pide un cambio en palabras, Claude Code lo hace en una rama, la vista previa llega a la cola de aprobación y se publica al aprobar. Un hallazgo de nuestro agente de SEO se manda con un botón, «Enviar a mejorar».",
+        "cuerpo": "En Vion lo hace nuestro agente de sitios: Julian pide un cambio en palabras, Claude Code lo hace en una rama, la vista previa llega a la cola de aprobación y se publica al aprobar. Un hallazgo de nuestro agente de SEO se manda con un botón, «Enviar a mejorar».",
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
@@ -695,7 +689,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.1",
         "titulo": "Hoy, a 28 y a 90 días",
-        "cuerpo": "**Hoy:** la auditoría y Lighthouse (cambian enseguida). **A los 28 días:** Search Console, el mismo período antes y después. **A los 90:** otra vez. Google vuelve a rastrear a su ritmo; pedirle que indexe una página no garantiza nada.",
+        "cuerpo": "**Hoy:** la auditoría y Lighthouse, que cambian enseguida. **A los 28 días:** Search Console, comparando el mismo período antes y después. **A los 90:** otra vez. Google vuelve a recorrer su sitio a su ritmo; pedirle que indexe una página no garantiza nada.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 25,
@@ -742,11 +736,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.5",
         "titulo": "Inspección de URL",
-        "cuerpo": "Para una página nueva o arreglada: Search Console → Inspección de URL → ver si está indexada, la canónica que eligió Google y los datos estructurados; «Solicitar indexación» si pasa la prueba. Hay un tope diario; para muchas páginas, el sitemap.",
+        "cuerpo": "Para una página nueva o arreglada, Search Console tiene la **inspección de URL**: dice si Google tiene la página, cuál eligió como dirección principal y si se puede indexar (guardar para mostrarla en las búsquedas). Se abre desde el buscador de arriba o desde un informe. Si la prueba pasa, puede **Solicitar indexación**. Hay un tope por día; para muchas páginas, el sitemap.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "La inspección de una URL de un sitio de prueba y el pedido de indexación."
+          "seVe": "La ayuda oficial de Google sobre la herramienta de inspección de URLs."
         }
       },
       {
