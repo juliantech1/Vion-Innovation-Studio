@@ -16,7 +16,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Si le repite a Claude las mismas instrucciones más de dos veces, eso es una skill.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 30,
+          "segundos": 15,
           "seVe": "Chispa en plano de cara, en tres tomas cortas, cada vez más cansada de repetir el mismo pedido; suspira, y al final mira a cámara.",
           "dice": "Escribí la propuesta con este formato, en este orden, sin inventar precios… Escribí la propuesta con este formato, en este orden… Escribí la propuesta… Si se lo dice a Claude más de dos veces, eso es una skill. Escríbalo una vez."
         }
@@ -56,7 +56,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Si es una regla que vale siempre, CLAUDE.md. Si es un cómo-se-hace que usa a veces, una skill. Si necesita trabajar aparte con sus propias herramientas, un subagente. Si necesita hablar con otro programa, un MCP.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 25,
+          "segundos": 15,
           "seVe": "Chispa en plano medio, explicando las cuatro preguntas.",
           "dice": "La pregunta es simple. ¿Vale siempre? Va en CLAUDE punto md. ¿Es un cómo-se-hace que usa a veces? Una skill. ¿Necesita trabajar aparte? Un subagente. ¿Tiene que hablar con otro programa? Un MCP."
         }
@@ -67,7 +67,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Una biblioteca de skills propias y de terceros, cada una revisada antes de activarla (se ve en modo demo, sin rutas ni huellas).",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 15,
+          "segundos": 16,
           "seVe": "La sección Skills de Ultron en modo demo: la lista de skills, cada una marcada como activa o inactiva."
         }
       },
@@ -95,7 +95,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Si ya hizo el curso «Su agentic OS», saltee esta lámina.\n\n- **Windows:** `winget install Anthropic.ClaudeCode`.\n- **Mac:** `brew install --cask claude-code`.\n\nCierre y abra la terminal. Comprobar: `claude --version` y `claude doctor`. La versión cambia seguido: la que usted vea será otra. Entrar: `claude` → cuenta con suscripción (plan Pro desde USD 20 al mes). La guía completa (con Python y Git, que se usan en las lecciones 5 a 7) está en el kit, en `PUESTA-A-PUNTO.md`.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 40,
+          "segundos": 47,
           "seVe": "Recreación, marcada como tal, con los textos reales de cada fuente: winget en PowerShell (los mensajes en español de winget y el paquete oficial de Claude Code), Homebrew en el Terminal de Mac y, después, la salida real de `claude --version`, `claude doctor` y la primera vez de `claude`, donde se elige la cuenta con suscripción."
         },
         "bloques": [
@@ -114,7 +114,7 @@ export const lecciones: LeccionCurso[] = [
           {
             "tipo": "comando",
             "etiqueta": "Comprobar (Windows y Mac)",
-            "texto": "claude doctor"
+            "texto": "claude --version\nclaude doctor"
           }
         ]
       },
@@ -124,7 +124,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Depende de quién la va a usar.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 15,
+          "segundos": 10,
           "seVe": "Chispa en plano medio.",
           "dice": "Ahora lo importante: dónde guardar una skill. Depende de quién la va a usar: usted, su equipo, o usted en el chat de claude.ai."
         }
@@ -144,7 +144,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "- **Windows:** `mkdir $HOME\\.claude\\skills`\n- **Mac:** `mkdir -p ~/.claude/skills`\n\nEs una carpeta oculta: en el Finder, Cmd+Mayús+punto la muestra.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 20,
+          "segundos": 28,
           "seVe": "Recreación, marcada como tal: el comando en PowerShell con su respuesta y la carpeta en el Explorador; después el comando en el Terminal de Mac y, en el Finder, Cmd+Mayús+punto, que muestra la carpeta oculta `.claude` con `skills` adentro."
         },
         "bloques": [
@@ -243,7 +243,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Una plantilla le dice a Claude qué poner en cada casilla. Un método le dice cómo pensar el problema.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 25,
+          "segundos": 12,
           "seVe": "Chispa en plano medio.",
           "dice": "Una plantilla le dice a Claude qué poner en cada casilla. Un método le dice cómo pensar el problema. Las buenas skills son métodos: reglas con su porqué, no casillas para llenar."
         }
@@ -326,7 +326,7 @@ export const lecciones: LeccionCurso[] = [
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
-          "segundos": 20,
+          "segundos": 9,
           "seVe": "Chispa en capa sobre una terminal vacía.",
           "dice": "Una skill que le arme propuestas a sus clientes. La suya, con su método. Empezamos."
         }
@@ -337,7 +337,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Abra `claude` y pegue el **pedido de la lección 4** (está en el bloque de abajo y en el kit). Le va a preguntar qué vende, cómo pone el precio y qué nunca promete. Conteste como a un empleado nuevo.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 45,
+          "segundos": 42,
           "seVe": "El pedido en Claude Code y las preguntas que hace de a una, con las respuestas."
         },
         "bloques": [
@@ -371,7 +371,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "En una conversación **nueva**, sin nombrarla: «Necesito una cotización para 200 empanadas para un evento». Claude la reconoce por la descripción y la usa.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 40,
+          "segundos": 22,
           "seVe": "El pedido en una conversación nueva, el aviso de que Claude cargó la skill y la propuesta que arma."
         },
         "bloques": [
@@ -388,7 +388,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "`/propuesta-cliente boda de 120 personas`. Lo que escribe después del nombre le llega como argumento (`$ARGUMENTS`).",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 20,
+          "segundos": 26,
           "seVe": "El comando `/propuesta-cliente` con su argumento y la propuesta que sale."
         },
         "bloques": [
@@ -405,7 +405,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Salió una nota para usted pegada a la propuesta, que el cliente no tiene que leer. No corrija la respuesta: agregue a la skill, arriba de todo, «termine en la pregunta de cierre; nada después» y repita el mismo pedido en una conversación nueva. Así se mejora una skill: con cada error que encuentra.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 45,
+          "segundos": 42,
           "seVe": "La nota interna resaltada al final de la propuesta, la regla nueva arriba del SKILL.md y el mismo pedido otra vez, que ahora termina en la pregunta de cierre."
         }
       },
@@ -453,7 +453,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Claude ejecuta el programa de la skill y usa la salida. El programa no ocupa lugar en la conversación: solo lo que imprime.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 20,
+          "segundos": 10,
           "seVe": "Chispa en plano medio.",
           "dice": "Una skill puede traer sus propios programas. Claude los ejecuta y usa el resultado. El programa no ocupa lugar en la conversación: solo lo que imprime."
         }
@@ -491,7 +491,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Pegue el **pedido de la lección 5** (en el bloque de abajo y en el kit): Claude escribe la skill y el script (solo biblioteca estándar) y los prueba con el CSV de ejemplo.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 40,
+          "segundos": 37,
           "seVe": "Claude Code creando la carpeta de la skill y corriendo la prueba con el CSV de ejemplo."
         },
         "bloques": [
@@ -508,7 +508,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "«Hacé el informe de esta semana con ventas.csv» → corre el script → totales exactos y tres observaciones.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 35,
+          "segundos": 20,
           "seVe": "El script que corre con un CSV de ventas ficticio y el informe que escribe Claude."
         },
         "bloques": [
@@ -535,7 +535,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "**instagram-agent** ([github.com/Jakeschincariol/instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill), MIT): 13 skills con 6 programas chicos de Python, sin internet, que solo leen el texto que se les pasa.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 20,
+          "segundos": 22,
           "seVe": "La página pública de instagram-agent en GitHub y su carpeta `scripts`."
         }
       }
@@ -563,7 +563,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Si no la leyó, le está dando órdenes a su Claude alguien que no conoce. En Vion: **ninguna skill se activa sin revisión.**",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 30,
+          "segundos": 13,
           "seVe": "Chispa en plano de cara.",
           "dice": "Una skill es texto que Claude obedece. Si usted no la leyó, le está dando órdenes a su Claude alguien que no conoce. En Vion tenemos una regla: ninguna skill se activa sin revisión."
         }
@@ -594,7 +594,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Baje la carpeta, no la instale. Lea el SKILL.md y cada script. Pídale ayuda a Claude Code con `LISTA-DE-REVISION.md` y el pedido de abajo, **sin ejecutar nada**: ábralo con `claude --disallowedTools Bash` (al probarlo, aunque se le pidió no ejecutar, intentó leer con Bash).",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 50,
+          "segundos": 38,
           "seVe": "La revisión en vivo de una skill pública con un script: el SKILL.md y el script abiertos, y Claude Code respondiendo pregunta por pregunta sin ejecutar nada."
         },
         "bloques": [
@@ -616,7 +616,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "**SkillSpector** ([github.com/NVIDIA/SkillSpector](https://github.com/NVIDIA/SkillSpector), Apache-2.0) busca patrones peligrosos; en Vion corre fijado a un commit, en un contenedor sin red y sin LLM (`--no-llm`). Sobre `webapp-testing`, la skill de la lámina anterior, marcó «HIGH» el `shell=True` con el que arranca su servidor, que es justamente para lo que existe. Y no vio el posible bloqueo de la línea 72 que encontró la lectura. Ayuda a mirar; no reemplaza leer.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 25,
+          "segundos": 34,
           "seVe": "SkillSpector sobre `webapp-testing`, sin red: su informe con la alerta «HIGH» en `with_server.py:69` y, al lado, las líneas 67 a 73 del script, donde está el bloqueo que solo encontró la lectura."
         }
       },
@@ -686,7 +686,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Su skill anda. Su socia la quiere, y usted la cambió tres veces esta semana.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 20,
+          "segundos": 11,
           "seVe": "Chispa en plano medio.",
           "dice": "Su skill anda en su compu. Ahora su socia la quiere, y usted la cambió tres veces esta semana. ¿Cuál es la buena? Para eso, una biblioteca con versiones."
         }
@@ -697,7 +697,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "`mis-skills/`:\n\n- `skills/propuesta-cliente/`\n- `skills/informe-semanal/`\n- `catalogo.json`\n- `huellas.py`\n\nUn repo de Git: `git init`, y cada cambio, un commit que dice qué cambió y por qué (`git commit -m \"propuesta-cliente: todo precio lleva su cuenta\"`).",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 30,
+          "segundos": 32,
           "seVe": "La carpeta `mis-skills` y su primer commit."
         },
         "bloques": [
@@ -738,7 +738,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Se prueba con y sin la skill, en conversaciones nuevas. El plugin oficial **skill-creator** lo hace solo. La primera vez, sume el directorio oficial de plugins (`/plugin marketplace add anthropics/claude-plugins-official`); después, `/plugin install skill-creator@claude-plugins-official` («Install for you») y el pedido de abajo. Arma un caso de prueba, lo corre en dos subagentes, uno con la skill y otro sin ella, y compara criterio por criterio. Con un solo caso la muestra es chica: pídale más casos, como uno sin fecha.",
         "apoyo": {
           "tipo": "grabacion",
-          "segundos": 45,
+          "segundos": 57,
           "seVe": "Grabación real con Haiku: el directorio de plugins, la instalación de skill-creator, los dos subagentes y la tabla con y sin la skill (sin la skill, la propuesta cierra con saludo y firma e inventa una forma de pago)."
         },
         "bloques": [
@@ -784,7 +784,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Skills ya revisadas y los métodos que usamos en Vion: la comunidad de skills.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 25,
+          "segundos": 21,
           "seVe": "Chispa en plano medio invita a sumarse; después, una tarjeta: «Comunidad de skills de Vion · vion-studio.com».",
           "dice": "Si quiere skills ya revisadas y los métodos que usamos en Vion, súmese a la comunidad. Lo que aprendió acá es lo mismo que hacemos nosotros."
         }
