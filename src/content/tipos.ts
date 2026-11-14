@@ -333,14 +333,13 @@ export interface PiezasCursos {
     laminas: string; videos: string; contenido: string; objetivo: string; resultado: string; puesta: string; puestaIr: string; costos: string;
     costosFecha: string; costosCols: { pieza: string; costo: string; fuente: string };
     recursos: string; recursosIntro: string; recursosCols: { nombre: string; que: string; licencia: string; revision: string; lecciones: string };
-    noRecomendamos: string; kit: string; kitNota: string; accion: string; soloCastellano: string; verCastellano: string;
+    noRecomendamos: string; kit: string; explica: string; accion: string; soloCastellano: string; verCastellano: string;
   };
   /** La página de una lección: la presentación de láminas. */
   leccionUi: {
     anterior: string; siguiente: string; de: string; lamina: string; indice: string; copiar: string; copiado: string;
-    verTodas: string; verDeAUna: string; proxima: string; fin: string; volverCurso: string; teclas: string;
-    apoyo: Record<TipoApoyo, string>; conChispa: string; videoEnProduccion: string; videoListo: string; imagenEnProduccion: string;
-    dice: string; vozEnOff: string; transcripcion: string; reproducir: string; segundos: string;
+    verTodas: string; verDeAUna: string; proxima: string; fin: string; volverCurso: string;
+    dice: string; vozEnOff: string; transcripcion: string; reproducir: string;
     bloque: Record<Bloque['tipo'], string>;
   };
   portada: { ver: string; blog: string };
@@ -449,6 +448,11 @@ export interface Recurso {
 }
 
 export interface ContenidoCurso {
+  /**
+   * De qué se trata, para un principiante (Markdown mínimo): qué es el tema, para qué le sirve, qué va a poder hacer al
+   * terminar y qué necesita. Va arriba de todo, después de la portada.
+   */
+  explica?: string;
   /** La ficha del curso. */
   ficha: {
     requisitos: string;

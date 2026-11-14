@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type Textos = { anterior: string; siguiente: string; de: string; lamina: string; verTodas: string; verDeAUna: string; teclas: string };
+type Textos = { anterior: string; siguiente: string; de: string; lamina: string; verTodas: string; verDeAUna: string };
 
 /**
  * Lo que convierte la lista de láminas (HTML del servidor, que sin JavaScript se lee entera de arriba abajo) en una
@@ -133,7 +133,6 @@ export function Presentacion({ ids, titulos, t }: { ids: string[]; titulos: stri
           {todas ? t.verDeAUna : t.verTodas}
         </button>
       </div>
-      <p className="pres__ayuda">{t.teclas}</p>
     </div>
   );
 }

@@ -78,7 +78,7 @@ export const curso: CursoTexto = {
       },
       {
         "nombre": "Plantilla «Equipo base» de Vion",
-        "que": "La carpeta que se arma en el curso: tres agentes, el programa `equipo.py`, la base SQLite, la memoria y el bot. Se publica con el curso.",
+        "que": "La carpeta que se arma en el curso: tres agentes, el programa `equipo.py`, la base SQLite, la memoria y el bot.",
         "licencia": "Abierta {{licencia de la plantilla}}",
         "revision": "La hace Vion para el curso, desde cero; sin dependencias (solo la biblioteca estándar de Python).",
         "lecciones": "2 a 8"

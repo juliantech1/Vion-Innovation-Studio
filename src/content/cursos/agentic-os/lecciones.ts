@@ -44,7 +44,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.4",
         "titulo": "Así se ve en Vion",
-        "cuerpo": "Ultron, el sistema de Vion, trabaja con este patrón todos los días: agentes con nombre, una cola de aprobación, un tope de gasto y un bot de Telegram. Lo que va a armar es la versión mínima, en su compu. *(Imagen en modo demo: nada real.)*",
+        "cuerpo": "Ultron, el sistema de Vion, trabaja con este patrón todos los días: agentes con nombre, una cola de aprobación, un tope de gasto y un bot de Telegram. Lo que va a armar es la versión mínima, en su compu.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 25,

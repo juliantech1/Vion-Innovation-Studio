@@ -16,7 +16,8 @@ import './cursos.css';
 /**
  * Una lección (/cursos/<curso>/<lección>): una presentación de láminas. Cada lámina tiene su ancla (#lamina-1-3), su
  * título, su texto, sus bloques copiables y su apoyo visual. Sin JavaScript se leen todas, una debajo de otra; con
- * JavaScript se recorren de a una (botones, flechas del teclado y el dedo), con la opción de verlas todas.
+ * JavaScript se recorren de a una (botones, flechas del teclado y el dedo), con la opción de verlas todas. En la página
+ * no va ningún texto de uso de la interfaz ni de producción (ver «Cómo se escriben las páginas» en ESTADO.md).
  */
 export function Leccion({ c, l, idioma }: { c: Curso; l: LeccionCurso; idioma: Idioma }) {
   const x = c[idioma];
@@ -100,7 +101,7 @@ export function Leccion({ c, l, idioma }: { c: Curso; l: LeccionCurso; idioma: I
                     <h2 className="lamina__t" id={`${ids[j]}-t`}>{y.titulo}</h2>
                   </div>
                   <div className="lamina__apoyo">
-                    <Apoyo a={y.apoyo} m={medioDe(c.id, y.n)} n={y.n} titulo={y.titulo} idioma={idioma} />
+                    <Apoyo a={y.apoyo} m={medioDe(c.id, y.n)} titulo={y.titulo} idioma={idioma} />
                   </div>
                   <div className="lamina__texto md">
                     <Md texto={y.cuerpo} idioma={idioma} />

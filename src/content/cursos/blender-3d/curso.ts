@@ -117,7 +117,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- Instalar el MCP con `uvx mcp-for-blender` sin versión: baja la última cada vez, sin que usted vea el cambio.\n- Dejar el servidor del complemento abierto a la red: no tiene clave.\n- Pegar en Blender código que no leyó.\n- Nodos de ComfyUI de terceros sin revisar.",
     "kit": {
-      "descripcion": "La carpeta `blender-curso` (un zip), escrita para el curso. No incluye modelos de Polyfork (su licencia no deja volver a subirlos sueltos): `armar.py` los baja de polyfork.dev cuando una escena los nombra. Se publica con el curso.",
+      "descripcion": "La carpeta `blender-curso` (un zip), escrita para el curso. No incluye modelos de Polyfork (su licencia no deja volver a subirlos sueltos): `armar.py` los baja de polyfork.dev cuando una escena los nombra.",
       "archivos": [
         {
           "nombre": "LEAME.md",

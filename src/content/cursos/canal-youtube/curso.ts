@@ -167,7 +167,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- Herramientas de terceros que piden la contraseña de su cuenta de Google o «suben por usted» sin la API oficial.\n- Bots de vistas, comentarios o suscriptores.\n- Bajar videos de otros para volver a subirlos.\n- Extensiones que «reescriben» guiones de otros canales.\n\nTampoco enseñamos a bajar videos de referencia: para estudiar un video alcanza con verlo y tomar notas con la skill leer-referencia.",
     "kit": {
-      "descripcion": "La carpeta `canal-youtube` (un zip), escrita para el curso; sus scripts se prueban contra un canal de prueba, en Windows y en Mac, antes de publicarla. No incluye content-principles (sin licencia: se enlaza) ni clips, voces o imágenes de terceros. Se publica con el curso.",
+      "descripcion": "La carpeta `canal-youtube` (un zip), escrita para el curso; sus scripts se prueban contra un canal de prueba, en Windows y en Mac, antes de publicarla. No incluye content-principles (sin licencia: se enlaza) ni clips, voces o imágenes de terceros.",
       "archivos": [
         { "nombre": "LEAME.md", "que": "Qué trae, el orden y los pasos de la lección 0." },
         { "nombre": "CLAUDE.md", "que": "Las reglas del proyecto para Claude Code: la ficha primero, fuentes antes del guion, nada de copiar, las claves sin mostrar y la subida siempre privada con fecha." },

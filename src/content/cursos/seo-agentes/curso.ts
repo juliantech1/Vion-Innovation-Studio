@@ -129,7 +129,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- **Trucos para Google:** texto oculto, páginas copiadas por ciudad, reseñas inventadas, compra de enlaces. El sitio de Vion no los usa, su verificador rechaza reseñas en los datos estructurados y el `CLAUDE.md` del kit los prohíbe.\n- **`npx lighthouse` o instalaciones globales:** se instala dentro del kit con versión exacta y lockfile, para usar la versión que se revisó.\n- **Darle al agente permiso de escritura en Search Console:** para leer sus datos no lo necesita (lección 5).",
     "kit": {
-      "descripcion": "Un repo propio, escrito para el curso (licencia MIT propuesta): las reglas de nuestra auditoría, en código nuevo y sin dependencias para auditar. Se publica con el curso.",
+      "descripcion": "Un repo propio, escrito para el curso (licencia MIT propuesta): las reglas de nuestra auditoría, en código nuevo y sin dependencias para auditar.",
       "archivos": [
         {
           "nombre": "LEAME.md",

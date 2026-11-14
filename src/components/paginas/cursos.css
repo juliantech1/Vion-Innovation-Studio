@@ -39,6 +39,8 @@
 .curso-pagina__md { grid-column: 6 / -1; min-width: 0; }
 @media (max-width: 61.99rem) { .curso-pagina__lado, .curso-pagina__md { grid-column: 1 / -1; } .curso-pagina__md { margin-top: 2rem; } }
 .lead-chico { font-size: var(--text-cuerpo); line-height: 1.55; max-width: 34ch; text-wrap: pretty; }
+/* «De qué se trata» y las lecciones van en el mismo tono: la segunda sigue a la primera sin el hueco de dos secciones. */
+.curso-pagina__explica + .seccion { padding-top: 0; }
 .curso-pagina__pie { margin-top: 1rem; font-size: var(--text-xs); color: var(--tinta-2); max-width: 64ch; }
 .encabezado .intro { max-width: 62ch; color: var(--tinta-2); line-height: 1.55; }
 .recursos { margin-top: clamp(2rem, 1.5rem + 2vw, 3.5rem); border-top: 1px solid var(--tinta); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--spacing-canal); }
@@ -84,7 +86,6 @@
 .pres__btn:disabled { opacity: 0.35; cursor: default; }
 .pres__modo { border-color: var(--filete-fuerte); font-weight: 500; font-size: var(--text-xs); }
 .pres__modo:hover, .pres__modo:focus-visible { border-color: var(--tinta); }
-.pres__ayuda { flex-basis: 100%; font-size: var(--text-xs); color: var(--tinta-2); }
 .pres__marcas ol { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem; }
 .pres__marcas a {
   display: grid; place-items: center; min-width: 2.75rem; height: 2.75rem; padding-inline: 0.3rem; border: 1px solid var(--filete);
@@ -105,7 +106,6 @@ html:not(.js) .pres__barra { position: static; }
   .pres__barra { grid-template-columns: 1fr; }
   .pres__marcas { display: none; }
   .pres__indice { display: block; }
-  .pres__ayuda { display: none; }
 }
 @media (max-width: 29.99rem) {
   .pres__btn--sig span { display: none; }
@@ -160,7 +160,7 @@ html:not(.js) .pres__barra { position: static; }
 .video__play:hover svg, .video__play:focus-visible svg { transform: scale(1.06); }
 .video__play:focus-visible { outline-offset: -4px; }
 .video__sonido { position: absolute; right: 0.75rem; bottom: 0.75rem; min-height: 2.75rem; padding-inline: 1rem; border-radius: var(--radius-marca); background: var(--color-claro); color: var(--color-raven); font-size: var(--text-xs); font-weight: 600; }
-/* El que todavía está en producción: un marco de obra con el tipo, la duración y el estado, en voz baja. */
+/* El que todavía está en producción: un marco de obra con el dibujo del tipo, sin textos. */
 .apoyo__marco {
   position: relative; aspect-ratio: 16 / 9; display: grid; place-content: center; justify-items: center; gap: 0.9rem; padding: 1.5rem;
   border: 1px dashed var(--tinta); text-align: center;
@@ -171,11 +171,6 @@ html:not(.js) .pres__barra { position: static; }
 .apoyo__marco::after { right: 0.6rem; bottom: 0.6rem; border-right-width: 1px; border-bottom-width: 1px; }
 .apoyo__glifo { width: clamp(3rem, 2.4rem + 2vw, 4.5rem); height: auto; fill: none; stroke: var(--tinta); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .apoyo--chispa .apoyo__glifo path { stroke: var(--marca-tinta); }
-.apoyo__tipo { font-size: clamp(1.05rem, 0.9rem + 0.7vw, 1.5rem); font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.1; }
-.apoyo__marco .estado { color: var(--tinta-2); }
-.apoyo figcaption { display: grid; gap: 0.35rem; }
-.apoyo figcaption .rotulo { color: var(--tinta-2); }
-.apoyo__ve { font-size: var(--text-s); line-height: 1.55; text-wrap: pretty; }
 .apoyo__dice { border-left: 2px solid var(--marca-tinta); padding-left: 1rem; }
 .apoyo__dice summary { display: flex; align-items: center; min-height: 2.75rem; cursor: pointer; color: var(--tinta); }
 .apoyo__dice p { font-size: var(--text-s); line-height: 1.6; text-wrap: pretty; padding-bottom: 0.25rem; }

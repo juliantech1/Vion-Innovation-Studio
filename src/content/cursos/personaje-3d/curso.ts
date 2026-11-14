@@ -131,7 +131,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- Apps de «avatar que habla» que no dicen de quién es el resultado.\n- Clonar la voz de otra persona.\n- Modelos 3D de sitios que no dicen su licencia.\n- Pegar en Blender código que no leyó.",
     "kit": {
-      "descripcion": "La carpeta `personaje-curso` (un zip), escrita para el curso. Chispa no va en el kit: el ejemplo es Tuerca, una tuerca hexagonal tejida color mostaza diseñada para el curso. Se publica con el curso.",
+      "descripcion": "La carpeta `personaje-curso` (un zip), escrita para el curso. Chispa no va en el kit: el ejemplo es Tuerca, una tuerca hexagonal tejida color mostaza diseñada para el curso.",
       "archivos": [
         {
           "nombre": "LEAME.md",

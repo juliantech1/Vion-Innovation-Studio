@@ -102,7 +102,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- **Pedirle a una IA que «lea» un plano escaneado y dé cantidades.** La documentación de Anthropic lo dice: «Claude can give approximate counts of objects in an image but might not always be precisely accurate, especially with large numbers of small objects» ([Vision, Limitations](https://platform.claude.com/docs/en/build-with-claude/vision)). Un PDF también se procesa como imagen de cada página («PDF support relies on Claude's vision capabilities», [PDF support](https://platform.claude.com/docs/en/build-with-claude/pdf-support)). Sirve para orientarse y para revisar; no para la cifra.\n- **PyMuPDF para un trabajo que se cobra.** Es un lector de PDF muy rápido y bien hecho, pero su licencia AGPL-3.0 obliga a abrir el código de un servicio que lo use (o a pagar la licencia comercial de Artifex). pdfplumber evita la duda.\n- **Un precio que sale de una IA.** Ninguno entra a un presupuesto: un precio tiene fuente y fecha, o la línea dice FALTA PRECIO.",
     "kit": {
-      "descripcion": "Un repositorio propio y abierto que se publica con el curso: MIT el código y CC BY 4.0 la casa de ejemplo (por confirmar). No trae `home_floor_plan.dwg`: trae el enlace a la página de Autodesk.",
+      "descripcion": "Un repositorio propio y abierto: MIT el código y CC BY 4.0 la casa de ejemplo (por confirmar). No trae `home_floor_plan.dwg`: trae el enlace a la página de Autodesk.",
       "archivos": [
         {
           "nombre": "LEAME.md",

@@ -112,7 +112,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- Instalar skills con un `curl … | sh` o desde un «leé las instrucciones de tal URL» sin mirar lo que hacen.\n- Plugins que se actualizan solos sin que usted vea el cambio: mejor clonar y fijar el commit.\n- Repartir material sin licencia: `content-principles` (una guía de retención que usamos) no tiene licencia en su repo, así que no va en el kit; tampoco las películas CC BY de lemo-opuscar.\n\nNuestra regla: leer antes de instalar y fijar la versión.",
     "kit": {
-      "descripcion": "La carpeta `motion-curso` en un zip, escrita para el curso: las reglas del proyecto, el prompt de estilo, la skill, el script que pasa de HTML a MP4, los pedidos de cada lección y los ejemplos. Se publica con el curso.",
+      "descripcion": "La carpeta `motion-curso` en un zip, escrita para el curso: las reglas del proyecto, el prompt de estilo, la skill, el script que pasa de HTML a MP4, los pedidos de cada lección y los ejemplos.",
       "archivos": [
         {
           "nombre": "LEAME.md",

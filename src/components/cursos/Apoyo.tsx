@@ -1,7 +1,6 @@
 import type { Apoyo as DatosApoyo, Idioma, Medio, TipoApoyo } from '@/content';
 import { piezasDe } from '@/content';
 import { esVideo } from '@/content/cursos/medios';
-import { Linea } from './Md';
 import { VideoLamina } from './VideoLamina';
 
 /** Un dibujo de línea por tipo de apoyo (para el marco del que todavía está en producción). */
@@ -23,36 +22,31 @@ function Glifo({ tipo }: { tipo: TipoApoyo }) {
 
 /**
  * El apoyo visual de una lámina. Si el archivo existe (medios.json): la imagen, con su descripción como texto
- * alternativo, o el video con carga diferida, subtítulos y su transcripción. Si todavía no existe: un marco con el tipo
- * de apoyo, la leyenda «en producción» y la descripción de lo que se va a ver, para que la lámina se entienda sin él.
+ * alternativo, o el video con carga diferida, subtítulos y su transcripción. Si todavía no existe: un marco con el dibujo
+ * del tipo de apoyo. La descripción de lo que se ve (`seVe`) nunca se muestra: es de producción y solo queda para los
+ * lectores de pantalla. El título y el cuerpo de la lámina tienen que explicar el paso por sí solos.
  */
-export function Apoyo({ a, m, n, titulo, idioma }: { a: DatosApoyo; m?: Medio; n: string; titulo: string; idioma: Idioma }) {
+export function Apoyo({ a, m, titulo, idioma }: { a: DatosApoyo; m?: Medio; titulo: string; idioma: Idioma }) {
   const t = piezasDe(idioma).cursos.leccionUi;
   const video = esVideo(a.tipo);
-  const tipo = `${t.apoyo[a.tipo]}${a.conChispa && a.tipo !== 'chispa' ? ` ${t.conChispa}` : ''}`;
-  const duracion = video && a.segundos ? ` · ${a.segundos} ${t.segundos}` : '';
   const hayVideo = video && m && (m.video || m.youtube || m.vimeo);
   const hayImagen = !video && m?.imagen;
+  const descripcion = a.seVe?.replace(/[`*]/g, '');
   return (
     <figure className={`apoyo apoyo--${a.tipo}${hayVideo || hayImagen ? '' : ' apoyo--pendiente'}`}>
       {hayVideo ? (
-        <VideoLamina m={m} titulo={`${titulo} (${tipo})`} mudo={!a.dice} reproducir={t.reproducir} />
+        <VideoLamina m={m} titulo={titulo} mudo={!a.dice} reproducir={t.reproducir} />
       ) : hayImagen ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img className="apoyo__img" src={m.imagen} alt={(a.seVe ?? titulo).replace(/[`*]/g, '')} width={m.ancho ?? 1600} height={m.alto ?? 900} loading="lazy" decoding="async" />
+        <img className="apoyo__img" src={m.imagen} alt={descripcion ?? titulo} width={m.ancho ?? 1600} height={m.alto ?? 900} loading="lazy" decoding="async" />
       ) : (
         <div className="apoyo__marco">
           <Glifo tipo={a.tipo} />
-          <p className="apoyo__tipo">{tipo}{duracion}</p>
-          <p className={`estado${m?.producido ? ' estado--publicado' : ''}`}>{video ? (m?.producido ? t.videoListo : t.videoEnProduccion) : t.imagenEnProduccion}</p>
         </div>
       )}
-      <figcaption>
-        <span className="rotulo">{t.lamina} {n} · {tipo}{duracion}</span>
-        {!hayImagen && a.seVe && <span className="apoyo__ve"><Linea s={a.seVe} idioma={idioma} /></span>}
-      </figcaption>
+      {!hayImagen && descripcion && <figcaption className="solo-lectores">{descripcion}</figcaption>}
       {a.dice && (
-        <details className="apoyo__dice" open={!hayVideo}>
+        <details className="apoyo__dice">
           <summary className="rotulo">{hayVideo ? t.transcripcion : a.vozEnOff ? t.vozEnOff : t.dice}</summary>
           <p lang={idioma === 'es' ? undefined : 'es'}>«{a.dice}»</p>
         </details>

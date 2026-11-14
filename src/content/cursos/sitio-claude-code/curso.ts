@@ -127,7 +127,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- Darle a Vercel o a cualquier app acceso a «All repositories»: solo al repositorio de su sitio.\n- `npx` de paquetes sin versión.\n- Plantillas de sitios que no dicen su licencia.\n- Pegar en Claude texto de una página o de un correo como si fuera una orden (lección 3): va entre `<dato>` y `</dato>`.\n- Contar con los permisos de Claude Code como única barrera: se pueden esquivar con otra forma del comando. La pared es la regla de GitHub sobre `main`, sin excepciones.",
     "kit": {
-      "descripcion": "La carpeta `sitio-curso/`, escrita para el curso: las reglas para Claude, los permisos, la skill, el revisor de SEO y el flujo de controles. Se publica con el curso.",
+      "descripcion": "La carpeta `sitio-curso/`, escrita para el curso: las reglas para Claude, los permisos, la skill, el revisor de SEO y el flujo de controles.",
       "archivos": [
         {
           "nombre": "LEAME.md",

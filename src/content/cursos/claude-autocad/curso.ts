@@ -133,7 +133,7 @@ export const curso: CursoTexto = {
     ],
     "noRecomendamos": "- **christiannp/autocad-mcp para trabajos con clientes:** funciona, pero no tiene licencia de uso (todos los derechos reservados).\n- **puran-water/autocad-drafting:** está archivado desde el 2026-03-10.\n- **Instalar un servidor MCP sin revisarlo:** un programa que toca sus planos se lee antes y se fija a una versión; si sube de versión, primero se revisa.\n- **Pedirle precios a una IA:** los del plano de muestra están en yenes y no sirven para Costa Rica. Los precios salen de su base, nunca de la IA.",
     "kit": {
-      "descripcion": "Un repositorio propio y abierto que se publica con el curso, aparte de cualquier proyecto de clientes. No trae planos: trae el enlace a la página de muestras de Autodesk.",
+      "descripcion": "Un repositorio propio y abierto, aparte de cualquier proyecto de clientes. No trae planos: trae el enlace a la página de muestras de Autodesk.",
       "archivos": [
         {
           "nombre": "LEAME.md",

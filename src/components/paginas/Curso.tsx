@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { cursoIndexable, interfazDe, leccionesDe, pagina, piezasDe, ruta, rutaCurso, rutaCursos, rutaLeccion, videosDe, type Curso as DatosCurso, type Idioma } from '@/content';
+import { cursoIndexable, interfazDe, leccionesDe, pagina, piezasDe, ruta, rutaCurso, rutaCursos, rutaLeccion, type Curso as DatosCurso, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado } from '@/components/sitio/Texto';
 import { Md, Linea } from '@/components/cursos/Md';
@@ -13,9 +13,10 @@ import './cursos.css';
 const n2 = (n: number) => String(n).padStart(2, '0');
 
 /**
- * La página de un curso (/cursos/<slug>): portada con su ficha (para quién, requisitos, lo que cuesta, duración y el
- * estado de sus videos), el índice de lecciones, la puesta a punto, lo que cuesta pieza por pieza, los repos y skills
- * recomendados, el kit y la acción del final. Cada lección es una presentación de láminas en su propia página.
+ * La página de un curso (/cursos/<slug>): portada con su ficha (para quién, requisitos, lo que cuesta y duración), de qué
+ * se trata en palabras de principiante, el índice de lecciones, la puesta a punto, lo que cuesta pieza por pieza, los repos y skills
+ * recomendados, el kit y la acción del final. Cada lección es una presentación de láminas en su propia página. Ningún
+ * texto interno (estados de producción, notas, instrucciones de uso de la interfaz) va a la vista.
  */
 export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
   const x = c[idioma];
@@ -26,11 +27,9 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
   const lleva = pagina(c.lleva, idioma);
   const cont = x.contenido;
   const lecciones = leccionesDe(c, idioma);
-  const v = videosDe(c);
   const laminas = lecciones.reduce((s, l) => s + l.laminas.length, 0);
   const primera = lecciones[0];
   const ruta_ = rutaCursos(c.ruta)[idioma];
-  const estado = `${k.estado[c.estado]}${c.estado === 'produccion' && v.total ? ` · ${k.videosListos.replace('{n}', String(v.listos)).replace('{total}', String(v.total))}` : ''}`;
   return (
     <>
       <JsonLd nodos={datosCurso(c, idioma)} />
@@ -73,12 +72,27 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
                   ...(cont ? [{ termino: p.requisitos, valor: <Linea s={cont.ficha.requisitos} idioma={idioma} /> }] : []),
                   { termino: p.costo, valor: <Linea s={cont ? cont.ficha.costo : x.herramientas} idioma={idioma} /> },
                   ...(cont ? [{ termino: p.duracion, valor: <Linea s={cont.ficha.duracion} idioma={idioma} /> }] : []),
-                  { termino: k.estadoRotulo, valor: <span className={`estado${c.estado === 'publicado' ? ' estado--publicado' : ''}`}>{estado}</span> },
                 ]}
               />
             </aside>
           </div>
         </section>
+
+        {cont?.explica && (
+          <section className="seccion tono-powder curso-pagina__explica" id="de-que-se-trata" aria-labelledby="t-explica" data-seccion={p.explica}>
+            <div className="marco reticula">
+              <div className="curso-pagina__lado">
+                <div className="encabezado">
+                  <p className="rotulo">{x.corto}</p>
+                  <Titular id="t-explica" texto={p.explica} />
+                </div>
+              </div>
+              <div className="curso-pagina__md md">
+                <Md texto={cont.explica} idioma={idioma} />
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="seccion tono-powder" id="lecciones" aria-labelledby="t-lecciones" data-seccion={k.lecciones}>
           <div className="marco">
@@ -102,7 +116,7 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
                       )}
                     </div>
                     {l.laminas.length > 0 && (
-                      <span className="indice-lecciones__m">{l.laminas.length} {p.laminas}<br />{videos} {p.videos}</span>
+                      <span className="indice-lecciones__m">{l.laminas.length} {p.laminas}{' '}<br />{videos} {p.videos}</span>
                     )}
                   </li>
                 );
@@ -218,7 +232,6 @@ export function Curso({ c, idioma }: { c: DatosCurso; idioma: Idioma }) {
                     <Titular id="t-kit" texto={p.kit} />
                   </div>
                   <div className="md"><Md texto={cont.kit.descripcion} idioma={idioma} /></div>
-                  <p className="estado">{p.kitNota}</p>
                 </div>
                 <div className="curso-pagina__md">
                   <ul className="kit" data-traza>
