@@ -1,7 +1,256 @@
 {
   "claude-basico": {},
   "agentic-os": {},
-  "skills": {},
+  "skills": {
+    "1.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-01-chispa.mp4",
+      "poster": "/cursos/skills/L1-01-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L1-01-chispa.vtt"
+    },
+    "1.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-02-video.mp4",
+      "poster": "/cursos/skills/L1-02-video-poster.webp"
+    },
+    "1.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-03-video.mp4",
+      "poster": "/cursos/skills/L1-03-video-poster.webp"
+    },
+    "1.4": {
+      "imagen": "/cursos/skills/L1-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-05-chispa.mp4",
+      "poster": "/cursos/skills/L1-05-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L1-05-chispa.vtt"
+    },
+    "1.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-06-video.mp4",
+      "poster": "/cursos/skills/L1-06-video-poster.webp"
+    },
+    "1.7": {
+      "imagen": "/cursos/skills/L1-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L2-01-video.mp4",
+      "poster": "/cursos/skills/L2-01-video-poster.webp"
+    },
+    "2.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L2-02-chispa.mp4",
+      "poster": "/cursos/skills/L2-02-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L2-02-chispa.vtt"
+    },
+    "2.3": {
+      "imagen": "/cursos/skills/L2-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L2-04-video.mp4",
+      "poster": "/cursos/skills/L2-04-video-poster.webp"
+    },
+    "2.5": {
+      "imagen": "/cursos/skills/L2-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.6": {
+      "imagen": "/cursos/skills/L2-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.7": {
+      "imagen": "/cursos/skills/L2-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.8": {
+      "imagen": "/cursos/skills/L2-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L3-01-video.mp4",
+      "poster": "/cursos/skills/L3-01-video-poster.webp"
+    },
+    "3.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L3-02-chispa.mp4",
+      "poster": "/cursos/skills/L3-02-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L3-02-chispa.vtt"
+    },
+    "3.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L3-03-video.mp4",
+      "poster": "/cursos/skills/L3-03-video-poster.webp"
+    },
+    "3.4": {
+      "imagen": "/cursos/skills/L3-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L3-05-video.mp4",
+      "poster": "/cursos/skills/L3-05-video-poster.webp"
+    },
+    "3.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L3-06-video.mp4",
+      "poster": "/cursos/skills/L3-06-video-poster.webp"
+    },
+    "3.7": {
+      "imagen": "/cursos/skills/L3-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-01-chispa.mp4",
+      "poster": "/cursos/skills/L4-01-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L4-01-chispa.vtt"
+    },
+    "4.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-02-video.mp4",
+      "poster": "/cursos/skills/L4-02-video-poster.webp"
+    },
+    "4.3": {
+      "imagen": "/cursos/skills/L4-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-04-video.mp4",
+      "poster": "/cursos/skills/L4-04-video-poster.webp"
+    },
+    "4.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-05-video.mp4",
+      "poster": "/cursos/skills/L4-05-video-poster.webp"
+    },
+    "4.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-06-video.mp4",
+      "poster": "/cursos/skills/L4-06-video-poster.webp"
+    },
+    "4.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L4-07-video.mp4",
+      "poster": "/cursos/skills/L4-07-video-poster.webp"
+    },
+    "4.8": {
+      "imagen": "/cursos/skills/L4-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-01-video.mp4",
+      "poster": "/cursos/skills/L5-01-video-poster.webp"
+    },
+    "5.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-02-chispa.mp4",
+      "poster": "/cursos/skills/L5-02-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L5-02-chispa.vtt"
+    },
+    "5.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-03-video.mp4",
+      "poster": "/cursos/skills/L5-03-video-poster.webp"
+    },
+    "5.4": {
+      "imagen": "/cursos/skills/L5-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-05-video.mp4",
+      "poster": "/cursos/skills/L5-05-video-poster.webp"
+    },
+    "5.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-06-video.mp4",
+      "poster": "/cursos/skills/L5-06-video-poster.webp"
+    },
+    "5.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-07-video.mp4",
+      "poster": "/cursos/skills/L5-07-video-poster.webp"
+    },
+    "5.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L5-08-video.mp4",
+      "poster": "/cursos/skills/L5-08-video-poster.webp"
+    },
+    "6.1": {
+      "imagen": "/cursos/skills/L6-01.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "6.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-02-chispa.mp4",
+      "poster": "/cursos/skills/L6-02-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L6-02-chispa.vtt"
+    },
+    "6.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-03-video.mp4",
+      "poster": "/cursos/skills/L6-03-video-poster.webp"
+    },
+    "6.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-04-video.mp4",
+      "poster": "/cursos/skills/L6-04-video-poster.webp"
+    },
+    "6.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-05-video.mp4",
+      "poster": "/cursos/skills/L6-05-video-poster.webp"
+    },
+    "6.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-06-video.mp4",
+      "poster": "/cursos/skills/L6-06-video-poster.webp"
+    },
+    "6.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-07-video.mp4",
+      "poster": "/cursos/skills/L6-07-video-poster.webp"
+    },
+    "6.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L6-08-video.mp4",
+      "poster": "/cursos/skills/L6-08-video-poster.webp"
+    },
+    "6.9": {
+      "imagen": "/cursos/skills/L6-09.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-01-chispa.mp4",
+      "poster": "/cursos/skills/L7-01-chispa-poster.webp",
+      "subtitulos": "/cursos/skills/L7-01-chispa.vtt"
+    },
+    "7.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-02-video.mp4",
+      "poster": "/cursos/skills/L7-02-video-poster.webp"
+    },
+    "7.3": {
+      "imagen": "/cursos/skills/L7-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-04-video.mp4",
+      "poster": "/cursos/skills/L7-04-video-poster.webp"
+    },
+    "7.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-05-video.mp4",
+      "poster": "/cursos/skills/L7-05-video-poster.webp"
+    },
+    "7.6": {
+      "imagen": "/cursos/skills/L7-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-07-video.mp4",
+      "poster": "/cursos/skills/L7-07-video-poster.webp"
+    },
+    "7.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L7-08-video.mp4",
+      "poster": "/cursos/skills/L7-08-video-poster.webp",
+      "subtitulos": "/cursos/skills/L7-08-video.vtt"
+    },
+    "tráiler": {
+      "producido": true
+    }
+  },
   "motion": {
     "0.2": {
       "producido": true

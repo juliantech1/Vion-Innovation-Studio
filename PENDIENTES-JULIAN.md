@@ -105,7 +105,6 @@ dentro de un bloque de código (`<pre>` o `` `…` ``) no son casilleros: son pa
 | `{{la acción del cierre: por confirmar}}` | `/cursos/cuantificacion-y-presupuestos-con-ia` `/cursos/cuantificacion-y-presupuestos-con-ia/7-revision-y-entrega` | cuantificacion-y-presupuestos-con-ia |
 | `{{enlace a la comunidad de Vion}}` | `/cursos/sitio-web-con-claude-code` `/cursos/sitio-web-con-claude-code/7-un-rediseno-en-serio` | sitio-web-con-claude-code |
 | `{{el tiempo medido al grabar}}` | `/cursos/claude-basico-chat-cowork-code/5-pagina-web-y-herramienta` | claude-basico-chat-cowork-code |
-| `{{el menú se comprueba al grabar}}` | `/cursos/skills-propias-de-claude/7-biblioteca-con-versiones` | skills-propias-de-claude |
 | `{{el commit revisado se publica con el curso}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` | claude-autocad-planos-cantidades |
 | `{{la dirección del kit se publica con el curso}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` `/cursos/cuantificacion-y-presupuestos-con-ia/2-puesta-a-punto` | claude-autocad-planos-cantidades, cuantificacion-y-presupuestos-con-ia |
 | `{{los nombres exactos de las herramientas en los permisos se confirman al revisar el servidor}}` | `/cursos/claude-autocad-planos-cantidades/2-puesta-a-punto` | claude-autocad-planos-cantidades |

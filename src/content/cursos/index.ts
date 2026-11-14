@@ -77,7 +77,7 @@ interface Registro {
 const REGISTRO: Registro[] = [
   { id: 'claude-basico', codigo: 'A0', ruta: 'A', lleva: 'apps', estado: 'produccion', texto: claudeBasico, lecciones: leccionesClaudeBasico },
   { id: 'agentic-os', codigo: 'A2', ruta: 'A', lleva: 'apps', estado: 'produccion', texto: agenticOs, lecciones: leccionesAgenticOs },
-  { id: 'skills', codigo: 'A3', ruta: 'A', lleva: 'apps', estado: 'produccion', texto: skills, lecciones: leccionesSkills },
+  { id: 'skills', codigo: 'A3', ruta: 'A', lleva: 'apps', estado: 'publicado', publicado: '2026-11-13', texto: skills, lecciones: leccionesSkills },
   { id: 'motion', codigo: 'B1', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: motion, lecciones: leccionesMotion },
   { id: 'blender-3d', codigo: 'B2', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: blender3d, lecciones: leccionesBlender3d },
   { id: 'personaje-3d', codigo: 'B3', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: personaje3d, lecciones: leccionesPersonaje3d },
