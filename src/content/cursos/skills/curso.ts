@@ -11,11 +11,11 @@ export const curso: CursoTexto = {
     "descripcion": "Curso gratis de Vion: escriba sus propias skills de Claude (SKILL.md) y revise las de terceros antes de instalarlas. En producción.",
     "paraQuien": "Quien ya usa Claude (el chat o Claude Code) y pega las mismas instrucciones una y otra vez.",
     "seLleva": "Dos skills propias funcionando (una de método y una con script), la lista de 12 preguntas para revisar skills ajenas, un script de huellas y su biblioteca de skills en Git, lista para compartir.",
-    "herramientas": "Claude Code y claude.ai (piden un plan pago de Claude, desde USD 20 al mes); Python y Git, gratis.",
+    "herramientas": "Claude Code (pide un plan pago de Claude, desde USD 20 al mes) y claude.ai; Python y Git, gratis.",
     "ficha": {
       "requisitos": "Windows 10 (1809 o más nuevo) o macOS 13 o más nuevo; una cuenta de Claude con plan pago; haber usado Claude alguna vez. No hace falta programar: el script de la lección 5 lo escribe Claude Code.",
-      "duracion": "7 lecciones, 55 láminas con 40 videos cortos (unos 17,5 min de video en total), más el tráiler; hacer las dos skills lleva más: estimado, una tarde.",
-      "costo": "El plan Pro de Claude (USD 20 al mes, o USD 17 al mes con pago anual) para Claude Code y para subir skills a claude.ai; Python y Git son gratis."
+      "duracion": "7 lecciones, 55 láminas con 40 videos cortos, más el tráiler.",
+      "costo": "El plan Pro de Claude (USD 20 al mes, o USD 17 al mes con pago anual) para Claude Code. Subir skills a claude.ai también anda en el plan gratis, con la ejecución de código activada. Python y Git son gratis."
     },
     "costos": [
       {
@@ -25,8 +25,8 @@ export const curso: CursoTexto = {
       },
       {
         "pieza": "Plan gratis de Claude",
-        "costo": "No incluye Claude Code. Subir skills a claude.ai también pide plan pago: «Available on Pro, Max, Ultra, Team, and Enterprise plans with code execution enabled».",
-        "fuente": "[code.claude.com/docs/en/setup](https://code.claude.com/docs/en/setup); [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)"
+        "costo": "No incluye Claude Code. Las skills en claude.ai sí: «Las habilidades están disponibles para usuarios en planes Free, Pro, Max, Ultra, Team y Enterprise. Esta función requiere que la ejecución de código esté habilitada» (centro de ayuda de Anthropic, 2026-11-13).",
+        "fuente": "[code.claude.com/docs/en/setup](https://code.claude.com/docs/en/setup); [Usar habilidades en Claude](https://support.claude.com/es/articles/12512180-usar-habilidades-en-claude)"
       },
       {
         "pieza": "Python y Git",
@@ -90,7 +90,7 @@ export const curso: CursoTexto = {
         "url": "https://github.com/Jakeschincariol/instagram-agent-skill",
         "que": "13 skills `/ig-*` para Instagram: reels con 26 fórmulas de gancho, captions, carruseles, plan semanal y un «humanizador».",
         "licencia": "MIT",
-        "revision": "Revisada por Vion y fijada al commit d03c56bb598be770c60b201f94237e5d1a4268a6: sin internet, 5 scripts de Python de biblioteca estándar sobre texto local. `ig-viral` pedía manejar el navegador con la sesión de Instagram: lo cambiamos a «pegar» y guardamos el original aparte.",
+        "revision": "Revisada por Vion y fijada al commit d03c56bb598be770c60b201f94237e5d1a4268a6: sin internet, 6 scripts de Python de biblioteca estándar sobre texto local. `ig-viral` pedía manejar el navegador con la sesión de Instagram: lo cambiamos a «pegar» y guardamos el original aparte.",
         "lecciones": "5, 6"
       },
       {
@@ -146,7 +146,7 @@ export const curso: CursoTexto = {
         "url": "https://github.com/NVIDIA/SkillSpector",
         "que": "Escáner de seguridad de skills: busca patrones maliciosos y vulnerabilidades.",
         "licencia": "Apache-2.0",
-        "revision": "Lo usamos (en el commit d501c0d) sin red y sin LLM, como ayuda: nunca reemplaza leer. Al 2026-11-10 el repo va por el commit bb991c5cf18655fd8c39b72e648f916aa4622534.",
+        "revision": "Lo usamos fijado al commit d501c0d5035c2ed6385740a384d942bb05651fda (revisado: no ejecuta lo que escanea; solo sale a la red para bajar repos, consultar vulnerabilidades o usar un LLM), con sus dependencias del uv.lock con huellas, en un contenedor sin red y con `--no-llm`, como ayuda: nunca reemplaza leer.",
         "lecciones": "6"
       },
       {
@@ -225,12 +225,12 @@ export const curso: CursoTexto = {
     "descripcion": "A free Vion course: write your own Claude skills (SKILL.md) and review third-party skills before you install them. In production.",
     "paraQuien": "Anyone who already uses Claude (the chat or Claude Code) and keeps pasting the same instructions.",
     "seLleva": "Two working skills of your own (one method, one with a script), a 12-question checklist for third-party skills, a hashing script, and your skill library in Git, ready to share.",
-    "herramientas": "Claude Code and claude.ai (require a paid Claude plan, from USD 20 a month); Python and Git are free.",
+    "herramientas": "Claude Code (requires a paid Claude plan, from USD 20 a month) and claude.ai; Python and Git are free.",
     "lecciones": [
       "What a skill is (and is not)",
       "Setup: where skills live",
       "Write a method, not a template",
-      "Your first skill in 15 minutes",
+      "Your first skill",
       "Skills with scripts and supporting files",
       "Reviewing someone else’s skill before installing it",
       "Sharing and versioning your skill library"
