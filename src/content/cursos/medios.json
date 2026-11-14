@@ -1,6 +1,288 @@
 {
   "claude-basico": {},
-  "agentic-os": {},
+  "agentic-os": {
+    "1.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L1-01-chispa.mp4",
+      "poster": "/cursos/agentic-os/L1-01-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L1-01-chispa.vtt"
+    },
+    "1.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L1-02-video.mp4",
+      "poster": "/cursos/agentic-os/L1-02-video-poster.webp"
+    },
+    "1.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L1-03-video.mp4",
+      "poster": "/cursos/agentic-os/L1-03-video-poster.webp"
+    },
+    "1.6": {
+      "imagen": "/cursos/agentic-os/L1-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.7": {
+      "imagen": "/cursos/agentic-os/L1-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "1.8": {
+      "imagen": "/cursos/agentic-os/L1-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-01-chispa.mp4",
+      "poster": "/cursos/agentic-os/L2-01-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L2-01-chispa.vtt"
+    },
+    "2.2": {
+      "imagen": "/cursos/agentic-os/L2-02.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.9": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-09-video.mp4",
+      "poster": "/cursos/agentic-os/L2-09-video-poster.webp"
+    },
+    "2.10": {
+      "imagen": "/cursos/agentic-os/L2-10.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.11": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-11-video.mp4",
+      "poster": "/cursos/agentic-os/L2-11-video-poster.webp"
+    },
+    "2.12": {
+      "imagen": "/cursos/agentic-os/L2-12.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L3-01-video.mp4",
+      "poster": "/cursos/agentic-os/L3-01-video-poster.webp"
+    },
+    "3.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L3-02-chispa.mp4",
+      "poster": "/cursos/agentic-os/L3-02-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L3-02-chispa.vtt"
+    },
+    "3.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L3-03-video.mp4",
+      "poster": "/cursos/agentic-os/L3-03-video-poster.webp"
+    },
+    "3.4": {
+      "imagen": "/cursos/agentic-os/L3-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L3-05-video.mp4",
+      "poster": "/cursos/agentic-os/L3-05-video-poster.webp"
+    },
+    "3.6": {
+      "imagen": "/cursos/agentic-os/L3-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L3-07-video.mp4",
+      "poster": "/cursos/agentic-os/L3-07-video-poster.webp"
+    },
+    "3.8": {
+      "imagen": "/cursos/agentic-os/L3-08.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-01-chispa.mp4",
+      "poster": "/cursos/agentic-os/L4-01-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L4-01-chispa.vtt"
+    },
+    "4.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-02-video.mp4",
+      "poster": "/cursos/agentic-os/L4-02-video-poster.webp"
+    },
+    "4.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-03-video.mp4",
+      "poster": "/cursos/agentic-os/L4-03-video-poster.webp"
+    },
+    "4.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-04-video.mp4",
+      "poster": "/cursos/agentic-os/L4-04-video-poster.webp"
+    },
+    "4.5": {
+      "imagen": "/cursos/agentic-os/L4-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-06-video.mp4",
+      "poster": "/cursos/agentic-os/L4-06-video-poster.webp"
+    },
+    "4.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L4-07-video.mp4",
+      "poster": "/cursos/agentic-os/L4-07-video-poster.webp"
+    },
+    "5.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L5-01-video.mp4",
+      "poster": "/cursos/agentic-os/L5-01-video-poster.webp"
+    },
+    "5.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L5-02-chispa.mp4",
+      "poster": "/cursos/agentic-os/L5-02-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L5-02-chispa.vtt"
+    },
+    "5.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L5-03-video.mp4",
+      "poster": "/cursos/agentic-os/L5-03-video-poster.webp"
+    },
+    "5.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L5-04-video.mp4",
+      "poster": "/cursos/agentic-os/L5-04-video-poster.webp"
+    },
+    "5.5": {
+      "imagen": "/cursos/agentic-os/L5-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "5.6": {
+      "imagen": "/cursos/agentic-os/L5-06.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "6.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-01-video.mp4",
+      "poster": "/cursos/agentic-os/L6-01-video-poster.webp"
+    },
+    "6.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-02-chispa.mp4",
+      "poster": "/cursos/agentic-os/L6-02-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L6-02-chispa.vtt"
+    },
+    "6.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-03-video.mp4",
+      "poster": "/cursos/agentic-os/L6-03-video-poster.webp"
+    },
+    "6.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-04-video.mp4",
+      "poster": "/cursos/agentic-os/L6-04-video-poster.webp"
+    },
+    "6.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-05-video.mp4",
+      "poster": "/cursos/agentic-os/L6-05-video-poster.webp"
+    },
+    "6.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L6-06-video.mp4",
+      "poster": "/cursos/agentic-os/L6-06-video-poster.webp"
+    },
+    "6.7": {
+      "imagen": "/cursos/agentic-os/L6-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L7-01-chispa.mp4",
+      "poster": "/cursos/agentic-os/L7-01-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L7-01-chispa.vtt"
+    },
+    "7.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L7-02-video.mp4",
+      "poster": "/cursos/agentic-os/L7-02-video-poster.webp"
+    },
+    "7.3": {
+      "imagen": "/cursos/agentic-os/L7-03.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "7.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L7-04-video.mp4",
+      "poster": "/cursos/agentic-os/L7-04-video-poster.webp"
+    },
+    "7.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L7-04-video.mp4",
+      "poster": "/cursos/agentic-os/L7-04-video-poster.webp"
+    },
+    "7.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L7-06-video.mp4",
+      "poster": "/cursos/agentic-os/L7-06-video-poster.webp"
+    },
+    "8.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-02-chispa.mp4",
+      "poster": "/cursos/agentic-os/L8-02-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L8-02-chispa.vtt"
+    },
+    "8.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-06-video.mp4",
+      "poster": "/cursos/agentic-os/L8-06-video-poster.webp"
+    },
+    "8.9": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-09-video.mp4",
+      "poster": "/cursos/agentic-os/L8-09-video-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L8-09-video.vtt"
+    },
+    "tráiler": {
+      "producido": true
+    },
+    "1.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L1-04-video.mp4",
+      "poster": "/cursos/agentic-os/L1-04-video-poster.webp"
+    },
+    "1.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L1-05-chispa.mp4",
+      "poster": "/cursos/agentic-os/L1-05-chispa-poster.webp",
+      "subtitulos": "/cursos/agentic-os/L1-05-chispa.vtt"
+    },
+    "2.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-03-video.mp4",
+      "poster": "/cursos/agentic-os/L2-03-video-poster.webp"
+    },
+    "2.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-04-video.mp4",
+      "poster": "/cursos/agentic-os/L2-04-video-poster.webp"
+    },
+    "2.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-05-video.mp4",
+      "poster": "/cursos/agentic-os/L2-05-video-poster.webp"
+    },
+    "2.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-06-video.mp4",
+      "poster": "/cursos/agentic-os/L2-06-video-poster.webp"
+    },
+    "2.7": {
+      "imagen": "/cursos/agentic-os/L2-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "2.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L2-08-video.mp4",
+      "poster": "/cursos/agentic-os/L2-08-video-poster.webp"
+    },
+    "8.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-01-video.mp4",
+      "poster": "/cursos/agentic-os/L8-01-video-poster.webp"
+    },
+    "8.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-03-video.mp4",
+      "poster": "/cursos/agentic-os/L8-03-video-poster.webp"
+    },
+    "8.4": {
+      "imagen": "/cursos/agentic-os/L8-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "8.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-05-video.mp4",
+      "poster": "/cursos/agentic-os/L8-05-video-poster.webp"
+    },
+    "8.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-07-video.mp4",
+      "poster": "/cursos/agentic-os/L8-07-video-poster.webp"
+    },
+    "8.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/agentic-os/L8-08-video.mp4",
+      "poster": "/cursos/agentic-os/L8-08-video-poster.webp"
+    }
+  },
   "skills": {
     "1.1": {
       "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/skills/L1-01-chispa.mp4",

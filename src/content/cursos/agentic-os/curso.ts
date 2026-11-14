@@ -8,13 +8,13 @@ export const curso: CursoTexto = {
     "titulo": "Su agentic OS: un equipo de agentes que trabaja para usted",
     "subtitulo": "Agentic OS con Claude Code, paso a paso y en español",
     "tituloSeo": "Curso gratis: su agentic OS con Claude Code | Vion",
-    "descripcion": "Curso gratis de Vion: arme en Claude Code un equipo de agentes con cola de aprobación, tope de gasto, memoria y avisos en Telegram. En producción.",
-    "paraQuien": "Dueños de pyme, independientes y equipos chicos que ya usan Claude (el chat) y quieren que trabaje solo, sin perder el control.",
-    "seLleva": "Su propio sistema en Claude Code, en su compu: 3 agentes con papel y reglas, un orquestador que entiende pedidos en castellano, una cola de aprobación (nada sale sin su «sí»), un tope de gasto con freno, memoria en archivos que usted lee y edita, y un bot de Telegram que le avisa y le deja aprobar desde el teléfono. Todo con la plantilla abierta del curso, que puede cambiar a su negocio.",
+    "descripcion": "Curso gratis de Vion: arme en Claude Code un equipo de agentes con cola de aprobación, tope de gasto, memoria y avisos en Telegram.",
+    "paraQuien": "Dueños de pequeños negocios, independientes y equipos chicos que ya usan Claude para conversar y quieren que trabaje por su cuenta, sin perder el control. No hace falta saber programar.",
+    "seLleva": "Su propio equipo de agentes en su computadora: tres agentes con su papel y sus reglas, un orquestador que entiende pedidos en castellano, una cola donde usted aprueba todo, un tope de gasto con freno, una memoria que usted puede leer y corregir, y un bot de Telegram para aprobar desde el celular. Todo sobre la plantilla del curso, que puede adaptar a su negocio.",
     "herramientas": "Claude Code con un plan pago de Claude (Pro, USD 20 al mes); Python, Git, SQLite y Telegram, gratis.",
     "ficha": {
-      "requisitos": "Una compu con Windows 10 (1809 o más nuevo) o macOS 13 o más nuevo y 4 GB de RAM; una cuenta de Claude con plan pago; Telegram en el celular; ganas de abrir una terminal (se explica desde cero en la lección 2). No hace falta saber programar: el código lo escribe Claude Code con los pedidos del kit.",
-      "duracion": "8 lecciones en 63 láminas, con 47 videos cortos (unos 18 min de video en total); unas 2 h haciendo, de las que la puesta a punto lleva unos 20 min.",
+      "requisitos": "Una computadora con Windows 10 (1809 o más nuevo) o macOS 13 o más nuevo; una cuenta de Claude con plan pago; Telegram en el celular. No hace falta saber programar: la terminal se explica desde cero en la lección 2.",
+      "duracion": "8 lecciones, 63 láminas con videos cortos, más el tráiler.",
       "costo": "El plan Pro de Claude, USD 20 al mes (o USD 17 al mes pagando el año: USD 200), porque el plan gratis no incluye Claude Code; Python, Git, SQLite y Telegram son gratis."
     },
     "costos": [
@@ -50,14 +50,14 @@ export const curso: CursoTexto = {
       },
       {
         "pieza": "Plantilla del curso",
-        "costo": "Gratis, con licencia abierta {{licencia de la plantilla}}",
+        "costo": "Gratis",
         "fuente": "Vion"
       }
     ],
     "costosFecha": "2026-11-10",
     "puesta": {
       "leccion": 2,
-      "texto": "Todo se instala en la lección 2, sin permisos de administrador. Versiones comprobadas el 10/11/2026: Claude Code 2.1.321, Python 3.15.2 o 3.14.10 (sirve desde 3.12), Git 2.56.0. SQLite viene dentro de Python y Node.js no hace falta.\n\n| Paso | Windows (PowerShell) | Mac (Terminal) |\n| Git | `winget install Git.Git` | `xcode-select --install` |\n| Python | Instalador de python.org con «Add python.exe to PATH» | Instalador de python.org y, al terminar, «Install Certificates.command» |\n| Claude Code | `winget install Anthropic.ClaudeCode` (no se actualiza solo) | `brew install --cask claude-code` (no se actualiza solo) |\n| Comprobar | `git --version`, `py --version`, `claude --version`, `claude doctor` | `git --version`, `python3 --version`, `claude --version`, `claude doctor` |\n| Entrar | `claude` → «Claude account with subscription» → aceptar en el navegador | Igual |\n| La plantilla | `git clone`, `copy .env.ejemplo .env`, `py equipo.py iniciar` | `git clone`, `cp .env.ejemplo .env`, `python3 equipo.py iniciar` |\n\nEn Linux (Ubuntu o Debian): `sudo apt install git python3`, y Claude Code por el repositorio apt firmado de Anthropic (la huella está en [code.claude.com/docs/en/setup](https://code.claude.com/docs/en/setup)).\n\n**Cómo se comprueba que anda:** `claude doctor` sin errores; `equipo.py estado` todo en verde (menos Telegram, hasta la lección 8); y `equipo.py pedir \"Decime hola en una línea\"` deja un borrador en la cola en menos de un minuto. El token del bot va en `.env`, que nunca va a Git y que los agentes no pueden leer."
+      "texto": "Todo se instala en la lección 2, sin permisos de administrador. SQLite viene dentro de Python y Node.js no hace falta.\n\n| Paso | Windows (PowerShell) | Mac (Terminal) |\n| Git | `winget install Git.Git` | `xcode-select --install` |\n| Python | Instalador de python.org con «Add python.exe to PATH» | Instalador de python.org y, al terminar, «Install Certificates.command» |\n| Claude Code | `winget install Anthropic.ClaudeCode` | `brew install --cask claude-code` |\n| Comprobar | `git --version`, `py --version`, `claude --version`, `claude doctor` | `git --version`, `python3 --version`, `claude --version`, `claude doctor` |\n| Entrar | `claude` → «Claude account with subscription» → aceptar en el navegador → «Yes, I trust this folder» en la carpeta de la plantilla | Igual |\n| La plantilla | Descomprimir el kit en `mi-equipo`, `copy .env.ejemplo .env`, `py equipo.py iniciar` | Igual, con `cp` y `python3` |\n\nEn Linux (Ubuntu o Debian): `sudo apt install git python3`, y Claude Code por el repositorio firmado de Anthropic (los pasos están en [code.claude.com/docs/en/setup](https://code.claude.com/docs/en/setup)).\n\n**Cómo se comprueba que anda:** `claude doctor` sin errores, `equipo.py estado` todo en verde (menos Telegram, hasta la lección 8) y un primer pedido que deja su borrador en la cola. La llave del bot va en `.env`, que no se comparte y que los agentes no pueden leer."
     },
     "recursos": [
       {
@@ -79,7 +79,7 @@ export const curso: CursoTexto = {
       {
         "nombre": "Plantilla «Equipo base» de Vion",
         "que": "La carpeta que se arma en el curso: tres agentes, el programa `equipo.py`, la base SQLite, la memoria y el bot.",
-        "licencia": "Abierta {{licencia de la plantilla}}",
+        "licencia": "Abierta",
         "revision": "La hace Vion para el curso, desde cero; sin dependencias (solo la biblioteca estándar de Python).",
         "lecciones": "2 a 8"
       },
@@ -88,7 +88,7 @@ export const curso: CursoTexto = {
         "url": "https://github.com/anthropics/claude-plugins-official",
         "que": "El directorio oficial de plugins de Claude Code (incluye `skill-creator`), para seguir después del curso.",
         "licencia": "Apache-2.0",
-        "revision": "Oficial de Anthropic; lo miramos en el commit `dceb15d` del 10/11/2026. Se nombra para seguir: en el curso no se instala.",
+        "revision": "Oficial de Anthropic. Se nombra para seguir: en el curso no se instala.",
         "lecciones": "Después del curso"
       }
     ],
@@ -98,11 +98,11 @@ export const curso: CursoTexto = {
       "archivos": [
         {
           "nombre": "PUESTA-A-PUNTO.md",
-          "que": "La guía de instalación de la lección 2 para Windows y Mac, con capturas."
+          "que": "La guía de instalación de la lección 2 para Windows y Mac."
         },
         {
-          "nombre": "mi-equipo/ (ZIP y repositorio)",
-          "que": "La plantilla «Equipo base» terminada y probada en Windows y Mac."
+          "nombre": "mi-equipo/",
+          "que": "La plantilla «Equipo base» terminada, lista para usar."
         },
         {
           "nombre": "PEDIDOS.md",
@@ -121,14 +121,15 @@ export const curso: CursoTexto = {
     "accion": {
       "titulo": "Empiece con un pedido por día",
       "texto": "Use su equipo con un pedido por día y corrija con notas: así aprende. Y si quiere uno conectado a su correo, su web y sus clientes, lo armamos con usted."
-    }
+    },
+    "explica": "Claude es una inteligencia artificial que conversa con usted. En este curso va un paso más allá: arma un **equipo de agentes**, programas que usan a Claude para hacer tareas completas (investigar, redactar un correo, ordenar pendientes) y que dejan todo esperando su aprobación.\n\nA ese conjunto se le llama **agentic OS**: un pequeño sistema que trabaja para usted con reglas que usted escribe. Ningún agente envía, publica ni paga nada sin su «sí».\n\n### Al terminar el curso va a poder\n\n- tener tres agentes trabajando en su computadora, cada uno con su papel;\n- pedirles cosas en palabras, sin elegir a quién;\n- aprobar o rechazar todo lo que preparan, y que aprendan de sus correcciones;\n- poner un límite de gasto que frena solo;\n- recibir avisos y aprobar desde el celular, con Telegram.\n\n### Lo que necesita\n\nUna computadora con Windows o Mac, una cuenta de Claude con plan pago (Pro, desde USD 20 al mes, porque Claude Code no está en el plan gratis) y Telegram en el celular. No hace falta saber programar: la plantilla viene hecha, los comandos se copian de cada lámina y la lección 2 explica la terminal desde cero."
   },
   "en": {
     "corto": "Agentic OS",
     "titulo": "Build your agentic OS: a team of AI agents that works for you",
     "subtitulo": "Agentic OS with Claude Code, step by step",
     "tituloSeo": "Free course: build your agentic OS | Vion",
-    "descripcion": "A free Vion course: build a team of agents in Claude Code with an approval queue, a spending cap, memory and Telegram alerts. In production.",
+    "descripcion": "A free Vion course: build a team of agents in Claude Code with an approval queue, a spending cap, memory and Telegram alerts.",
     "paraQuien": "Small business owners, freelancers and small teams who already use Claude chat and want it to work on its own without losing control.",
     "seLleva": "Your own system in Claude Code on your computer: three agents with a role and rules, an orchestrator that understands plain-language requests, an approval queue, a spending cap with a brake, memory in files you can read, and a Telegram bot to approve from your phone.",
     "herramientas": "Claude Code with a paid Claude plan (Pro, USD 20 a month); Python, Git, SQLite and Telegram are free.",
