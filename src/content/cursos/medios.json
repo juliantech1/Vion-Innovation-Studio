@@ -535,7 +535,8 @@
   },
   "motion": {
     "0.2": {
-      "producido": true
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-02-video.mp4",
+      "poster": "/cursos/motion/L0-02-video-poster.webp"
     },
     "0.3": {
       "imagen": "/cursos/motion/L0-03.webp",
@@ -563,7 +564,8 @@
       "alto": 900
     },
     "2.1": {
-      "producido": true
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L2-01-video.mp4",
+      "poster": "/cursos/motion/L2-01-video-poster.webp"
     },
     "2.3": {
       "imagen": "/cursos/motion/L2-03.webp",
@@ -571,7 +573,8 @@
       "alto": 900
     },
     "2.4": {
-      "producido": true
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L2-04-video.mp4",
+      "poster": "/cursos/motion/L2-04-video-poster.webp"
     },
     "2.6": {
       "imagen": "/cursos/motion/L2-06.webp",
@@ -589,7 +592,8 @@
       "alto": 900
     },
     "5.1": {
-      "producido": true
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L5-01-video.mp4",
+      "poster": "/cursos/motion/L5-01-video-poster.webp"
     },
     "5.2": {
       "imagen": "/cursos/motion/L5-02.webp",
@@ -605,6 +609,205 @@
       "imagen": "/cursos/motion/L7-04.webp",
       "ancho": 1600,
       "alto": 900
+    },
+    "0.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-01-chispa.mp4",
+      "poster": "/cursos/motion/L0-01-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L0-01-chispa.vtt"
+    },
+    "0.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-07-video.mp4",
+      "poster": "/cursos/motion/L0-07-video-poster.webp"
+    },
+    "0.11": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-11-chispa.mp4",
+      "poster": "/cursos/motion/L0-11-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L0-11-chispa.vtt"
+    },
+    "1.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L1-01-chispa.mp4",
+      "poster": "/cursos/motion/L1-01-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L1-01-chispa.vtt"
+    },
+    "1.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L1-07-chispa.mp4",
+      "poster": "/cursos/motion/L1-07-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L1-07-chispa.vtt"
+    },
+    "2.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L2-02-chispa.mp4",
+      "poster": "/cursos/motion/L2-02-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L2-02-chispa.vtt"
+    },
+    "2.7": {
+      "imagen": "/cursos/motion/L2-07.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L3-01-chispa.mp4",
+      "poster": "/cursos/motion/L3-01-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L3-01-chispa.vtt"
+    },
+    "3.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L3-02-video.mp4",
+      "poster": "/cursos/motion/L3-02-video-poster.webp"
+    },
+    "3.4": {
+      "imagen": "/cursos/motion/L3-04.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "3.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L3-07-video.mp4",
+      "poster": "/cursos/motion/L3-07-video-poster.webp"
+    },
+    "4.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-01-video.mp4",
+      "poster": "/cursos/motion/L4-01-video-poster.webp"
+    },
+    "4.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-02-chispa.mp4",
+      "poster": "/cursos/motion/L4-02-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L4-02-chispa.vtt"
+    },
+    "4.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-08-chispa.mp4",
+      "poster": "/cursos/motion/L4-08-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L4-08-chispa.vtt"
+    },
+    "5.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L5-04-video.mp4",
+      "poster": "/cursos/motion/L5-04-video-poster.webp"
+    },
+    "5.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L5-06-chispa.mp4",
+      "poster": "/cursos/motion/L5-06-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L5-06-chispa.vtt"
+    },
+    "6.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L6-01-video.mp4",
+      "poster": "/cursos/motion/L6-01-video-poster.webp"
+    },
+    "6.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L6-02-video.mp4",
+      "poster": "/cursos/motion/L6-02-video-poster.webp"
+    },
+    "6.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L6-06-chispa.mp4",
+      "poster": "/cursos/motion/L6-06-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L6-06-chispa.vtt"
+    },
+    "7.1": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-01-video.mp4",
+      "poster": "/cursos/motion/L7-01-video-poster.webp"
+    },
+    "7.2": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-02-chispa.mp4",
+      "poster": "/cursos/motion/L7-02-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L7-02-chispa.vtt"
+    },
+    "7.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-03-video.mp4",
+      "poster": "/cursos/motion/L7-03-video-poster.webp"
+    },
+    "7.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-07-video.mp4",
+      "poster": "/cursos/motion/L7-07-video-poster.webp"
+    },
+    "7.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-08-chispa.mp4",
+      "poster": "/cursos/motion/L7-08-chispa-poster.webp",
+      "subtitulos": "/cursos/motion/L7-08-chispa.vtt"
+    },
+    "tráiler": {
+      "producido": true
+    },
+    "tráiler vertical": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/trailer-vertical.mp4",
+      "poster": "/cursos/motion/trailer-vertical-poster.webp"
+    },
+    "0.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-05-video.mp4",
+      "poster": "/cursos/motion/L0-05-video-poster.webp"
+    },
+    "0.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-06-video.mp4",
+      "poster": "/cursos/motion/L0-06-video-poster.webp"
+    },
+    "0.8": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-08-video.mp4",
+      "poster": "/cursos/motion/L0-08-video-poster.webp"
+    },
+    "0.9": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L0-09-video.mp4",
+      "poster": "/cursos/motion/L0-09-video-poster.webp"
+    },
+    "1.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L1-03-video.mp4",
+      "poster": "/cursos/motion/L1-03-video-poster.webp"
+    },
+    "1.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L1-04-video.mp4",
+      "poster": "/cursos/motion/L1-04-video-poster.webp"
+    },
+    "1.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L1-05-video.mp4",
+      "poster": "/cursos/motion/L1-05-video-poster.webp"
+    },
+    "2.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L2-05-video.mp4",
+      "poster": "/cursos/motion/L2-05-video-poster.webp"
+    },
+    "3.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L3-03-video.mp4",
+      "poster": "/cursos/motion/L3-03-video-poster.webp"
+    },
+    "3.5": {
+      "imagen": "/cursos/motion/L3-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "4.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-04-video.mp4",
+      "poster": "/cursos/motion/L4-04-video-poster.webp"
+    },
+    "4.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-05-video.mp4",
+      "poster": "/cursos/motion/L4-05-video-poster.webp"
+    },
+    "4.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-06-video.mp4",
+      "poster": "/cursos/motion/L4-06-video-poster.webp"
+    },
+    "4.7": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L4-07-video.mp4",
+      "poster": "/cursos/motion/L4-07-video-poster.webp"
+    },
+    "5.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L5-03-video.mp4",
+      "poster": "/cursos/motion/L5-03-video-poster.webp"
+    },
+    "6.5": {
+      "imagen": "/cursos/motion/L6-05.webp",
+      "ancho": 1600,
+      "alto": 900
+    },
+    "6.3": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L6-03-video.mp4",
+      "poster": "/cursos/motion/L6-03-video-poster.webp"
+    },
+    "6.4": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L6-04-video.mp4",
+      "poster": "/cursos/motion/L6-04-video-poster.webp"
+    },
+    "7.5": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-05-video.mp4",
+      "poster": "/cursos/motion/L7-05-video-poster.webp"
+    },
+    "7.6": {
+      "video": "https://pub-64f378ed8bbe435bb6cbf4d976077575.r2.dev/motion/L7-06-video.mp4",
+      "poster": "/cursos/motion/L7-06-video-poster.webp"
     }
   },
   "blender-3d": {},

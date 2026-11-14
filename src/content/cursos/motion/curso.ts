@@ -8,13 +8,14 @@ export const curso: CursoTexto = {
     "titulo": "Motion design con Claude",
     "subtitulo": "Motion design sin After Effects",
     "tituloSeo": "Curso gratis: motion design con Claude | Vion",
-    "descripcion": "Curso gratis de Vion: animaciones propias en MP4 pidiéndolas en palabras a Claude, con su marca, sin After Effects. En producción.",
+    "descripcion": "Curso gratis de Vion: animaciones propias en MP4 pidiéndolas en palabras a Claude, con su marca, sin After Effects.",
     "paraQuien": "Creadores, agencias chicas y dueños de negocio que no usan After Effects y quieren animaciones propias para reels, YouTube o anuncios.",
     "seLleva": "Tres animaciones propias en MP4 con su marca (un título de 6 s, un explicador con pasos de 30 a 45 s y una tarjeta de oferta de 8 s), su prompt de estilo `ESTILO.md`, una skill `mi-motion` para Claude Code y una plantilla de Remotion que repite la tarjeta con otros datos.",
     "herramientas": "Claude Code (pide un plan pago de Claude, desde USD 20 al mes); Node.js, ffmpeg, Chrome y GSAP, gratis; Remotion, gratis hasta 3 empleados.",
+    "explica": "**Motion design** es el diseño de cosas que se mueven en una pantalla: un título que entra letra por letra, una tarjeta con una oferta, un video corto que explica cómo funciona un servicio. Hasta hace poco se hacía con programas caros y difíciles, como After Effects.\n\nEn este curso usted no anima a mano. Le **pide la animación en palabras** a Claude Code (el asistente de Claude que trabaja en su computadora) y él escribe un archivo que se mueve en el navegador. Después usted la corrige hablando («más lento», «que esta palabra entre después») y, al final, la convierte en un video **MP4** que puede subir a Instagram, YouTube o un anuncio.\n\n### Al terminar el curso va a poder\n\n- pedirle a Claude un título animado con su nombre y corregirlo sin tocar código;\n- escribir una guía de su marca (colores, letra y forma de moverse) para que todo salga con su estilo;\n- pasar cualquier animación a MP4, horizontal o vertical;\n- repetir una misma tarjeta con otros datos (producto, precio) usando Remotion;\n- sumar una voz y sonidos, y armar un explicador corto de su producto o servicio.\n\n### Lo que necesita\n\nUna computadora con Windows, Mac o Linux, internet y una cuenta de Claude con plan pago (Pro, desde USD 20 al mes), porque Claude Code no viene en el plan gratis. Los demás programas son gratis. No hace falta saber programar ni haber usado nunca un programa de animación: los comandos se copian de cada lámina.",
     "ficha": {
-      "requisitos": "Una computadora con Windows 10 (1809) o más nuevo, macOS 13 o más nuevo, o Ubuntu 20.04 o más nuevo; 4 GB de RAM como mínimo para Claude Code y 8 GB recomendados, porque el paso a video abre Chrome; internet; saber copiar y pegar en una terminal (se enseña en la lección 0). No hace falta programar ni saber After Effects.",
-      "duracion": "8 lecciones, 60 láminas con 44 videos cortos (unos 18 min de video), unos 45 min de lectura, más el tiempo de práctica (una tarde).",
+      "requisitos": "Una computadora con Windows 10 (1809) o más nuevo, macOS 13 o más nuevo, o Ubuntu 20.04 o más nuevo; 8 GB de RAM recomendados, porque el paso a video abre un Chrome invisible; internet; y saber copiar y pegar un comando en una terminal (se explica en la lección 0). No hace falta programar ni saber After Effects.",
+      "duracion": "8 lecciones, 60 láminas con videos cortos, más el tráiler.",
       "costo": "Claude Code pide un plan pago de Claude (desde USD 20 al mes); lo demás es gratis para una persona o una empresa de hasta 3 empleados, y arriba de eso Remotion cobra."
     },
     "costos": [
@@ -51,7 +52,7 @@ export const curso: CursoTexto = {
     "costosFecha": "2026-11-10",
     "puesta": {
       "leccion": 0,
-      "texto": "| Qué | Windows | Mac | Linux (Ubuntu o Debian) | Cómo se comprueba |\n| Cuenta de Claude, plan Pro o superior | claude.com/pricing | Igual | Igual | Entrar a claude.ai y ver el plan en Ajustes |\n| Git para Windows | git-scm.com/downloads/win, todo «Siguiente» | No hace falta | No hace falta | `git --version` |\n| Claude Code | El instalador oficial en PowerShell (abajo), o `winget install Anthropic.ClaudeCode` | El instalador oficial en Terminal (abajo), o `brew install --cask claude-code` | El instalador oficial en Terminal (abajo) | En otra terminal: `claude --version` y `claude doctor` |\n| Node.js LTS (v26, v24 o v22) | nodejs.org, o `winget install OpenJS.NodeJS.LTS` | nodejs.org, o `brew install node` | nodejs.org o el gestor de su distribución | `node -v` y `npm -v` |\n| ffmpeg | `winget install Gyan.FFmpeg` | `brew install ffmpeg` | `sudo apt install ffmpeg` | `ffmpeg -version` |\n| Google Chrome | google.com/chrome | Igual | Igual | Abre |\n| La carpeta del curso | El kit, descomprimido en `Documentos\\motion-curso` | `~/motion-curso` | Igual | `cd motion-curso` y ver `CLAUDE.md` |\n| Las skills | `bang-motion` en `C:\\Users\\<usted>\\.claude\\skills\\` | En `~/.claude/skills/` | Igual | En Claude Code, `/` muestra `bang-motion` y `mi-motion` |\n| Las dependencias del kit | `npm install` dentro de `motion-curso` | Igual | Igual | `npm ls puppeteer` muestra la versión |\n\nEl instalador oficial de Claude Code: en Windows, en PowerShell, `irm https://claude.ai/install.ps1 | iex`; en Mac y Linux, en Terminal, `curl -fsSL https://claude.ai/install.sh | bash`. No muestra progreso: espere a que termine.\n\nPara entrar, escriba `claude` y siga el navegador. `bang-motion` se clona en una carpeta aparte, se fija al commit `c1aa65e921c970d858705fcb4a53a8294d1a4131` y se copia a su carpeta de skills; `mi-motion` ya viene en `motion-curso/.claude/skills/`. La prueba: pedirle a Claude Code una animación de 5 segundos de un círculo que cruza la pantalla y abrirla con doble clic. Versiones de referencia al 2026-11-10: Node v26.13.0, Remotion 4.0.542, GSAP 3.15.1; Claude Code {{versión con la que se grabó, se anota al grabar}}. Después de instalar algo, cierre y abra la terminal; los demás errores típicos están en la lámina 0.10."
+      "texto": "| Qué | Windows (PowerShell) | Mac (Terminal) | Cómo se comprueba |\n| Cuenta de Claude, plan Pro o superior | claude.com/pricing | Igual | Al entrar a Claude Code con `claude` |\n| Git para Windows | git-scm.com/downloads/win, todo «Siguiente» | No hace falta | `git --version` |\n| Claude Code | `winget install Anthropic.ClaudeCode` | `brew install --cask claude-code` | En una terminal nueva: `claude --version` y `claude doctor` |\n| Node.js LTS | nodejs.org, o `winget install OpenJS.NodeJS.LTS` | nodejs.org, o `brew install node` | `node -v` |\n| ffmpeg | `winget install Gyan.FFmpeg` | `brew install ffmpeg` | `ffmpeg -version` |\n| Google Chrome | google.com/chrome | Igual | Abre |\n| La carpeta del curso | El kit, descomprimido en `Documentos\\motion-curso` | `~/motion-curso` | Adentro está `CLAUDE.md` |\n| Lo que usa el kit | `npm install` dentro de `motion-curso` | Igual | Termina con «added … packages» |\n| La skill bang-motion | En `C:\\Users\\<usted>\\.claude\\skills\\bang-motion` | En `~/.claude/skills/bang-motion` | En Claude Code, `/` muestra `bang-motion` y `mi-motion` |\n\nEn Linux, Claude Code se instala con `curl -fsSL https://claude.ai/install.sh | bash` y ffmpeg con `sudo apt install ffmpeg`. Después de instalar algo, cierre la terminal y ábrala de nuevo. Para entrar a Claude Code, escriba `claude` y elija la cuenta con suscripción: se abre el navegador para aceptar. Versiones con las que se hizo el curso (2026-11-14): Claude Code 2.1.325, Node v22.23.3 (sirve también la LTS de hoy, la v26.13.1), Puppeteer 25.16.0, Remotion 4.0.543 y GSAP 3.15.1. Los errores típicos están en la lámina 0.10."
     },
     "recursos": [
       {
@@ -105,7 +106,7 @@ export const curso: CursoTexto = {
       {
         "nombre": "mi-motion (la skill del curso)",
         "que": "Las reglas de Vion para pedir motion: las reglas `seek` y `DURATION`, el estilo de `ESTILO.md` y la lista anti-PPT en castellano. Viene en el kit.",
-        "licencia": "La del kit: {{licencia del kit, por decidir}}.",
+        "licencia": "La del kit del curso.",
         "revision": "Escrita por nosotros, sin scripts.",
         "lecciones": "0, 5, 7"
       }
@@ -132,11 +133,11 @@ export const curso: CursoTexto = {
         },
         {
           "nombre": "a-mp4.mjs y package.json",
-          "que": "El paso de HTML a MP4 (Puppeteer y ffmpeg), con las opciones `--fps` y `--audio`."
+          "que": "El paso de HTML a MP4 (Puppeteer y ffmpeg), con las opciones `--fps` y `--audio`. `package.json` fija Puppeteer 25.16.0."
         },
         {
           "nombre": "prompts/titulo.md, explicador.md y oferta.md",
-          "que": "Los pedidos de las lecciones 1, 7 y 4, con huecos para sus datos."
+          "que": "Los pedidos del título, la tarjeta de oferta y el explicador, con huecos entre corchetes para sus datos."
         },
         {
           "nombre": "revision-anti-ppt.md",
@@ -149,10 +150,6 @@ export const curso: CursoTexto = {
         {
           "nombre": "ejemplos/",
           "que": "Los HTML y MP4 de ejemplo del curso (título, explicador y oferta), hechos con el kit."
-        },
-        {
-          "nombre": "oferta-remotion/",
-          "que": "La plantilla de Remotion de la lección 4 ya armada, con sus tres archivos de datos."
         }
       ]
     },
@@ -166,7 +163,7 @@ export const curso: CursoTexto = {
     "titulo": "Motion design with Claude",
     "subtitulo": "Motion design without After Effects",
     "tituloSeo": "Free course: motion design with Claude | Vion",
-    "descripcion": "A free Vion course: make your own on-brand MP4 animations by describing them to Claude, no After Effects needed. In production.",
+    "descripcion": "A free Vion course: make your own on-brand MP4 animations by describing them to Claude, no After Effects needed.",
     "paraQuien": "Creators, small agencies and business owners who do not use After Effects and want their own animations for reels, YouTube or ads.",
     "seLleva": "Three on-brand MP4 animations of your own (a title, a step-by-step explainer and an offer card), your style prompt, a `mi-motion` skill for Claude Code and a Remotion template.",
     "herramientas": "Claude Code (requires a paid Claude plan, from USD 20 a month); Node.js, ffmpeg, Chrome and GSAP are free; Remotion is free for up to 3 employees.",

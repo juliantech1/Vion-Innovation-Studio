@@ -8,12 +8,12 @@ export const lecciones: LeccionCurso[] = [
     "slug": "0-puesta-a-punto",
     "titulo": "Puesta a punto: Claude Code, Node, ffmpeg y las skills",
     "objetivo": "Dejar todo instalado y comprobado: la cuenta de Claude, cinco programas y dos skills, en Windows, Mac o Linux.",
-    "resultado": "Todo instalado y una animación de prueba de 5 s moviéndose en el navegador, pedida a Claude Code.",
+    "resultado": "Todo instalado y una animación de prueba moviéndose en el navegador, pedida a Claude Code.",
     "laminas": [
       {
         "n": "0.1",
         "titulo": "Antes de animar",
-        "cuerpo": "En esta lección deja todo listo: una cuenta, cinco programas y dos skills. Al final, una animación de prueba se mueve en su navegador. Tiempo: unos 20 minutos la primera vez.",
+        "cuerpo": "Antes de animar hay que dejar la computadora lista. En esta lección instala unos pocos programas gratis, prepara la carpeta del curso y, al final, le pide a Claude Code su primera animación: un círculo que cruza la pantalla. Si se mueve, ya está todo funcionando.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 20,
@@ -24,7 +24,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.2",
         "titulo": "La lista",
-        "cuerpo": "1. Cuenta de Claude (Pro o superior).\n2. Git para Windows (solo Windows).\n3. Claude Code.\n4. Node.js LTS.\n5. ffmpeg.\n6. Google Chrome.\n7. La carpeta del curso.\n8. Las skills `bang-motion` y `mi-motion`.\n9. `npm install` en la carpeta.\n\n**Todo es gratis menos la cuenta**: Claude Code no viene en el plan gratis.",
+        "cuerpo": "Esto es todo lo que va a necesitar:\n\n1. Una cuenta de Claude con plan pago (Pro o superior).\n2. Git para Windows (solo si usa Windows).\n3. **Claude Code**: el asistente de Claude que trabaja en su computadora.\n4. **Node.js**: el programa que corre los pequeños programas del curso.\n5. **ffmpeg**: el programa que arma los videos.\n6. Google Chrome.\n7. La carpeta del curso (el kit).\n8. Dos skills: `bang-motion` y `mi-motion`.\n\n**Todo es gratis menos la cuenta**: Claude Code no viene en el plan gratis de Claude.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
@@ -34,7 +34,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.3",
         "titulo": "La cuenta de Claude",
-        "cuerpo": "Claude Code necesita un plan **Pro** (USD 20 al mes, o USD 17 pagando el año), **Max** (USD 100) o **Ultra** (USD 200). Con Pro alcanza para el curso; en pedidos largos el plan puede pedirle que espere un rato. Elija el plan en [claude.com/pricing](https://claude.com/pricing).",
+        "cuerpo": "Claude Code necesita un plan **Pro** (USD 20 al mes, o USD 17 al mes pagando el año), **Max** (USD 100) o **Ultra** (USD 200). Con Pro alcanza para todo el curso. Si hace muchos pedidos largos seguidos, el plan puede pedirle que espere antes de seguir. Los planes están en [claude.com/pricing](https://claude.com/pricing).",
         "apoyo": {
           "tipo": "captura",
           "seVe": "La página de planes de claude.com/pricing, con Pro, Max y Ultra."
@@ -43,7 +43,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.4",
         "titulo": "Git para Windows (solo Windows)",
-        "cuerpo": "Bájelo de [git-scm.com/downloads/win](https://git-scm.com/downloads/win) e instálelo con todo por defecto. Claude Code lo usa para correr comandos con Git Bash; sin él, usa PowerShell. Compruebe: `git --version`. En Mac y Linux no hace falta.",
+        "cuerpo": "Si usa Windows, instale Git desde [git-scm.com/downloads/win](https://git-scm.com/downloads/win), aceptando todo lo que viene marcado. Git es un programa para guardar versiones de archivos; Claude Code lo usa por dentro para correr comandos. En Mac y Linux no hace falta.\n\nPara comprobar que quedó instalado, abra la **terminal** (la ventana donde se escriben comandos: en Windows se llama PowerShell) y escriba `git --version`. Si responde con un número de versión, está.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "El instalador de Git para Windows, con las opciones por defecto."
@@ -59,24 +59,28 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.5",
         "titulo": "Instalar Claude Code",
-        "cuerpo": "- **Windows (PowerShell):** `irm https://claude.ai/install.ps1 | iex`\n- **Mac y Linux (Terminal):** `curl -fsSL https://claude.ai/install.sh | bash`\n\nNo muestra progreso: espere. Abra **otra** terminal y escriba `claude --version`: si sale un número, está. `claude doctor` revisa la instalación. Después escriba `claude` y entre con su cuenta en el navegador.\n\nTambién se puede instalar con `winget install Anthropic.ClaudeCode` en Windows o `brew install --cask claude-code` en Mac.",
+        "cuerpo": "Claude Code se instala con un solo comando en la terminal:\n\n- **Windows:** abra PowerShell y escriba `winget install Anthropic.ClaudeCode`. winget es el instalador de programas que trae Windows.\n- **Mac:** abra Terminal y escriba `brew install --cask claude-code` (necesita Homebrew, de [brew.sh](https://brew.sh)).\n\nCuando termine, **cierre la terminal y ábrala de nuevo**, para que encuentre el programa nuevo. Escriba `claude --version`: si aparece un número, está instalado. `claude doctor` revisa la instalación.\n\nPara entrar, escriba `claude`. La primera vez le pregunta cómo quiere ver el texto y con qué cuenta entrar: elija la cuenta con suscripción y acepte en el navegador.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 45,
-          "seVe": "Pantalla partida: PowerShell en Windows a la izquierda y Terminal en Mac a la derecha; el comando se pega y se resalta con un recuadro rojo; en una terminal nueva, `claude --version` y `claude doctor`; al final, el inicio de sesión en el navegador con el correo tapado.",
-          "dice": "En Windows, PowerShell y este comando. En Mac, la Terminal y este otro. No muestra progreso: espere a que termine. Después abra una terminal nueva y pida la versión. Si aparece un número, está instalado. Escriba claude y entre con su cuenta.",
-          "vozEnOff": true
+          "seVe": "PowerShell instala Claude Code con winget; el Terminal de Mac, con Homebrew; después claude --version, claude doctor y la primera vez de claude, con la elección de la cuenta."
         },
         "bloques": [
           {
             "tipo": "comando",
             "etiqueta": "Windows, en PowerShell",
             "lenguaje": "powershell",
-            "texto": "irm https://claude.ai/install.ps1 | iex"
+            "texto": "winget install Anthropic.ClaudeCode"
           },
           {
             "tipo": "comando",
-            "etiqueta": "Mac y Linux, en Terminal",
+            "etiqueta": "Mac, en Terminal",
+            "lenguaje": "bash",
+            "texto": "brew install --cask claude-code"
+          },
+          {
+            "tipo": "comando",
+            "etiqueta": "Linux, en Terminal",
             "lenguaje": "bash",
             "texto": "curl -fsSL https://claude.ai/install.sh | bash"
           },
@@ -92,7 +96,7 @@ export const lecciones: LeccionCurso[] = [
           },
           {
             "tipo": "comando",
-            "etiqueta": "Entrar con su cuenta",
+            "etiqueta": "Entrar",
             "texto": "claude"
           }
         ]
@@ -100,11 +104,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.6",
         "titulo": "Node.js y ffmpeg",
-        "cuerpo": "**Node:** [nodejs.org](https://nodejs.org) → botón **LTS** (hoy la v26.13.0; también sirven la v24 y la v22), o `winget install OpenJS.NodeJS.LTS` / `brew install node`. Compruebe `node -v`.\n\n**ffmpeg:** `winget install Gyan.FFmpeg` · `brew install ffmpeg` · `sudo apt install ffmpeg`. Compruebe `ffmpeg -version`.\n\nSi la terminal no los encuentra, ciérrela y ábrala de nuevo.",
+        "cuerpo": "**Node.js** corre los programas pequeños del curso, como el que pasa una animación a video. **ffmpeg** es el que arma el video al final. Los dos son gratis.\n\n- **Node.js:** en [nodejs.org](https://nodejs.org) el botón «Obtener Node.js®» baja la versión marcada **LTS** (la estable; hoy, la v26.13.1). También se instala con `winget install OpenJS.NodeJS.LTS` en Windows o `brew install node` en Mac.\n- **ffmpeg:** `winget install Gyan.FFmpeg` en Windows, `brew install ffmpeg` en Mac o `sudo apt install ffmpeg` en Linux.\n\nCierre la terminal, ábrala de nuevo y compruebe con `node -v` y `ffmpeg -version`: cada uno responde con su versión. Si dice que no encuentra el comando, casi siempre es porque la terminal se abrió antes de instalar.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "nodejs.org con el botón LTS resaltado; `node -v`; `winget install Gyan.FFmpeg` y `ffmpeg -version`, con sonido de tecleo; un texto encima: «¿No lo encuentra? Cierre y abra la terminal»."
+          "seVe": "nodejs.org con el botón «Obtener Node.js®» y la versión LTS; en PowerShell, winget instala Node.js y ffmpeg; en una terminal nueva, node -v y ffmpeg -version."
         },
         "bloques": [
           {
@@ -152,7 +156,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.7",
         "titulo": "Qué es una skill",
-        "cuerpo": "Una skill es una carpeta con un archivo `SKILL.md`: un manual que Claude lee **solo cuando hace falta**. Arriba dice para qué sirve; abajo, las reglas. Las suyas van en `~/.claude/skills/` (para todos sus proyectos) o en `.claude/skills/` dentro de un proyecto.",
+        "cuerpo": "Una **skill** es una carpeta con un archivo de texto llamado `SKILL.md`: un manual con instrucciones que Claude lee **solo cuando hace falta**. Arriba dice para qué sirve; abajo, las reglas.\n\nLas skills que valen para todos sus proyectos van en la carpeta `.claude/skills/` de su usuario. Las de un solo proyecto van en `.claude/skills/` dentro de ese proyecto. En este curso usa dos: `bang-motion`, con reglas para que el movimiento no parezca una presentación, y `mi-motion`, que viene en el kit.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -164,11 +168,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.8",
         "titulo": "La carpeta del curso y las skills",
-        "cuerpo": "1. Baje el kit y descomprímalo en `Documentos/motion-curso`.\n2. Dentro: `npm install` (instala Puppeteer y su Chrome de pruebas).\n3. `bang-motion`, fijada a la versión que revisamos: `git clone https://github.com/bangtutorial/bang-motion` en una carpeta aparte, `git checkout c1aa65e921c970d858705fcb4a53a8294d1a4131`, y copie la carpeta que tiene el `SKILL.md` a `~/.claude/skills/bang-motion`.\n4. `mi-motion` ya viene en `motion-curso/.claude/skills/`.\n\nCompruebe: en Claude Code escriba `/` y busque las dos. El kit trae también `CLAUDE.md`, las reglas del proyecto para Claude Code (en el bloque de abajo).",
+        "cuerpo": "1. Baje el kit del curso y descomprímalo en `Documentos/motion-curso`.\n2. Abra la terminal **dentro de esa carpeta** y escriba `npm install`. Instala Puppeteer, el programa que más adelante abre la animación en un Chrome invisible para pasarla a video. Termina con «added … packages».\n3. Baje la skill `bang-motion` en una carpeta aparte con `git clone`, y fíjela a la versión que revisamos con `git checkout` (los comandos están abajo).\n4. Copie esa carpeta a su carpeta de skills.\n5. `mi-motion` ya viene en el kit, en `motion-curso/.claude/skills/`.\n\nPara comprobar: entre a Claude Code en `motion-curso` (`claude`) y escriba `/`. En la lista tienen que aparecer `mi-motion` y `bang-motion`.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "El zip, la carpeta y `npm install`; el clon de bang-motion y el checkout; la copia de la carpeta; en Claude Code, la lista que abre `/` con `bang-motion` y `mi-motion` resaltadas. Cada paso lleva su texto encima."
+          "seVe": "En la terminal: npm install, el clon de bang-motion fijado a su versión y la copia a la carpeta de skills; en Claude Code, la barra / muestra mi-motion y bang-motion."
         },
         "bloques": [
           {
@@ -178,26 +182,37 @@ export const lecciones: LeccionCurso[] = [
           },
           {
             "tipo": "comando",
-            "etiqueta": "bang-motion, en una carpeta aparte",
+            "etiqueta": "bang-motion, en la carpeta de al lado",
             "lenguaje": "bash",
-            "texto": "git clone https://github.com/bangtutorial/bang-motion\ncd bang-motion\ngit checkout c1aa65e921c970d858705fcb4a53a8294d1a4131"
+            "texto": "cd ..\ngit clone https://github.com/bangtutorial/bang-motion\ncd bang-motion\ngit checkout c1aa65e921c970d858705fcb4a53a8294d1a4131\ncd .."
           },
           {
-            "tipo": "archivo",
-            "etiqueta": "CLAUDE.md (viene en el kit)",
-            "lenguaje": "markdown",
-            "texto": "# Motion con Claude (kit del curso de Vion)\n- Cada animación es UN archivo HTML que se abre con doble clic. GSAP 3.15.1 desde un CDN con la versión exacta.\n- Contrato: window.DURATION (segundos) y window.seek(t) (lleva la animación al segundo t y la deja quieta).\n  La línea de tiempo arranca sola al abrir, salvo con ?render=1 en la URL.\n- Tamaño fijo en píxeles (1920×1080 por defecto; 1080×1920 si se pide vertical). Nada depende del tamaño de la ventana.\n- Estilo: leer ESTILO.md antes de diseñar. Reglas de movimiento: skill bang-motion y revision-anti-ppt.md.\n- Nada de imágenes ni fuentes de sitios que no sean Google Fonts. Nada de pedir datos ni conectarse a otra cosa.\n- Al terminar: decir cuánto dura y qué se puede cambiar fácil (textos, colores)."
+            "tipo": "comando",
+            "etiqueta": "Copiarla a sus skills · Mac y Linux",
+            "lenguaje": "bash",
+            "texto": "cp -r bang-motion ~/.claude/skills/"
+          },
+          {
+            "tipo": "comando",
+            "etiqueta": "Copiarla a sus skills · Windows (PowerShell)",
+            "lenguaje": "powershell",
+            "texto": "New-Item -ItemType Directory -Force $HOME\\.claude\\skills\nCopy-Item -Recurse bang-motion $HOME\\.claude\\skills\\"
+          },
+          {
+            "tipo": "comando",
+            "etiqueta": "Comprobar: entrar y escribir /",
+            "texto": "claude"
           }
         ]
       },
       {
         "n": "0.9",
         "titulo": "La prueba",
-        "cuerpo": "Abra Claude Code en `motion-curso` y pida: «Hacé una animación de prueba de 5 segundos: un círculo rojo que cruza la pantalla. Seguí CLAUDE.md.» Abra con doble clic el HTML que escribe. Si el círculo se mueve, todo funciona.",
+        "cuerpo": "Abra Claude Code dentro de `motion-curso` y pídale una animación de prueba (el pedido está abajo). Claude escribe un archivo **HTML**, que es una página web, y le dice cómo se llama: en la prueba fue `prueba-circulo.html`. Ábralo con doble clic: se abre en el navegador y el círculo rojo cruza la pantalla. Si se mueve, todo funciona.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El pedido se escribe en Claude Code; Claude crea `prueba.html`; con doble clic se abre en Chrome y el círculo rojo cruza la pantalla."
+          "seVe": "El pedido en Claude Code; Claude escribe prueba-circulo.html y explica cuánto dura; en el navegador, el círculo rojo cruza la pantalla."
         },
         "bloques": [
           {
@@ -210,7 +225,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.10",
         "titulo": "Si algo falla",
-        "cuerpo": "Los errores típicos: comando de PowerShell en CMD o al revés; terminal vieja que no ve lo instalado; cuenta gratis; `npm` bloqueado en PowerShell (`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`); la animación quieta.\n\n| Lo que aparece | Qué pasa | Solución |\n| 'irm' no se reconoce… | Está en CMD, no en PowerShell | Abrir PowerShell, o usar el comando de CMD de la página oficial |\n| The token '&&' is not a valid statement separator | Está en PowerShell con el comando de CMD | Usar el de PowerShell |\n| claude: command not found (o «no se reconoce») | La carpeta de Claude Code todavía no está en el PATH | Cerrar y abrir la terminal; si sigue, la guía «Fix your PATH» de la página oficial |\n| Claude Code dice que el plan no incluye Claude Code | Cuenta gratis | Pasar a Pro o superior |\n| npm : … la ejecución de scripts está deshabilitada (Windows) | La política de PowerShell bloquea `npm.ps1` | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` y abrir otra terminal (o usar Git Bash) |\n| ffmpeg no se encuentra justo después de instalarlo | winget cambió el PATH en otra sesión | Cerrar y abrir la terminal |\n| La animación no se mueve al abrir el HTML | El HTML carga GSAP de internet y no hay conexión, o Claude no siguió la regla de `seek` | Revisar la conexión; pedirle a Claude «revisá que la animación arranque sola y exponga seek y DURATION» |",
+        "cuerpo": "Si algo no anda, casi siempre es uno de estos casos:\n\n| Lo que aparece | Qué pasa | Qué hacer |\n| «claude» o «node» no se reconoce como comando | La terminal se abrió antes de instalar | Cerrarla y abrir una nueva |\n| Claude Code dice que su plan no lo incluye | La cuenta es gratis | Pasar a Pro o superior |\n| npm: «la ejecución de scripts está deshabilitada» (Windows) | PowerShell bloquea los scripts de npm | Correr una vez el comando de abajo |\n| La animación se abre pero queda quieta | El archivo no tiene `DURATION` y `seek(t)`, o no cargó GSAP | Pedirle a Claude: «Seguí CLAUDE.md» |\n| `npm install` falla | No está Node.js, o no está dentro de `motion-curso` | `node -v`, y entrar a la carpeta con `cd` |",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "La tabla de errores típicos de la instalación, con lo que aparece, qué pasa y cómo se arregla."
@@ -227,7 +242,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "0.11",
         "titulo": "Listo",
-        "cuerpo": "Ya tiene todo. En la próxima lección le pide algo de verdad: un título con su nombre.",
+        "cuerpo": "Ya tiene todo listo. En la próxima lección le pide algo de verdad: un título animado con su nombre.",
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
@@ -248,7 +263,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.1",
         "titulo": "Hecho en una frase",
-        "cuerpo": "Este título no lo animó nadie: se pidió a Claude en una frase. En esta lección usted hace el suyo, con su nombre, y lo corrige sin tocar código.",
+        "cuerpo": "Este título no lo animó nadie a mano: se le pidió a Claude en una frase. En esta lección usted hace el suyo, con su nombre, y lo corrige sin tocar código.",
         "apoyo": {
           "tipo": "motion",
           "conChispa": true,
@@ -260,7 +275,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.2",
         "titulo": "Qué le devuelve Claude",
-        "cuerpo": "Un archivo **HTML**: una página web que se mueve. Por dentro usa **GSAP**, una biblioteca de animación gratuita. Le pedimos una sola regla: que la animación diga cuánto dura (`DURATION`) y que se pueda llevar a cualquier segundo (`seek(t)`). Con eso, en la lección 3 se convierte en video sin perder cuadros.",
+        "cuerpo": "Claude le devuelve un archivo **HTML**: una página web que se mueve sola cuando la abre. Por dentro usa **GSAP**, una biblioteca de animación gratuita (un conjunto de herramientas que ya saben mover cosas).\n\nEl kit le pide a Claude una sola regla, escrita en `CLAUDE.md`: que la animación diga cuánto dura (`DURATION`) y que se pueda llevar a cualquier segundo (`seek(t)`). Gracias a eso, en la lección 3 se puede convertir en video sin perder ni un cuadro.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "El recorrido: su pedido → Claude → `titulo.html` → el navegador; abajo, las dos reglas: `DURATION` y `seek(t)`."
@@ -269,30 +284,28 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.3",
         "titulo": "Pedir el título",
-        "cuerpo": "Copie el pedido de abajo y cambie lo que está entre corchetes. Cuanto más concreto (duración, tamaño, fondo, texto y cómo entra), mejor el primer intento. Abra el archivo con doble clic.",
+        "cuerpo": "Copie el pedido de abajo y cambie lo que está entre corchetes. Cuanto más concreto sea (cuánto dura, de qué tamaño, qué fondo, qué texto y cómo entra), mejor sale el primer intento.\n\nClaude escribe `titulo.html` y le cuenta qué hizo: cuánto dura, cómo entran las letras y qué decidió por su cuenta. En el ejemplo, leyó también la guía de la marca del kit y usó su letra y su color de acento. Abra el archivo con doble clic para verlo.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "Claude Code en la carpeta `motion-curso`: el pedido se escribe, con las etiquetas «duración», «tamaño», «texto» y «cómo entra» sobre cada parte; Claude crea `titulo.html` (la respuesta, acelerada) y Chrome lo muestra."
+          "seVe": "El pedido en Claude Code; Claude escribe titulo.html y resume lo que hizo; el título se ve en el navegador."
         },
         "bloques": [
           {
             "tipo": "pedido",
             "etiqueta": "Cambie lo que está entre corchetes",
-            "texto": "Hacé un título animado de [6] segundos, [1920 por 1080], fondo [negro], que diga [MARÍA LÓPEZ · FOTOGRAFÍA]. Que las letras entren de abajo de a una y al final quede quieto 1 segundo."
+            "texto": "Hacé un título animado de [6] segundos, [1920 por 1080], fondo [negro], que diga [MARÍA LÓPEZ · FOTOGRAFÍA]. Que las letras entren de abajo de a una y al final quede quieto 1 segundo. Guardalo como titulo.html y seguí CLAUDE.md."
           }
         ]
       },
       {
         "n": "1.4",
         "titulo": "Corregir en palabras",
-        "cuerpo": "No hace falta saber qué línea cambiar: diga lo que ve y lo que quiere. Ejemplos: «Más lento: que tarde el doble en entrar». «Que FOTOGRAFÍA aparezca después, más chica, en gris claro». **Un cambio por pedido**, y recargue el navegador para ver cada uno.",
+        "cuerpo": "No hace falta saber qué línea del código cambiar: diga lo que ve y lo que quiere, como se lo diría a una persona. Por ejemplo: «Más lento: que tarde el doble en entrar». O: «Que FOTOGRAFÍA aparezca después, más chica, en gris claro».\n\nPida **un cambio por vez** y, después de cada uno, recargue la página en el navegador para verlo. Si a Claude le hace falta decidir algo (en el ejemplo, quitar el punto entre las dos palabras para poner FOTOGRAFÍA abajo), se lo dice.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "Las dos correcciones, con el navegador recargándose; el antes y el después de cada una.",
-          "dice": "Dígale lo que ve y lo que quiere. Más lento. Que la segunda palabra entre después. Cada cambio tarda unos segundos.",
-          "vozEnOff": true
+          "seVe": "Las dos correcciones en Claude Code y, después de cada una, el título en el navegador: más lento, y FOTOGRAFÍA después, más chica y en gris."
         },
         "bloques": [
           {
@@ -310,17 +323,17 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.5",
         "titulo": "Así lo hacemos en Vion",
-        "cuerpo": "En el estudio de Vion el pedido va tal cual a Claude, vuelve una animación y **cada cambio queda como una versión nueva**, para volver atrás si no gusta. Usted puede hacer lo mismo guardando una copia del HTML antes de cada cambio grande.",
+        "cuerpo": "En el estudio de Vion el pedido también va en palabras a Claude, y **cada cambio queda guardado como una versión nueva**: si el cambio no gusta, se vuelve a la anterior con un clic.\n\nUsted puede hacer lo mismo sin ningún programa extra: antes de cada cambio grande, guarde una copia del archivo (por ejemplo `titulo-v1.html`).",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 25,
-          "seVe": "Ultron en modo demo: la sala de motion con una animación, sus versiones y un cambio pedido en palabras."
+          "seVe": "El estudio de Vion en modo demo: una animación con sus versiones y un cambio pedido en palabras («más lento») que deja una versión nueva."
         }
       },
       {
         "n": "1.6",
         "titulo": "Tres consejos",
-        "cuerpo": "1. Diga siempre la duración y el tamaño.\n2. Pida un cambio a la vez.\n3. Cuando algo le guste, guarde una copia antes de seguir (`titulo-v1.html`).",
+        "cuerpo": "1. Diga siempre cuánto dura y de qué tamaño es.\n2. Pida un cambio por vez.\n3. Cuando algo le guste, guarde una copia antes de seguir (`titulo-v1.html`).",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "Los tres consejos de la lección en una lámina."
@@ -329,7 +342,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.7",
         "titulo": "Lo que tiene",
-        "cuerpo": "Un título que se mueve, hecho y corregido por usted. Le falta su marca: es la próxima lección.",
+        "cuerpo": "Ya tiene un título que se mueve, hecho y corregido por usted. Le falta su marca: eso es la próxima lección.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 10,
@@ -349,7 +362,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.1",
         "titulo": "Se mueve, pero parece PowerPoint",
-        "cuerpo": "Esto es lo que sale casi siempre cuando no se le dice nada a la IA: textos que aparecen y desaparecen con un fundido, todo centrado, el fondo quieto. Se mueve, pero parece una presentación.",
+        "cuerpo": "Esto es lo que sale casi siempre cuando no se le dice nada a la IA: textos que aparecen y desaparecen con un fundido, todo centrado y el fondo quieto. Se mueve, pero parece una presentación de diapositivas.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 10,
@@ -359,7 +372,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.2",
         "titulo": "Dos textos lo arreglan",
-        "cuerpo": "Uno con **su marca** (colores, letra, tono) y otro con **las reglas del movimiento**. Los escribe una vez y valen para todo lo que pida después.",
+        "cuerpo": "Dos textos lo arreglan: uno con **su marca** (colores, letra y tono) y otro con **las reglas del movimiento**. Se escriben una sola vez y valen para todo lo que pida después.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 20,
@@ -370,7 +383,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.3",
         "titulo": "El prompt de estilo",
-        "cuerpo": "Abra `ESTILO.md` del kit y llénelo: **colores** con nombre, código y uso (fondo, acento, texto); **letra** y peso; **tono del movimiento**; y **nunca** (lo que no quiere ver). Regla de oro: el color de acento es solo acento, nunca el fondo entero. El ejemplo completo está en el bloque de abajo.",
+        "cuerpo": "El **prompt de estilo** es un texto con la guía de su marca, escrito para Claude. En el kit se llama `ESTILO.md`. Ábralo y llénelo con:\n\n- **colores**, cada uno con su código y para qué se usa (fondo, acento, texto);\n- **letra** y grosor;\n- **tono del movimiento** (por ejemplo, tranquilo o enérgico);\n- **nunca**: lo que no quiere ver.\n\nUna regla de oro: el color de acento es solo un acento, nunca el fondo entero. El kit trae el ejemplo de una fotógrafa inventada, María López; cámbielo por el suyo.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "Un `ESTILO.md` lleno y, al lado, los colores y la letra de la guía de marca de Vion."
@@ -387,7 +400,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.4",
         "titulo": "Las leyes del movimiento",
-        "cuerpo": "Vienen del skill abierto **bang-motion** (Bang Tutorial, MIT):\n\n1. Una idea por toma.\n2. La cámara cambia de plano (se acerca, se aleja).\n3. El fondo nunca está quieto.\n4. Las transiciones cambian de una toma a otra.\n5. Lo que entra, entra con calma (0,7 a 1,3 s); lo que sale, sale rápido.",
+        "cuerpo": "Las reglas del movimiento vienen de **bang-motion**, una skill abierta de Bang Tutorial (licencia MIT):\n\n1. Una idea por toma.\n2. La cámara cambia de plano: se acerca y se aleja.\n3. El fondo nunca está quieto.\n4. Las transiciones cambian de una toma a otra.\n5. Lo que entra, entra con calma; lo que sale, sale rápido.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 40,
@@ -399,11 +412,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.5",
         "titulo": "Rehacer el título",
-        "cuerpo": "Pida: «Rehacé titulo.html siguiendo ESTILO.md y las leyes de bang-motion. Guardalo como titulo-marca.html.» Compare los dos lado a lado.",
+        "cuerpo": "Ahora pídale a Claude que rehaga el título con las dos guías (el pedido está abajo). Claude lee `ESTILO.md` y las reglas de `bang-motion`, y guarda una versión nueva, `titulo-marca.html`, sin borrar la anterior. Ábralas una al lado de la otra y compare: la nueva tiene los colores, la letra y el movimiento de la marca.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El pedido en Claude Code y la pantalla dividida con la versión vieja y la nueva reproduciéndose a la vez, con los rótulos «ANTES» y «DESPUÉS»."
+          "seVe": "El pedido en Claude Code y, en el navegador, el título de antes y el nuevo uno al lado del otro."
         },
         "bloques": [
           {
@@ -416,7 +429,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.6",
         "titulo": "¿No tiene marca todavía?",
-        "cuerpo": "El repositorio abierto **lemo-opuscar** ([github.com/lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar), MIT) trae 66 recetas de estilo escritas para animaciones por código: color, letra, movimiento, cámara y errores típicos. Elija una y úsela como base de su `ESTILO.md`.",
+        "cuerpo": "Si todavía no tiene una marca definida, el repositorio abierto **lemo-opuscar** ([github.com/lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar), licencia MIT) trae 66 recetas de estilo escritas para animaciones hechas con código: color, letra, movimiento, cámara y errores típicos. Elija una y úsela como punto de partida de su `ESTILO.md`.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "Una receta de estilo `STYLE.md` de lemo-opuscar, con su color, letra, movimiento y cámara."
@@ -425,7 +438,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.7",
         "titulo": "Escríbalo una vez",
-        "cuerpo": "Guarde `ESTILO.md` en la carpeta del curso. Desde ahora, cada pedido lo usa.",
+        "cuerpo": "Guarde `ESTILO.md` en la carpeta del curso. Desde ahora, Claude lo usa en cada pedido.",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "El texto grande «ESCRÍBALO UNA VEZ» sobre un cuadro del título nuevo."
@@ -443,7 +456,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.1",
         "titulo": "Una página no se sube a Instagram",
-        "cuerpo": "Necesitamos un archivo de video. Y hay una forma de hacerlo sin perder ni un cuadro.",
+        "cuerpo": "Una página web no se puede subir a Instagram: hace falta un archivo de video. Y hay una forma de hacerlo sin perder ni un cuadro.",
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
@@ -455,7 +468,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.2",
         "titulo": "Cuadro por cuadro",
-        "cuerpo": "Grabar la pantalla sirve, pero se saltan cuadros. Lo que hacemos: abrir la página en un Chrome invisible, llevarla al segundo 0, sacar una foto, avanzar 1/30 de segundo, otra foto… hasta el final. **ffmpeg** une las fotos en un MP4. Por eso pedimos `seek(t)`.",
+        "cuerpo": "Un video es una serie de fotos, una detrás de otra: 30 por cada segundo. Grabar la pantalla sirve, pero a veces se saltan fotos.\n\nLo que hace el kit: abre la página en un Chrome invisible, la lleva al segundo 0 y saca una foto; la avanza 1/30 de segundo y saca otra; y así hasta el final. Después **ffmpeg** une todas las fotos en un MP4. Por eso a Claude se le pide `seek(t)`: es lo que permite llevar la animación a cada instante exacto.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 30,
@@ -467,11 +480,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.3",
         "titulo": "El script `a-mp4`",
-        "cuerpo": "En la carpeta del curso: `node a-mp4.mjs titulo-marca.html titulo.mp4`. Va contando los cuadros. Al terminar, abra el MP4 con cualquier reproductor. Opciones: `--fps 30` y `--audio voz.m4a` (lección 6).\n\n`a-mp4.mjs` viene en el kit: es un script chico escrito para el curso que abre la página, pide cada cuadro con `seek` y se lo pasa a ffmpeg.",
+        "cuerpo": "El kit trae `a-mp4.mjs`, un programa chico escrito para el curso que hace ese paso. En la terminal, dentro de `motion-curso`, escriba el comando de abajo: primero el archivo de la animación y después el nombre del video que quiere.\n\nMientras trabaja, va contando los cuadros (180 en un título de 6 segundos). Al terminar dice «Listo», con el tamaño, la duración y los cuadros por segundo. Abra el MP4 con cualquier reproductor de video.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El comando en la terminal, el contador de cuadros avanzando (acelerado) y el MP4 abierto en un reproductor."
+          "seVe": "En la terminal, a-mp4.mjs cuenta los cuadros y termina con «Listo»; después, el MP4 que salió."
         },
         "bloques": [
           {
@@ -484,7 +497,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.4",
         "titulo": "Vertical para reels",
-        "cuerpo": "No recorte el video horizontal: pida una versión nueva. «Hacé una versión vertical de 1080 por 1920 de titulo-marca.html, sin cortar el texto.» Después, `node a-mp4.mjs titulo-vertical.html titulo-vertical.mp4`.",
+        "cuerpo": "Para un reel o una historia, el video va vertical. No recorte el horizontal: pida una versión nueva, pensada para ese formato. Al pasarla a MP4, agregue al final `--ancho 1080 --alto 1920`, para que el video salga vertical.",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "Los cuadros finales de las dos versiones lado a lado: la horizontal y la vertical."
@@ -498,14 +511,14 @@ export const lecciones: LeccionCurso[] = [
           {
             "tipo": "comando",
             "etiqueta": "Después, a MP4",
-            "texto": "node a-mp4.mjs titulo-vertical.html titulo-vertical.mp4"
+            "texto": "node a-mp4.mjs titulo-vertical.html titulo-vertical.mp4 --ancho 1080 --alto 1920"
           }
         ]
       },
       {
         "n": "3.5",
         "titulo": "Compruebe antes de subir",
-        "cuerpo": "Pídale a Claude: «Revisá titulo.mp4 con ffprobe: duración, tamaño, cuadros por segundo, y si hay cuadros negros». Tiene que decir 6 s, 1920×1080, 30.",
+        "cuerpo": "Antes de subir un video, conviene revisarlo. Pídale a Claude que lo mire con **ffprobe** (un programa que viene con ffmpeg y lee los datos de un video). Tiene que decirle que dura 6 segundos, que mide 1920 × 1080 y que tiene 30 cuadros por segundo, y si encontró cuadros negros. Si algo le llama la atención, lo explica: en la prueba, el detector marcó el fondo café muy oscuro como «negro», y Claude comprobó que no era negro puro sino el fondo de la marca.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "La respuesta de Claude con la duración, el tamaño y los cuadros por segundo del MP4, y una tira de cuadros del video."
@@ -521,7 +534,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.6",
         "titulo": "Otros caminos",
-        "cuerpo": "- **Remotion** (lección 4).\n- **HyperFrames** ([github.com/heygen-com/hyperframes](https://github.com/heygen-com/hyperframes), Apache-2.0, gratis para cualquier empresa): hace lo mismo desde HTML; existe y es abierto, pero **en Vion no lo usamos**, así que no lo enseñamos.\n- **Grabar la pantalla** (OBS o similar): rápido, pero puede perder cuadros.",
+        "cuerpo": "Hay otras formas de pasar una animación a video:\n\n- **Remotion**, que se ve en la lección 4.\n- **HyperFrames** ([github.com/heygen-com/hyperframes](https://github.com/heygen-com/hyperframes), Apache-2.0): hace lo mismo desde HTML y es gratis para cualquier empresa. Es abierto, pero en Vion no lo usamos, así que no lo enseñamos.\n- **Grabar la pantalla** (con OBS u otro programa): es rápido, pero puede perder cuadros.",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "Tres tarjetas, una por camino: Remotion, HyperFrames y grabar la pantalla."
@@ -530,7 +543,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.7",
         "titulo": "Su primer video",
-        "cuerpo": "Este es el resultado: un MP4 con su marca, listo para cualquier red.",
+        "cuerpo": "Este es el resultado: un MP4 con su marca, listo para subir a cualquier red.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 6,
@@ -549,7 +562,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.1",
         "titulo": "Tres videos, una plantilla",
-        "cuerpo": "Cambian solo los datos: el producto, el precio y el color.",
+        "cuerpo": "Tres videos que salen de una misma plantilla: solo cambian los datos, como el producto, el precio y el color.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 10,
@@ -559,7 +572,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.2",
         "titulo": "¿HTML o Remotion?",
-        "cuerpo": "**HTML:** lo que se hace una vez. **Remotion:** lo que se repite con otros datos (la tarjeta de cada producto, el video de cada cliente). En Remotion el video es una plantilla de React y los datos van en un archivo aparte.",
+        "cuerpo": "¿Cuándo conviene cada camino?\n\n- **HTML:** para lo que se hace una vez, como el título de su canal.\n- **Remotion:** para lo que se repite con otros datos, como la tarjeta de cada producto o el video de cada cliente.\n\n**Remotion** es un programa que arma videos con React (una forma de escribir páginas web por piezas). El video queda como una plantilla, y los datos van aparte.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 25,
@@ -570,7 +583,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.3",
         "titulo": "La licencia, antes de empezar",
-        "cuerpo": "Remotion es **gratis** para personas, empresas de **hasta 3 empleados**, organizaciones sin fines de lucro y para evaluarlo. Si su empresa es más grande: **USD 25 por puesto al mes** (quien crea a mano) o **USD 0,01 por render con un mínimo de USD 100 al mes** (quien automatiza). Fuentes: [LICENSE.md de Remotion](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md) y [remotion.pro/license](https://www.remotion.pro/license).",
+        "cuerpo": "Remotion es **gratis** para personas, empresas de **hasta 3 empleados**, organizaciones sin fines de lucro y para probarlo. Si su empresa es más grande, cobra **USD 25 por puesto al mes** (para quien hace los videos a mano) o **USD 0,01 por video, con un mínimo de USD 100 al mes** (para quien los arma automáticamente). Fuentes: [la licencia de Remotion](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md) y [remotion.pro/license](https://www.remotion.pro/license).",
         "apoyo": {
           "tipo": "imagen",
           "seVe": "Una tabla con la licencia de Remotion: gratis hasta 3 empleados y, arriba de eso, por puesto o por render."
@@ -579,11 +592,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.4",
         "titulo": "Crear el proyecto",
-        "cuerpo": "1. `npx create-video --yes --blank oferta`\n2. `cd oferta`\n3. `npx remotion skills add` (las skills oficiales de Remotion para Claude; son textos: léalos)\n4. `npm run dev` abre **Remotion Studio**.\n\nEn otra terminal, dentro de `oferta`: `claude`.",
+        "cuerpo": "Estos son los pasos para crear un proyecto de Remotion, dentro de `motion-curso`:\n\n1. `npx create-video --yes --blank oferta` crea un proyecto vacío llamado `oferta` e instala lo que necesita. La primera vez pregunta «Ok to proceed? (y)»: escriba `y` y apriete Enter.\n2. `cd oferta` entra a esa carpeta.\n3. `npx remotion skills add` suma las skills oficiales de Remotion para Claude. Son textos con instrucciones: léalos antes de usarlos.\n4. `npm run dev` abre **Remotion Studio**, el programa donde se ve el video mientras se arma. Queda en `http://localhost:3000` en su navegador.\n\nDeje esa terminal abierta. En **otra** terminal, dentro de `oferta`, escriba `claude`.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 45,
-          "seVe": "Los cuatro comandos, cada uno con su etiqueta; Remotion Studio abriéndose en el navegador y una segunda terminal con Claude Code."
+          "seVe": "En la terminal, los cuatro comandos; Remotion Studio abierto en el navegador, todavía vacío."
         },
         "bloques": [
           {
@@ -616,13 +629,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.5",
         "titulo": "Pedir la tarjeta como plantilla",
-        "cuerpo": "«Hacé una composición Oferta de 8 segundos, 1080 por 1920, con props titulo, precio, detalle y boton, con el estilo de ../ESTILO.md.» El Studio se actualiza solo. Cambie el precio en el panel de props y mire cómo se acomoda.",
+        "cuerpo": "Pídale a Claude la tarjeta **como plantilla**: el diseño fijo y los textos como datos que se pueden cambiar. En Remotion esos datos se llaman **props**. El pedido está abajo.\n\nRemotion Studio se actualiza solo y aparece la composición `Oferta`. A la derecha está el panel de props: cambie el precio ahí mismo y mire cómo se acomoda la tarjeta, sin tocar el código.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "El pedido en Claude Code, Remotion Studio actualizándose solo y el precio cambiado a mano en el panel de props.",
-          "dice": "Pida la tarjeta como plantilla: los textos son datos. Cambie el precio en el panel y mire cómo se acomoda.",
-          "vozEnOff": true
+          "seVe": "El pedido en Claude Code; Remotion Studio muestra la composición Oferta y el precio se cambia en el panel de props."
         },
         "bloques": [
           {
@@ -635,11 +646,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.6",
         "titulo": "Un archivo de datos, un video",
-        "cuerpo": "Guarde los datos en `datos/a.json`, `b.json`, `c.json` y: `npx remotion render Oferta salida/a.mp4 --props=datos/a.json`. Remotion trae su propio Chrome y su propio ffmpeg para el render.",
+        "cuerpo": "Para hacer varios videos de la misma plantilla, guarde los datos de cada uno en un archivo aparte, por ejemplo `datos/a.json`, `datos/b.json` y `datos/c.json`. Después, un comando por archivo (abajo) arma cada video en la carpeta `salida`. A ese paso se le llama **render**. La primera vez, Remotion baja su propio Chrome invisible para hacerlo. Mire los tres videos antes de usarlos: un dato largo puede no entrar en el diseño (en la prueba, «Fechas abiertas» quedó cortado), y se arregla pidiéndole a Claude que la plantilla acomode los textos largos.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 25,
-          "seVe": "Tres renders seguidos (acelerados) y los tres MP4 en la carpeta."
+          "seVe": "Los datos de un archivo, tres renders seguidos y los tres MP4 en la carpeta salida."
         },
         "bloques": [
           {
@@ -652,17 +663,17 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.7",
         "titulo": "Así en Vion",
-        "cuerpo": "Las pizarras, los chats, las listas y las tarjetas de los reels de Vion son plantillas de Remotion: se llenan con datos y se dibujan en segundos, sin gastar en IA.",
+        "cuerpo": "Las pizarras, los chats, las listas y las tarjetas de los reels de Vion son plantillas así: se llenan con los datos de cada video y se dibujan solas, sin gastar en IA.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 20,
-          "seVe": "Ultron en modo demo: las plantillas de motion del estudio de Vion y un reel que las usa."
+          "seVe": "El estudio de Vion en modo demo: las plantillas de motion, la de Oferta llena con datos de ejemplo y un reel de ejemplo con esa tarjeta."
         }
       },
       {
         "n": "4.8",
         "titulo": "La regla",
-        "cuerpo": "HTML para lo que se hace una vez. Remotion para lo que se repite.",
+        "cuerpo": "La regla para elegir: HTML para lo que se hace una vez. Remotion para lo que se repite.",
         "apoyo": {
           "tipo": "chispa",
           "conChispa": true,
@@ -683,7 +694,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.1",
         "titulo": "¿Cuántas veces lo explicó?",
-        "cuerpo": "Si ya le explicó a Claude más de una vez sus colores, su letra y que no quiere fundidos, necesita una skill.",
+        "cuerpo": "Si ya le explicó a Claude más de una vez sus colores, su letra y que no quiere fundidos, conviene escribirlo en una skill.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 10,
@@ -693,7 +704,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.2",
         "titulo": "La skill `mi-motion`",
-        "cuerpo": "Está en `.claude/skills/mi-motion/SKILL.md`. Arriba, **cuándo usarla** (`description`: cuando le pidan una animación). Abajo, **las reglas**: leer `ESTILO.md` y `plantillas.md`; un solo HTML con `DURATION` y `seek(t)`; revisar la lista anti-PPT antes de entregar; decir cómo pasarla a MP4. Ábrala y cámbiela a su gusto. El texto completo está en el bloque de abajo.",
+        "cuerpo": "La skill del curso está en `.claude/skills/mi-motion/SKILL.md`, dentro del kit. Tiene dos partes:\n\n- **Arriba, cuándo usarla** (`description`): cada vez que le pidan una animación.\n- **Abajo, las reglas:** leer `ESTILO.md` y `plantillas.md`; hacer un solo HTML con `DURATION` y `seek(t)`; revisar la lista contra el efecto «presentación» antes de entregar; y decir cómo pasarla a MP4.\n\nÁbrala y cámbiela a su gusto: es un archivo de texto.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "El `SKILL.md` de `mi-motion` con sus partes señaladas: la descripción arriba y las reglas abajo."
@@ -710,11 +721,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.3",
         "titulo": "La diferencia",
-        "cuerpo": "Un pedido corto, sin explicar nada: «Tarjeta de 8 s: 20 % en sesiones de fotos hasta el viernes». Sale con su marca y con las reglas.",
+        "cuerpo": "Con la guía de la marca y la skill en la carpeta, alcanza un pedido corto, sin explicar nada más (está abajo). En la prueba, Claude leyó por su cuenta `ESTILO.md` y una tarjeta de ejemplo del kit, y la tarjeta salió con los colores y la letra de la marca.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El pedido de una línea y el resultado, ya con la marca."
+          "seVe": "El pedido de una línea en Claude Code, la skill mi-motion en uso y la tarjeta terminada en el navegador."
         },
         "bloques": [
           {
@@ -727,7 +738,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.4",
         "titulo": "Guardar plantillas",
-        "cuerpo": "Cuando algo le sale bien, pida: «Convertí titulo-marca.html en plantilla: el diseño fijo y los textos como datos al principio del archivo». En Vion hay seis plantillas así (pizarra, chat, claude_code, lista, oferta, girar), y con ellas se arma casi todo el motion de un reel.",
+        "cuerpo": "Cuando algo le sale bien, conviértalo en plantilla: el diseño queda fijo y los textos pasan a ser datos al principio del archivo. Así, la próxima vez solo cambia los datos. En Vion hay seis plantillas así (pizarra, chat, Claude Code en el teléfono, lista, oferta y girar el teléfono), y con ellas se arma casi todo el motion de un reel.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 25,
@@ -746,7 +757,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.5",
         "titulo": "Su catálogo",
-        "cuerpo": "En `plantillas.md` anote cada plantilla: **nombre · datos que lleva · para qué sirve · ejemplo**. Así Claude elige la correcta en lugar de inventar una nueva.",
+        "cuerpo": "Anote cada plantilla en `plantillas.md`, el catálogo del kit: **nombre · datos que lleva · para qué sirve · ejemplo**. Así Claude elige la que corresponde en lugar de inventar una nueva.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "Un `plantillas.md` lleno, con el nombre, los datos, para qué sirve y un ejemplo de cada plantilla."
@@ -755,7 +766,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.6",
         "titulo": "Escríbalo una vez",
-        "cuerpo": "Una skill y un catálogo: lo explicó una vez y lo usa siempre.",
+        "cuerpo": "Una skill y un catálogo: lo explica una vez y lo usa siempre.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 12,
@@ -770,12 +781,12 @@ export const lecciones: LeccionCurso[] = [
     "slug": "6-ritmo-y-sonido",
     "titulo": "Ritmo y sonido",
     "objetivo": "Hacer que la animación respire con una voz y suene, con sonidos hechos por código y sin música de terceros.",
-    "resultado": "Una animación de 15 s atada a una voz, cuyos textos entran en la palabra justa, con sonidos hechos por código.",
+    "resultado": "Una animación atada a una voz, con los textos en su segundo y sonidos hechos por código, pasada a MP4 con su sonido.",
     "laminas": [
       {
         "n": "6.1",
         "titulo": "La misma animación, dos veces",
-        "cuerpo": "La segunda se siente mejor porque cada cosa entra en su momento y suena.",
+        "cuerpo": "La misma animación, dos veces. La segunda se siente mejor porque cada cosa entra en su momento y suena.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
@@ -785,7 +796,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.2",
         "titulo": "Tres reglas de ritmo",
-        "cuerpo": "1. Lo que entra tarda de 0,7 a 1,3 s; lo que sale, la mitad.\n2. Nunca más de 2 s sin que algo cambie en pantalla.\n3. Cada texto entra **cuando la voz lo dice**, ni antes ni después.",
+        "cuerpo": "1. Lo que entra tarda entre 0,7 y 1,3 segundos; lo que sale, la mitad.\n2. Nunca pasan más de 2 segundos sin que algo cambie en la pantalla.\n3. Cada texto entra **cuando la voz lo dice**, ni antes ni después.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 30,
@@ -797,54 +808,57 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.3",
         "titulo": "Atar la animación a la voz",
-        "cuerpo": "Grabe su voz (15 s, con el celular sirve). Escúchela y anote en `tiempos.txt` el segundo de cada frase: `0.0 Esto es nuevo` · `2.4 Tres pasos` · … Pida: «Ataná cada texto de la animación a tiempos.txt».",
+        "cuerpo": "Grabe su voz leyendo el guion (con el celular alcanza) y guárdela en la carpeta del curso como `voz.m4a`. Escúchela y anote en `tiempos.txt` el segundo en que empieza cada frase, una por línea: `0.0 Sus fotos de familia…`, `4.0 Así se reserva…`. El kit trae un ejemplo.\n\nDespués pídale a Claude la animación atada a esos tiempos (el pedido está abajo): cada texto entra justo en su segundo y, al abrir la página, suena la voz.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El archivo de tiempos, el pedido y la animación con la voz de ejemplo sonando y los textos en su lugar."
+          "seVe": "tiempos.txt en la terminal, el pedido en Claude Code y la animación con los textos en su lugar."
         },
         "bloques": [
           {
             "tipo": "codigo",
-            "etiqueta": "tiempos.txt (el principio del ejemplo)",
+            "etiqueta": "tiempos.txt (el principio del ejemplo del kit)",
             "lenguaje": "text",
-            "texto": "0.0 Esto es nuevo\n2.4 Tres pasos"
+            "texto": "0.0 Sus fotos de familia, listas en una semana\n4.0 Así se reserva una sesión, en tres pasos\n8.0 Uno: elija el día en el calendario de la web"
           },
           {
             "tipo": "pedido",
             "etiqueta": "En Claude Code",
-            "texto": "Ataná cada texto de la animación a tiempos.txt"
+            "texto": "Hacé animacion.html con los textos de tiempos.txt: que cada texto entre justo en su segundo. Que suene voz.m4a desde el principio. Seguí CLAUDE.md."
           }
         ]
       },
       {
         "n": "6.4",
         "titulo": "Sonido hecho por código",
-        "cuerpo": "El navegador sabe fabricar golpes, barridos y clics (Web Audio). Así no hay música de nadie y cada sonido cae justo. Pida: «Sumá sonidos con Web Audio: un golpe suave cuando entra cada texto y un barrido en la transición. Que se pueda exportar a sonidos.wav con la misma duración».",
+        "cuerpo": "El navegador sabe fabricar sonidos por su cuenta: golpes, barridos, clics. Se llama **Web Audio**. Así no usa música de nadie y cada sonido cae justo en su cuadro.\n\nPídale a Claude los sonidos y, además, un pequeño programa que los guarde en un archivo `sonidos.wav` (el pedido está abajo). Ese archivo es el que después se suma al video.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 30,
-          "seVe": "El pedido, la animación sonando y la forma de onda de `sonidos.wav`.",
-          "dice": "El sonido también puede ser código. Sin derechos de nadie, y cada golpe en su cuadro.",
-          "vozEnOff": true
+          "seVe": "El pedido en Claude Code, el programa que escribe sonidos.wav y la forma de onda de los sonidos."
         },
         "bloques": [
           {
             "tipo": "pedido",
             "etiqueta": "En Claude Code",
-            "texto": "Sumá sonidos con Web Audio: un golpe suave cuando entra cada texto y un barrido en la transición. Que se pueda exportar a sonidos.wav con la misma duración"
+            "texto": "En animacion.html sumá sonidos con Web Audio: un golpe suave cuando entra cada texto y un barrido en cada transición. Y hacé sonidos.mjs, que escriba esos mismos sonidos en sonidos.wav, con la misma duración, sin instalar nada. Corrélo."
           }
         ]
       },
       {
         "n": "6.5",
         "titulo": "Al MP4, con voz y sonidos",
-        "cuerpo": "Mezcle la voz y los sonidos (pídaselo a Claude con ffmpeg) y: `node a-mp4.mjs animacion.html final.mp4 --audio mezcla.m4a`. En Remotion, la voz es un elemento `<Audio>` dentro de la composición.",
+        "cuerpo": "Falta juntar todo. Primero pídale a Claude que mezcle la voz y los sonidos en un solo archivo con ffmpeg (el pedido está abajo). Después pase la animación a MP4 con la opción `--audio`, para que el video lleve esa mezcla.\n\nEn Remotion es distinto: la voz se pone dentro de la composición, como un elemento `<Audio>`.",
         "apoyo": {
           "tipo": "captura",
-          "seVe": "El comando con la opción `--audio` y el video final en un reproductor."
+          "seVe": "La mezcla pedida a Claude y el comando con --audio terminado en la terminal."
         },
         "bloques": [
+          {
+            "tipo": "pedido",
+            "etiqueta": "En Claude Code",
+            "texto": "Mezclá voz.m4a y sonidos.wav en mezcla.m4a con ffmpeg, la voz más fuerte que los sonidos."
+          },
           {
             "tipo": "comando",
             "etiqueta": "Dentro de motion-curso",
@@ -876,7 +890,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.1",
         "titulo": "Esto es un explicador",
-        "cuerpo": "Un tema, tres pasos y una acción al final. Mírelo entero antes de seguir.",
+        "cuerpo": "Esto es un **explicador**: un video corto con un tema, tres pasos y una acción al final. Mírelo entero antes de seguir.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 40,
@@ -886,7 +900,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.2",
         "titulo": "Lo más útil que puede hacer",
-        "cuerpo": "Con un explicador usted muestra cómo funciona su producto o su servicio, en menos de un minuto.",
+        "cuerpo": "Con un explicador usted muestra cómo funciona su producto o su servicio en menos de un minuto. Es de lo más útil que puede hacer con lo que aprendió.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 20,
@@ -897,7 +911,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.3",
         "titulo": "La estructura de partida",
-        "cuerpo": "1. **El gancho:** el resultado primero, no una introducción.\n2. **El mapa:** cuántos pasos son.\n3. **Los pasos:** muéstrelos, no los cuente.\n4. **El resultado.**\n5. **Una sola acción** al final.\n\nEs un punto de partida: cámbielo cuando el tema lo pida.",
+        "cuerpo": "Un punto de partida para ordenar el explicador:\n\n1. **El gancho:** el resultado primero, sin introducción.\n2. **El mapa:** cuántos pasos son.\n3. **Los pasos:** muéstrelos, no solo los cuente.\n4. **El resultado.**\n5. **Una sola acción** al final, como «Reserve hoy».\n\nCámbielo cuando el tema lo pida.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
@@ -907,7 +921,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.4",
         "titulo": "Primero el guion",
-        "cuerpo": "Escriba 5 líneas cortas con el segundo, lo que se dice y lo que se ve: `0 s · «Su web en una tarde» · el sitio terminado` … Guárdelo en `guion.md`.",
+        "cuerpo": "Antes de pedir nada, escriba el guion: unas pocas líneas cortas, cada una con el segundo, lo que se dice y lo que se ve. Por ejemplo: `0 s · «Sus fotos de familia, listas en una semana» · la galería terminada`. Guárdelo como `guion.md` en la carpeta del curso. El kit trae uno de ejemplo.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "Un `guion.md` de ejemplo, con cinco líneas: el segundo, lo que se dice y lo que se ve."
@@ -916,32 +930,45 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.5",
         "titulo": "Pedirlo",
-        "cuerpo": "«Hacé el explicador de guion.md con la skill mi-motion, 1920 por 1080, con mi voz voz.m4a y tiempos.txt». El primer intento casi nunca es el final.",
+        "cuerpo": "Con el guion, la voz y los tiempos, pídale el explicador a Claude (el pedido está abajo). Claude usa la skill `mi-motion`: busca en el catálogo una plantilla que sirva (en la prueba, la del explicador de tres pasos del kit), la adapta a su guion y le dice cómo pasarla a MP4.\n\nEl primer intento casi nunca es el final: en la próxima lámina se revisa.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 35,
-          "seVe": "El pedido en Claude Code y el primer HTML del explicador."
+          "seVe": "El pedido en Claude Code y el primer explicador en el navegador."
         },
         "bloques": [
           {
             "tipo": "pedido",
             "etiqueta": "En Claude Code",
-            "texto": "Hacé el explicador de guion.md con la skill mi-motion, 1920 por 1080, con mi voz voz.m4a y tiempos.txt"
+            "texto": "Hacé el explicador de guion.md con la skill mi-motion, 1920 por 1080, con mi voz voz.m4a y tiempos.txt. Guardalo como explicador.html."
           }
         ]
       },
       {
         "n": "7.6",
         "titulo": "Revisar con la lista",
-        "cuerpo": "Abra `revision-anti-ppt.md` (viene en el kit; está en el bloque de abajo): ¿más de una idea por toma? ¿algo quieto más de 2 s? ¿textos de más de 6 palabras? ¿la cámara cambia de plano? Cada «sí» es un pedido de cambio, uno por vez.",
+        "cuerpo": "Abra `revision-anti-ppt.md`, que viene en el kit, y responda cada pregunta mirando su explicador: ¿hay más de una idea por toma? ¿algo queda quieto más de 2 segundos? ¿hay textos de más de 6 palabras? ¿la cámara cambia de plano?\n\nCada «sí» es un pedido de cambio, **uno por vez**. En el ejemplo fueron tres: el paso dos tenía demasiado texto, la cámara estaba quieta en el segundo 12 y el botón del cierre tenía que decir «Reservar» y entrar al final.",
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 40,
-          "seVe": "Tres correcciones: «el paso dos tiene demasiado texto», «la cámara está quieta en el segundo 12» y «el cierre necesita el botón», con el antes y el después de cada una.",
-          "dice": "Cada respuesta de la lista es un pedido de cambio. Así se pasa de bien a muy bien.",
-          "vozEnOff": true
+          "seVe": "Las tres correcciones en Claude Code y, después de cada una, el explicador en el navegador."
         },
         "bloques": [
+          {
+            "tipo": "pedido",
+            "etiqueta": "Cambio 1",
+            "texto": "El paso dos tiene demasiado texto: dejalo en menos de seis palabras."
+          },
+          {
+            "tipo": "pedido",
+            "etiqueta": "Cambio 2",
+            "texto": "La cámara está quieta en el segundo 12: que se acerque despacio al paso dos."
+          },
+          {
+            "tipo": "pedido",
+            "etiqueta": "Cambio 3",
+            "texto": "El cierre necesita el botón: «Reservar» en mostaza, que entre al final."
+          },
           {
             "tipo": "archivo",
             "etiqueta": "revision-anti-ppt.md (viene en el kit)",
@@ -953,7 +980,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.7",
         "titulo": "Sus tres videos",
-        "cuerpo": "Pase a MP4 el título, el explicador y la tarjeta. Esos tres archivos son lo que se lleva de este curso.",
+        "cuerpo": "Pase a MP4 el título, el explicador y la tarjeta. Esos tres videos son lo que se lleva de este curso.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 25,
