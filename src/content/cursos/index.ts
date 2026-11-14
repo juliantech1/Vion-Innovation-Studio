@@ -82,7 +82,7 @@ const REGISTRO: Registro[] = [
   { id: 'blender-3d', codigo: 'B2', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: blender3d, lecciones: leccionesBlender3d },
   { id: 'personaje-3d', codigo: 'B3', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: personaje3d, lecciones: leccionesPersonaje3d },
   { id: 'canal-youtube', codigo: 'B9', ruta: 'B', lleva: 'apps', estado: 'produccion', texto: canalYoutube, lecciones: leccionesCanalYoutube },
-  { id: 'claude-autocad', codigo: 'C1', ruta: 'C', lleva: 'consultoria', estado: 'produccion', texto: claudeAutocad, lecciones: leccionesClaudeAutocad },
+  { id: 'claude-autocad', codigo: 'C1', ruta: 'C', lleva: 'consultoria', estado: 'publicado', publicado: '2026-11-14', texto: claudeAutocad, lecciones: leccionesClaudeAutocad },
   { id: 'cuantificacion', codigo: 'C2', ruta: 'C', lleva: 'autocad', estado: 'publicado', publicado: '2026-11-14', texto: cuantificacion, lecciones: leccionesCuantificacion },
   { id: 'seo-agentes', codigo: 'D1', ruta: 'D', lleva: 'apps', estado: 'publicado', publicado: '2026-11-14', texto: seoAgentes, lecciones: leccionesSeoAgentes },
   { id: 'sitio-claude-code', codigo: 'D2', ruta: 'D', lleva: 'apps', estado: 'publicado', publicado: '2026-11-14', texto: sitioClaudeCode, lecciones: leccionesSitioClaudeCode },

@@ -7,13 +7,14 @@ export const curso: CursoTexto = {
     "corto": "AutoCAD",
     "titulo": "Claude + AutoCAD: planos, cantidades y reportes",
     "tituloSeo": "Curso gratis: Claude + AutoCAD, planos y cantidades",
-    "descripcion": "Curso gratis de Vion: conecte Claude Code a AutoCAD, lea un plano, pase las cantidades a Excel y arme el reporte. En producción.",
+    "descripcion": "Curso gratis de Vion: conecte Claude Code a AutoCAD, lea un plano, pase las cantidades a Excel y arme el reporte.",
     "paraQuien": "Oficinas de ingeniería y arquitectura, dibujantes y técnicos que ya usan AutoCAD (Costa Rica y Latinoamérica). No hace falta programar; sí saber AutoCAD: capas, bloques, atributos y APPLOAD.",
     "seLleva": "Claude Code conectado a su AutoCAD (o, en Mac, a una copia DXF), el inventario de un plano de muestra de Autodesk, una tabla de cantidades en Excel con su columna de confianza, un reporte de una página en PDF, una rutina AutoLISP propia y una planilla para medir el ahorro antes y después. Cada cifra la revisa usted, y lo que llega a una obra o a un cliente lo firma un profesional responsable.",
     "herramientas": "AutoCAD 2024 o posterior, completo o LT (suscripción de Autodesk), y Claude Code (plan Pro o superior de Anthropic); Python y sus bibliotecas, gratis.",
+    "explica": "**AutoCAD** es el programa de dibujo técnico que usan las oficinas de ingeniería y arquitectura. **Claude Code** es la versión de Claude, una inteligencia artificial, que trabaja en su computadora: lee archivos, escribe pequeños programas y, con un conector, habla con otros programas.\n\nEn este curso conecta Claude Code con su AutoCAD para que **lea los planos que usted ya tiene**: cuente puertas, ventanas y recintos, pase las cantidades a Excel y arme un reporte de una página para el cliente. La IA no dibuja planos sola ni decide por usted: usted revisa cada cifra, y lo que llega a una obra lo firma un profesional.\n\n### Al terminar el curso va a poder\n\n- conectar Claude Code con AutoCAD en Windows (o trabajar sobre una copia del plano en Mac);\n- pedirle que lea un plano sin tocarlo: unidades, capas, bloques y atributos;\n- sacar las cantidades a Excel, con la confianza de cada cifra;\n- revisar esas cantidades antes de entregarlas;\n- armar el reporte para el cliente y una rutina propia de AutoCAD, y medir si le ahorra trabajo.\n\n### Lo que necesita\n\nAutoCAD 2024 o más nuevo (completo o LT) y saber usarlo: capas, bloques y atributos. Una cuenta de Claude con plan pago (Pro, desde USD 20 al mes), porque Claude Code no está en el plan gratis. No hace falta programar: los programas los escribe Claude Code y usted los revisa. Todo se practica con un plano de muestra de Autodesk.",
     "ficha": {
       "requisitos": "Windows 10 (1809 o posterior) u 11 con AutoCAD 2024 o posterior, completo o LT (LT corre AutoLISP desde la 2024). En Mac: AutoCAD para Mac, sin el puente MCP (se trabaja sobre una copia DXF). Una cuenta de Claude con Claude Code y conexión a internet. No hace falta programar; sí saber AutoCAD.",
-      "duracion": "7 lecciones en 74 láminas, con 56 videos cortos; unos 45 min de recorrido, más el tiempo de los ejercicios.",
+      "duracion": "7 lecciones con 73 láminas y sus videos cortos, más el tráiler.",
       "costo": "El curso es gratis. AutoCAD y Claude Code se pagan aparte: Claude Pro desde USD 20 al mes y AutoCAD LT desde unos USD 410 al año."
     },
     "costos": [
@@ -24,12 +25,12 @@ export const curso: CursoTexto = {
       },
       {
         "pieza": "AutoCAD completo",
-        "costo": "Suscripción anual. Las páginas regionales de Autodesk dan entre USD 1.575 y 1.950 al año (ASEAN, Hong Kong, Emiratos); en el Reino Unido, £1.890 al año. {{el precio para Costa Rica se confirma antes de publicar}}",
+        "costo": "Suscripción anual. Las páginas regionales de Autodesk dan entre USD 1.575 y 1.950 al año (ASEAN, Hong Kong, Emiratos); en el Reino Unido, £1.890 al año.",
         "fuente": "[Autodesk, Emiratos](https://www.autodesk.com/ae/buy-online), [Autodesk, Reino Unido](https://www.autodesk.com/uk/solutions/autocad-subscription-faq)"
       },
       {
         "pieza": "AutoCAD LT",
-        "costo": "Entre USD 410 y 540 al año según la región, en páginas de Autodesk. {{el precio para Costa Rica se confirma antes de publicar}}",
+        "costo": "Entre USD 410 y 540 al año según la región, en páginas de Autodesk.",
         "fuente": "[Autodesk, Emiratos](https://www.autodesk.com/ae/buy-online), [Autodesk, Reino Unido](https://www.autodesk.com/uk/solutions/autocad-subscription-faq)"
       },
       {
@@ -55,9 +56,9 @@ export const curso: CursoTexto = {
       {
         "nombre": "autocad-mcp (puran-water)",
         "url": "https://github.com/puran-water/autocad-mcp",
-        "que": "Servidor MCP con 8 herramientas (drawing, entity, layer, block, annotation, pid, view, system) y un puente AutoLISP para AutoCAD completo y LT 2024 o posterior, o DXF sin AutoCAD. Es el camino principal del curso. Último commit visto: f07b6a5, del 2026-11-07.",
+        "que": "Servidor MCP con 8 herramientas (drawing, entity, layer, block, annotation, pid, view, system) y un puente AutoLISP para AutoCAD completo y LT 2024 o posterior, o DXF sin AutoCAD. Es el camino principal del curso, fijado al commit f07b6a5.",
         "licencia": "MIT",
-        "revision": "Todavía no lo revisamos: antes de publicar el curso se lee todo su código y se fija el commit revisado (nuestra regla: leer antes de instalar y fijar la versión). Dos cosas que ya dice su README: system → execute_lisp corre AutoLISP libre (no se puede apagar por separado: la herramienta system queda en «preguntar» y nunca se aprueba sola), y drawing → create borra y purga el dibujo activo. Los pedidos pasan por archivos en C:/temp.",
+        "revision": "Leímos su código en el commit f07b6a5 (del 2026-11-07): habla con Claude solo por stdio, sin red ni telemetría, y sus dependencias van fijadas con sus huellas. Tres cosas que hay que saber: system → execute_lisp corre AutoLISP libre (no se puede apagar por separado: la herramienta system queda en «preguntar» y nunca se aprueba sola), y drawing → create borra y purga el dibujo activo. Los pedidos pasan por archivos en C:/temp.",
         "lecciones": "2, 3, 4"
       },
       {
@@ -113,7 +114,7 @@ export const curso: CursoTexto = {
         "url": "https://help.autodesk.com/cloudhelp/ENU/ADSKMCP-ProductHelpMcp/files/ADSKMCP_ProductHelpMcp_autodesk_product_help_mcp_server_html.html",
         "que": "Claude consulta la ayuda oficial de más de 110 productos de Autodesk, en https://developer.api.autodesk.com/knowledge/public/v1/mcp. Opcional.",
         "licencia": "Servicio de Autodesk",
-        "revision": "Público y sin clave; solo lee documentación y sale a internet. El comando de conexión se comprueba al grabar.",
+        "revision": "Público y sin clave; solo lee documentación y sale a internet.",
         "lecciones": "2 (extra)"
       },
       {
@@ -126,14 +127,14 @@ export const curso: CursoTexto = {
       {
         "nombre": "El kit del curso",
         "que": "CLAUDE.md con las reglas, los permisos, los pedidos de cada lección, el extractor por DXF, la plantilla del reporte, CONTAR.lsp, la planilla de medición y el skill autocad-cantidades con el método de las lecciones 3 a 6.",
-        "licencia": "MIT (por confirmar)",
-        "revision": "Lo hacemos nosotros; el skill se revisa como cualquier skill nuestro antes de publicarlo.",
+        "licencia": "Gratis, con el curso",
+        "revision": "Lo hacemos nosotros, con sus pruebas.",
         "lecciones": "Todas"
       }
     ],
     "noRecomendamos": "- **christiannp/autocad-mcp para trabajos con clientes:** funciona, pero no tiene licencia de uso (todos los derechos reservados).\n- **puran-water/autocad-drafting:** está archivado desde el 2026-03-10.\n- **Instalar un servidor MCP sin revisarlo:** un programa que toca sus planos se lee antes y se fija a una versión; si sube de versión, primero se revisa.\n- **Pedirle precios a una IA:** los del plano de muestra están en yenes y no sirven para Costa Rica. Los precios salen de su base, nunca de la IA.",
     "kit": {
-      "descripcion": "Un repositorio propio y abierto, aparte de cualquier proyecto de clientes. No trae planos: trae el enlace a la página de muestras de Autodesk.",
+      "descripcion": "Todo lo del curso en una carpeta: las reglas para Claude, los pedidos de cada lección, los programas, la rutina CONTAR y la planilla para medir el ahorro. No trae planos: trae el enlace a la página de muestras de Autodesk.",
       "archivos": [
         {
           "nombre": "LEAME.md",
@@ -207,14 +208,14 @@ export const curso: CursoTexto = {
     },
     "accion": {
       "titulo": "Con los planos de su oficina",
-      "texto": "Elija la tarea que más se repite en su oficina, mídala dos semanas con la planilla del kit y pruebe la rutina con sus planos reales, siempre sobre copias y con la revisión de un profesional antes de que algo llegue a una obra o a un cliente. Si quiere hacerlo con nosotros, escríbanos con esa tarea: empezamos por medir. {{cómo escribirnos: por confirmar}}"
+      "texto": "Elija la tarea que más se repite en su oficina, mídala dos semanas con la planilla del kit y pruebe la rutina con sus planos reales, siempre sobre copias y con la revisión de un profesional antes de que algo llegue a una obra o a un cliente. Si quiere hacerlo con nosotros, escríbanos a consultorias@vion-studio.com con esa tarea: empezamos por medir."
     }
   },
   "en": {
     "corto": "AutoCAD",
     "titulo": "Claude + AutoCAD: drawings, quantities and reports",
     "tituloSeo": "Free course: Claude + AutoCAD drawings and quantities",
-    "descripcion": "A free Vion course: connect Claude Code to AutoCAD, read a drawing, send quantities to Excel and build the report. In production.",
+    "descripcion": "A free Vion course: connect Claude Code to AutoCAD, read a drawing, send quantities to Excel and build the report.",
     "paraQuien": "Engineering and architecture offices, drafters and technicians who already use AutoCAD. No coding needed, but you should know AutoCAD: layers, blocks, attributes and APPLOAD.",
     "seLleva": "Claude Code connected to your AutoCAD (or, on a Mac, to a DXF copy), an inventory of an Autodesk sample drawing, a quantity table in Excel with a confidence column, a one-page PDF report, your own AutoLISP routine and a sheet to measure time saved. You check every number, and a licensed professional signs off on anything that reaches a site or a client.",
     "herramientas": "AutoCAD 2024 or later, full or LT (Autodesk subscription), and Claude Code (Anthropic Pro plan or higher); Python and its libraries are free.",

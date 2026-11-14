@@ -1,5 +1,5 @@
 // Las lecciones de «C1-autocad», lámina por lámina, desde el storyboard de la aldea
-// (docs/planes/cursos/C1-autocad.md, 2026-11-10). Texto completo de cada lámina; los videos e imágenes van en ../medios.json.
+// (docs/planes/cursos/C1-autocad.md), reescritas para principiantes el 2026-11-14. Los videos e imágenes van en ../medios.json.
 import type { LeccionCurso } from '../../tipos';
 
 export const lecciones: LeccionCurso[] = [
@@ -12,10 +12,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.1",
         "titulo": "¿La IA dibuja planos sola?",
-        "cuerpo": "No. Lo que sí hace muy bien es **leer los planos que usted ya tiene**. En este curso, Claude Code va a leer un plano de muestra de Autodesk (`home_floor_plan.dwg`), contar sus puertas, ventanas y recintos, pasarlo a Excel y armar un reporte en PDF. Y usted va a revisar cada cifra antes de que salga.",
+        "cuerpo": "No. Lo que sí hace muy bien es **leer los planos que usted ya tiene**.\n\nEn este curso, Claude Code lee un plano de muestra de Autodesk (`home_floor_plan.dwg`, un edificio de apartamentos), cuenta sus puertas, ventanas y recintos, pasa las cantidades a Excel y arma un reporte en PDF. Usted revisa cada cifra antes de que salga.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 15,
+          "segundos": 10,
           "seVe": "Chispa, de medio cuerpo sobre un fondo crema; arriba, la pregunta «¿LA IA DIBUJA PLANOS SOLA?», que se tacha.",
           "dice": "Seguro escuchó que la inteligencia artificial ya dibuja planos sola. No es cierto. Pero hay algo que sí hace muy bien: leer los planos que usted ya tiene."
         }
@@ -23,17 +23,16 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.2",
         "titulo": "Así se ve",
-        "cuerpo": "AutoCAD con el plano a un lado y Claude Code en la terminal al otro. Usted le pregunta qué hay adentro y Claude lo lee: **226 capas, 148 bloques, 101 etiquetas de recinto**. No tocó nada del plano.",
+        "cuerpo": "AutoCAD con el plano abierto y Claude Code al lado. Usted le pide que lea qué hay adentro, sin tocar nada, y Claude le contesta: el plano está en milímetros y tiene **226 capas, 148 bloques con nombre y 101 etiquetas de recinto**.\n\nUna **capa** es un grupo de líneas con un nombre (por ejemplo, «muros»); un **bloque** es una pieza que se repite, como una puerta; una **etiqueta de recinto** es el rótulo de cada habitación.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 18,
-          "seVe": "AutoCAD con el plano de muestra en una ventana oscura y, a la derecha, la terminal. Claude responde y la imagen se acerca a «226 capas · 148 bloques · 101 recintos»."
+          "tipo": "imagen",
+          "seVe": "Lámina con lo que Claude lee del plano de muestra: milímetros, 226 capas, 148 bloques con nombre, 101 etiquetas de recinto y 13 objetos sueltos."
         }
       },
       {
         "n": "1.3",
         "titulo": "Lo que sí y lo que no",
-        "cuerpo": "**Sí:** leer capas, bloques y atributos · contar · comparar dos datos · escribir rutinas · armar un reporte. **No:** decidir el criterio de ingeniería · firmar un plano · adivinar lo que el plano no dice. Por ejemplo, este plano no dice cuántas veces se repite la planta tipo. Ninguna IA lo puede saber.",
+        "cuerpo": "**Lo que la IA sí hace bien:** leer capas, bloques y atributos; contar; comparar dos datos; escribir rutinas de AutoCAD; armar un reporte.\n\n**Lo que no:** decidir el criterio de ingeniería, firmar un plano o adivinar lo que el plano no dice. Por ejemplo, este plano no dice cuántas veces se repite la planta tipo del edificio. Ninguna IA lo puede saber: lo pone usted.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
@@ -43,7 +42,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.4",
         "titulo": "Cinco formas de conectarlos",
-        "cuerpo": "Hay cinco formas reales de conectar Claude con AutoCAD, de la más directa a la más simple:\n\n- **A** · un servidor MCP con puente AutoLISP\n- **B** · un servidor MCP por COM\n- **C** · Claude escribe la rutina y usted la carga\n- **D** · lo que AutoCAD ya trae (extracción de datos y scripts)\n- **E** · una copia DXF, sin AutoCAD abierto\n\nLas cinco, una por lámina; al final elige la suya.",
+        "cuerpo": "Hay cinco formas reales de conectar Claude con AutoCAD, de la más directa a la más simple:\n\n- **A** · un servidor MCP con un puente dentro de AutoCAD;\n- **B** · un servidor MCP que maneja AutoCAD desde Windows;\n- **C** · Claude escribe una rutina y usted la carga;\n- **D** · las herramientas que AutoCAD ya trae;\n- **E** · una copia del plano en DXF, sin AutoCAD abierto.\n\nLas próximas láminas explican cada una.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "Claude a la izquierda, AutoCAD a la derecha; entre los dos, cinco caminos numerados A a E, como cables."
@@ -52,7 +51,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.5",
         "titulo": "A · Servidor MCP con puente AutoLISP",
-        "cuerpo": "Un **servidor MCP** es un programa chico que traduce lo que Claude pide en órdenes para AutoCAD. El del curso ([puran-water/autocad-mcp](https://github.com/puran-water/autocad-mcp), MIT) deja cada pedido en un archivo JSON en `C:/temp`, y una rutina AutoLISP que usted carga en AutoCAD (`mcp_dispatch.lsp`) lo ejecuta y devuelve el resultado. **Funciona en AutoCAD completo y en LT desde la 2024** (cuando LT empezó a correr AutoLISP). **No en Mac.** Es el camino del curso (lecciones 2 a 4).",
+        "cuerpo": "Un **servidor MCP** es un programa chico que traduce lo que Claude pide en órdenes para AutoCAD. El del curso ([puran-water/autocad-mcp](https://github.com/puran-water/autocad-mcp), de código abierto) deja cada pedido en un archivo en `C:/temp`, y una rutina que usted carga en AutoCAD (`mcp_dispatch.lsp`, escrita en **AutoLISP**, el lenguaje de rutinas de AutoCAD) lo ejecuta y devuelve el resultado.\n\nFunciona en AutoCAD completo y en LT desde la versión 2024 (cuando LT empezó a correr AutoLISP). No funciona en Mac. Es el camino del curso.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -62,7 +61,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.6",
         "titulo": "B · Servidor MCP por COM",
-        "cuerpo": "Otros servidores manejan AutoCAD por **COM**, su interfaz de automatización de Windows (`AutoCAD.Application`). Solo sirve en el **AutoCAD completo** (LT no tiene COM; Mac tampoco). Nosotros probamos uno así ([christiannp/autocad-mcp](https://github.com/christiannp/autocad-mcp)), pero **no tiene licencia de uso**: no lo recomendamos para trabajos con clientes.",
+        "cuerpo": "Otros servidores manejan AutoCAD por **COM**, la forma en que Windows deja que un programa controle a otro. Solo sirve en el AutoCAD completo: LT no tiene COM, y Mac tampoco.\n\nNosotros probamos uno así ([christiannp/autocad-mcp](https://github.com/christiannp/autocad-mcp)) y funciona, pero no tiene licencia de uso: no se puede usar en trabajos con clientes. Por eso no es el camino del curso.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "Claude → COM → AutoCAD; una etiqueta roja «SIN LICENCIA» sobre el ejemplo."
@@ -71,7 +70,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.7",
         "titulo": "C · Claude escribe la rutina, usted la carga",
-        "cuerpo": "Claude escribe una rutina AutoLISP (`.lsp`) o un script (`.scr`) y usted la carga con `APPLOAD` o `SCRIPT`. No hay conexión directa, pero la rutina queda como **un comando más**, para usted y su equipo. Corre en completo, en LT desde la 2024 (sin Visual LISP ni ActiveX: nada de funciones `vla-`) y en AutoCAD para Mac (AutoLISP básico, sin ActiveX). LT para Mac no corre AutoLISP. Se ve en la lección 7.",
+        "cuerpo": "Claude escribe una rutina AutoLISP (un archivo `.lsp`) o un script (un archivo `.scr`), y usted la carga con `APPLOAD` o `SCRIPT`. No hay conexión directa, pero la rutina queda como **un comando más** de AutoCAD, para usted y su equipo.\n\nCorre en el AutoCAD completo, en LT desde la 2024 (sin las funciones avanzadas que empiezan con `vla-`) y en AutoCAD para Mac. LT para Mac no corre AutoLISP. Se ve en la lección 7.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 12,
@@ -81,17 +80,16 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.8",
         "titulo": "D · Lo que AutoCAD ya trae",
-        "cuerpo": "La **extracción de datos** (`DATAEXTRACTION`) saca propiedades y atributos a una tabla o a Excel/CSV y guarda la configuración en un `.dxe` para repetirla (`-DATAEXTRACTION` la corre sin asistente). Los **scripts** (`SCRIPT`) ejecutan un `.scr` línea por línea, sin que nadie toque el teclado. **Ojo:** la extracción de datos no está en LT ni en Mac; ahí, para atributos, `ATTEXT`/`-ATTEXT`.",
+        "cuerpo": "AutoCAD tiene dos herramientas que ya automatizan, sin IA:\n\n- La **extracción de datos** (`DATAEXTRACTION`) saca propiedades y atributos de los bloques a una tabla o a Excel, y guarda la configuración en un archivo `.dxe` para repetirla. Solo en el AutoCAD completo.\n- Los **scripts** (`SCRIPT`) ejecutan un archivo `.scr`, una lista de comandos, línea por línea.\n\nClaude puede escribir el script; usted lo corre.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "El asistente de extracción de datos pasa sus pantallas rápido hasta la tabla; al lado, un `.scr` de cuatro líneas."
+          "tipo": "imagen",
+          "seVe": "Lámina con la extracción de datos y los scripts de AutoCAD, y lo que hace cada uno."
         }
       },
       {
         "n": "1.9",
         "titulo": "E · Una copia DXF, sin AutoCAD abierto",
-        "cuerpo": "Se guarda una copia del plano como **DXF** y Claude escribe un programa en Python ([ezdxf](https://github.com/mozman/ezdxf), MIT) que la lee. Funciona en Windows, Mac y Linux. Es el camino para Mac y **el más seguro: nunca toca el plano original**. Es también la base del extractor del kit (lección 4).",
+        "cuerpo": "Se guarda una copia del plano en formato **DXF** (un formato de dibujo que cualquier programa puede leer) y Claude escribe un programa en Python, con la biblioteca [ezdxf](https://github.com/mozman/ezdxf), que la lee.\n\nFunciona en Windows, Mac y Linux. Es el camino para Mac y el más seguro: nunca toca el plano original. Es también la base del programa de cantidades del kit (lección 4).",
         "apoyo": {
           "tipo": "motion",
           "segundos": 10,
@@ -101,16 +99,16 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.10",
         "titulo": "¿Y lo de Autodesk?",
-        "cuerpo": "**AutoCAD 2027** instala un servidor MCP propio, pero hoy **solo lo usa Autodesk Assistant**, está en vista previa, en AutoCAD **solo lee** y es solo de Windows. Lo que sí puede conectar a Claude es el **Product Help MCP** de Autodesk (público, sin clave): le da a Claude la ayuda oficial de más de 110 productos. Va como extra en la lección 2.",
+        "cuerpo": "**AutoCAD 2027** trae su propio servidor MCP, pero hoy solo lo usa el asistente de Autodesk (Autodesk Assistant), está en vista previa, en AutoCAD solo lee y es solo para Windows. No se conecta a Claude.\n\nLo que sí se puede conectar a Claude es el **Product Help MCP** de Autodesk: público y sin clave, le da la documentación oficial de sus productos. Es el extra de la lección 2.",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "El panel «Asistente» de AutoCAD 2027 en una ventana, con la etiqueta «VISTA PREVIA · SOLO LECTURA»."
+          "tipo": "imagen",
+          "seVe": "Lámina con las dos herramientas de Autodesk: el asistente de AutoCAD 2027 y el Product Help MCP."
         }
       },
       {
         "n": "1.11",
         "titulo": "Elija su camino",
-        "cuerpo": "Con **AutoCAD completo** en Windows, puede usar todo. Con **LT 2024 o posterior**, el servidor MCP, las rutinas y los scripts, pero no la extracción de datos. En **Mac**, rutinas básicas y la copia DXF. Si su **LT es anterior a 2024**, le queda la copia DXF. *(El cuadro, abajo; también viene en el kit como `cuadro-de-decision.pdf`.)*\n\n| Camino | Completo (Windows) | LT (Windows) | Mac |\n| A · MCP + puente AutoLISP | ✓ | ✓ desde 2024 | No |\n| B · MCP por COM | ✓ (sin licencia: no se recomienda) | No | No |\n| C · Rutina `.lsp` / `.scr` | ✓ | ✓ desde 2024, sin `vla-` | AutoCAD para Mac: AutoLISP básico · LT para Mac: no |\n| D · `DATAEXTRACTION` y `SCRIPT` | ✓ | `SCRIPT` ✓ · extracción: no (usar `-ATTEXT`) | Extracción: no (usar `-ATTEXT`) |\n| E · Copia DXF + Python | ✓ | ✓ | ✓ (también Linux) |",
+        "cuerpo": "Qué puede usar según su AutoCAD:\n\n- **AutoCAD completo en Windows:** todos los caminos.\n- **LT 2024 o más nuevo:** el servidor MCP, las rutinas y los scripts, pero no la extracción de datos.\n- **Mac:** rutinas básicas y la copia DXF.\n- **LT anterior a 2024:** la copia DXF.\n\nEl cuadro completo viene en el kit (`cuadro-de-decision.pdf`).",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -120,12 +118,11 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.12",
         "titulo": "El camino de este curso",
-        "cuerpo": "En el curso usamos el **camino A en Windows** y el **E para quien usa Mac**. En la próxima lección se instala todo, paso a paso: tenga AutoCAD a mano.",
+        "cuerpo": "En el curso se usa el **camino A en Windows** y el **E para quien usa Mac**. En la próxima lección se instala todo, paso a paso: tenga AutoCAD a mano.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 15,
-          "seVe": "Chispa entra caminando sobre el cuadro y se para junto a la columna «COMPLETO»; señala la fila A y después la E.",
+          "segundos": 13,
+          "seVe": "Chispa, al lado del cuadro de caminos, señala la fila A y la E.",
           "dice": "En el curso usamos el camino A en Windows, y el E para quien usa Mac. En la próxima lección lo instalamos, paso a paso. Tenga AutoCAD a mano."
         }
       }
@@ -141,31 +138,28 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.1",
         "titulo": "Esto, al final de la lección",
-        "cuerpo": "Claude dibujando en su AutoCAD y diciéndole qué hizo: un rectángulo de 10 por 5 en una capa `PRUEBA-IA`, con su área. Se llega en seis pasos.",
+        "cuerpo": "Al final de esta lección, Claude dibuja en su AutoCAD y le dice qué hizo: un rectángulo de 10 por 5 metros en una capa nueva, `PRUEBA-IA`, con su área de **50 m²** y su perímetro de **30 m**. Se llega en seis pasos.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 15,
-          "seVe": "Un dibujo nuevo vacío; en la terminal se escribe el pedido del rectángulo; aparece el rectángulo; la respuesta «Área: 50». Rótulo: «ESTO, EN SEIS PASOS»"
+          "tipo": "imagen",
+          "seVe": "Lámina con el pedido del rectángulo de prueba y lo que Claude tiene que contestar: capa PRUEBA-IA, área 50 m², perímetro 30 m."
         }
       },
       {
         "n": "2.2",
         "titulo": "Seis pasos, y una regla",
-        "cuerpo": "1 · Claude Code · 2 · Git y uv · 3 · El servidor · 4 · El puente en AutoCAD · 5 · Conectar · 6 · Probar. **La regla de todo el curso: se trabaja siempre sobre copias.** Cree la carpeta `C:\\cursos\\autocad-ia\\` y descargue ahí `home_floor_plan.dwg` desde la página de archivos de muestra de Autodesk ([autodesk.com/autocadlt-samples](https://autodesk.com/autocadlt-samples), 2.360 KB).",
+        "cuerpo": "Los seis pasos: **1** · Claude Code · **2** · Git y uv · **3** · el servidor · **4** · el puente en AutoCAD · **5** · conectar · **6** · probar.\n\n**La regla de todo el curso: se trabaja siempre sobre copias.** Cree la carpeta `C:\\cursos\\autocad-ia\\` y guarde ahí una copia de `home_floor_plan.dwg`, que se baja de la [página de muestras de AutoCAD LT de Autodesk](https://autodesk.com/autocadlt-samples). El original no se toca.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 15,
-          "seVe": "A la izquierda, la lista de los seis pasos; a la derecha, la carpeta vacía y la descarga del plano desde la página de Autodesk."
+          "tipo": "imagen",
+          "seVe": "Lámina con los seis pasos y la regla de trabajar sobre copias."
         }
       },
       {
         "n": "2.3",
         "titulo": "1 · Claude Code",
-        "cuerpo": "Abra **PowerShell sin permisos de administrador** y pegue el comando de instalación (en el bloque de abajo). No muestra avance: espere a que termine. Cierre la terminal, abra una nueva y escriba `claude --version`: si ve un número, está instalado. `claude doctor` revisa la instalación. Después escriba `claude` e inicie sesión. **Necesita un plan Pro o superior: el plan gratis no incluye Claude Code.**",
+        "cuerpo": "Abra **PowerShell** (la terminal de Windows, donde se escriben comandos) sin permisos de administrador y pegue el comando de instalación del bloque de abajo. No muestra avance: espere a que termine.\n\nCierre la terminal, abra una nueva y escriba `claude --version`: si ve un número, quedó instalado. `claude doctor` revisa la instalación. Después escriba `claude` y entre con su cuenta: hace falta un plan pago (Pro o superior).",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "PowerShell con el comando de instalación; la terminal nueva, `claude --version` con un acercamiento al número, `claude` y el inicio de sesión en el navegador, con la cuenta tapada. Recuadro: «PLAN PRO O SUPERIOR · EL GRATIS NO INCLUYE CLAUDE CODE»."
+          "tipo": "imagen",
+          "seVe": "Lámina con los comandos para instalar y comprobar Claude Code en PowerShell."
         },
         "bloques": [
           {
@@ -179,10 +173,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.4",
         "titulo": "2 · Git y uv",
-        "cuerpo": "**Git** sirve para bajar el servidor y deja que Claude use su consola completa. **uv** instala Python y las piezas del servidor sin que usted tenga que configurarlas (los dos comandos, en el bloque de abajo). Compruebe con `git --version` y `uv --version`.",
+        "cuerpo": "**Git** baja el servidor y guarda versiones de carpetas de archivos. **uv** instala Python y las piezas del servidor sin que usted tenga que configurar nada. Los dos comandos están en el bloque de abajo.\n\nCierre la terminal, abra una nueva y compruebe con `git --version` y `uv --version`.",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "Las dos instalaciones con `winget` terminadas y las dos versiones en la terminal."
+          "tipo": "imagen",
+          "seVe": "Lámina con los dos comandos de winget y las dos comprobaciones."
         },
         "bloques": [
           {
@@ -202,51 +196,47 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.5",
         "titulo": "3 · El servidor, fijado a lo que revisamos",
-        "cuerpo": "El servidor es de código abierto (MIT). Se baja y se **fija a la versión exacta que revisamos**: ese código largo de letras y números (el commit) que va en el bloque de abajo. ¿Por qué? Porque este programa va a tocar sus planos: si mañana alguien lo cambia, usted no se entera. Si sube de versión, primero se revisa. {{el commit revisado se publica con el curso}}",
+        "cuerpo": "El servidor es de código abierto (licencia MIT). Se baja con Git y se **fija a una versión exacta**: en GitHub, cada versión tiene un código largo de letras y números, el **commit**. El del bloque de abajo es el que leímos en Vion.\n\n¿Por qué fijarlo? Porque este programa va a tocar sus planos: si mañana alguien lo cambia, a su computadora no llega nada que no se haya revisado. `uv sync` instala lo que el servidor necesita.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "`git clone`, el `git checkout` con un acercamiento al código del commit y `uv sync`; al costado, un candado con «FIJADO AL COMMIT REVISADO»."
+          "tipo": "imagen",
+          "seVe": "Lámina con git clone, git checkout del commit revisado y uv sync."
         },
         "bloques": [
           {
             "tipo": "comando",
-            "etiqueta": "Windows, en PowerShell",
+            "etiqueta": "PowerShell",
             "lenguaje": "powershell",
-            "texto": "mkdir C:\\cursos\\autocad-ia; cd C:\\cursos\\autocad-ia\ngit clone https://github.com/puran-water/autocad-mcp\ngit -C autocad-mcp checkout <SHA-REVISADO>\ncd autocad-mcp; uv sync; cd .."
+            "texto": "mkdir C:\\cursos\\autocad-ia; cd C:\\cursos\\autocad-ia\ngit clone https://github.com/puran-water/autocad-mcp\ngit -C autocad-mcp checkout f07b6a5071364a7c4b111ac41a0fc680a3d1ca18\ncd autocad-mcp; uv sync; cd .."
           }
         ]
       },
       {
         "n": "2.6",
         "titulo": "No se instala a ciegas",
-        "cuerpo": "Antes de recomendarlo leímos su código: nuestra regla es leer antes de instalar y fijar la versión. Tres cosas que tiene que saber, y que dice su propio README:\n\n1. La herramienta `system` → `execute_lisp` corre **AutoLISP libre**: queda siempre en «preguntar», y usted lee qué quiere hacer antes de aprobar.\n2. `drawing` → `create` **borra y purga el dibujo activo**: nunca con un plano abierto.\n3. Los pedidos pasan por archivos en `C:/temp`.",
+        "cuerpo": "Antes de recomendarlo leímos su código: habla con Claude sin internet y no manda datos a ningún lado. Nuestra regla es leer antes de instalar y fijar la versión. Tres cosas que tiene que saber:\n\n1. La herramienta `system` → `execute_lisp` corre **cualquier rutina AutoLISP**. En el kit queda siempre en «preguntar»: usted lee qué quiere hacer antes de aprobar.\n2. `drawing` → `create` **borra y purga el dibujo activo**: nunca la use con un plano abierto.\n3. Los pedidos pasan por archivos en la carpeta `C:/temp`.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 8,
-          "seVe": "Chispa, chiquita en la esquina de la terminal, con los brazos cruzados.",
+          "segundos": 6,
+          "seVe": "Chispa, junto a los tres avisos del servidor.",
           "dice": "Un programa que toca sus planos no se instala a ciegas. Ni el nuestro."
         }
       },
       {
         "n": "2.7",
         "titulo": "4 · El puente, dentro de AutoCAD",
-        "cuerpo": "1. Escriba `APPLOAD` y cargue `mcp_dispatch.lsp`, que está en la carpeta `lisp-code` del servidor.\n2. AutoCAD avisa que la carpeta no es de confianza: **agréguela a las ubicaciones de confianza solo si es esta carpeta**.\n3. Cuando la línea de comandos dice que el despachador está listo, el puente está abierto.\n4. Si lo agrega a la carga al inicio (Startup Suite), no tiene que repetirlo cada vez.\n5. Revise que exista la carpeta `C:\\temp`: ahí van los pedidos.",
+        "cuerpo": "El **puente** es la rutina que recibe los pedidos de Claude dentro de AutoCAD:\n\n1. Escriba `APPLOAD` y cargue `mcp_dispatch.lsp`, que está en la carpeta `lisp-code` del servidor.\n2. Si AutoCAD avisa que la carpeta no es de confianza, agréguela a las ubicaciones de confianza, **solo si es esa carpeta**.\n3. Cuando la línea de comandos dice que el despachador quedó cargado, está listo.\n4. Opcional: agréguelo a la carga al inicio, para no repetirlo cada vez. Revise que exista la carpeta `C:\\temp`.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 30,
-          "seVe": "`APPLOAD`, la búsqueda de `lisp-code\\mcp_dispatch.lsp`, el aviso de seguridad, la ubicación de confianza, el mensaje del despachador con un acercamiento y la carga al inicio."
+          "tipo": "imagen",
+          "seVe": "Lámina con los cuatro pasos para cargar el puente en AutoCAD."
         }
       },
       {
         "n": "2.8",
         "titulo": "5 · Conectar",
-        "cuerpo": "Desde la carpeta del kit, el comando del bloque de abajo registra el servidor **solo para este proyecto** y crea un archivo `.mcp.json`. Abra `claude`, **apruebe el servidor** cuando se lo pregunte y escriba `/mcp`: tiene que decir **connected**. {{la dirección del kit se publica con el curso}}",
+        "cuerpo": "Desde la carpeta del kit, el comando del bloque de abajo registra el servidor **solo para este proyecto** y crea un archivo `.mcp.json`. Abra `claude`, acepte la confianza de la carpeta y **apruebe el servidor** cuando se lo pregunte. Después escriba `/mcp`: tiene que decir **connected**.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "El comando `claude mcp add`; se abre `.mcp.json`; en `claude`, la pregunta de aprobar el servidor del proyecto, que se aprueba; `/mcp` muestra «autocad · connected»."
+          "tipo": "imagen",
+          "seVe": "Lámina con el comando claude mcp add y la comprobación con /mcp."
         },
         "bloques": [
           {
@@ -260,7 +250,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.9",
         "titulo": "Las reglas y los permisos del kit",
-        "cuerpo": "Dos archivos importan más que la instalación. **`CLAUDE.md`**, las reglas que Claude lee al empezar: trabajar sobre copias, no guardar nunca sobre el original, verificar después de dibujar. **`.claude/settings.json`**, los permisos: la herramienta que corre AutoLISP libre queda siempre en «preguntar». Los dos vienen en el kit y van completos en los bloques de abajo. {{los nombres exactos de las herramientas en los permisos se confirman al revisar el servidor}}",
+        "cuerpo": "Dos archivos del kit importan más que la instalación:\n\n- **`CLAUDE.md`**, las reglas que Claude lee al empezar: trabajar sobre copias, no guardar nunca sobre el original, verificar después de dibujar.\n- **`.claude/settings.json`**, los permisos: Claude puede leer capas y vistas sin preguntar; para dibujar, borrar o correr una rutina (`system`, `drawing`, `entity`, `block`, `annotation`) le pide permiso cada vez; y nunca puede escribir en la carpeta de planos.\n\nLos dos van completos en los bloques de abajo.",
         "apoyo": {
           "tipo": "captura",
           "seVe": "`CLAUDE.md` y `settings.json` del kit abiertos, con tres reglas resaltadas: «trabajar sobre copias», «no guardar sobre el original», «system queda en preguntar»."
@@ -283,11 +273,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.10",
         "titulo": "6 · Probar",
-        "cuerpo": "1. En AutoCAD, `NEW`: **un dibujo nuevo, vacío**.\n2. Pregúntele a Claude por el estado del servidor: tiene que decir `file_ipc`.\n3. Pídale el rectángulo (en el bloque de abajo). Respuesta esperada: área 50, perímetro 30.\n\n**Importante:** la orden de crear dibujo de este servidor borra el dibujo activo; nunca la use con un plano abierto.",
+        "cuerpo": "1. En AutoCAD, `NEW`: **un dibujo nuevo y vacío**.\n2. Pregúntele a Claude en qué estado está el servidor: tiene que decir `file_ipc`.\n3. Pídale el rectángulo (en el bloque de abajo). La respuesta esperada: área 50, perímetro 30.\n\n**Importante:** la orden de crear dibujo de este servidor borra el dibujo activo; nunca la use con un plano abierto.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "Un dibujo nuevo con `NEW`; a «¿En qué estado está el servidor?», Claude contesta `file_ipc`; con el pedido, el rectángulo se dibuja y Claude responde «área 50, perímetro 30»."
+          "tipo": "imagen",
+          "seVe": "Lámina con el pedido del rectángulo de prueba y lo que Claude tiene que contestar: capa PRUEBA-IA, área 50 m², perímetro 30 m."
         },
         "bloques": [
           {
@@ -314,7 +303,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.12",
         "titulo": "¿Y en Mac?",
-        "cuerpo": "AutoCAD para Mac no tiene COM ni el puente de este servidor, y LT para Mac no corre AutoLISP. Lo que sí: instala Claude Code con el comando de Mac (en el bloque de abajo), guarda una **copia del plano como DXF** y Claude trabaja sobre esa copia; es el método de las lecciones 3 a 6. Las rutinas básicas de AutoLISP corren en AutoCAD para Mac, sin las funciones de ActiveX.",
+        "cuerpo": "AutoCAD para Mac no tiene COM ni el puente de este servidor, y LT para Mac no corre AutoLISP. Lo que sí se puede: instalar Claude Code con el comando de Mac (en el bloque de abajo), guardar una **copia del plano como DXF** y trabajar sobre esa copia, con el método de las lecciones 3 a 6. Las rutinas básicas de AutoLISP corren en AutoCAD para Mac.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "Pantalla partida: a la izquierda, Windows con el puente; a la derecha, una ventana genérica de Mac con la terminal y un `.dxf`. Rótulos: «EN MAC: SIN PUENTE · SIN EXTRACCIÓN DE DATOS · SÍ CLAUDE CODE Y DXF»."
@@ -331,10 +320,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.13",
         "titulo": "Extra: la ayuda oficial de Autodesk",
-        "cuerpo": "Opcional. El **Product Help MCP** de Autodesk le da a Claude la documentación oficial de más de 110 productos (público, sin clave; solo lee documentación y sale a internet). Dirección: `https://developer.api.autodesk.com/knowledge/public/v1/mcp`. Se agrega con el comando del bloque de abajo. {{el comando se comprueba al grabar}}",
+        "cuerpo": "Opcional. El **Product Help MCP** de Autodesk le da a Claude la documentación oficial de sus productos. Es público, no pide clave, solo lee documentación y sale a internet: no toca sus planos. Se agrega con el comando del bloque de abajo; después, `/mcp` muestra los dos servidores.",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "`/mcp` con los dos servidores conectados y una respuesta de Claude que cita la ayuda de Autodesk."
+          "tipo": "imagen",
+          "seVe": "Lámina con el comando para agregar la ayuda de Autodesk."
         },
         "bloques": [
           {
@@ -348,10 +337,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "2.14",
         "titulo": "Listo",
-        "cuerpo": "Claude ya ve su AutoCAD. En la próxima lección le pedimos que lea un plano de verdad, sin tocar nada.",
+        "cuerpo": "Claude ya ve su AutoCAD. En la próxima lección le pide que lea un plano de verdad, sin tocar nada.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 10,
+          "segundos": 7,
           "seVe": "Chispa, de medio cuerpo, sobre el fondo crema.",
           "dice": "Listo: Claude ya ve su AutoCAD. En la próxima, le pedimos que lea un plano de verdad. Sin tocar nada."
         }
@@ -368,21 +357,19 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.1",
         "titulo": "¿Qué hay adentro?",
-        "cuerpo": "El plano de muestra es un edificio de apartamentos japonés, con planta baja, planta tipo, último piso y azotea. **Antes de contar nada, hay que saber cómo está dibujado.**",
+        "cuerpo": "El plano de muestra es un edificio de apartamentos japonés, con planta baja, planta tipo (la que se repite en varios pisos), último piso y azotea.\n\n**Antes de contar nada, hay que saber cómo está dibujado.**",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 12,
-          "seVe": "El plano entero en AutoCAD, con un acercamiento lento a la planta tipo. Rótulo: «¿QUÉ HAY ADENTRO?»."
+          "tipo": "imagen",
+          "seVe": "Lámina con los bloques de planta del edificio y sus dos versiones, a 1:100 y a 1:50."
         }
       },
       {
         "n": "3.2",
         "titulo": "El primer pedido: solo lectura",
-        "cuerpo": "El primer pedido siempre es de **solo lectura**, y lo dice con esas palabras (en el bloque de abajo; en el kit, `prompts/01-inventario.md`). Y una costumbre: pedirle que **confirme en qué dibujo está**. En nuestra prueba, una herramienta leyó el dibujo equivocado porque estaba activo otro; desde entonces, primero se confirma.",
+        "cuerpo": "El primer pedido a Claude siempre es de **solo lectura**, y lo dice con esas palabras (en el bloque de abajo; en el kit, `prompts/01-inventario.md`).\n\nY una costumbre: pedirle que **confirme en qué dibujo está** antes de leer. En una de nuestras pruebas, una herramienta leyó otro dibujo que estaba abierto.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "Se escribe el pedido; Claude confirma el nombre del dibujo activo, con un acercamiento, y empieza a leer."
+          "tipo": "imagen",
+          "seVe": "Lámina con el pedido de solo lectura del kit."
         },
         "bloques": [
           {
@@ -394,7 +381,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.3",
         "titulo": "Lo primero: las unidades",
-        "cuerpo": "Este plano está en **milímetros**, no en metros ni en pies. Si eso se lee mal, cada área sale un millón de veces más grande. Después: **226 capas**, **148 bloques** con nombre y **101 etiquetas de recinto**.",
+        "cuerpo": "Este plano está en **milímetros**, no en metros ni en pies. Si eso se lee mal, cada área sale un millón de veces más grande (un metro cuadrado son un millón de milímetros cuadrados).\n\nDespués: **226 capas**, **148 bloques** con nombre y **101 etiquetas de recinto**.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 12,
@@ -404,7 +391,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.4",
         "titulo": "Todo vive en bloques, y cada planta está dos veces",
-        "cuerpo": "En el espacio modelo hay solo 13 objetos: **todo el proyecto vive adentro de bloques**, uno por planta (`1F`, `SF`, `TF`, `TRF`, `TRR`). Y **cada planta está dibujada dos veces**: una para escala 1:100 (`_100`) y otra para 1:50 (`_50`). Si alguien suma todo, cada cantidad sale el doble.",
+        "cuerpo": "En el espacio de dibujo hay solo 13 objetos: **todo el edificio vive adentro de bloques**, uno por planta (`1F` planta baja, `SF` planta tipo, `TF` último piso, `TRF` azotea, `TRR` cubierta).\n\nY **cada planta está dibujada dos veces**: una para imprimir a escala 1:100 (`_100`) y otra a 1:50 (`_50`). Si alguien suma todo, cada cantidad sale el doble.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 20,
@@ -414,39 +401,36 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.5",
         "titulo": "Esto lo decide usted",
-        "cuerpo": "Una suma ingenua cuenta todo dos veces. **Esto no lo resuelve la IA: lo resuelve usted, eligiendo una sola versión** por planta (en este curso, la 1:100 para contar piezas y recintos).",
+        "cuerpo": "Una suma sin cuidado cuenta todo dos veces. **Esto no lo resuelve la IA: lo resuelve usted**, eligiendo una sola versión de cada planta. En este curso, la de 1:100 para contar piezas y recintos.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 10,
-          "seVe": "Chispa aparece al lado de las dos cajas «_100» y «_50» y las mira alternadamente.",
+          "segundos": 8,
+          "seVe": "Chispa, junto a las dos versiones de cada planta.",
           "dice": "Mismo edificio, dos dibujos. Ojo: una suma ingenua cuenta todo dos veces."
         }
       },
       {
         "n": "3.6",
         "titulo": "Los atributos: donde está la información",
-        "cuerpo": "Cada puerta y ventana tiene una etiqueta con **21 datos**: tipo, medidas, fabricante, precio, resistencia al fuego. Están en japonés, y Claude los traduce. Las etiquetas de recinto traen el **área** y los **acabados** de piso, pared y cielo.",
+        "cuerpo": "Los **atributos** son datos escritos adentro de un bloque. Cada puerta y ventana de este plano tiene una etiqueta con **21 atributos**: tipo, medidas, fabricante, precio, peso, apertura, vidrio, herrajes y resistencia al fuego. Están en japonés, y Claude los traduce.\n\nPor ejemplo, la puerta AD-A02 de la planta baja: puerta de aluminio, batiente sencilla, de 800 × 1200 mm. Las etiquetas de recinto traen el área y los acabados de piso, pared y cielo.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "Claude lista los atributos de una etiqueta de puerta; la cámara se acerca a los nombres en japonés y a la traducción que Claude pone al lado."
+          "tipo": "imagen",
+          "seVe": "Lámina con los datos reales de una puerta del plano."
         }
       },
       {
         "n": "3.7",
         "titulo": "Las capas tienen un patrón",
-        "cuerpo": "`PLANTA-DISCIPLINA_ELEMENTO-ESCALA`. Ejemplo: `SF-R_EWALL-50`. Ese patrón le dice a Claude qué es un muro de concreto, qué es un tabique y qué es un acabado, **aunque los muros sean solo líneas**.",
+        "cuerpo": "Los nombres de las capas siguen un patrón: `PLANTA-DISCIPLINA_ELEMENTO-ESCALA`. Por ejemplo, `SF-R_EWALL-50` es: planta tipo, estructura, muro de concreto, escala 1:50.\n\nEse patrón le permite a Claude distinguir un muro de concreto de un tabique o de un acabado, **aunque los muros sean solo líneas**.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 15,
-          "seVe": "Claude explica el patrón; el nombre `SF-R_EWALL-50` se separa en sus cuatro partes."
+          "tipo": "imagen",
+          "seVe": "Lámina con el nombre SF-R_EWALL-50 separado en sus cuatro partes y los prefijos de las capas."
         }
       },
       {
         "n": "3.8",
         "titulo": "¿Qué se puede contar con confianza?",
-        "cuerpo": "- **Puertas y ventanas: alta** (cada una es un bloque con su etiqueta).\n- **Recintos y acabados: alta.**\n- **Áreas: media o baja** (muchas están escritas a mano, no medidas).\n- **Muros: baja** (líneas sueltas, sin espesor ni altura: solo dan un orden de magnitud).",
+        "cuerpo": "- **Puertas y ventanas: confianza alta**, porque cada una es un bloque con su etiqueta.\n- **Recintos y acabados: alta.**\n- **Áreas: media o baja**, porque muchas están escritas a mano y no medidas.\n- **Muros: baja**, porque son líneas sueltas, sin espesor ni altura: solo dan un orden de magnitud.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "Una tabla de cuatro filas con la confianza en color: alta, alta, media o baja, y baja."
@@ -455,10 +439,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "3.9",
         "titulo": "Déjelo escrito",
-        "cuerpo": "Pídale que deje todo en `analisis/inventario.md`. Ese inventario es la base de la próxima lección, y le sirve para explicarle al cliente por qué una cifra tiene confianza baja.",
+        "cuerpo": "Pídale a Claude que deje todo en un archivo, `analisis/inventario.md`: las unidades, las capas, los bloques, las dos escalas y la confianza de cada cosa.\n\nEse inventario es la base de la próxima lección, y le sirve para explicarle al cliente por qué una cifra tiene confianza baja.",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "`analisis/inventario.md` abierto en el editor."
+          "tipo": "imagen",
+          "seVe": "Lámina con el resumen del inventario real del plano."
         }
       },
       {
@@ -484,39 +468,37 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.1",
         "titulo": "Así termina esta lección",
-        "cuerpo": "Cinco hojas, cada cifra con su confianza y ninguna escrita a mano. En el resumen de la planta tipo: 51 puertas y 22 ventanas y shoji.",
+        "cuerpo": "Al final de esta lección tiene un Excel con cinco hojas: **Resumen, Puertas y ventanas, Recintos, Muros y Observaciones**. Cada cifra lleva su confianza y ninguna está escrita a mano. En el resumen de la planta tipo: 51 puertas y 22 ventanas y shoji (los paneles corredizos de papel).",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 12,
-          "seVe": "El Excel se abre; la imagen recorre las pestañas y se detiene en «Resumen»."
+          "tipo": "motion",
+          "segundos": 18,
+          "seVe": "Réplica de la hoja de cantidades del plano, con sus cifras reales: el recorrido por las cinco hojas."
         }
       },
       {
         "n": "4.2",
         "titulo": "La celda que pone usted",
-        "cuerpo": "En el resumen hay una celda vacía: **Plantas tipo**. El plano no dice cuántas veces se repite la planta tipo. Ese número lo pone usted.",
+        "cuerpo": "En el resumen hay una celda vacía: **plantas tipo**. El plano no dice cuántas veces se repite la planta tipo en el edificio. Ese número lo pone usted.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 8,
-          "seVe": "Chispa, en capa sobre el Excel, señala la celda vacía «Plantas tipo».",
+          "segundos": 7,
+          "seVe": "Chispa señala la celda vacía de las plantas tipo.",
           "dice": "Fíjese en esta celda vacía. El plano no lo dice. Lo pone usted."
         }
       },
       {
         "n": "4.3",
         "titulo": "Primero, lo que AutoCAD ya trae",
-        "cuerpo": "La **extracción de datos** saca los atributos de los bloques a Excel y guarda la configuración en un `.dxe` para repetirla. Funciona, pero **en este plano cuenta las dos escalas** y no sabe cuál es cuál. En LT no existe: el equivalente es `-ATTEXT`, que exporta atributos a un texto.",
+        "cuerpo": "La **extracción de datos** de AutoCAD saca los atributos de los bloques a Excel y guarda la configuración para repetirla. Funciona, pero **en este plano cuenta las dos escalas**, porque cada puerta está dibujada dos veces, y no sabe cuál es cuál.\n\nEn LT no existe: el equivalente es `-ATTEXT`, que exporta los atributos a un archivo de texto.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "El asistente de extracción de datos: se eligen los bloques de puertas y sus atributos, la salida a `.xlsx` y se guarda el `.dxe`. Rótulo: «SOLO AUTOCAD COMPLETO · EN LT: -ATTEXT»."
+          "tipo": "imagen",
+          "seVe": "Lámina con lo que hace la extracción de datos y por qué en este plano cuenta todo dos veces."
         }
       },
       {
         "n": "4.4",
         "titulo": "Escriba el criterio antes de pedir",
-        "cuerpo": "1. Puertas, ventanas y recintos: solo la versión 1:100.\n2. Muros: solo la 1:50, que es la única que separa los tipos, y como orden de magnitud.\n3. Área: de la geometría si hay contorno dibujado; la etiqueta solo se compara.\n4. Cada fila lleva su confianza.",
+        "cuerpo": "El **criterio** son las reglas de medición, escritas antes de pedir nada:\n\n1. Puertas, ventanas y recintos: solo la versión 1:100.\n2. Muros: solo la 1:50, que es la única que separa los tipos de muro, y como orden de magnitud.\n3. Área: de la geometría si hay un contorno dibujado; la etiqueta solo se compara.\n4. Cada fila lleva su confianza.",
         "apoyo": {
           "tipo": "diagrama",
           "seVe": "Una pizarra con los cuatro puntos del criterio."
@@ -525,11 +507,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.5",
         "titulo": "Una copia DXF y el pedido",
-        "cuerpo": "En AutoCAD, `SAVEAS` de una copia en formato DXF: `copias\\home_floor_plan_copia.dxf`. Así el programa nunca toca el original, y el mismo método sirve en Mac. Después, el pedido con su criterio pegado (en el bloque de abajo; en el kit, `prompts/02-cantidades.md`).",
+        "cuerpo": "En AutoCAD, guarde una copia del plano en formato DXF con `SAVEAS`: `copias\\home_floor_plan_copia.dxf`. Así el programa nunca toca el original, y el mismo método sirve en Mac.\n\nDespués, pegue en Claude Code el pedido con su criterio (en el bloque de abajo; en el kit, `prompts/02-cantidades.md`).",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 15,
-          "seVe": "`SAVEAS` a DXF; en Claude Code se pega el pedido."
+          "tipo": "imagen",
+          "seVe": "Lámina con la copia en DXF y el pedido de cantidades del kit."
         },
         "bloques": [
           {
@@ -542,21 +523,20 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "4.6",
         "titulo": "Claude escribe el programa y lo corre",
-        "cuerpo": "Claude escribe `extraer_dxf.py` (Python con ezdxf y openpyxl), lo corre y corrige lo que falla. {{el error real que haya encontrado en la grabación, solo si pasó}}",
+        "cuerpo": "Claude escribe `extraer_dxf.py`, un programa en Python que lee la copia y arma el Excel, lo corre y compara los conteos con el inventario.\n\nCuando un número no coincide, se busca por qué antes de seguir. Así apareció un error real del plano: en la planta tipo, **15 puertas a 1:50 estaban metidas dentro de la planta a 1:100**, adentro del módulo de baño. Un conteo por nombre de bloque las sumaba dos veces. El arreglo: contar solo las marcas de la escala 1:100.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "Claude escribe y corre el programa, en cámara rápida, y corrige lo que falla; la terminal termina con «Excel listo»."
+          "tipo": "imagen",
+          "seVe": "Lámina con la observación real del módulo de baño y cómo se arregló."
         }
       },
       {
         "n": "4.7",
         "titulo": "Lo que sale",
-        "cuerpo": "- **Puertas y ventanas:** una fila por pieza, con su marca, tipo, medidas, planta y confianza.\n- **Recintos:** dos columnas de área, la medida en el dibujo y la escrita en la etiqueta; 31 de 96 recintos tienen un contorno para medir, el resto usa la etiqueta y queda con confianza media.\n- **Resumen:** todo son fórmulas: si cambia una fila, cambia el total.",
+        "cuerpo": "- **Puertas y ventanas:** una fila por pieza, con su marca, tipo, medidas, planta y confianza.\n- **Recintos:** dos columnas de área, la escrita en la etiqueta y la medida en el dibujo. Solo 31 de 96 recintos tienen un contorno para medir; el resto usa la etiqueta, con confianza media.\n- **Resumen:** los totales por planta, con fórmulas a la vista.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "La hoja «Puertas y ventanas» (la cámara baja por las filas), «Recintos» (las dos columnas de área), «Resumen» con la barra de fórmulas visible."
+          "tipo": "motion",
+          "segundos": 18,
+          "seVe": "Réplica de las hojas Puertas y ventanas, Recintos y Resumen del plano, con sus cifras reales."
         }
       },
       {
@@ -571,12 +551,11 @@ export const lecciones: LeccionCurso[] = [
       },
       {
         "n": "4.9",
-        "titulo": "Una pregunta puntual, en vivo",
-        "cuerpo": "Para una pregunta puntual no hace falta el programa: con el servidor conectado y el plano abierto, Claude contesta en vivo (en el bloque de abajo). Es la forma más rápida de comprobar una fila del Excel.",
+        "titulo": "Una pregunta puntual",
+        "cuerpo": "Para comprobar una fila del Excel no hace falta otro programa. Con el servidor conectado y el plano abierto, se le pregunta a Claude directamente (en el bloque de abajo) y se compara con el filtro del Excel.\n\nEn este plano, el Excel dice que la planta tipo tiene **4 ventanas AW-1**. Ojo: AW-1′, con apóstrofo, es otro tipo, con 5 más.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "La pregunta; Claude responde y marca las ventanas en AutoCAD, con un acercamiento a la selección."
+          "tipo": "imagen",
+          "seVe": "Lámina con la pregunta puntual y cómo se compara con el filtro del Excel."
         },
         "bloques": [
           {
@@ -600,7 +579,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "…no es un Excel correcto. La próxima lección es la que hace que estas cifras se puedan entregar: revisarlas.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 8,
+          "segundos": 6,
           "seVe": "Chispa, de medio cuerpo, sobre el fondo crema.",
           "dice": "Un Excel que se arma solo no es un Excel correcto. Eso viene ahora."
         }
@@ -630,7 +609,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Quince piezas de más en una sola planta, y nadie se equivocó al sumar.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 12,
+          "segundos": 7,
           "seVe": "Chispa, de frente, seria.",
           "dice": "Quince piezas de más en una sola planta. Y nadie se equivocó al sumar. ¿Dónde estaba el error?"
         }
@@ -648,40 +627,37 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "5.4",
         "titulo": "Las etiquetas dobles",
-        "cuerpo": "La planta baja: sumando las etiquetas da **450 m²**. Son **282 m²**: el estacionamiento está etiquetado dos veces.",
+        "cuerpo": "En la planta baja, sumando las etiquetas de recinto da **450 m²**. Son **282 m²**: el estacionamiento tiene dos etiquetas iguales, de 168,3 m² cada una, y se contó dos veces.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 12,
-          "seVe": "«450 m²» que baja a «282 m²»; abajo, el estacionamiento en el plano con las dos etiquetas iguales resaltadas."
+          "tipo": "imagen",
+          "seVe": "Lámina con las dos cifras de la planta baja: 450 m² sumando las etiquetas y 282 m² contando el estacionamiento una vez."
         }
       },
       {
         "n": "5.5",
         "titulo": "Las áreas escritas a mano",
-        "cuerpo": "El pasillo dice **4,47 m²** en la etiqueta y mide **3,79 m²** en el dibujo: 18 % de diferencia. El cuarto de máquinas: **19,08** contra **21,80**. Esas filas no se corrigen solas: **se miran en el plano y decide usted**.",
+        "cuerpo": "El pasillo de la planta tipo dice **4,47 m²** en la etiqueta y mide **3,79 m²** en el dibujo: 18 % de diferencia. El cuarto de máquinas de la azotea: **19,08** contra **21,80**.\n\nEsas filas no se corrigen solas: **se miran en el plano y decide usted**.",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "La hoja «Observaciones» con las dos filas resaltadas."
+          "tipo": "imagen",
+          "seVe": "Lámina con las dos filas de la hoja Observaciones: etiqueta, dibujo, diferencia y confianza baja."
         }
       },
       {
         "n": "5.6",
         "titulo": "La lista de chequeo",
-        "cuerpo": "- ☐ Unidades confirmadas\n- ☐ Una sola escala\n- ☐ Etiquetas repetidas\n- ☐ Bloques sin su etiqueta (como una puerta del último piso que no tiene ficha)\n- ☐ Áreas del dibujo contra las escritas\n- ☐ Lo que el plano no dice (las plantas tipo)\n- ☐ Una muestra contada a mano\n- ☐ El Excel sin errores de fórmula\n\n*(En el kit: `validar/lista-de-chequeo.md`.)*",
+        "cuerpo": "Antes de entregar, revise:\n\n- ☐ Unidades confirmadas\n- ☐ Una sola escala por planta\n- ☐ Etiquetas repetidas\n- ☐ Bloques sin su etiqueta (como una puerta del último piso que no tiene ficha)\n- ☐ Áreas del dibujo contra las escritas\n- ☐ Lo que el plano no dice (las plantas tipo)\n- ☐ Una muestra contada a mano",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "La lista se tilda punto por punto al costado de la grabación del Excel."
+          "tipo": "imagen",
+          "seVe": "Lámina con la lista de chequeo."
         }
       },
       {
         "n": "5.7",
         "titulo": "La muestra contada a mano",
-        "cuerpo": "La prueba más simple: elija un tipo de pieza y un sector, **cuéntelos usted** y compare con el filtro del Excel. Si coincide, sigue. Si no, **no se entrega nada hasta saber por qué**.",
+        "cuerpo": "La prueba más simple: elija un tipo de pieza y un sector (por ejemplo, las ventanas de un apartamento de la planta tipo), **cuéntelas usted** en AutoCAD y compare con el filtro del Excel. Si coincide, siga. Si no, **no se entrega nada hasta saber por qué**.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "Una persona cuenta a mano las ventanas de un apartamento de la planta tipo, seleccionándolas una por una, con un contador en pantalla; al lado, el filtro del Excel."
+          "tipo": "imagen",
+          "seVe": "Lámina con los cuatro pasos de la muestra contada a mano."
         }
       },
       {
@@ -700,9 +676,8 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Cada cifra del Excel tiene que poder explicarse con el plano en la mano. Si no puede, no sale.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 10,
-          "seVe": "Chispa entra por la derecha sobre «UN PROFESIONAL FIRMA» y se queda al lado.",
+          "segundos": 8,
+          "seVe": "Chispa, junto a la regla de la IA que cuenta, usted que revisa y el profesional que firma.",
           "dice": "Si una cifra no la puede explicar, no la entregue. Así de simple."
         }
       }
@@ -718,11 +693,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.1",
         "titulo": "Lo que recibe el cliente: una página",
-        "cuerpo": "No el Excel, no el código: **una página** con lo que se pudo medir, lo que está mal en el plano y cómo dibujarlo mejor.",
+        "cuerpo": "Al cliente no se le manda el Excel ni el código: se le manda **una página** con lo que se pudo medir, lo que está mal en el plano y cómo dibujarlo mejor. Esta es la que armamos en Vion para el plano de muestra.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 15,
-          "seVe": "El PDF del diagnóstico del plano de muestra en una ventana clara, con un acercamiento lento desde el título."
+          "tipo": "captura",
+          "seVe": "El reporte real de una página del plano de muestra: lo que se pudo cuantificar, los cinco problemas y las tres reglas de dibujo."
         }
       },
       {
@@ -738,10 +712,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.3",
         "titulo": "El pedido: las mismas cifras",
-        "cuerpo": "La regla clave: **el PDF usa las mismas cifras del Excel y no recalcula nada**. Si el reporte y la tabla no coinciden, el cliente deja de confiar en los dos (el pedido, en el bloque de abajo; en el kit, `prompts/03-reporte.md`).",
+        "cuerpo": "La regla clave: **el PDF usa las mismas cifras del Excel y no recalcula nada**. Si el reporte y la tabla no coinciden, el cliente deja de confiar en los dos. El pedido está en el bloque de abajo (en el kit, `prompts/03-reporte.md`).",
         "apoyo": {
-          "tipo": "captura",
-          "seVe": "El pedido escrito en Claude Code."
+          "tipo": "imagen",
+          "seVe": "Lámina con el pedido del reporte del kit."
         },
         "bloques": [
           {
@@ -754,11 +728,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "6.4",
         "titulo": "Un programa, para repetirlo",
-        "cuerpo": "Claude arma el PDF con un programa (`reporte/generar_reporte.py`, con reportlab), así se repite igual con el próximo plano. Lo revisa como usted: si algo no entra en una página, **se ajusta lo secundario, nunca las cifras**.\n\n*Opcional:* las skills `xlsx` y `pdf` de Anthropic le enseñan a Claude a armar y revisar hojas de cálculo y PDF (en el bloque de abajo; licencia Apache 2.0; traen scripts: léalas antes de instalarlas).",
+        "cuerpo": "Claude arma el PDF con un programa (`reporte/generar_reporte.py`, con la biblioteca reportlab), así se repite igual con el próximo plano. Si algo no entra en una página, **se achica lo secundario, nunca las cifras**.\n\n*Opcional:* las skills `xlsx` y `pdf` de Anthropic le enseñan a Claude a revisar hojas de cálculo y PDF (ver los recursos).",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 25,
-          "seVe": "Claude escribe y corre el programa, en cámara rápida, y abre el PDF; después, el ajuste: «la tabla no entra; achique la letra de las notas, no las cifras»."
+          "tipo": "imagen",
+          "seVe": "Lámina con el programa del reporte y sus dos reglas."
         },
         "bloques": [
           {
@@ -774,29 +747,27 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "**Problema 1:** cada planta está dibujada dos veces; una medición sin criterio da **302 piezas de carpintería en vez de 151, y 1.458 m² en vez de 729 m²**. **Problema 2:** el plano no dice cuántas plantas tipo hay; sin ese dato no hay total del edificio. El reporte no lo inventa: da las cifras por planta y lo dice.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 10,
-          "seVe": "Chispa, sobre el PDF, señala el problema 1; la imagen se acerca a las dos cifras.",
+          "segundos": 6,
+          "seVe": "Chispa, junto al problema 1 del reporte real.",
           "dice": "Lea el problema uno. Es el error más caro de este plano."
         }
       },
       {
         "n": "6.6",
         "titulo": "La última revisión",
-        "cuerpo": "Antes de mandarlo: que **cada cifra del PDF esté en el Excel**. Y mientras un profesional no lo haya revisado, el PDF dice **«BORRADOR · SUJETO A REVISIÓN PROFESIONAL»**.",
+        "cuerpo": "Antes de mandarlo: que **cada cifra del PDF esté en el Excel** (pídale a Claude que las compare una por una y diga cuántas coinciden) y que lo que el plano no dice esté dicho. Mientras un profesional no lo haya revisado, el PDF dice **«BORRADOR · SUJETO A REVISIÓN PROFESIONAL»**.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "Claude compara el PDF con el Excel cifra por cifra y escribe cuántas coinciden; un sello de texto cae en la esquina del PDF."
+          "tipo": "imagen",
+          "seVe": "Lámina con los tres puntos de la última revisión."
         }
       },
       {
         "n": "6.7",
         "titulo": "Una página que se entiende",
-        "cuerpo": "Tiene el Excel revisado y el reporte de una página con las mismas cifras.",
+        "cuerpo": "Ya tiene el Excel revisado y el reporte de una página con las mismas cifras.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 8,
+          "segundos": 6,
           "seVe": "Chispa, de medio cuerpo, con el PDF desenfocado de fondo.",
           "dice": "Un reporte de una página que se entiende vale más que cinco hojas que nadie lee."
         }
@@ -816,7 +787,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Lo que su oficina repite todas las semanas puede ser un comando de AutoCAD. En esta lección: una rutina, un script y cómo medir, con sus datos, si valió la pena.",
         "apoyo": {
           "tipo": "chispa",
-          "segundos": 9,
+          "segundos": 6,
           "seVe": "Tres cortes rápidos de Chispa diciendo lo mismo, cada vez más cansada: de cerca, de medio cuerpo y de cuerpo entero.",
           "dice": "Contar puertas. Contar puertas. … Contar puertas."
         }
@@ -833,11 +804,10 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.3",
         "titulo": "Una rutina: `CONTAR`",
-        "cuerpo": "Una rutina AutoLISP es **un comando nuevo** dentro de su AutoCAD. Pídale a Claude que la escriba y **dígale en qué versión corre**: si es LT, sin las funciones de ActiveX (`vla-`) (el pedido, en el bloque de abajo). Cárguela con `APPLOAD` y escriba `CONTAR`: cuenta los bloques del dibujo por nombre. El código, en el kit: `rutinas/CONTAR.lsp`. Para editarla, Autodesk recomienda la extensión AutoLISP de VS Code (Windows y Mac).",
+        "cuerpo": "Una rutina AutoLISP es **un comando nuevo** dentro de su AutoCAD. Pídale a Claude que la escriba y **dígale en qué versión corre**: si es LT, sin las funciones que empiezan con `vla-` (el pedido, en el bloque de abajo). El kit trae la rutina `CONTAR.lsp`.\n\nCárguela con `APPLOAD` y escriba `CONTAR`: cuenta los bloques del dibujo por nombre y escribe el total en la línea de comandos. `CONTARTODO` cuenta también los bloques que están adentro de otros bloques.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 30,
-          "seVe": "El pedido; aparece `CONTAR.lsp`; `APPLOAD`; `CONTAR`; la lista de bloques en la línea de comandos."
+          "tipo": "imagen",
+          "seVe": "Lámina con cómo se carga la rutina y lo que hacen CONTAR y CONTARTODO."
         },
         "bloques": [
           {
@@ -849,21 +819,19 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "7.4",
         "titulo": "Hace exactamente lo que dice",
-        "cuerpo": "`CONTAR` cuenta también los bloques de la otra escala. Una rutina hace exactamente lo que dice, ni más ni menos: **se prueba con sus planos reales**, no con uno limpio.",
+        "cuerpo": "En el plano de muestra, `CONTAR` no lista las puertas: lista los **bloques de planta** (`SF-BLOCK_100`, `SF-BLOCK_50`…), porque cuenta solo lo que está suelto en el dibujo, y en este plano todo vive adentro de bloques. Y `CONTARTODO` cuenta también los de la otra escala.\n\nUna rutina hace exactamente lo que dice, ni más ni menos: **se prueba con sus planos reales**, no con uno limpio.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 12,
-          "seVe": "Un acercamiento a la salida de `CONTAR`; un recuadro rojo marca una línea con un bloque «_50», de la otra escala."
+          "tipo": "imagen",
+          "seVe": "Lámina con lo que listan CONTAR y CONTARTODO en el plano de muestra."
         }
       },
       {
         "n": "7.5",
         "titulo": "Un script para muchos dibujos",
-        "cuerpo": "Un **script** (`.scr`) es una lista de comandos que AutoCAD ejecuta solo, con `SCRIPT`. Sirve para repetir lo mismo en muchos dibujos: abrir cada copia, aplicar el estándar de capas, guardar como copia nueva. **Igual que siempre: sobre copias, y guardando con otro nombre.** En el kit: `rutinas/ejemplo.scr`.",
+        "cuerpo": "Un **script** (`.scr`) es una lista de comandos que AutoCAD ejecuta solo, con `SCRIPT`. Sirve para repetir lo mismo en muchos dibujos: abrir cada copia, aplicar el estándar de capas y guardarla con otro nombre. El del kit, `rutinas/ejemplo.scr`, está en la lámina.\n\n**Igual que siempre: sobre copias, y guardando con otro nombre.** Revise las rutas antes de correrlo.",
         "apoyo": {
-          "tipo": "grabacion",
-          "segundos": 20,
-          "seVe": "Un `.scr` de cuatro líneas que escribió Claude; `SCRIPT` lo ejecuta sobre dos copias."
+          "tipo": "imagen",
+          "seVe": "Lámina con el script de ejemplo del kit."
         }
       },
       {
@@ -872,9 +840,8 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "**Mídalo.** Durante dos semanas normales, cada vez que alguien hace la tarea anota qué hizo, cuántos minutos le llevó, en qué proyecto y si tuvo que corregir algo. Después, con la rutina andando, otras dos semanas.",
         "apoyo": {
           "tipo": "chispa",
-          "conChispa": true,
-          "segundos": 8,
-          "seVe": "Chispa, chiquita, sobre la esquina del plano.",
+          "segundos": 7,
+          "seVe": "Chispa, junto a la planilla de medición del kit.",
           "dice": "Bien. ¿Y cuánto tiempo le ahorra esto? No lo adivine. Mídalo."
         }
       },
@@ -899,15 +866,6 @@ export const lecciones: LeccionCurso[] = [
       },
       {
         "n": "7.9",
-        "titulo": "Lo que medimos nosotros",
-        "cuerpo": "Sacar las cantidades de este plano tomó **entre 3 y 4 minutos de máquina**. A eso hay que sumarle su revisión, que es la parte que no se automatiza. {{lo que llevó contarlo a mano, solo si se midió completo al grabar}}",
-        "apoyo": {
-          "tipo": "imagen",
-          "seVe": "Una cifra grande, «3 a 4 min de máquina», y al lado lo que llevó contarlo a mano, si se midió."
-        }
-      },
-      {
-        "n": "7.10",
         "titulo": "Lo que tiene ahora",
         "cuerpo": "- ✓ Claude conectado a AutoCAD\n- ✓ Un plano leído sin tocarlo\n- ✓ Sus cantidades en Excel\n- ✓ Una revisión que no deja pasar errores\n- ✓ El reporte para el cliente\n- ✓ Su primera rutina\n- ✓ La forma de medir si valió la pena",
         "apoyo": {
@@ -916,9 +874,9 @@ export const lecciones: LeccionCurso[] = [
         }
       },
       {
-        "n": "7.11",
+        "n": "7.10",
         "titulo": "Con los planos de su oficina",
-        "cuerpo": "Si quiere hacer esto con los planos de su oficina, escríbanos con la tarea que más repite. Empezamos por medir. {{cómo escribirnos: por confirmar}}",
+        "cuerpo": "Si quiere hacer esto con los planos de su oficina, escríbanos a consultorias@vion-studio.com con la tarea que más repite. Empezamos por medir.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 8,
