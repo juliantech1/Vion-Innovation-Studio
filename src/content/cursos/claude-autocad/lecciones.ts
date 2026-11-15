@@ -6,18 +6,18 @@ export const lecciones: LeccionCurso[] = [
   {
     "n": 1,
     "slug": "1-la-ia-en-autocad",
-    "titulo": "Qué hace (y qué no) la IA en AutoCAD",
+    "titulo": "Qué hace la IA en AutoCAD",
     "objetivo": "Entender las cinco formas de conectar Claude con AutoCAD y elegir la suya según tenga AutoCAD completo, LT o Mac.",
     "laminas": [
       {
         "n": "1.1",
-        "titulo": "¿La IA dibuja planos sola?",
-        "cuerpo": "No. Lo que sí hace muy bien es **leer los planos que usted ya tiene**.\n\nEn este curso, Claude Code lee un plano de muestra de Autodesk (`home_floor_plan.dwg`, un edificio de apartamentos), cuenta sus puertas, ventanas y recintos, pasa las cantidades a Excel y arma un reporte en PDF. Usted revisa cada cifra antes de que salga.",
+        "titulo": "¿La IA dibuja planos?",
+        "cuerpo": "Sí. Con un conector, Claude Code dibuja en su AutoCAD lo que usted le pide en un mensaje, incluso un plano desde cero, y después se puede llevar ese plano a un modelo 3D en Blender y a un video. También hace muy bien lo contrario: **leer los planos que usted ya tiene**.\n\nEn este curso, Claude Code lee un plano de muestra de Autodesk (`home_floor_plan.dwg`, un edificio de apartamentos), cuenta sus puertas, ventanas y recintos, pasa las cantidades a Excel y arma un reporte en PDF. Usted revisa cada cifra antes de que salga.",
         "apoyo": {
           "tipo": "chispa",
           "segundos": 10,
-          "seVe": "Chispa, de medio cuerpo sobre un fondo crema; arriba, la pregunta «¿LA IA DIBUJA PLANOS SOLA?», que se tacha.",
-          "dice": "Seguro escuchó que la inteligencia artificial ya dibuja planos sola. No es cierto. Pero hay algo que sí hace muy bien: leer los planos que usted ya tiene."
+          "seVe": "Chispa explica que Claude dibuja planos en AutoCAD a partir de un mensaje y que también lee los que ya existen.",
+          "dice": ""
         }
       },
       {
@@ -32,7 +32,7 @@ export const lecciones: LeccionCurso[] = [
       {
         "n": "1.3",
         "titulo": "Lo que sí y lo que no",
-        "cuerpo": "**Lo que la IA sí hace bien:** leer capas, bloques y atributos; contar; comparar dos datos; escribir rutinas de AutoCAD; armar un reporte.\n\n**Lo que no:** decidir el criterio de ingeniería, firmar un plano o adivinar lo que el plano no dice. Por ejemplo, este plano no dice cuántas veces se repite la planta tipo del edificio. Ninguna IA lo puede saber: lo pone usted.",
+        "cuerpo": "**Lo que la IA sí hace bien:** dibujar lo que usted le describe; leer capas, bloques y atributos; contar; comparar dos datos; escribir rutinas de AutoCAD; armar un reporte.\n\n**Lo que no:** decidir el criterio de ingeniería, firmar un plano o adivinar lo que el plano no dice. Por ejemplo, este plano no dice cuántas veces se repite la planta tipo del edificio. Ninguna IA lo puede saber: lo pone usted.",
         "apoyo": {
           "tipo": "motion",
           "segundos": 15,
