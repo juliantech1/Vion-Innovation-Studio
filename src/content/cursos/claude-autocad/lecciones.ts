@@ -14,10 +14,8 @@ export const lecciones: LeccionCurso[] = [
         "titulo": "¿La IA dibuja planos?",
         "cuerpo": "Sí. Con un conector, Claude Code dibuja en su AutoCAD lo que usted le pide en un mensaje, incluso un plano desde cero, y después se puede llevar ese plano a un modelo 3D en Blender y a un video. También hace muy bien lo contrario: **leer los planos que usted ya tiene**.\n\nEn este curso, Claude Code lee un plano de muestra de Autodesk (`home_floor_plan.dwg`, un edificio de apartamentos), cuenta sus puertas, ventanas y recintos, pasa las cantidades a Excel y arma un reporte en PDF. Usted revisa cada cifra antes de que salga.",
         "apoyo": {
-          "tipo": "chispa",
-          "segundos": 10,
-          "seVe": "Chispa explica que Claude dibuja planos en AutoCAD a partir de un mensaje y que también lee los que ya existen.",
-          "dice": ""
+          "tipo": "imagen",
+          "seVe": "Cuatro pasos: un mensaje, el plano en AutoCAD, el modelo 3D en Blender y el video; abajo, que Claude también lee los planos que ya existen."
         }
       },
       {

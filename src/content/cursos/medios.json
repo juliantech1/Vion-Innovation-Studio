@@ -1391,6 +1391,11 @@
       "imagen": "/cursos/claude-autocad/L7-04.webp",
       "ancho": 1600,
       "alto": 900
+    },
+    "1.1": {
+      "imagen": "/cursos/claude-autocad/L1-01.webp",
+      "ancho": 1600,
+      "alto": 900
     }
   },
   "cuantificacion": {
