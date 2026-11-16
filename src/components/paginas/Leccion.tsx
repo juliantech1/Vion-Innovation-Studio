@@ -55,7 +55,7 @@ export function Leccion({ c, l, idioma }: { c: Curso; l: LeccionCurso; idioma: I
               <p className="lead"><Linea s={l.objetivo} idioma={idioma} /></p>
             </div>
             <aside className="pi__ficha" aria-labelledby="ficha-t">
-              <h2 className="rotulo" id="ficha-t">{k.leccion} {l.n}</h2>
+              <h2 className="rotulo" id="ficha-t">{`${k.leccion} ${l.n}`}</h2>
               <Ficha
                 filas={[
                   ...(l.resultado ? [{ termino: k.plantilla.resultado, valor: <Linea s={l.resultado} idioma={idioma} /> }] : []),

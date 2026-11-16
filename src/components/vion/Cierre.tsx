@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { catalogoDe, enlaceWhatsapp, interfazDe, piezasDe, publicarRangos, ruta, sitio, type Idioma, type Llamado } from '@/content';
-import { Texto } from '@/components/sitio/Texto';
+import { Partido, Pieza, Texto } from '@/components/sitio/Texto';
 import { Flecha, Nube } from './piezas';
 
 /**
@@ -21,13 +21,13 @@ export function Cierre({ llamado, idioma }: { llamado: Llamado; idioma: Idioma }
             {i < 0 || !acento ? (
               titulo
             ) : (
-              <>
-                {titulo.slice(0, i)}
+              <Partido texto={titulo}>
+                <Pieza texto={titulo.slice(0, i)} />
                 <Nube largo={acento.length}>
-                  <span className="acento">{acento}</span>
+                  <Pieza texto={acento} clase="acento" />
                 </Nube>
-                {titulo.slice(i + acento.length)}
-              </>
+                <Pieza texto={titulo.slice(i + acento.length)} />
+              </Partido>
             )}
           </h2>
           <p className="lead" data-entra>

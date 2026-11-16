@@ -19,6 +19,15 @@ export const consultoria: Pagina = {
   acento: 'BIM',
   bajada:
     'We review how your team drafts, models and delivers, put your standards in order and automate what repeats. In AutoCAD, Civil 3D and Revit.',
+  resumen: [
+    'Vion’s BIM and AutoCAD consulting reviews how your team drafts, models and delivers, puts your standards in order and automates what repeats.',
+    'It is for engineering and architecture firms that work in AutoCAD, Civil 3D or Revit.',
+    `It starts with the **${d.nombre.toLowerCase()}**, which takes ${d.plazo} and is done on the real files and projects of your firm.`,
+    'It includes a map of your CAD/BIM workflows, the list of tasks that can be automated with estimated hours, and a report with the expected savings and a roadmap.',
+    publicarRangos ? `The indicative investment for the assessment is ${d.rango}, confirmed once the scope is defined.` : '',
+    `After that, if it makes sense, comes a ${servicios.piloto.nombre.toLowerCase()} (${servicios.piloto.plazo}${publicarRangos ? `, ${servicios.piloto.rango}` : ''}) and ${servicios.soporte.nombre.toLowerCase()}${publicarRangos ? ` (${servicios.soporte.rango})` : ''}.`,
+    'On standards, the order follows the ISO 19650 series, adopted in Costa Rica as INTE/ISO 19650. Vion is not a certification body.',
+  ].filter(Boolean).join(' '),
   acciones: [
     { texto: 'Request an assessment on WhatsApp', destino: { whatsapp: 'Hi Vion. I would like to request an automation assessment.' } },
     { texto: 'See how the process works', destino: { pagina: 'consultoria', ancla: 'process' } },

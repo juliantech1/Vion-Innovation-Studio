@@ -63,6 +63,21 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 - **Search Console:** después de publicar, enviar `https://vion-studio.com/sitemap.xml` y pedir la indexación de las
   URL nuevas; las viejas ya redirigen con 308.
 
+## Buscadores con IA (GEO, 2026-11-16)
+
+Datos que faltan para que los buscadores con IA reconozcan a Vion como entidad. **No van como casillero en la página ni
+en el JSON-LD**: el `sameAs` y la dirección de `src/seo/jsonld.ts` llevan solo lo real (hoy Instagram y el país). Al
+tenerlos, se suman ahí.
+
+- `{{perfil de LinkedIn de la empresa}}` → `sameAs` de Organization.
+- `{{canal de YouTube de Vion}}` → `sameAs` de Organization.
+- `{{perfil de empresa de Google (Google Business Profile)}}` → `sameAs` de Organization.
+- `{{localidad y provincia de Vion}}` → `address` de Organization (`addressLocality`, `addressRegion`). El sitio hoy no
+  dice en qué parte de Costa Rica está Vion; si se publica, que figure también en la página (Contacto o Nosotros).
+- **Autor del blog.** En el JSON-LD los artículos los firma Julian Alvarez (Person, enlazado a `/nosotros`), pero en la
+  página la ficha del artículo todavía dice «Autor: Vion». Conviene que digan lo mismo: o la ficha pasa a «Julian
+  Alvarez», o el JSON-LD vuelve a la organización. Lo decide Julian.
+
 ## Cursos y blog (2026-11-10)
 
 - **Leer los tres artículos antes de publicar** (es y en; `src/content/blog/`): «Cómo nombrar archivos con ISO 19650

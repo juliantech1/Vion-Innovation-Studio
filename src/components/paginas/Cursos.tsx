@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { RUTAS_CURSOS, cursoConPagina, cursosVisibles, enlaceWhatsapp, pagina, piezasDe, ruta, rutaCurso, videosDe, type Curso, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
-import { Texto } from '@/components/sitio/Texto';
+import { Pieza, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
 import { Cabeza, Ficha, Figura, Flecha, Preguntas, Titular } from '@/components/vion/piezas';
 import { Linea } from '@/components/cursos/Md';
@@ -110,8 +110,8 @@ export function Cursos({ idioma }: { idioma: Idioma }) {
               {RUTAS_CURSOS.map((r) => (
                 <div key={r.letra} className="ruta-grupo" id={`ruta-${r.letra.toLowerCase()}`}>
                   <h3 className="ruta-grupo__t">
-                    <span className="ruta-letra" aria-hidden="true">{r.letra}</span>
-                    <span>{c.ruta} {r.letra}: {r[idioma].nombre}</span>
+                    <span className="ruta-letra" aria-hidden="true"><Pieza texto={r.letra} /></span>
+                    <span>{`${c.ruta} ${r.letra}: ${r[idioma].nombre}`}</span>
                   </h3>
                   <ol className="cursos" data-traza>
                     {cursos.filter((x) => x.ruta === r.letra).map((x) => {

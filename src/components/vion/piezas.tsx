@@ -1,7 +1,7 @@
 // Las piezas base del sistema (ver DISENO.md). Todas son componentes de servidor: HTML y CSS, sin JavaScript.
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { enlaceWhatsapp, ruta, sitio, type Accion, type Idioma, type Pregunta as DatosPregunta } from '@/content';
+import { enlaceWhatsapp, piezasDe, ruta, sitio, type Accion, type Idioma, type Pregunta as DatosPregunta } from '@/content';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 
 /** La flecha doble de los botones y paneles: una sale, la otra entra. */
@@ -174,5 +174,25 @@ export function Nube({ children, largo }: { children: ReactNode; largo: number }
         <path pathLength={1} d={d} />
       </svg>
     </span>
+  );
+}
+
+/**
+ * «En resumen»: el bloque citable bajo la portada de una página de servicio (qué es, para quién, qué incluye, plazo y
+ * precio orientativo). Sigue el tono de la portada, así se lee como su continuación y no como una sección nueva.
+ */
+export function Resumen({ texto, idioma }: { texto: string; idioma: Idioma }) {
+  const rotulo = piezasDe(idioma).resumen;
+  return (
+    <section className="seccion resumen tono-raven" id="resumen" aria-labelledby="t-resumen" data-seccion={rotulo}>
+      <div className="marco reticula">
+        <div className="resumen__cuerpo">
+          <h2 className="rotulo" id="t-resumen">{rotulo}</h2>
+          <p className="texto" data-entra>
+            <Texto idioma={idioma}>{texto}</Texto>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

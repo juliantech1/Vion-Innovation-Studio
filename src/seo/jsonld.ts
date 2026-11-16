@@ -17,6 +17,20 @@ const SABE = {
   en: ['Artificial intelligence', 'AI agents', 'AutoCAD', 'Civil 3D', 'Revit', 'BIM', 'ISO 19650', 'AutoLISP', 'Custom software development'],
 };
 
+/** El @id de una persona del equipo: su ficha en «Nosotros» de ese idioma. */
+const idPersona = (nombre: string, idioma: Idioma) =>
+  `${urlAbsoluta('nosotros', idioma)}#${nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+/** Quien firma los artículos del blog (pedido de Julian del 2026-11-16): una persona del equipo, enlazada a «Nosotros». */
+const AUTOR_BLOG = 'Julian Alvarez';
+const autorBlog = (idioma: Idioma): Nodo => ({
+  '@type': 'Person',
+  '@id': idPersona(AUTOR_BLOG, idioma),
+  name: AUTOR_BLOG,
+  url: urlAbsoluta('nosotros', idioma),
+  worksFor: { '@id': ID_ORGANIZACION },
+});
+
 /** Vion: Organization + ProfessionalService, con contacto y zona de servicio. */
 export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo: string }[]): Nodo {
   return {
@@ -31,6 +45,7 @@ export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo:
     description: pagina('inicio', idioma).bajada,
     email: sitio.correo,
     telephone: sitio.whatsappE164,
+    // Solo el país: la localidad y la provincia no figuran en el sitio (casillero en PENDIENTES-JULIAN.md).
     address: { '@type': 'PostalAddress', addressCountry: sitio.pais },
     areaServed: PAISES[idioma],
     contactPoint: [
@@ -45,9 +60,10 @@ export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo:
     ],
     knowsLanguage: ['es', 'en'],
     knowsAbout: SABE[idioma],
+    // Solo perfiles reales. LinkedIn de empresa, YouTube y el perfil de Google: casilleros en PENDIENTES-JULIAN.md.
     sameAs: [sitio.instagram],
     ...(personas?.length
-      ? { employee: personas.map((x) => ({ '@type': 'Person', name: x.nombre, jobTitle: x.cargo, worksFor: { '@id': ID_ORGANIZACION } })) }
+      ? { employee: personas.map((x) => ({ '@type': 'Person', '@id': idPersona(x.nombre, idioma), name: x.nombre, jobTitle: x.cargo, worksFor: { '@id': ID_ORGANIZACION } })) }
       : {}),
   };
 }
@@ -172,7 +188,7 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
         url: urlArticulo(a[idioma].slug, idioma),
         datePublished: a.publicado,
         dateModified: a.actualizado ?? a.publicado,
-        author: { '@id': ID_ORGANIZACION },
+        author: autorBlog(idioma),
       })),
     });
   }
@@ -203,7 +219,7 @@ const migas = (url: string, idioma: Idioma, madre: IdPagina, nombre: string): No
   ],
 });
 
-/** Un artículo: WebPage + BlogPosting (autor y editor: Vion), migas y las fuentes como citas. */
+/** Un artículo: WebPage + BlogPosting (autor: Julian Alvarez; editor: Vion), migas y las fuentes como citas. */
 export function datosArticulo(a: Articulo, idioma: Idioma): Nodo[] {
   const x = a[idioma];
   const ui = interfazDe(idioma);
@@ -235,7 +251,7 @@ export function datosArticulo(a: Articulo, idioma: Idioma): Nodo[] {
       inLanguage: ui.lang,
       datePublished: a.publicado,
       dateModified: a.actualizado ?? a.publicado,
-      author: { '@id': ID_ORGANIZACION },
+      author: autorBlog(idioma),
       publisher: { '@id': ID_ORGANIZACION },
       isPartOf: { '@type': 'Blog', '@id': `${urlAbsoluta('blog', idioma)}#blog` },
       keywords: x.etiquetas.join(', '),

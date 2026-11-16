@@ -3,7 +3,7 @@ import { catalogoDe, interfazDe, pagina, piezasDe, publicarRangos, ruta, type Id
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
-import { Boton, Cabeza, Ficha, Figura, LlamadaNota, Nota, Preguntas, Titular } from '@/components/vion/piezas';
+import { Boton, Cabeza, Ficha, Figura, LlamadaNota, Nota, Preguntas, Resumen, Titular } from '@/components/vion/piezas';
 import { seccion } from './comun';
 import './apps.css';
 
@@ -151,6 +151,9 @@ export function Apps({ idioma }: { idioma: Idioma }) {
             </div>
           </div>
         </section>
+
+        {/* 1b · En resumen: el bloque citable (qué es, para quién, qué incluye, plazo y precio) */}
+        {p.resumen && <Resumen texto={p.resumen} idioma={idioma} />}
 
         {/* 2 · Qué construimos · Fig. 2: cuatro dibujos */}
         <section className="seccion tono-powder" id={construimos.id} aria-labelledby={`t-${construimos.id}`} data-seccion={construimos.titulo}>

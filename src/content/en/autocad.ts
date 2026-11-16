@@ -20,6 +20,14 @@ export const autocad: Pagina = {
   acento: 'AutoLISP',
   bajada:
     'The tasks your team repeats in AutoCAD can become a command. We build it on your own drawings and leave it running.',
+  resumen: [
+    'Vion’s AutoCAD automation turns the tasks your team repeats on every project into a command: setting up sheets, taking quantities to Excel, checking layers, styles, blocks and names, and exporting PDF, DWG and delivery packages.',
+    `It is for ${piloto.para.charAt(0).toLowerCase()}${piloto.para.slice(1)}`,
+    'Narrow, frequent tasks get **AutoLISP routines**, which run in the AutoCAD your team already uses, with no other program to install; longer workflows get a **plugin** or a separate tool.',
+    `The work is done as a ${piloto.nombre.toLowerCase()}: it takes ${piloto.plazo} and includes the automation running on a real workflow, a short manual with training, and hours measured before and after.`,
+    publicarRangos ? `The indicative investment is ${piloto.rango}, confirmed after the assessment.` : '',
+    'Each routine is built from Costa Rica on your own drawings and tested on them before we call it done.',
+  ].filter(Boolean).join(' '),
   acciones: [
     { texto: 'Request a quote on WhatsApp', destino: { whatsapp: 'Hi Vion. I would like a quote for an AutoCAD automation.' } },
     { texto: 'See how pricing works', destino: { pagina: 'autocad', ancla: 'quote' } },

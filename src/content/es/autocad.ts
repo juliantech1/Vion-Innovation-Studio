@@ -24,6 +24,14 @@ export const autocad: Pagina = {
   acento: 'AutoLISP',
   bajada:
     'Las tareas que su equipo repite en AutoCAD se pueden volver un comando. Lo construimos sobre sus propios dibujos y lo dejamos funcionando. Desarrollo a medida desde Costa Rica.',
+  resumen: [
+    'La automatización de AutoCAD de Vion convierte en un comando las tareas que su equipo repite en cada proyecto: armar láminas, sacar cantidades a Excel, revisar capas, estilos, bloques y nombres, y exportar PDF, DWG y paquetes de entrega.',
+    `Es para ${piloto.para.charAt(0).toLowerCase()}${piloto.para.slice(1)}`,
+    'Para tareas acotadas y frecuentes se desarrollan **rutinas AutoLISP**, que corren en el AutoCAD que el equipo ya usa, sin instalar otro programa; para flujos más largos, un **plugin** o una herramienta aparte.',
+    `Se trabaja con un ${piloto.nombre.toLowerCase()}: toma de ${piloto.plazo} e incluye la automatización funcionando en un flujo real, un manual corto con capacitación y la medición de horas antes y después.`,
+    publicarRangos ? `La inversión orientativa es de ${piloto.rango} y se confirma después del diagnóstico.` : '',
+    'Cada rutina se construye desde Costa Rica sobre sus propios dibujos y se prueba con ellos antes de darla por terminada.',
+  ].filter(Boolean).join(' '),
   acciones: [
     { texto: 'Solicitar cotización por WhatsApp', destino: { whatsapp: 'Hola, Vion. Quiero cotizar una automatización de AutoCAD.' } },
     { texto: 'Ver cómo se cotiza', destino: { pagina: 'autocad', ancla: 'cotizacion' } },

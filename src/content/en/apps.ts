@@ -37,6 +37,14 @@ export const apps: Pagina = {
   acento: 'AI',
   bajada:
     'Web and mobile apps, assistants and AI agents made for the way your company works, from prototype to production. AI software development from Costa Rica.',
+  resumen: [
+    'Vion designs and builds custom apps and software with AI: web and mobile apps, assistants that answer with your company’s information, data extraction from documents, emails, drawings or forms, and process automation with AI agents.',
+    `It is for ${a.para.charAt(0).toLowerCase()}${a.para.slice(1)}`,
+    `The usual timeline is ${a.plazo}, in three steps: a clickable prototype to confirm it solves what is needed, the app in production, and optional maintenance after delivery.`,
+    publicarRangos ? `As a reference, a custom app or software with AI ranges from ${a.rango}; the exact price is confirmed once the scope is clear.` : '',
+    'The systems protect your company’s data: sensitive information can stay on local models, what each agent does can be measured, and a person approves what matters before it goes out.',
+    'Development is done from Costa Rica.',
+  ].filter(Boolean).join(' '),
   acciones: [
     { texto: 'Request a quote on WhatsApp', destino: { whatsapp: 'Hi Vion. I would like a quote for a custom app.' } },
     { texto: publicarRangos ? 'See price ranges' : 'See the process', destino: { pagina: 'apps', ancla: publicarRangos ? 'pricing' : 'process' } },

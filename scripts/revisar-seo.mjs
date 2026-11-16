@@ -363,7 +363,8 @@ for (const [vieja, nueva] of Object.entries(REDIRECCIONES)) {
 // la 404 (una sola, bilingüe: app/global-not-found.tsx) para cualquier dirección que no existe
 // También un artículo, un curso y una lección que no existen y, salvo con --borradores, un curso en producción y una de
 // sus lecciones (no tienen página hasta que se publiquen).
-const EN_PRODUCCION = ['/cursos/motion-design-con-claude', '/cursos/motion-design-con-claude/0-puesta-a-punto', '/en/courses/motion-design-with-claude'];
+// (Motion design se publicó el 2026-11-14: el curso en producción de la prueba pasa a ser Videos 3D con Blender.)
+const EN_PRODUCCION = ['/cursos/videos-3d-con-blender-y-claude', '/cursos/videos-3d-con-blender-y-claude/0-puesta-a-punto', '/en/courses/3d-videos-with-blender-and-claude'];
 for (const ruta of ['/no-existe-esta-pagina', '/en/no-such-page', '/casos/no-existe', '/blog/no-existe', '/en/blog/no-such-post', '/cursos/no-existe', '/cursos/no-existe/no-existe', ...(BORRADORES ? [] : EN_PRODUCCION)]) {
   const r = await pedir(ruta);
   if (r.estado !== 404) falla(ruta, `responde ${r.estado} (se esperaba 404)`);

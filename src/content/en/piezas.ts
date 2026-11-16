@@ -36,6 +36,7 @@ export const piezas: Piezas = {
   },
   fig: 'Fig.',
   nota: 'Note',
+  resumen: 'In short',
   fig1: {
     paso: 'Step',
     semana: 'Week',

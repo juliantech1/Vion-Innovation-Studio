@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
 import { Pasos } from '@/components/vion/Pasos';
-import { Boton, Ficha, Figura, LlamadaNota, Nota, Preguntas, Titular } from '@/components/vion/piezas';
+import { Boton, Ficha, Figura, LlamadaNota, Nota, Preguntas, Resumen, Titular } from '@/components/vion/piezas';
 import { seccion } from './comun';
 import './consultoria.css';
 
@@ -166,7 +166,7 @@ export function Consultoria({ idioma }: { idioma: Idioma }) {
                 )}
               </div>
               <aside className="portada__ficha" aria-labelledby="ficha-t" data-llega style={{ '--espera': '720ms' } as Estilo}>
-                <h2 className="rotulo" id="ficha-t">{c.ficha.titulo} · {d.nombre}</h2>
+                <h2 className="rotulo" id="ficha-t">{`${c.ficha.titulo} · ${d.nombre}`}</h2>
                 <Ficha
                   filas={[
                     { termino: c.ficha.plazo, valor: d.plazo },
@@ -183,6 +183,9 @@ export function Consultoria({ idioma }: { idioma: Idioma }) {
             </div>
           </div>
         </section>
+
+        {/* 1b · En resumen: el bloque citable (qué es, para quién, qué incluye, plazo y precio) */}
+        {p.resumen && <Resumen texto={p.resumen} idioma={idioma} />}
 
         {/* 2 · Diagnóstico: qué recibe y el cuadro de qué revisamos */}
         <section className="seccion tono-powder" id={diag.id} aria-labelledby={`t-${diag.id}`} data-seccion={diag.titulo}>

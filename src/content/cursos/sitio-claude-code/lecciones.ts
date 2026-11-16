@@ -238,7 +238,7 @@ export const lecciones: LeccionCurso[] = [
         "apoyo": {
           "tipo": "grabacion",
           "segundos": 50,
-          "seVe": "El pedido; Claude corriendo create-next-app (acelerado); las páginas que se escriben, con un `{{teléfono}}` visible en el texto.",
+          "seVe": "El pedido; Claude corriendo create-next-app (acelerado); las páginas que se escriben, con un casillero de teléfono por llenar, visible en el texto.",
           "dice": "Fíjese en los casilleros: lo que Claude no sabe, no lo inventa.",
           "vozEnOff": true
         },
@@ -256,7 +256,7 @@ export const lecciones: LeccionCurso[] = [
         "cuerpo": "Un sitio con un cliente, una reseña o una cifra inventada es peor que uno con un casillero vacío. Revise que no haya testimonios, logos de clientes ni números que usted no dio. Los casilleros se llenan después, con datos de verdad.",
         "apoyo": {
           "tipo": "imagen",
-          "seVe": "Una lámina «Sí / No»: un `{{teléfono}}` por llenar, sí; «500 clientes felices» inventado, no."
+          "seVe": "Una lámina «Sí / No»: un casillero de teléfono por llenar, sí; «500 clientes felices» inventado, no."
         }
       },
       {

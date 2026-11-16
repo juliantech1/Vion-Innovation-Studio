@@ -3,7 +3,7 @@ import { catalogoDe, interfazDe, pagina, piezasDe, publicarRangos, ruta, type Id
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
-import { Boton, Cabeza, Ficha, Figura, Preguntas, Titular } from '@/components/vion/piezas';
+import { Boton, Cabeza, Ficha, Figura, Preguntas, Resumen, Titular } from '@/components/vion/piezas';
 import { seccion } from './comun';
 
 // Los cuatro dibujos de la Fig. 2 (láminas, cuantificación, estándares, exportes): línea negra y un trazo rojo.
@@ -114,6 +114,9 @@ export function Autocad({ idioma }: { idioma: Idioma }) {
             </div>
           </div>
         </section>
+
+        {/* 1b · En resumen: el bloque citable (qué es, para quién, qué incluye, plazo y precio) */}
+        {p.resumen && <Resumen texto={p.resumen} idioma={idioma} />}
 
         {/* 2 · Tareas · Fig. 2 */}
         <section className="seccion tono-powder" id={tareas.id} aria-labelledby={`t-${tareas.id}`} data-seccion={tareas.etiqueta}>

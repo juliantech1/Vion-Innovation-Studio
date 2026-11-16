@@ -175,6 +175,12 @@ export interface Pagina {
   /** Palabra del H1 que el diseño puede acentuar. */
   acento?: string;
   bajada: Texto;
+  /**
+   * El bloque «En resumen» bajo la portada de las páginas de servicio (GEO, pedido de Julian del 2026-11-16): 130 a 170
+   * palabras que se sostienen solas (qué es, para quién, qué incluye, plazo y precio orientativo), armadas solo con lo
+   * que la página ya dice. Es lo que un buscador con IA puede citar entero.
+   */
+  resumen?: Texto;
   acciones?: Accion[];
   secciones: Seccion[];
   llamado?: Llamado;
@@ -242,6 +248,8 @@ export interface Piezas {
   };
   fig: string;
   nota: string;
+  /** El rótulo del bloque `resumen` de las páginas de servicio. */
+  resumen: string;
   fig1: { paso: string; semana: string; mesAMes: string; plazo: string; rango: string; decide: [string, string]; opcional: string; alMes: string; pie: string; notaRangos: string };
   ultron: {
     ficha: { termino: string; valor: string; detalle?: string }[];

@@ -8,7 +8,7 @@ export const curso: CursoTexto = {
     "titulo": "Cuantificación y presupuestos desde planos con IA",
     "subtitulo": "Cuantificación de obra con Claude: de DWG y PDF a Excel, con revisión profesional",
     "tituloSeo": "Curso gratis: cuantificación de obra con IA | Vion",
-    "descripcion": "Curso gratis de Vion: saque cantidades de obra de planos DWG y PDF a Excel con Claude, arme su presupuesto con su propia base de precios y déjelo listo para que lo revise un profesional.",
+    "descripcion": "Curso gratis de Vion: saque cantidades de obra de planos DWG y PDF a Excel con Claude y arme su presupuesto con su base de precios, listo para revisar.",
     "paraQuien": "Presupuestistas, ingenieros de costos, constructoras pequeñas y dibujantes que hoy cuantifican a mano. Ayuda haber hecho el curso Claude + AutoCAD, o saber qué es una capa y un bloque en un dibujo de CAD. No hace falta programar.",
     "seLleva": "Un método escrito para medir (el criterio de su oficina y la regla de áreas), dos programas que sacan las cantidades de un DXF y de un PDF y las escriben en Excel, su base de precios con fuente y fecha en cada fila, un presupuesto que se niega a inventar precios y la hoja de revisión que firma un profesional. Todo practicado con una casa de ejemplo.",
     "herramientas": "Claude Code (pide un plan pago de Claude, desde USD 20 al mes); Python y sus bibliotecas ezdxf, pdfplumber y openpyxl, gratis; Excel o LibreOffice Calc. AutoCAD no hace falta.",
