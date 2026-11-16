@@ -101,7 +101,7 @@ export const autocad: Pagina = {
       filas: [
         { termino: 'Ejemplo', valor: 'Diagnóstico sobre un plano de muestra de Autodesk.' },
         { termino: 'Resultado', valor: P.resultadoEjemplo },
-        { termino: 'Caso de cliente', valor: P.casoCliente },
+        { termino: 'Caso de cliente', valor: `El primer caso publicado de Vion es de software con IA: [Ruta 51-53, GPS en los buses](@casos#ruta-51-53). El primero de AutoCAD: ${P.casoAutocad}` },
       ],
       nota: 'Cada piloto termina con la **medición de horas antes y después**. Esos números, con permiso del cliente, son los que van a aparecer acá y en [los casos de Vion](@casos).',
     },

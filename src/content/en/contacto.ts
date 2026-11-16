@@ -58,7 +58,7 @@ export const contacto: Pagina = {
       acento: 'Contact',
       intro: 'For a quick question, WhatsApp. For a formal proposal, email.',
       filas: [
-        { termino: 'Where', valor: `Costa Rica · remote work and ${P.presencial}` },
+        { termino: 'Where', valor: `${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica · remote work and ${P.presencial}` },
         { termino: 'Time zone', valor: 'Central Standard Time all year (UTC-6)' },
       ],
     },

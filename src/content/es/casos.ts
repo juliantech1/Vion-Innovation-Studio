@@ -1,8 +1,29 @@
 import { P } from '../pendientes';
-import type { Pagina, Proyecto } from '../tipos';
+import type { CasoCliente, Pagina, Proyecto } from '../tipos';
 
-// Solo proyectos propios de Vion (contexto.NEGOCIOS de la aldea y el catálogo de Orión). Lo que no se sabe va como
-// casillero. Ningún caso de cliente hasta que exista y el cliente lo permita.
+/**
+ * El primer caso de cliente (Julian, 2026-11-16; autoriza nombrar a la empresa): «la empresa Ruta 51-53: le hicimos un
+ * CRM para tener GPS en los buses e implementamos IA en la empresa; se ahorran los checadores, que eran los que revisaban
+ * cada cuánto pasaban los buses por las paradas públicas». Sin cifras ni fechas del proyecto: no las dio.
+ */
+export const rutaCaso: CasoCliente = {
+  id: 'ruta-51-53',
+  cliente: 'Ruta 51-53',
+  rubro: 'Transporte público en buses',
+  titulo: 'Ruta 51-53: GPS en los buses en lugar de checadores',
+  problema:
+    'Para controlar la frecuencia del servicio, la empresa dependía de checadores: personas en las paradas públicas que revisaban cada cuánto pasaban los buses.',
+  solucion:
+    'Vion le hizo un CRM con GPS en los buses, para saber por dónde va cada bus y cuándo pasa por cada parada, e implementó inteligencia artificial en la empresa.',
+  resultado:
+    'Ya no hacen falta checadores para controlar el paso de los buses por las paradas: ese control lo da el sistema.',
+  servicio: 'apps',
+  publicado: '2026-11-16',
+  pendientes: [P.cifrasRuta],
+};
+
+// Proyectos propios de Vion (contexto.NEGOCIOS de la aldea y el catálogo de Orión) y los casos de clientes que existen y
+// el cliente permite nombrar. Lo que no se sabe va como casillero.
 const proyectos: Proyecto[] = [
   {
     id: 'ultron',
@@ -57,16 +78,15 @@ export const casos: Pagina = {
   id: 'casos',
   nav: 'Casos',
   titulo: 'Casos de consultoría BIM y apps con IA | Vion',
-  // Feme proponía «proyectos reales… para clientes… vea los resultados»: todavía no hay casos de clientes publicables.
   descripcion:
-    'Los proyectos propios de Vion: Ultron, Top Spin, RealFood y Viazo. Qué resuelve cada uno y cómo se construyó con IA en Costa Rica.',
+    'El caso de Ruta 51-53 (GPS en los buses en lugar de checadores) y los proyectos propios de Vion: Ultron, Top Spin, RealFood y Viazo.',
   palabrasClave: ['consultoría BIM Costa Rica', 'desarrollo de aplicaciones a la medida Costa Rica'],
   indexar: true,
-  etiqueta: 'Casos · proyectos propios',
+  etiqueta: 'Casos · clientes y proyectos propios',
   h1: 'Proyectos de consultoría, automatización y apps',
   acento: 'automatización',
   bajada:
-    'Empezamos por casa: estos son los proyectos propios de Vion, hechos en Costa Rica. Los casos de clientes se suman acá cuando existan y el cliente lo permita.',
+    'Los proyectos propios de Vion, hechos en Costa Rica, y los casos de clientes que nos permiten publicar: el primero, Ruta 51-53, con GPS en los buses.',
   acciones: [{ texto: 'Pedir diagnóstico', destino: { pagina: 'contacto' } }],
   secciones: [
     {
@@ -78,16 +98,16 @@ export const casos: Pagina = {
       proyectos,
     },
     {
-      tipo: 'texto',
+      tipo: 'caso',
       id: 'casos-de-clientes',
-      etiqueta: 'Consultoría BIM · automatización de AutoCAD',
+      etiqueta: 'Caso de cliente · publicado con permiso',
       titulo: 'Casos de clientes',
       acento: 'clientes',
-      parrafos: [
-        'Todavía no publicamos casos de clientes.',
-        'Cuando un piloto termine, su medición de horas antes y después va a aparecer acá, siempre con el permiso del cliente y sin datos que no quiera mostrar. No usamos logos, nombres ni cifras de nadie sin autorización.',
-        P.casoCliente,
-        'Mientras tanto, puede ver cómo trabajamos en [la consultoría BIM y AutoCAD](@consultoria), en [la automatización de AutoCAD](@autocad) y en [las apps y el software a la medida](@apps).',
+      intro: 'Los casos de clientes se publican con su permiso y con lo que el cliente quiera mostrar. Sin cifras que no se hayan medido.',
+      casos: [rutaCaso],
+      cierre: [
+        'Cuando un piloto de AutoCAD termine, su medición de horas antes y después también va a aparecer acá, con el permiso de la firma.',
+        'Para ver cómo trabajamos: [la consultoría BIM y AutoCAD](@consultoria), [la automatización de AutoCAD](@autocad) y [las apps y el software a la medida](@apps).',
       ],
     },
   ],
@@ -99,5 +119,5 @@ export const casos: Pagina = {
     mensajeWhatsapp: 'Hola, Vion. Quiero conversar sobre un proyecto.',
   },
   og: { titulo: 'Proyectos propios de Vion', acento: 'Vion' },
-  esquema: { tipo: 'CollectionPage', lista: proyectos.map((p) => ({ nombre: p.nombre, ancla: p.id })) },
+  esquema: { tipo: 'CollectionPage', lista: [{ nombre: rutaCaso.cliente, ancla: rutaCaso.id }, ...proyectos.map((p) => ({ nombre: p.nombre, ancla: p.id }))] },
 };

@@ -53,6 +53,7 @@ export const nosotros: Pagina = {
       titulo: 'What we have built',
       acento: 'built',
       parrafos: [
+        'First client case: [Ruta 51-53](@casos#ruta-51-53), a CRM with GPS on the buses and AI in the company.',
         'In-house projects: [Ultron](@casos#ultron), [Top Spin](@casos#topspin), [RealFood](@casos#realfood) and [Viazo](@casos#viazo).',
         P.experiencia,
       ],

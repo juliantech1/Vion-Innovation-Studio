@@ -62,6 +62,7 @@ export const apps: Pagina = {
     ],
     enlaces: [
       `[Artículo: un equipo de agentes de IA con aprobación humana](${rutaArticulo(SLUGS_BLOG['agentes-con-aprobacion'].es, 'es')})`,
+      '[Caso de cliente: Ruta 51-53, GPS en los buses en lugar de checadores](@casos#ruta-51-53)',
       '[Ultron, el sistema de agentes de Vion](@casos#ultron)',
       `[Curso gratis: su agentic OS, un equipo de agentes](${rutaCurso(SLUGS_CURSOS['agentic-os'].es, 'es')})`,
       '[Auditoría GEO para su sitio web](@geo)',
@@ -96,6 +97,7 @@ export const apps: Pagina = {
         'Un agente de IA prepara el trabajo. Una persona decide.',
         'Construimos sistemas con agentes que investigan, ordenan, redactan y avisan, con tres reglas: **se pueden medir** (qué hicieron y cuánto costó), **cuidan sus datos** (lo sensible puede quedarse en modelos locales) y **una persona aprueba lo importante** antes de que salga.',
         'Es como funciona Ultron, el sistema con el que trabaja Vion. [Vea cómo está armado Ultron](@casos#ultron).',
+        'Para un cliente, por ejemplo: a [Ruta 51-53](@casos#ruta-51-53), una empresa de buses, le hicimos un CRM con GPS en los buses e implementamos IA en la empresa; ya no necesita checadores en las paradas para controlar la frecuencia.',
       ],
     },
     {

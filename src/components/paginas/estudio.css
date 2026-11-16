@@ -196,3 +196,9 @@
 .gracias__ok { display: inline-flex; align-items: center; gap: 0.6em; }
 .gracias__ok::before { content: ""; width: 0.5rem; height: 0.5rem; background: var(--color-powder); transform: rotate(45deg); }
 .persona { scroll-margin-top: calc(var(--spacing-cabecera, 4rem) + 1.5rem); }
+/* Casos de clientes (2026-11-16): cada caso, con su ficha al lado; el cierre debajo. */
+.caso { row-gap: 1.5rem; padding-block: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); border-top: 1px solid var(--filete); }
+.caso .partido__texto { grid-column: 1 / span 6; }
+.caso .proyecto__t { font-size: var(--text-h3); line-height: 1.15; }
+.caso__cierre { margin-top: clamp(2rem, 1rem + 2vw, 3rem); }
+@media (max-width: 61.99rem) { .caso .partido__texto { grid-column: 1 / -1; } }

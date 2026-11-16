@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import type { CSSProperties } from 'react';
-import { pagina, piezasDe, type Idioma, type Proyecto } from '@/content';
+import Link from 'next/link';
+import { pagina, piezasDe, ruta, type Idioma, type Proyecto } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
-import { Cabeza, Ficha, Figura, Titular } from '@/components/vion/piezas';
+import { Cabeza, Ficha, Figura } from '@/components/vion/piezas';
 import { seccion } from './comun';
 import { caja, circulo, marcasCota, PortadaInterior, punta, rombo, T, Desliza } from './estudio';
 
@@ -122,9 +123,8 @@ export function Casos({ idioma }: { idioma: Idioma }) {
   const t = piezasDe(idioma).casos;
   const fig = piezasDe(idioma).fig;
   const propios = seccion(p, 0, 'proyectos');
-  const clientes = seccion(p, 1, 'texto');
+  const clientes = seccion(p, 1, 'caso');
   const tx = (s: string) => <Texto idioma={idioma}>{s}</Texto>;
-  const esCasillero = (s: string) => s.startsWith('{{');
 
   const ficha = (
     <Ficha
@@ -196,27 +196,48 @@ export function Casos({ idioma }: { idioma: Idioma }) {
           {propios.proyectos.map(proyecto)}
         </section>
 
+        {/* Casos de clientes: cada uno con su problema, lo que hizo Vion y el resultado, y su ficha */}
         <section className="seccion tono-powder" id={clientes.id} aria-labelledby={`t-${clientes.id}`} data-seccion={clientes.titulo}>
-          <div className="marco reticula">
-            <div className="partido__texto">
-              <div className="encabezado">
-                <p className="rotulo">{clientes.etiqueta}</p>
-                <Titular id={`t-${clientes.id}`} texto={clientes.titulo} acento={clientes.acento} />
-              </div>
-              <p className="lead clientes__dicho" data-entra>{tx(clientes.parrafos[0])}</p>
-              <div className="texto" data-entra>
-                {clientes.parrafos.slice(1).filter((s) => !esCasillero(s)).map((s) => <p key={s}>{tx(s)}</p>)}
-              </div>
-            </div>
-            <div className="clientes__ficha" data-entra style={{ '--i': 1 } as CSSProperties}>
-              <div className="clientes__cab">
-                <h3 className="rotulo">{t.plantilla.titulo}</h3>
-                <span className="tabla__estado">{t.plantilla.estado}</span>
-              </div>
-              <Ficha filas={t.plantilla.filas} />
-              {clientes.parrafos.filter(esCasillero).map((s) => <p key={s} className="clientes__nota">{tx(s)}</p>)}
-            </div>
+          <div className="marco">
+            <Cabeza {...clientes} idioma={idioma} />
           </div>
+          {clientes.casos.map((c) => (
+            <article key={c.id} id={c.id} className="marco reticula caso" aria-labelledby={`t-${c.id}`}>
+              <div className="partido__texto">
+                <p className="rotulo">{t.caso.rotulo} · {c.rubro}</p>
+                <h3 className="proyecto__t" id={`t-${c.id}`}>{c.titulo}</h3>
+                <Ficha
+                  clase="ficha--larga"
+                  filas={[
+                    { termino: t.caso.problema, valor: tx(c.problema) },
+                    { termino: t.caso.solucion, valor: tx(c.solucion) },
+                    { termino: t.caso.resultado, valor: tx(c.resultado) },
+                  ]}
+                />
+              </div>
+              <div className="clientes__ficha" data-entra style={{ '--i': 1 } as CSSProperties}>
+                <div className="clientes__cab">
+                  <h4 className="rotulo">{t.caso.ficha}</h4>
+                  <span className="tabla__estado">{t.caso.estado}</span>
+                </div>
+                <Ficha
+                  filas={[
+                    { termino: t.caso.cliente, valor: c.cliente },
+                    { termino: t.caso.rubro, valor: c.rubro },
+                    { termino: t.caso.servicio, valor: <Link href={ruta(c.servicio, idioma)}>{pagina(c.servicio, idioma).esquema.servicio?.nombre ?? pagina(c.servicio, idioma).nav}</Link> },
+                  ]}
+                />
+                {c.pendientes.map((x) => <p key={x} className="clientes__nota">{tx(x)}</p>)}
+              </div>
+            </article>
+          ))}
+          {clientes.cierre && (
+            <div className="marco">
+              <div className="texto caso__cierre" data-entra>
+                {clientes.cierre.map((x) => <p key={x}>{tx(x)}</p>)}
+              </div>
+            </div>
+          )}
         </section>
 
         {p.llamado && <Cierre llamado={p.llamado} idioma={idioma} />}

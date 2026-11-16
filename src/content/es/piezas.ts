@@ -194,7 +194,7 @@ export const piezas: Piezas = {
     fichaTitulo: 'Índice de proyectos',
     proyecto: 'Proyecto',
     clientes: 'Casos de clientes',
-    clientesValor: 'Todavía ninguno publicado',
+    clientesValor: 'Ruta 51-53',
     captura: 'Captura',
     figuras: {
       ultron: {
@@ -218,15 +218,16 @@ export const piezas: Piezas = {
         r: ['Ruta 51', 'Ruta 53', 'Posición por GPS', 'Parada'],
       },
     },
-    plantilla: {
-      titulo: 'Ficha de un caso de cliente',
-      estado: 'Por publicar',
-      filas: [
-        { termino: 'Firma', valor: 'Con su permiso, o sin nombre' },
-        { termino: 'Flujo', valor: 'El que se automatizó en el piloto' },
-        { termino: 'Horas antes', valor: 'Medidas al empezar' },
-        { termino: 'Horas después', valor: 'Medidas al terminar' },
-      ],
+    caso: {
+      rotulo: 'Caso de cliente',
+      problema: 'El problema',
+      solucion: 'Lo que hizo Vion',
+      resultado: 'El resultado',
+      ficha: 'Ficha del caso',
+      estado: 'Publicado con permiso',
+      cliente: 'Cliente',
+      rubro: 'Rubro',
+      servicio: 'Servicio',
     },
   },
   nosotros: {

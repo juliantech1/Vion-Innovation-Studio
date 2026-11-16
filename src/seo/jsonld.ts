@@ -55,8 +55,8 @@ export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo:
     description: pagina('inicio', idioma).bajada,
     email: sitio.correo,
     telephone: sitio.whatsappE164,
-    // Solo el país: la localidad y la provincia no figuran en el sitio (casillero en PENDIENTES-JULIAN.md).
-    address: { '@type': 'PostalAddress', addressCountry: sitio.pais },
+    // Localidad y provincia confirmadas por Julian (2026-11-16); sin calle ni número.
+    address: { '@type': 'PostalAddress', addressLocality: sitio.direccion.localidad, addressRegion: sitio.direccion.region, addressCountry: sitio.pais },
     areaServed: PAISES[idioma],
     contactPoint: [
       {
@@ -215,6 +215,29 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
         dateModified: a.actualizado ?? a.publicado,
         author: autorDe(a, idioma),
       })),
+    });
+  }
+
+  // Casos de clientes (publicados con permiso): un Article por caso, sobre el cliente y el servicio de Vion.
+  for (const c of p.secciones.flatMap((x) => (x.tipo === 'caso' ? x.casos : []))) {
+    const cliente = { '@type': 'Organization', name: c.cliente };
+    nodos.push({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      '@id': `${url}#${c.id}`,
+      url: `${url}#${c.id}`,
+      headline: c.titulo,
+      description: `${c.problema} ${c.solucion} ${c.resultado}`,
+      articleSection: idioma === 'es' ? 'Casos de clientes' : 'Client cases',
+      inLanguage: ui.lang,
+      datePublished: c.publicado,
+      dateModified: c.publicado,
+      image: imagenOg(id, idioma),
+      author: { '@id': ID_ORGANIZACION },
+      publisher: { '@id': ID_ORGANIZACION },
+      isPartOf: { '@id': `${url}#pagina` },
+      about: [cliente, { '@type': 'Service', '@id': `${urlAbsoluta(c.servicio, idioma)}#servicio`, name: pagina(c.servicio, idioma).esquema.servicio?.nombre }],
+      mentions: [cliente],
     });
   }
 

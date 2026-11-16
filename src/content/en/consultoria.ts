@@ -92,7 +92,7 @@ export const consultoria: Pagina = {
       acento: 'AI',
       parrafos: [
         'The same method works for office workflows: we review a process, find what repeats and define what is worth automating with AI and what should stay in the hands of a person.',
-        'If the answer is a system or an app, we build that too: [custom apps and AI agents](@apps). To see how such a system works on the inside, [Ultron is our own case](@casos#ultron).',
+        'If the answer is a system or an app, we build that too: [custom apps and AI agents](@apps). To see how such a system works on the inside, [Ultron is our own case](@casos#ultron); with a client, [Ruta 51-53](@casos#ruta-51-53).',
       ],
     },
     {

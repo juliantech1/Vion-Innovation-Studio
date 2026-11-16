@@ -26,7 +26,8 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 | `{{experiencia del equipo: años, formación y proyectos anteriores que se pueden nombrar}}` | `/nosotros` `/en/about` | `nosotros.ts` |
 | `{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` |
 | `{{resultado medido del diagnóstico de ejemplo}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` (el diagnóstico sobre el plano de muestra de Autodesk) |
-| `{{primer caso real de cliente, con permiso: firma, flujo automatizado y horas antes y después}}` | `/automatizacion-autocad` `/casos` `/en/autocad-automation` `/en/work` | `autocad.ts`, `casos.ts` |
+| `{{primer caso de AutoCAD con permiso: firma, flujo automatizado y horas antes y después}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` (el primer caso publicado, Ruta 51-53, es de software con IA y ya está enlazado ahí) |
+| `{{cifras del caso Ruta 51-53, si se publican: cantidad de buses, checadores que ya no hacen falta y desde cuándo funciona}}` | `/casos` `/en/work` | `casos.ts` (ficha del caso; el texto se sostiene sin cifras) |
 | `{{resultados medidos de Ultron, si se publican}}` | `/casos` `/en/work` | `casos.ts` |
 | `{{captura real de Ultron en modo demo, sin datos privados}}` | `/casos` `/en/work` | `casos.ts` (al tenerla: `imagen` del proyecto, con alt y medidas) |
 | `{{estado de Top Spin y qué hace la app}}` | `/casos` `/en/work` | `casos.ts` |
@@ -66,14 +67,11 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 ## Buscadores con IA (GEO, 2026-11-16)
 
 Datos que faltan para que los buscadores con IA reconozcan a Vion como entidad. **No van como casillero en la página ni
-en el JSON-LD**: el `sameAs` y la dirección de `src/seo/jsonld.ts` llevan solo lo real (hoy Instagram y el país). Al
-tenerlos, se suman ahí.
+en el JSON-LD**: el `sameAs` de `src/seo/jsonld.ts` lleva solo lo real (hoy Instagram). Al tenerlos, se suman ahí.
 
 - `{{perfil de LinkedIn de la empresa}}` → `sameAs` de Organization.
 - `{{canal de YouTube de Vion}}` → `sameAs` de Organization.
 - `{{perfil de empresa de Google (Google Business Profile)}}` → `sameAs` de Organization.
-- `{{localidad y provincia de Vion}}` → `address` de Organization (`addressLocality`, `addressRegion`). El sitio hoy no
-  dice en qué parte de Costa Rica está Vion; si se publica, que figure también en la página (Contacto o Nosotros).
 - **Autor del blog (decidido el 2026-11-16).** Firma Vion por defecto; Julian Alvarez solo en los de más oficio (hoy
   «Cómo nombrar archivos con ISO 19650» y «Qué automatizar primero en AutoCAD»). Es el campo `autor` de cada artículo
   (`vion` o `julian`, ver `src/content/autores.ts`). Su bio corta en `/nosotros` dice solo lo confirmado (fundador y CEO;
@@ -81,10 +79,16 @@ tenerlos, se suman ahí.
 - **Auditoría GEO (`/auditoria-geo`, `/en/geo-audit`).** Sin precio, se cotiza. Si querés publicar un plazo típico o
   qué incluye el informe más allá de lo que dice la página, decilo y se suma. No está en el menú principal (la planta
   y las láminas del diseño son de las páginas del menú): se llega desde Nosotros, los bloques «En resumen» de los
-  servicios, llms.txt y el sitemap. Tampoco está en la lista cerrada del formulario de contacto (el valor viaja a Ventas
-  de Ultron): si se suma, se cambia en `sitio.ts` (`opcionesServicio`), en `src/lib/contacto.ts` y en Ultron.
-- **Dirección.** El informe GEO del 16/11 sugiere Escazú, San José, pero el sitio no lo dice en ningún lado: no se puso.
-  Si es la dirección comercial, que figure en Contacto y se suma al JSON-LD.
+  servicios, llms.txt y el sitemap.
+- **Dirección (decidida el 2026-11-16).** Escazú, San José, Costa Rica, sin calle ni número: en Contacto y en el
+  JSON-LD (`addressLocality`, `addressRegion`, `addressCountry`). Si se publica la calle, se suma en `sitio.ts`.
+- **Formulario:** «Auditoría GEO» ya es una opción del servicio (Ventas de Ultron lo recibe como texto libre). El
+  formulario no elige una opción según el enlace de llegada; si se quiere eso, es un cambio aparte.
+- **Caso Ruta 51-53 (2026-11-16).** Publicado con permiso en `/casos#ruta-51-53` y `/en/work#ruta-51-53`, con fecha de
+  publicación 2026-11-16 en el JSON-LD (si sale otro día, se cambia `publicado` en `casos.ts`). Dos preguntas:
+  ¿**Viazo** («rastreo de flotas de buses públicos, con una app GPS para las rutas 51 y 53», en la misma página) es el
+  sistema que se hizo para Ruta 51-53? Si es así, conviene decirlo y enlazar uno con el otro. Y la IA que se implementó
+  en la empresa: si se puede contar qué hace (sin datos privados), el caso gana mucho.
 
 ## Cursos y blog (2026-11-10)
 

@@ -97,7 +97,7 @@ export const autocad: Pagina = {
       filas: [
         { termino: 'Example', valor: 'Assessment on an Autodesk sample drawing.' },
         { termino: 'Result', valor: P.resultadoEjemplo },
-        { termino: 'Client case', valor: P.casoCliente },
+        { termino: 'Client case', valor: `Vion’s first published case is AI software: [Ruta 51-53, GPS on the buses](@casos#ruta-51-53). The first AutoCAD one: ${P.casoAutocad}` },
       ],
       nota: 'Every pilot ends with **hours measured before and after**. Those numbers, with the client’s permission, are what will appear here and in [our work](@casos).',
     },

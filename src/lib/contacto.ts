@@ -13,6 +13,7 @@ export const SERVICIOS = [
   'Consultoría BIM e ISO 19650',
   'App o software a la medida',
   'Sistema o agente de IA',
+  'Auditoría GEO',
   'Otro',
 ];
 const CLAVES_UTM = ['source', 'medium', 'campaign', 'content', 'term'];

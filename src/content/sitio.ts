@@ -16,6 +16,8 @@ export const sitio = {
   instagram: 'https://www.instagram.com/vion_int/',
   instagramUsuario: '@vion_int',
   pais: 'CR',
+  /** Confirmada por Julian el 2026-11-16: solo localidad y provincia, sin calle ni número. */
+  direccion: { localidad: 'Escazú', region: 'San José', pais: 'Costa Rica' },
   logo: { src: '/marca/vion-logo.png', ancho: 640, alto: 640 },
   simbolo: { src: '/marca/simbolo-claro.png', ancho: 75, alto: 72 },
   colores: { negro: '#0b0b0c', azul: '#c9dfee', rojo: '#e8341c', naranja: '#f0612a', claro: '#fafafa' },
@@ -42,5 +44,6 @@ export const opcionesServicio = [
   'Consultoría BIM e ISO 19650',
   'App o software a la medida',
   'Sistema o agente de IA',
+  'Auditoría GEO',
   'Otro',
 ] as const;

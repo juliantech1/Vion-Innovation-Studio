@@ -54,6 +54,7 @@ export const nosotros: Pagina = {
       titulo: 'Lo que hemos hecho',
       acento: 'hecho',
       parrafos: [
+        'Primer caso de cliente: [Ruta 51-53](@casos#ruta-51-53), un CRM con GPS en los buses e IA en la empresa.',
         'Proyectos propios: [Ultron](@casos#ultron), [Top Spin](@casos#topspin), [RealFood](@casos#realfood) y [Viazo](@casos#viazo).',
         P.experiencia,
       ],

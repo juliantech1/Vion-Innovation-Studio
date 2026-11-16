@@ -130,7 +130,7 @@ const descripciones = new Map();
 const hreflangDe = new Map();
 const casillerosVistos = new Map();
 const imagenesOg = new Set();
-const TIPOS_LD = new Set(['Organization', 'ProfessionalService', 'WebSite', 'WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'BreadcrumbList', 'Service', 'FAQPage', 'Blog', 'BlogPosting', 'Course']);
+const TIPOS_LD = new Set(['Organization', 'ProfessionalService', 'WebSite', 'WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'BreadcrumbList', 'Service', 'FAQPage', 'Blog', 'BlogPosting', 'Course', 'Article']);
 const PROHIBIDAS = ['elevate', 'seamless', 'potencie su negocio', 'revolucionario', 'disruptivo', 'siguiente nivel', 'garantizado', 'WhatsApp Business', 'next level', 'game-changer', 'cutting-edge'];
 const ENLACE_VAGO = /^(aqu[ií]|ac[aá]|click|clic|haga clic|here|click here|more|m[aá]s|leer m[aá]s|read more|ver m[aá]s|link|enlace)$/i;
 

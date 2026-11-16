@@ -97,7 +97,7 @@ export const consultoria: Pagina = {
       acento: 'inteligencia artificial',
       parrafos: [
         'El mismo método sirve para los flujos de oficina: revisamos un proceso, encontramos lo que se repite y definimos qué conviene automatizar con IA y qué debe seguir en manos de una persona.',
-        'Si la respuesta es un sistema o una app, también lo construimos: [apps y agentes de IA a la medida](@apps). Para ver cómo funciona un sistema así por dentro, [Ultron es nuestro propio caso](@casos#ultron).',
+        'Si la respuesta es un sistema o una app, también lo construimos: [apps y agentes de IA a la medida](@apps). Para ver cómo funciona un sistema así por dentro, [Ultron es nuestro propio caso](@casos#ultron); con un cliente, [Ruta 51-53](@casos#ruta-51-53).',
       ],
     },
     {

@@ -105,6 +105,34 @@ export interface SeccionPreguntas extends SeccionBase {
   preguntas: Pregunta[];
 }
 
+/**
+ * Un caso de cliente real, publicado con su permiso: el problema, lo que hizo Vion y el resultado, en palabras del caso.
+ * Sin cifras, citas ni fechas que el cliente o Julian no hayan dado (lo que falta va como casillero en `pendientes`).
+ */
+export interface CasoCliente {
+  /** Ancla en la página de casos (#ruta-51-53) y parte del @id del JSON-LD. */
+  id: string;
+  cliente: string;
+  rubro: string;
+  /** El título del caso (H3 y `headline` del JSON-LD). */
+  titulo: string;
+  problema: Texto;
+  solucion: Texto;
+  resultado: Texto;
+  /** El servicio de Vion al que corresponde (enlace y `about`). */
+  servicio: IdPagina;
+  /** AAAA-MM-DD: cuándo se publicó el caso en el sitio (no la fecha del proyecto). */
+  publicado: string;
+  /** Los datos que faltan (casilleros): se ven en la ficha del caso. */
+  pendientes: Texto[];
+}
+export interface SeccionCaso extends SeccionBase {
+  tipo: 'caso';
+  casos: CasoCliente[];
+  /** Párrafos después de los casos (cómo se publican los próximos). */
+  cierre?: Texto[];
+}
+
 /** Los datos de contacto directo (WhatsApp, correo, Instagram): salen de `sitio.ts`. */
 export interface SeccionContacto extends SeccionBase {
   tipo: 'contacto';
@@ -122,6 +150,7 @@ export type Seccion =
   | SeccionPasos
   | SeccionFicha
   | SeccionProyectos
+  | SeccionCaso
   | SeccionPersonas
   | SeccionRangos
   | SeccionPreguntas
@@ -601,7 +630,8 @@ export interface PiezasCasos {
   /** Los esquemas de cada proyecto propio, por id del proyecto. */
   figuras: Record<'ultron' | 'topspin' | 'realfood' | 'viazo', FiguraDibujada>;
   /** Cómo va a ser un caso de cliente cuando exista: la ficha vacía con su estado. */
-  plantilla: { titulo: string; estado: string; filas: { termino: string; valor: string }[] };
+  /** Los rótulos de un caso de cliente (`SeccionCaso`). */
+  caso: { rotulo: string; problema: string; solucion: string; resultado: string; ficha: string; estado: string; cliente: string; rubro: string; servicio: string };
 }
 
 export interface PiezasNosotros {

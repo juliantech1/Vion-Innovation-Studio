@@ -51,6 +51,7 @@ export const interfaz: Interfaz = {
       'Consultoría BIM e ISO 19650',
       'App o software a la medida',
       'Sistema o agente de IA',
+      'Auditoría GEO',
       'Otro',
     ],
     mensaje: 'Mensaje',

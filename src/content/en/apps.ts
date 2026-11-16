@@ -57,6 +57,7 @@ export const apps: Pagina = {
     ],
     enlaces: [
       `[Article: an AI agent team with human approval](${rutaArticulo(SLUGS_BLOG['agentes-con-aprobacion'].en, 'en')})`,
+      '[Client case: Ruta 51-53, GPS on the buses instead of manual checkers](@casos#ruta-51-53)',
       '[Ultron, Vion’s agent system](@casos#ultron)',
       `[Free course: build your agentic OS](${rutaCurso(SLUGS_CURSOS['agentic-os'].en, 'en')})`,
       '[GEO audit for your website](@geo)',
@@ -91,6 +92,7 @@ export const apps: Pagina = {
         'An AI agent prepares the work. A person decides.',
         'We build systems with agents that research, organize, draft and notify, under three rules: **they can be measured** (what they did and what it cost), **they protect your data** (sensitive information can stay on local models) and **a person approves what matters** before it goes out.',
         'That is how Ultron works, the system Vion runs on. [See how Ultron is put together](@casos#ultron).',
+        'For a client, for example: for [Ruta 51-53](@casos#ruta-51-53), a bus company, we built a CRM with GPS on the buses and implemented AI in the company; it no longer needs checkers at the stops to control service frequency.',
       ],
     },
     {

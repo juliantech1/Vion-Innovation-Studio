@@ -194,7 +194,7 @@ export const piezas: Piezas = {
     fichaTitulo: 'Project index',
     proyecto: 'Project',
     clientes: 'Client case studies',
-    clientesValor: 'None published yet',
+    clientesValor: 'Ruta 51-53',
     captura: 'Screenshot',
     figuras: {
       ultron: {
@@ -218,15 +218,16 @@ export const piezas: Piezas = {
         r: ['Route 51', 'Route 53', 'GPS position', 'Stop'],
       },
     },
-    plantilla: {
-      titulo: 'Client case sheet',
-      estado: 'To be published',
-      filas: [
-        { termino: 'Firm', valor: 'With their permission, or unnamed' },
-        { termino: 'Workflow', valor: 'The one automated in the pilot' },
-        { termino: 'Hours before', valor: 'Measured at the start' },
-        { termino: 'Hours after', valor: 'Measured at the end' },
-      ],
+    caso: {
+      rotulo: 'Client case',
+      problema: 'The problem',
+      solucion: 'What Vion did',
+      resultado: 'The result',
+      ficha: 'Case sheet',
+      estado: 'Published with permission',
+      cliente: 'Client',
+      rubro: 'Industry',
+      servicio: 'Service',
     },
   },
   nosotros: {

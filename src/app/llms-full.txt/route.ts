@@ -43,6 +43,12 @@ function seccionEnTexto(s: Seccion): string[] {
     case 'personas':
       for (const x of s.personas) l.push(`- ${x.nombre} (${x.cargo})${plano(x.bio) ? `: ${plano(x.bio)}` : ''}`);
       break;
+    case 'caso':
+      for (const c of s.casos) {
+        l.push(`#### ${c.titulo}`, '', `- ${c.cliente} (${c.rubro})`, `- ${plano(c.problema)}`, `- ${plano(c.solucion)}`, `- ${plano(c.resultado)}`, '');
+      }
+      for (const x of s.cierre ?? []) if (plano(x)) l.push(plano(x));
+      break;
     case 'proyectos':
       for (const x of s.proyectos) l.push(`- ${x.nombre}: ${plano(x.linea)}${plano(x.que) ? ` ${plano(x.que)}` : ''}`);
       break;
@@ -94,7 +100,7 @@ export function GET() {
   const lineas = [
     `# ${sitio.nombre} (${sitio.nombresAlternos.join(', ')}): texto completo`,
     '',
-    `> Vion es un estudio de IA de Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario}. Resumen corto y lista de páginas: ${sitio.url}/llms.txt`,
+    `> Vion es un estudio de IA de ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario}. Resumen corto y lista de páginas: ${sitio.url}/llms.txt`,
     '',
     ...idiomaEnTexto('es'),
     '# English version (/en)',

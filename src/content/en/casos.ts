@@ -1,5 +1,22 @@
 import { P } from '../pendientes';
-import type { Pagina, Proyecto } from '../tipos';
+import type { CasoCliente, Pagina, Proyecto } from '../tipos';
+
+/** The first client case (Julian, 2026-11-16; the company may be named). See es/casos.ts. No figures or project dates. */
+export const rutaCaso: CasoCliente = {
+  id: 'ruta-51-53',
+  cliente: 'Ruta 51-53',
+  rubro: 'Public bus transport',
+  titulo: 'Ruta 51-53: GPS on the buses instead of manual checkers',
+  problema:
+    'To control service frequency, the company relied on checkers (“checadores”): people at public bus stops who tracked how often the buses came by.',
+  solucion:
+    'Vion built a CRM with GPS on the buses, to know where each bus is and when it passes each stop, and implemented artificial intelligence in the company.',
+  resultado:
+    'Checkers are no longer needed to control when the buses pass the stops: the system provides that control.',
+  servicio: 'apps',
+  publicado: '2026-11-16',
+  pendientes: [P.cifrasRuta],
+};
 
 // Only Vion's own projects. What is not known yet is a placeholder. No client cases until one exists and the client allows it.
 const proyectos: Proyecto[] = [
@@ -57,14 +74,14 @@ export const casos: Pagina = {
   nav: 'Work',
   titulo: 'Our work: AI agents, apps and automation | Vion',
   descripcion:
-    'Vion’s own projects: Ultron, Top Spin, RealFood and Viazo. What each one solves and how it was built with AI in Costa Rica.',
+    'The Ruta 51-53 client case (GPS on the buses instead of manual checkers) and Vion’s own projects: Ultron, Top Spin, RealFood and Viazo.',
   palabrasClave: ['AI agents', 'custom apps', 'AutoCAD automation'],
   indexar: true,
-  etiqueta: 'Work · in-house projects',
+  etiqueta: 'Work · clients and in-house projects',
   h1: 'Consulting, automation and app projects',
   acento: 'automation',
   bajada:
-    'We start at home: these are Vion’s own projects, built in Costa Rica. Client cases will be added here when they exist and the client allows it.',
+    'Vion’s own projects, built in Costa Rica, and the client cases we are allowed to publish: the first one, Ruta 51-53, with GPS on the buses.',
   acciones: [{ texto: 'Request an assessment', destino: { pagina: 'contacto' } }],
   secciones: [
     {
@@ -76,16 +93,16 @@ export const casos: Pagina = {
       proyectos,
     },
     {
-      tipo: 'texto',
+      tipo: 'caso',
       id: 'client-cases',
-      etiqueta: 'BIM consulting · AutoCAD automation',
+      etiqueta: 'Client case · published with permission',
       titulo: 'Client cases',
       acento: 'Client',
-      parrafos: [
-        'We have not published client cases yet.',
-        'When a pilot ends, its hours measured before and after will appear here, always with the client’s permission and without any data the client does not want to show. We do not use anyone’s logos, names or figures without authorization.',
-        P.casoCliente,
-        'In the meantime, you can see how we work in [BIM and AutoCAD consulting](@consultoria), [AutoCAD automation](@autocad) and [custom apps and software](@apps).',
+      intro: 'Client cases are published with the client’s permission and only with what the client wants to show. No figures that have not been measured.',
+      casos: [rutaCaso],
+      cierre: [
+        'When an AutoCAD pilot ends, its hours measured before and after will also appear here, with the firm’s permission.',
+        'To see how we work: [BIM and AutoCAD consulting](@consultoria), [AutoCAD automation](@autocad) and [custom apps and software](@apps).',
       ],
     },
   ],
@@ -96,5 +113,5 @@ export const casos: Pagina = {
     mensajeWhatsapp: 'Hi Vion. I would like to talk about a project.',
   },
   og: { titulo: 'Vion’s own projects', acento: 'Vion’s' },
-  esquema: { tipo: 'CollectionPage', lista: proyectos.map((p) => ({ nombre: p.nombre, ancla: p.id })) },
+  esquema: { tipo: 'CollectionPage', lista: [{ nombre: rutaCaso.cliente, ancla: rutaCaso.id }, ...proyectos.map((p) => ({ nombre: p.nombre, ancla: p.id }))] },
 };

@@ -50,6 +50,7 @@ export const interfaz: Interfaz = {
       'BIM and ISO 19650 consulting',
       'Custom app or software',
       'AI system or agent',
+      'GEO audit',
       'Other',
     ],
     mensaje: 'Message',

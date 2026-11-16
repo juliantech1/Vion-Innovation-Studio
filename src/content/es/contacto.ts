@@ -58,7 +58,7 @@ export const contacto: Pagina = {
       titulo: 'Datos de contacto',
       acento: 'contacto',
       intro: 'Para una consulta rápida, WhatsApp. Para una propuesta formal, el correo.',
-      filas: [{ termino: 'Dónde', valor: `Costa Rica · trabajo remoto y ${P.presencial}` }],
+      filas: [{ termino: 'Dónde', valor: `${sitio.direccion.localidad}, ${sitio.direccion.region}, ${sitio.direccion.pais} · trabajo remoto y ${P.presencial}` }],
     },
     {
       tipo: 'formulario',
