@@ -1,0 +1,18 @@
+/* Auditoría GEO (2026-11-16): la rúbrica de la portada, la tabla de categorías y los pasos del método. */
+.rubrica { display: grid; gap: 0.9rem; padding-block: 1rem; }
+.rubrica li { display: grid; grid-template-columns: minmax(0, 11rem) 1fr 2.5rem; align-items: center; gap: 1rem; font-family: var(--font-mono); font-size: var(--text-rotulo); letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.rubrica__barra { height: 0.6rem; width: calc(var(--peso) * 4%); background: var(--tinta); }
+.rubrica li:first-child .rubrica__barra { background: var(--color-poppy); }
+.rubrica__p { text-align: right; color: var(--tinta); }
+.geo-tabla { overflow-x: auto; }
+.geo-tabla table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--tinta); }
+.geo-tabla th, .geo-tabla td { text-align: left; vertical-align: top; padding: 1rem 1.25rem 1rem 0; border-bottom: 1px solid var(--filete); }
+.geo-tabla thead th { font-family: var(--font-mono); font-size: var(--text-rotulo); font-weight: 500; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.geo-tabla tbody th { font-weight: 600; width: 30%; }
+.geo-tabla__peso { font-family: var(--font-mono); white-space: nowrap; width: 6rem; }
+.geo-tabla tbody td:last-child { color: var(--tinta-2); max-width: 60ch; }
+.metodo { row-gap: 2.5rem; }
+.metodo li { grid-column: span 3; display: grid; gap: 0.75rem; align-content: start; padding-top: 1.25rem; border-top: 1px solid var(--tinta); }
+.metodo__n { font-family: var(--font-mono); font-size: var(--text-rotulo); letter-spacing: var(--tracking-rotulo); color: var(--color-poppy); }
+@media (max-width: 61.99rem) { .metodo li { grid-column: span 6; } }
+@media (max-width: 47.99rem) { .metodo li { grid-column: 1 / -1; } .rubrica li { grid-template-columns: minmax(0, 8rem) 1fr 2rem; } }

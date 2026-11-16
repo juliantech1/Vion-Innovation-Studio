@@ -11,6 +11,7 @@ const FUENTES = {
 export const agentes: ArticuloFuente = {
   id: 'agentes-con-aprobacion',
   publicado: '2026-11-10',
+  autor: 'vion',
   relacion: 'apps',
   es: {
     titulo: 'Un equipo de agentes de IA con aprobación humana',

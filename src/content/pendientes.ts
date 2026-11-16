@@ -10,7 +10,7 @@ export const P = {
   fechaAviso: '{{fecha de aprobación del aviso}}',
   plazoRespuesta: '{{plazo de respuesta al formulario}}',
   presencial: '{{¿reuniones presenciales? dónde}}',
-  bioJulian: '{{biografía de Julian Alvarez: formación, experiencia y qué hace en Vion}}',
+  bioJulian: '{{formación y experiencia de Julian Alvarez}}',
   bioMaite: '{{biografía de Maite Alvarez: formación, experiencia y qué hace en Vion}}',
   experiencia: '{{experiencia del equipo: años, formación y proyectos anteriores que se pueden nombrar}}',
   tecnologias: '{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}',

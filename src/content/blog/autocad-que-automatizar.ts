@@ -12,6 +12,7 @@ const FUENTES = {
 export const autocad: ArticuloFuente = {
   id: 'autocad-que-automatizar',
   publicado: '2026-11-10',
+  autor: 'julian',
   relacion: 'autocad',
   es: {
     titulo: 'Qué automatizar primero en AutoCAD y cómo medir el ahorro',

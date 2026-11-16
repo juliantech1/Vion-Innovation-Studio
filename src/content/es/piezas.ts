@@ -36,7 +36,7 @@ export const piezas: Piezas = {
   },
   fig: 'Fig.',
   nota: 'Nota',
-  resumen: 'En resumen',
+  resumen: { rotulo: 'En resumen', datos: 'Datos clave', enlaces: 'Para seguir leyendo', actualizado: 'Actualizado el' },
   fig1: {
     paso: 'Paso',
     semana: 'Semana',
@@ -353,7 +353,7 @@ export const piezas: Piezas = {
   blog: {
     fichaTitulo: 'El blog',
     ficha: [
-      { termino: 'Escribe', valor: 'Vion' },
+      { termino: 'Escriben', valor: 'Vion y Julian Alvarez' },
       { termino: 'Temas', valor: 'ISO 19650, AutoCAD, agentes de IA' },
       { termino: 'Idiomas', valor: 'Español e inglés' },
     ],
@@ -362,6 +362,8 @@ export const piezas: Piezas = {
     actualizado: 'Actualizado',
     lectura: 'Lectura',
     autor: 'Autor',
+    sobreAutor: 'Sobre el autor',
+    verFicha: 'Ver su ficha en Nosotros',
     fuentes: 'Fuentes',
     fuentesNota: 'Consultadas el {fecha}. Lo que dicen esas páginas puede cambiar; si encuentra algo distinto, escríbanos.',
     leer: 'Leer',

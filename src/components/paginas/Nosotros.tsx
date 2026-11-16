@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { MENU, pagina, piezasDe, ruta, type IdPagina, type Idioma } from '@/content';
+import { MENU, anclaPersona, pagina, piezasDe, ruta, type IdPagina, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
@@ -7,7 +7,8 @@ import { Cabeza, Ficha, Figura, FilaServicio, Titular } from '@/components/vion/
 import { seccion } from './comun';
 import { caja, marcasCota, PortadaInterior, punta, punteada, rombo, T, Desliza } from './estudio';
 
-const numero = (id: IdPagina) => String(MENU.indexOf(id) + 2).padStart(2, '0');
+/** El número de lámina de una página del menú (las que no están en el menú, como la auditoría GEO, van sin número). */
+const numero = (id: IdPagina) => (MENU.includes(id) ? String(MENU.indexOf(id) + 2).padStart(2, '0') : '');
 
 /** Fig. 1: la misma tarea medida antes y después sobre la misma cota; al final decide usted (el rombo rojo). */
 function Medida({ r }: { r: string[] }) {
@@ -104,7 +105,7 @@ export function Nosotros({ idioma }: { idioma: Idioma }) {
                 {quienes.personas.map((x, i) => {
                   const [cargo, area] = x.cargo.split(' · ');
                   return (
-                    <li key={x.nombre} className="persona" data-entra style={{ '--i': i } as CSSProperties}>
+                    <li key={x.nombre} id={anclaPersona(x.nombre)} className="persona" data-entra style={{ '--i': i } as CSSProperties}>
                       <p className="rotulo">{n.persona} {String(i + 1).padStart(2, '0')}</p>
                       <h3 className="persona__nombre">{x.nombre}</h3>
                       <p className="persona__cargo"><b>{cargo}</b>{area && <span>{area}</span>}</p>

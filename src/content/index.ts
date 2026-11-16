@@ -15,6 +15,7 @@ export const interfazDe = (idioma: Idioma): Interfaz => TODO[idioma].interfaz;
 /** Las páginas que se indexan (van al sitemap y llevan hreflang recíproco). */
 export const indexables = (idioma: Idioma): Pagina[] => Object.values(TODO[idioma].paginas).filter((p) => p.indexar);
 
+export * from './autores';
 export * from './rutas';
 export * from './slugs';
 export * from './sitio';

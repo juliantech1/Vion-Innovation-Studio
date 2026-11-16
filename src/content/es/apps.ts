@@ -1,5 +1,7 @@
 import { precioDe, visibles } from '../catalogo';
 import { publicarRangos } from '../sitio';
+import { rutaArticulo, rutaCurso } from '../rutas';
+import { SLUGS_BLOG, SLUGS_CURSOS } from '../slugs';
 import type { Pagina, Seccion } from '../tipos';
 import { servicios } from './catalogo';
 
@@ -42,14 +44,30 @@ export const apps: Pagina = {
   acento: 'IA',
   bajada:
     'Apps web y móviles, asistentes y agentes de IA hechos para cómo trabaja su empresa, del prototipo a producción. Desarrollo de aplicaciones a la medida desde Costa Rica.',
-  resumen: [
-    'Vion diseña y construye apps y software a la medida con IA: apps web y móviles, asistentes que responden con la información de su empresa, extracción de datos de documentos, correos, planos o formularios, y automatización de procesos con agentes de IA.',
-    `Es para ${a.para.charAt(0).toLowerCase()}${a.para.slice(1)}`,
-    `El plazo habitual es de ${a.plazo}, en tres pasos: un prototipo navegable para confirmar que resuelve lo que hace falta, la app en producción y un mantenimiento opcional después de la entrega.`,
-    publicarRangos ? `Como referencia, una app o un software a la medida con IA va de ${a.rango}; el precio exacto se confirma cuando el alcance está claro.` : '',
-    'Los sistemas cuidan los datos de la empresa: lo sensible puede quedarse en modelos locales, lo que hace cada agente se puede medir y una persona aprueba lo importante antes de que salga.',
-    'El desarrollo se hace desde Costa Rica.',
-  ].filter(Boolean).join(' '),
+  resumen: {
+    pregunta: '¿Qué es una app a la medida con IA y cómo se desarrolla?',
+    texto: [
+      'Una app a la medida con IA es un programa web o móvil hecho para cómo trabaja una empresa, con inteligencia artificial integrada donde ahorra trabajo: asistentes que responden con la información de la empresa, extracción de datos de documentos, correos, planos o formularios, y automatización de procesos con agentes de IA.',
+      `Vion las diseña y construye para ${a.para.charAt(0).toLowerCase()}${a.para.slice(1)}`,
+      'Se trabaja en tres pasos: un prototipo navegable para confirmar que resuelve lo que hace falta, la app en producción y un mantenimiento opcional después de la entrega.',
+      `El plazo habitual es de ${a.plazo}.`,
+      publicarRangos ? `Como referencia, la inversión va de ${a.rango}; el precio exacto se confirma cuando el alcance está claro.` : '',
+      'Los sistemas cuidan los datos: lo sensible puede quedarse en modelos locales, lo que hace cada agente se puede medir y una persona aprueba lo importante antes de que salga.',
+    ].filter(Boolean).join(' '),
+    ficha: [
+      { termino: 'Para quién', valor: 'Empresas que quieren una app web o móvil propia, con IA' },
+      { termino: 'Plazo', valor: a.plazo },
+      ...(publicarRangos ? [{ termino: 'Inversión', valor: `${a.rango} (orientativa)` }] : []),
+      { termino: 'Se entrega', valor: a.entregables.join('; ') },
+    ],
+    enlaces: [
+      `[Artículo: un equipo de agentes de IA con aprobación humana](${rutaArticulo(SLUGS_BLOG['agentes-con-aprobacion'].es, 'es')})`,
+      '[Ultron, el sistema de agentes de Vion](@casos#ultron)',
+      `[Curso gratis: su agentic OS, un equipo de agentes](${rutaCurso(SLUGS_CURSOS['agentic-os'].es, 'es')})`,
+      '[Auditoría GEO para su sitio web](@geo)',
+    ],
+  },
+  actualizado: '2026-11-16',
   acciones: [
     { texto: 'Solicitar cotización por WhatsApp', destino: { whatsapp: 'Hola, Vion. Quiero cotizar una app a la medida.' } },
     { texto: publicarRangos ? 'Ver rangos de inversión' : 'Ver el proceso', destino: { pagina: 'apps', ancla: publicarRangos ? 'rangos' : 'proceso' } },

@@ -1,10 +1,11 @@
 import { P } from '../pendientes';
+import { JULIAN } from '../autores';
 import type { Pagina } from '../tipos';
 
 // Nombres y cargos: los del sitio anterior (vion-studio.com/about). Las biografías las escribe o confirma Julian:
 // no se inventa experiencia.
 const personas = [
-  { nombre: 'Julian Alvarez', cargo: 'CEO · desarrollo de software e IA', bio: P.bioJulian },
+  { nombre: 'Julian Alvarez', cargo: 'CEO · desarrollo de software e IA', bio: `${JULIAN.bio.es} ${P.bioJulian}` },
   { nombre: 'Maite Alvarez', cargo: 'COO · ingeniería y operaciones', bio: P.bioMaite },
 ];
 
@@ -102,6 +103,11 @@ export const nosotros: Pagina = {
           titulo: 'Apps y software a la medida con IA',
           texto: 'Para empresas que necesitan una herramienta propia, web o móvil.',
           enlace: { pagina: 'apps' },
+        },
+        {
+          titulo: 'Auditoría GEO para buscadores con IA',
+          texto: 'Para empresas que quieren que ChatGPT, Perplexity y Google con IA lean y citen su sitio.',
+          enlace: { pagina: 'geo' },
         },
       ],
     },

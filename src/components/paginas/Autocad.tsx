@@ -116,7 +116,7 @@ export function Autocad({ idioma }: { idioma: Idioma }) {
         </section>
 
         {/* 1b · En resumen: el bloque citable (qué es, para quién, qué incluye, plazo y precio) */}
-        {p.resumen && <Resumen texto={p.resumen} idioma={idioma} />}
+        {p.resumen && <Resumen resumen={p.resumen} actualizado={p.actualizado} idioma={idioma} />}
 
         {/* 2 · Tareas · Fig. 2 */}
         <section className="seccion tono-powder" id={tareas.id} aria-labelledby={`t-${tareas.id}`} data-seccion={tareas.etiqueta}>

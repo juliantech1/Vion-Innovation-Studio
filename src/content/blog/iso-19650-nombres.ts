@@ -12,6 +12,7 @@ const FUENTES = {
 export const iso19650: ArticuloFuente = {
   id: 'iso-19650-nombres',
   publicado: '2026-11-10',
+  autor: 'julian',
   relacion: 'consultoria',
   es: {
     titulo: 'Cómo nombrar archivos con ISO 19650 sin volverse loco',

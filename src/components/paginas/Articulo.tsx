@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { ARTICULOS, interfazDe, minutosDeLectura, pagina, piezasDe, ruta, rutaArticulo, type Articulo as DatosArticulo, type Idioma } from '@/content';
+import { ARTICULOS, interfazDe, personaAutora, minutosDeLectura, pagina, piezasDe, ruta, rutaArticulo, type Articulo as DatosArticulo, type Idioma } from '@/content';
 import { JsonLd } from '@/components/sitio/JsonLd';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
 import { Cierre } from '@/components/vion/Cierre';
@@ -74,6 +74,7 @@ export function Articulo({ a, idioma }: { a: DatosArticulo; idioma: Idioma }) {
   const titulos = titulosDe(x.cuerpo);
   const otros = ARTICULOS.filter((o) => o.id !== a.id);
   const minutos = minutosDeLectura(x.cuerpo);
+  const autora = personaAutora(a.autor);
   return (
     <>
       <JsonLd nodos={datosArticulo(a, idioma)} />
@@ -100,7 +101,7 @@ export function Articulo({ a, idioma }: { a: DatosArticulo; idioma: Idioma }) {
               <h2 className="rotulo" id="ficha-t">{b.fichaTitulo}</h2>
               <Ficha
                 filas={[
-                  { termino: b.autor, valor: 'Vion' },
+                  { termino: b.autor, valor: autora ? <Link href={ruta('nosotros', idioma, autora.ancla)}>{autora.nombre}</Link> : 'Vion' },
                   { termino: b.publicado, valor: <time dateTime={a.publicado}>{fechaLarga(a.publicado, idioma)}</time> },
                   ...(a.actualizado ? [{ termino: b.actualizado, valor: <time dateTime={a.actualizado}>{fechaLarga(a.actualizado, idioma)}</time> }] : []),
                   { termino: b.lectura, valor: `${minutos} min` },
@@ -135,6 +136,15 @@ export function Articulo({ a, idioma }: { a: DatosArticulo; idioma: Idioma }) {
                 </ol>
                 <p>{b.fuentesNota.replace('{fecha}', fechaLarga(a.actualizado ?? a.publicado, idioma))}</p>
               </section>
+              {autora && (
+                <section className="fuentes" aria-labelledby="t-autor">
+                  <h2 id="t-autor">{b.sobreAutor}</h2>
+                  <p>
+                    <strong>{autora.nombre}</strong>. {autora.bio[idioma]}{' '}
+                    <Link href={ruta('nosotros', idioma, autora.ancla)}>{b.verFicha}</Link>
+                  </p>
+                </section>
+              )}
             </div>
           </div>
         </div>

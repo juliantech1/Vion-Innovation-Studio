@@ -13,7 +13,7 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 
 | Casillero | Dónde aparece | Archivo |
 |---|---|---|
-| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/cursos/*` `/en/courses/*` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
+| `{{razón social y cédula jurídica}}` | pie de todas las páginas: `/` `/consultoria-ia-autocad-bim` `/automatizacion-autocad` `/apps-a-medida` `/auditoria-geo` `/casos` `/nosotros` `/contacto` `/privacidad` `/gracias` `/en` `/en/ai-autocad-bim-consulting` `/en/autocad-automation` `/en/custom-apps` `/en/geo-audit` `/en/work` `/en/about` `/en/contact` `/en/privacy` `/en/thanks` `/cursos` `/en/courses` `/cursos/*` `/en/courses/*` `/blog` `/en/blog` `/blog/nombrar-archivos-iso-19650` `/blog/que-automatizar-primero-en-autocad` `/blog/equipo-de-agentes-de-ia-con-aprobacion` `/en/blog/iso-19650-file-naming` `/en/blog/what-to-automate-first-in-autocad` `/en/blog/ai-agent-team-with-human-approval` | `interfaz.ts`, `privacidad.ts` |
 | `{{domicilio legal}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{región de Vercel donde se procesa el formulario}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{plazo de conservación de los datos}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
@@ -21,7 +21,7 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 | `{{fecha de aprobación del aviso}}` | `/privacidad` `/en/privacy` | `privacidad.ts` |
 | `{{plazo de respuesta al formulario}}` | `/contacto` `/en/contact` | `contacto.ts` (por ejemplo «un día hábil») |
 | `{{¿reuniones presenciales? dónde}}` | `/contacto` `/en/contact` | `contacto.ts` |
-| `{{biografía de Julian Alvarez: formación, experiencia y qué hace en Vion}}` | `/nosotros` `/en/about` | `nosotros.ts` |
+| `{{formación y experiencia de Julian Alvarez}}` | `/nosotros` `/en/about` | `nosotros.ts` |
 | `{{biografía de Maite Alvarez: formación, experiencia y qué hace en Vion}}` | `/nosotros` `/en/about` | `nosotros.ts` |
 | `{{experiencia del equipo: años, formación y proyectos anteriores que se pueden nombrar}}` | `/nosotros` `/en/about` | `nosotros.ts` |
 | `{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` |
@@ -45,8 +45,8 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
   soporte 300 a 900 al mes, apps 3.000 a 15.000. Feme recomienda publicarlos (y la búsqueda «… precio» los pide). Con
   `publicarRangos = false` en `src/content/sitio.ts` desaparecen de las páginas, de las preguntas frecuentes y del
   JSON-LD (`Service.offers`).
-- **WhatsApp `+506 8688 3553`** (de `docs/marca/DESIGN.md`): confirmar que es el número para clientes. Se usa solo como
-  enlace con el mensaje ya escrito, no como texto grande.
+- **WhatsApp `+506 8678 3553`**: confirmado por Julian el 2026-11-16 (el sitio tenía otro número por error). Se usa como
+  enlace con el mensaje ya escrito, en el JSON-LD (`telephone`) y en llms.txt.
 - **Equipo:** «Julian Alvarez, CEO · desarrollo de software e IA» y «Maite Alvarez, COO · ingeniería y operaciones»
   salen del sitio anterior (`/about`). Confirmar nombres y cargos; van también en el JSON-LD de `/nosotros` (`employee`).
 - **Proyectos propios en `/casos`:** Ultron, Top Spin, RealFood y Viazo, como los nombra el catálogo de Orión. Si alguno
@@ -74,9 +74,17 @@ tenerlos, se suman ahí.
 - `{{perfil de empresa de Google (Google Business Profile)}}` → `sameAs` de Organization.
 - `{{localidad y provincia de Vion}}` → `address` de Organization (`addressLocality`, `addressRegion`). El sitio hoy no
   dice en qué parte de Costa Rica está Vion; si se publica, que figure también en la página (Contacto o Nosotros).
-- **Autor del blog.** En el JSON-LD los artículos los firma Julian Alvarez (Person, enlazado a `/nosotros`), pero en la
-  página la ficha del artículo todavía dice «Autor: Vion». Conviene que digan lo mismo: o la ficha pasa a «Julian
-  Alvarez», o el JSON-LD vuelve a la organización. Lo decide Julian.
+- **Autor del blog (decidido el 2026-11-16).** Firma Vion por defecto; Julian Alvarez solo en los de más oficio (hoy
+  «Cómo nombrar archivos con ISO 19650» y «Qué automatizar primero en AutoCAD»). Es el campo `autor` de cada artículo
+  (`vion` o `julian`, ver `src/content/autores.ts`). Su bio corta en `/nosotros` dice solo lo confirmado (fundador y CEO;
+  ingeniería y automatización con IA; AutoCAD y BIM); la formación y la experiencia siguen como casillero.
+- **Auditoría GEO (`/auditoria-geo`, `/en/geo-audit`).** Sin precio, se cotiza. Si querés publicar un plazo típico o
+  qué incluye el informe más allá de lo que dice la página, decilo y se suma. No está en el menú principal (la planta
+  y las láminas del diseño son de las páginas del menú): se llega desde Nosotros, los bloques «En resumen» de los
+  servicios, llms.txt y el sitemap. Tampoco está en la lista cerrada del formulario de contacto (el valor viaja a Ventas
+  de Ultron): si se suma, se cambia en `sitio.ts` (`opcionesServicio`), en `src/lib/contacto.ts` y en Ultron.
+- **Dirección.** El informe GEO del 16/11 sugiere Escazú, San José, pero el sitio no lo dice en ningún lado: no se puso.
+  Si es la dirección comercial, que figure en Contacto y se suma al JSON-LD.
 
 ## Cursos y blog (2026-11-10)
 

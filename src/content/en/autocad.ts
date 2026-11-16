@@ -1,6 +1,8 @@
 import { precioDe, visibles } from '../catalogo';
 import { P } from '../pendientes';
 import { publicarRangos } from '../sitio';
+import { rutaArticulo, rutaCurso } from '../rutas';
+import { SLUGS_BLOG, SLUGS_CURSOS } from '../slugs';
 import type { Pagina } from '../tipos';
 import { servicios } from './catalogo';
 
@@ -20,14 +22,30 @@ export const autocad: Pagina = {
   acento: 'AutoLISP',
   bajada:
     'The tasks your team repeats in AutoCAD can become a command. We build it on your own drawings and leave it running.',
-  resumen: [
-    'Vion’s AutoCAD automation turns the tasks your team repeats on every project into a command: setting up sheets, taking quantities to Excel, checking layers, styles, blocks and names, and exporting PDF, DWG and delivery packages.',
-    `It is for ${piloto.para.charAt(0).toLowerCase()}${piloto.para.slice(1)}`,
-    'Narrow, frequent tasks get **AutoLISP routines**, which run in the AutoCAD your team already uses, with no other program to install; longer workflows get a **plugin** or a separate tool.',
-    `The work is done as a ${piloto.nombre.toLowerCase()}: it takes ${piloto.plazo} and includes the automation running on a real workflow, a short manual with training, and hours measured before and after.`,
-    publicarRangos ? `The indicative investment is ${piloto.rango}, confirmed after the assessment.` : '',
-    'Each routine is built from Costa Rica on your own drawings and tested on them before we call it done.',
-  ].filter(Boolean).join(' '),
+  resumen: {
+    pregunta: 'What is AutoCAD automation with AutoLISP routines?',
+    texto: [
+      'AutoCAD automation means turning the tasks a team repeats the same way on every project into a command: setting up sheets, taking quantities to Excel, checking layers, styles, blocks and names, and exporting PDF, DWG and delivery packages.',
+      `Vion offers it to ${piloto.para.charAt(0).toLowerCase()}${piloto.para.slice(1)}`,
+      'Narrow, frequent tasks get **AutoLISP routines**, which run in the AutoCAD your team already uses, with no other program to install; longer workflows get a **plugin** or a separate tool.',
+      `The work is done as a ${piloto.nombre.toLowerCase()} of ${piloto.plazo}, built and tested on the firm’s real drawings.`,
+      'You receive the automation running on a real workflow, a short manual with training, and hours measured before and after.',
+      publicarRangos ? `The indicative investment is ${piloto.rango}, confirmed after the assessment.` : '',
+    ].filter(Boolean).join(' '),
+    ficha: [
+      { termino: 'For', valor: 'Firms that repeat the same AutoCAD tasks on every project' },
+      { termino: 'Timeline', valor: `${piloto.nombre} · ${piloto.plazo}` },
+      ...(publicarRangos ? [{ termino: 'Investment', valor: `${piloto.rango} (indicative)` }] : []),
+      { termino: 'Deliverables', valor: piloto.entregables.join('; ') },
+    ],
+    enlaces: [
+      `[Article: what to automate first in AutoCAD](${rutaArticulo(SLUGS_BLOG['autocad-que-automatizar'].en, 'en')})`,
+      '[BIM and AutoCAD consulting: the assessment](@consultoria)',
+      `[Free course: quantity takeoff and estimates with AI](${rutaCurso(SLUGS_CURSOS.cuantificacion.en, 'en')})`,
+      `[Free course: Claude + AutoCAD](${rutaCurso(SLUGS_CURSOS['claude-autocad'].en, 'en')})`,
+    ],
+  },
+  actualizado: '2026-11-16',
   acciones: [
     { texto: 'Request a quote on WhatsApp', destino: { whatsapp: 'Hi Vion. I would like a quote for an AutoCAD automation.' } },
     { texto: 'See how pricing works', destino: { pagina: 'autocad', ancla: 'quote' } },

@@ -185,7 +185,7 @@ export function Consultoria({ idioma }: { idioma: Idioma }) {
         </section>
 
         {/* 1b · En resumen: el bloque citable (qué es, para quién, qué incluye, plazo y precio) */}
-        {p.resumen && <Resumen texto={p.resumen} idioma={idioma} />}
+        {p.resumen && <Resumen resumen={p.resumen} actualizado={p.actualizado} idioma={idioma} />}
 
         {/* 2 · Diagnóstico: qué recibe y el cuadro de qué revisamos */}
         <section className="seccion tono-powder" id={diag.id} aria-labelledby={`t-${diag.id}`} data-seccion={diag.titulo}>

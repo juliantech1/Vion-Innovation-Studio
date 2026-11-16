@@ -1,7 +1,7 @@
 // Datos estructurados (schema.org) de cada página, armados desde su contenido: solo lo que la página muestra.
 // Sin reseñas, puntajes ni nada que no esté visible. `scripts/revisar-seo.mjs` revisa los tipos y sus campos.
 import { descripcionLeccion, imagenOg, imagenOgArticulo, imagenOgCurso, tituloLeccion } from './metadatos';
-import { ARTICULOS, CURSOS, cursoIndexable, interfazDe, leccionesDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, urlLeccion, type Articulo, type Curso, type IdPagina, type Idioma, type LeccionCurso } from '@/content';
+import { ARTICULOS, CURSOS, JULIAN, PAGINAS, anclaPersona, cursoIndexable, personaAutora, type Persona, interfazDe, leccionesDe, pagina, sitio, urlAbsoluta, urlArticulo, urlCurso, urlLeccion, type Articulo, type Curso, type IdPagina, type Idioma, type LeccionCurso } from '@/content';
 
 type Nodo = Record<string, unknown>;
 
@@ -13,23 +13,33 @@ const PAISES = {
   en: [{ '@type': 'Country', name: 'Costa Rica' }, { '@type': 'Country', name: 'United States' }],
 };
 const SABE = {
-  es: ['Inteligencia artificial', 'Agentes de IA', 'AutoCAD', 'Civil 3D', 'Revit', 'BIM', 'ISO 19650', 'AutoLISP', 'Desarrollo de software a la medida'],
-  en: ['Artificial intelligence', 'AI agents', 'AutoCAD', 'Civil 3D', 'Revit', 'BIM', 'ISO 19650', 'AutoLISP', 'Custom software development'],
+  es: ['Inteligencia artificial', 'Agentes de IA', 'AutoCAD', 'Civil 3D', 'Revit', 'BIM', 'ISO 19650', 'AutoLISP', 'Desarrollo de software a la medida', 'GEO (optimización para buscadores con IA)', 'Datos estructurados (schema.org)'],
+  en: ['Artificial intelligence', 'AI agents', 'AutoCAD', 'Civil 3D', 'Revit', 'BIM', 'ISO 19650', 'AutoLISP', 'Custom software development', 'GEO (generative engine optimization)', 'Structured data (schema.org)'],
 };
 
 /** El @id de una persona del equipo: su ficha en «Nosotros» de ese idioma. */
-const idPersona = (nombre: string, idioma: Idioma) =>
-  `${urlAbsoluta('nosotros', idioma)}#${nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const idPersona = (nombre: string, idioma: Idioma) => `${urlAbsoluta('nosotros', idioma)}#${anclaPersona(nombre)}`;
 
-/** Quien firma los artículos del blog (pedido de Julian del 2026-11-16): una persona del equipo, enlazada a «Nosotros». */
-const AUTOR_BLOG = 'Julian Alvarez';
-const autorBlog = (idioma: Idioma): Nodo => ({
+/** Una persona con su biografía (lo que muestra su ficha en «Nosotros»): fundador, cargo, temas y su página. */
+const nodoPersona = (x: Persona, idioma: Idioma): Nodo => ({
   '@type': 'Person',
-  '@id': idPersona(AUTOR_BLOG, idioma),
-  name: AUTOR_BLOG,
-  url: urlAbsoluta('nosotros', idioma),
+  '@id': idPersona(x.nombre, idioma),
+  name: x.nombre,
+  jobTitle: x.cargo[idioma],
+  description: x.bio[idioma],
+  url: `${urlAbsoluta('nosotros', idioma)}#${x.ancla}`,
+  knowsAbout: x.sabe[idioma],
   worksFor: { '@id': ID_ORGANIZACION },
 });
+
+/**
+ * Quien firma un artículo (decisión de Julian del 2026-11-16): Vion por defecto; Julian Alvarez (Person, enlazado a su
+ * ficha en «Nosotros») solo en los artículos de más oficio. Lo dice el campo `autor` de cada artículo.
+ */
+const autorDe = (a: Articulo, idioma: Idioma): Nodo => {
+  const persona = personaAutora(a.autor);
+  return persona ? nodoPersona(persona, idioma) : { '@id': ID_ORGANIZACION };
+};
 
 /** Vion: Organization + ProfessionalService, con contacto y zona de servicio. */
 export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo: string }[]): Nodo {
@@ -60,10 +70,24 @@ export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo:
     ],
     knowsLanguage: ['es', 'en'],
     knowsAbout: SABE[idioma],
+    founder: { '@type': 'Person', '@id': idPersona(JULIAN.nombre, idioma), name: JULIAN.nombre, url: `${urlAbsoluta('nosotros', idioma)}#${JULIAN.ancla}` },
     // Solo perfiles reales. LinkedIn de empresa, YouTube y el perfil de Google: casilleros en PENDIENTES-JULIAN.md.
     sameAs: [sitio.instagram],
+    // Los servicios de Vion: cada uno es el Service de su página (mismo @id), con o sin precio según la página.
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: idioma === 'es' ? 'Servicios de Vion' : 'Vion services',
+      itemListElement: PAGINAS.filter((id) => pagina(id, idioma).esquema.servicio).map((id) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', '@id': `${urlAbsoluta(id, idioma)}#servicio`, name: pagina(id, idioma).esquema.servicio!.nombre, url: urlAbsoluta(id, idioma) },
+      })),
+    },
     ...(personas?.length
-      ? { employee: personas.map((x) => ({ '@type': 'Person', '@id': idPersona(x.nombre, idioma), name: x.nombre, jobTitle: x.cargo, worksFor: { '@id': ID_ORGANIZACION } })) }
+      ? { employee: personas.map((x) =>
+          x.nombre === JULIAN.nombre
+            ? nodoPersona(JULIAN, idioma)
+            : { '@type': 'Person', '@id': idPersona(x.nombre, idioma), name: x.nombre, jobTitle: x.cargo, worksFor: { '@id': ID_ORGANIZACION } },
+        ) }
       : {}),
   };
 }
@@ -104,6 +128,7 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
     primaryImageOfPage: { '@type': 'ImageObject', url: imagenOg(id, idioma), width: 1200, height: 630 },
   };
   if (p.palabrasClave.length) web.keywords = p.palabrasClave.join(', ');
+  if (p.actualizado) web.dateModified = p.actualizado;
   if (conMigas) web.breadcrumb = { '@id': idMigas };
   if (p.esquema.tipo === 'ContactPage' || p.esquema.tipo === 'AboutPage') web.mainEntity = { '@id': ID_ORGANIZACION };
   // Cursos: la lista de los cursos publicados (con su página). Los que están en producción NO van: una lista de
@@ -188,7 +213,7 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
         url: urlArticulo(a[idioma].slug, idioma),
         datePublished: a.publicado,
         dateModified: a.actualizado ?? a.publicado,
-        author: autorBlog(idioma),
+        author: autorDe(a, idioma),
       })),
     });
   }
@@ -251,7 +276,7 @@ export function datosArticulo(a: Articulo, idioma: Idioma): Nodo[] {
       inLanguage: ui.lang,
       datePublished: a.publicado,
       dateModified: a.actualizado ?? a.publicado,
-      author: autorBlog(idioma),
+      author: autorDe(a, idioma),
       publisher: { '@id': ID_ORGANIZACION },
       isPartOf: { '@type': 'Blog', '@id': `${urlAbsoluta('blog', idioma)}#blog` },
       keywords: x.etiquetas.join(', '),

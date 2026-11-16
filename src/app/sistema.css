@@ -837,5 +837,11 @@ html { interpolate-size: allow-keywords; }
 
 /* «En resumen»: el bloque citable bajo la portada de los servicios (GEO). Sigue el tono de la portada, sin figura. */
 .resumen { padding-top: 0; }
-.resumen__cuerpo { grid-column: 1 / -1; display: grid; gap: 1rem; align-content: start; }
-.resumen .texto { max-width: 70ch; }
+.resumen__cuerpo { grid-column: 1 / span 7; display: grid; gap: 1rem; align-content: start; }
+.resumen .texto { max-width: 68ch; }
+.resumen__t { max-width: 30ch; }
+.resumen__fecha { font-family: var(--font-mono); font-size: var(--text-rotulo); letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--tinta-2); }
+.resumen__lado { grid-column: 9 / -1; display: grid; gap: 1rem; align-content: start; }
+.resumen__lado nav { display: grid; gap: 0.75rem; margin-top: 1rem; }
+.resumen__enlaces { display: grid; gap: 0.5rem; font-size: var(--text-s); }
+@media (max-width: 61.99rem) { .resumen__cuerpo, .resumen__lado { grid-column: 1 / -1; } .resumen__lado { margin-top: 2rem; } }

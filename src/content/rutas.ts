@@ -12,6 +12,7 @@ export const RUTAS: Record<IdPagina, Record<Idioma, string>> = {
   consultoria: { es: '/consultoria-ia-autocad-bim', en: '/en/ai-autocad-bim-consulting' },
   autocad: { es: '/automatizacion-autocad', en: '/en/autocad-automation' },
   apps: { es: '/apps-a-medida', en: '/en/custom-apps' },
+  geo: { es: '/auditoria-geo', en: '/en/geo-audit' },
   casos: { es: '/casos', en: '/en/work' },
   nosotros: { es: '/nosotros', en: '/en/about' },
   contacto: { es: '/contacto', en: '/en/contact' },

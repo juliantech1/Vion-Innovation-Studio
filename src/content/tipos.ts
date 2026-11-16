@@ -5,8 +5,8 @@
 export const IDIOMAS = ['es', 'en'] as const;
 export type Idioma = (typeof IDIOMAS)[number];
 
-/** Las 7 páginas del plan de Feme, Cursos y Blog (pedido de Julian del 2026-11-10), el aviso de privacidad y gracias. */
-export const PAGINAS = ['inicio', 'consultoria', 'autocad', 'apps', 'cursos', 'casos', 'nosotros', 'blog', 'contacto', 'privacidad', 'gracias'] as const;
+/** Las 7 páginas del plan de Feme, la auditoría GEO (2026-11-16), Cursos y Blog (pedido de Julian del 2026-11-10), el aviso de privacidad y gracias. */
+export const PAGINAS = ['inicio', 'consultoria', 'autocad', 'apps', 'geo', 'cursos', 'casos', 'nosotros', 'blog', 'contacto', 'privacidad', 'gracias'] as const;
 export type IdPagina = (typeof PAGINAS)[number];
 
 /**
@@ -156,6 +156,21 @@ export interface EsquemaPagina {
   personas?: { nombre: string; cargo: string }[];
 }
 
+/**
+ * «En resumen» (GEO, pedidos de Julian del 2026-11-16): bajo la portada de cada servicio, un pasaje de 130 a 170
+ * palabras que se sostiene solo (qué es, para quién, cómo se trabaja, cuánto tarda, qué se entrega), con la definición en
+ * la primera oración y armado solo con lo que la página ya dice. Es lo que un buscador con IA puede citar entero.
+ */
+export interface Resumen {
+  /** El H2, en forma de pregunta («¿Qué es …?»). */
+  pregunta: string;
+  texto: Texto;
+  /** Los datos clave en una ficha (para quién, plazo, inversión, qué se entrega). */
+  ficha: { termino: string; valor: Texto }[];
+  /** Enlaces a lo relacionado: otros servicios, artículos del blog y cursos. */
+  enlaces: Texto[];
+}
+
 export interface Pagina {
   id: IdPagina;
   /** Nombre corto: menú, migas y pie. */
@@ -175,12 +190,10 @@ export interface Pagina {
   /** Palabra del H1 que el diseño puede acentuar. */
   acento?: string;
   bajada: Texto;
-  /**
-   * El bloque «En resumen» bajo la portada de las páginas de servicio (GEO, pedido de Julian del 2026-11-16): 130 a 170
-   * palabras que se sostienen solas (qué es, para quién, qué incluye, plazo y precio orientativo), armadas solo con lo
-   * que la página ya dice. Es lo que un buscador con IA puede citar entero.
-   */
-  resumen?: Texto;
+  /** El bloque citable bajo la portada de las páginas de servicio (ver `Resumen`). */
+  resumen?: Resumen;
+  /** AAAA-MM-DD: la última revisión del contenido. Se ve en la página y va como `dateModified` en el JSON-LD. */
+  actualizado?: string;
   acciones?: Accion[];
   secciones: Seccion[];
   llamado?: Llamado;
@@ -248,8 +261,8 @@ export interface Piezas {
   };
   fig: string;
   nota: string;
-  /** El rótulo del bloque `resumen` de las páginas de servicio. */
-  resumen: string;
+  /** Los rótulos del bloque `resumen` de las páginas de servicio. */
+  resumen: { rotulo: string; datos: string; enlaces: string; actualizado: string };
   fig1: { paso: string; semana: string; mesAMes: string; plazo: string; rango: string; decide: [string, string]; opcional: string; alMes: string; pie: string; notaRangos: string };
   ultron: {
     ficha: { termino: string; valor: string; detalle?: string }[];
@@ -361,6 +374,9 @@ export interface PiezasBlog {
   actualizado: string;
   lectura: string;
   autor: string;
+  /** El cierre de un artículo firmado por una persona: «Sobre el autor» y el enlace a su ficha en Nosotros. */
+  sobreAutor: string;
+  verFicha: string;
   fuentes: string;
   fuentesNota: string;
   leer: string;
@@ -565,6 +581,8 @@ export interface Articulo {
   /** AAAA-MM-DD */
   publicado: string;
   actualizado?: string;
+  /** Quién lo firma: Vion por defecto; Julian solo en los artículos de más oficio (ver `autores.ts`). */
+  autor: 'vion' | 'julian';
   /** El servicio con el que se relaciona (enlace al final). */
   relacion: IdPagina;
   es: ArticuloIdioma;

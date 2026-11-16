@@ -195,3 +195,4 @@
 .portada--gracias .pi { min-height: min(100svh, 46rem); }
 .gracias__ok { display: inline-flex; align-items: center; gap: 0.6em; }
 .gracias__ok::before { content: ""; width: 0.5rem; height: 0.5rem; background: var(--color-powder); transform: rotate(45deg); }
+.persona { scroll-margin-top: calc(var(--spacing-cabecera, 4rem) + 1.5rem); }

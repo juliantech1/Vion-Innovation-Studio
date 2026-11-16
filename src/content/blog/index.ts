@@ -1,5 +1,6 @@
 // El blog de Vion: los artículos, en español y en inglés. Cada uno en su archivo (texto en Markdown mínimo, ver
-// `CuerpoArticulo` en tipos.ts) y sus direcciones en `slugs.ts`. Autor: Vion (no se inventan personas).
+// `CuerpoArticulo` en tipos.ts) y sus direcciones en `slugs.ts`. Autor: Vion por defecto; Julian Alvarez solo en los de
+// más oficio (campo `autor`, ver `autores.ts`). No se inventan personas.
 // Nada inventado: cifras, clientes y citas, solo si son reales; lo que se afirma de una norma lleva su fuente al pie.
 import { SLUGS_BLOG } from '../slugs';
 import type { Articulo, ArticuloIdioma, Idioma } from '../tipos';

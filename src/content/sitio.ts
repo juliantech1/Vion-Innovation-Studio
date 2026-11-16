@@ -9,9 +9,10 @@ export const sitio = {
   nombresAlternos: ['Vion Studio', 'Vion Innovation Studio'],
   url: 'https://vion-studio.com',
   correo: 'consultorias@vion-studio.com',
-  whatsapp: '+506 8688 3553',
-  whatsappE164: '+50686883553',
-  whatsappEnlace: 'https://wa.me/50686883553',
+  // El número confirmado por Julian el 2026-11-16 (el mismo de docs/marca/DESIGN.md y de la firma de Orión).
+  whatsapp: '+506 8678 3553',
+  whatsappE164: '+50686783553',
+  whatsappEnlace: 'https://wa.me/50686783553',
   instagram: 'https://www.instagram.com/vion_int/',
   instagramUsuario: '@vion_int',
   pais: 'CR',

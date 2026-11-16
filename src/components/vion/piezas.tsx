@@ -1,8 +1,9 @@
 // Las piezas base del sistema (ver DISENO.md). Todas son componentes de servidor: HTML y CSS, sin JavaScript.
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { enlaceWhatsapp, piezasDe, ruta, sitio, type Accion, type Idioma, type Pregunta as DatosPregunta } from '@/content';
+import { enlaceWhatsapp, piezasDe, ruta, sitio, type Accion, type Resumen as DatosResumen, type Idioma, type Pregunta as DatosPregunta } from '@/content';
 import { Acentuado, Texto } from '@/components/sitio/Texto';
+import { fechaLarga } from '@/components/paginas/fechas';
 
 /** La flecha doble de los botones y paneles: una sale, la otra entra. */
 export function Flecha({ diagonal }: { diagonal?: boolean }) {
@@ -178,19 +179,37 @@ export function Nube({ children, largo }: { children: ReactNode; largo: number }
 }
 
 /**
- * «En resumen»: el bloque citable bajo la portada de una página de servicio (qué es, para quién, qué incluye, plazo y
- * precio orientativo). Sigue el tono de la portada, así se lee como su continuación y no como una sección nueva.
+ * «En resumen»: el bloque citable bajo la portada de una página de servicio. A la izquierda la pregunta (H2) y el pasaje
+ * que se sostiene solo; a la derecha la ficha con los datos clave, lo relacionado y la fecha de la última revisión.
+ * Sigue el tono de la portada, así se lee como su continuación y no como una sección nueva.
  */
-export function Resumen({ texto, idioma }: { texto: string; idioma: Idioma }) {
-  const rotulo = piezasDe(idioma).resumen;
+export function Resumen({ resumen, actualizado, idioma }: { resumen: DatosResumen; actualizado?: string; idioma: Idioma }) {
+  const t = piezasDe(idioma).resumen;
+  const tx = (s: string) => <Texto idioma={idioma}>{s}</Texto>;
   return (
-    <section className="seccion resumen tono-raven" id="resumen" aria-labelledby="t-resumen" data-seccion={rotulo}>
+    <section className="seccion resumen tono-raven" id="resumen" aria-labelledby="t-resumen" data-seccion={t.rotulo}>
       <div className="marco reticula">
         <div className="resumen__cuerpo">
-          <h2 className="rotulo" id="t-resumen">{rotulo}</h2>
-          <p className="texto" data-entra>
-            <Texto idioma={idioma}>{texto}</Texto>
-          </p>
+          <p className="rotulo">{t.rotulo}</p>
+          <h2 className="sub resumen__t" id="t-resumen">{resumen.pregunta}</h2>
+          <p className="texto" data-entra>{tx(resumen.texto)}</p>
+          {actualizado && (
+            <p className="resumen__fecha">
+              {t.actualizado} <time dateTime={actualizado}>{fechaLarga(actualizado, idioma)}</time>
+            </p>
+          )}
+        </div>
+        <div className="resumen__lado">
+          <h3 className="rotulo">{t.datos}</h3>
+          <Ficha filas={resumen.ficha.map((f) => ({ termino: f.termino, valor: tx(f.valor) }))} />
+          {resumen.enlaces.length > 0 && (
+            <nav aria-labelledby="t-resumen-enlaces">
+              <h3 className="rotulo" id="t-resumen-enlaces">{t.enlaces}</h3>
+              <ul className="resumen__enlaces texto">
+                {resumen.enlaces.map((e) => <li key={e}>{tx(e)}</li>)}
+              </ul>
+            </nav>
+          )}
         </div>
       </div>
     </section>

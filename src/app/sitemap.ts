@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...indexables(idioma).map((p) => ({
       url: urlAbsoluta(p.id, idioma),
       changeFrequency: 'monthly' as const,
-      priority: p.id === 'inicio' ? 1 : ['consultoria', 'autocad', 'apps'].includes(p.id) ? 0.9 : 0.7,
+      priority: p.id === 'inicio' ? 1 : ['consultoria', 'autocad', 'apps', 'geo'].includes(p.id) ? 0.9 : 0.7,
       alternates: { languages: alternativas(p.id) },
     })),
     ...ARTICULOS.map((a) => ({

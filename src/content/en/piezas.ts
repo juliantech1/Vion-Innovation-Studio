@@ -36,7 +36,7 @@ export const piezas: Piezas = {
   },
   fig: 'Fig.',
   nota: 'Note',
-  resumen: 'In short',
+  resumen: { rotulo: 'In short', datos: 'Key facts', enlaces: 'Further reading', actualizado: 'Updated' },
   fig1: {
     paso: 'Step',
     semana: 'Week',
@@ -353,7 +353,7 @@ export const piezas: Piezas = {
   blog: {
     fichaTitulo: 'The blog',
     ficha: [
-      { termino: 'Written by', valor: 'Vion' },
+      { termino: 'Written by', valor: 'Vion and Julian Alvarez' },
       { termino: 'Topics', valor: 'ISO 19650, AutoCAD, AI agents' },
       { termino: 'Languages', valor: 'Spanish and English' },
     ],
@@ -362,6 +362,8 @@ export const piezas: Piezas = {
     actualizado: 'Updated',
     lectura: 'Reading time',
     autor: 'Author',
+    sobreAutor: 'About the author',
+    verFicha: 'See the profile on the About page',
     fuentes: 'Sources',
     fuentesNota: 'Checked on {fecha}. What those pages say may change; if you find something different, let us know.',
     leer: 'Read',

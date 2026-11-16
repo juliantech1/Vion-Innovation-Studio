@@ -1,9 +1,10 @@
 import { P } from '../pendientes';
+import { JULIAN } from '../autores';
 import type { Pagina } from '../tipos';
 
 // Names and roles: the ones on the previous site (vion-studio.com/about). Julian writes or confirms the bios.
 const personas = [
-  { nombre: 'Julian Alvarez', cargo: 'CEO · software development and AI', bio: P.bioJulian },
+  { nombre: 'Julian Alvarez', cargo: 'CEO · software development and AI', bio: `${JULIAN.bio.en} ${P.bioJulian}` },
   { nombre: 'Maite Alvarez', cargo: 'COO · engineering and operations', bio: P.bioMaite },
 ];
 
@@ -101,6 +102,11 @@ export const nosotros: Pagina = {
           titulo: 'Custom apps and software with AI',
           texto: 'For companies that need a tool of their own, web or mobile.',
           enlace: { pagina: 'apps' },
+        },
+        {
+          titulo: 'GEO audit for AI search engines',
+          texto: 'For companies that want ChatGPT, Perplexity and Google’s AI features to read and cite their website.',
+          enlace: { pagina: 'geo' },
         },
       ],
     },

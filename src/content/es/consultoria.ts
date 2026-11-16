@@ -1,5 +1,7 @@
 import { pasoDe, precioDe, visibles } from '../catalogo';
 import { publicarRangos } from '../sitio';
+import { rutaArticulo, rutaCurso } from '../rutas';
+import { SLUGS_BLOG, SLUGS_CURSOS } from '../slugs';
 import type { Pagina } from '../tipos';
 import { servicios } from './catalogo';
 
@@ -24,15 +26,30 @@ export const consultoria: Pagina = {
   acento: 'BIM',
   bajada:
     'Revisamos cómo dibuja, modela y entrega su equipo, ordenamos los estándares y automatizamos lo que se repite. Con AutoCAD, Civil 3D y Revit, para firmas de Costa Rica.',
-  resumen: [
-    'La consultoría BIM y AutoCAD de Vion revisa cómo dibuja, modela y entrega su equipo, ordena los estándares y automatiza lo que se repite.',
-    'Es para firmas de ingeniería y arquitectura de Costa Rica que trabajan con AutoCAD, Civil 3D o Revit.',
-    `Empieza con el **${d.nombre.toLowerCase()}**, que dura ${d.plazo} y se hace sobre los archivos y proyectos reales de la firma.`,
-    'Incluye un mapa de sus flujos CAD/BIM, la lista de tareas automatizables con las horas estimadas y un informe con el ahorro esperado y una hoja de ruta.',
-    publicarRangos ? `La inversión orientativa del diagnóstico es de ${d.rango} y se confirma al definir el alcance.` : '',
-    `Después, si conviene, sigue un ${servicios.piloto.nombre.toLowerCase()} (${servicios.piloto.plazo}${publicarRangos ? `, ${servicios.piloto.rango}` : ''}) y una ${servicios.soporte.nombre.toLowerCase()}${publicarRangos ? ` (${servicios.soporte.rango})` : ''}.`,
-    'En estándares, el orden se alinea con la serie ISO 19650, adoptada en Costa Rica como INTE/ISO 19650. Vion no es un ente certificador.',
-  ].filter(Boolean).join(' '),
+  resumen: {
+    pregunta: '¿Qué es la consultoría BIM y AutoCAD de Vion?',
+    texto: [
+      'La consultoría BIM y AutoCAD de Vion es un servicio para ordenar los estándares de dibujo y modelado de una firma y automatizar las tareas que su equipo repite.',
+      'Es para firmas de ingeniería y arquitectura de Costa Rica que trabajan con AutoCAD, Civil 3D o Revit.',
+      `Se trabaja de menor a mayor: primero un **${d.nombre.toLowerCase()}** de ${d.plazo} sobre los archivos y proyectos reales de la firma; después, si conviene, un ${servicios.piloto.nombre.toLowerCase()} (${servicios.piloto.plazo}) y una ${servicios.soporte.nombre.toLowerCase()}.`,
+      'El diagnóstico entrega un mapa de los flujos CAD/BIM, la lista de tareas automatizables con las horas estimadas y un informe con el ahorro esperado y una hoja de ruta.',
+      publicarRangos ? `La inversión orientativa del diagnóstico es de ${d.rango} y se confirma al definir el alcance.` : '',
+      'En estándares, el orden se alinea con la serie ISO 19650, adoptada en Costa Rica como INTE/ISO 19650. Vion no es un ente certificador.',
+    ].filter(Boolean).join(' '),
+    ficha: [
+      { termino: 'Para quién', valor: 'Firmas de ingeniería y arquitectura que usan AutoCAD, Civil 3D o Revit' },
+      { termino: 'Primer paso', valor: `${d.nombre} · ${d.plazo}` },
+      ...(publicarRangos ? [{ termino: 'Inversión', valor: `${d.rango} (orientativa)` }] : []),
+      { termino: 'Se entrega', valor: d.entregables.join('; ') },
+    ],
+    enlaces: [
+      `[Artículo: cómo nombrar archivos con ISO 19650](${rutaArticulo(SLUGS_BLOG['iso-19650-nombres'].es, 'es')})`,
+      '[Automatización de AutoCAD con rutinas AutoLISP](@autocad)',
+      `[Curso gratis: Claude + AutoCAD](${rutaCurso(SLUGS_CURSOS['claude-autocad'].es, 'es')})`,
+      '[Auditoría GEO para su sitio web](@geo)',
+    ],
+  },
+  actualizado: '2026-11-16',
   acciones: [
     { texto: 'Pedir diagnóstico por WhatsApp', destino: { whatsapp: 'Hola, Vion. Quiero pedir un diagnóstico de automatización.' } },
     { texto: 'Ver el proceso de trabajo', destino: { pagina: 'consultoria', ancla: 'proceso' } },
