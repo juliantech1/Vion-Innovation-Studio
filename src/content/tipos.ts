@@ -119,6 +119,8 @@ export interface CasoCliente {
   problema: Texto;
   solucion: Texto;
   resultado: Texto;
+  /** Qué hace la IA en la empresa, punto por punto (lista citable, sin cifras). */
+  ia: string[];
   /** El servicio de Vion al que corresponde (enlace y `about`). */
   servicio: IdPagina;
   /** AAAA-MM-DD: cuándo se publicó el caso en el sitio (no la fecha del proyecto). */
@@ -631,7 +633,7 @@ export interface PiezasCasos {
   figuras: Record<'ultron' | 'topspin' | 'realfood' | 'viazo', FiguraDibujada>;
   /** Cómo va a ser un caso de cliente cuando exista: la ficha vacía con su estado. */
   /** Los rótulos de un caso de cliente (`SeccionCaso`). */
-  caso: { rotulo: string; problema: string; solucion: string; resultado: string; ficha: string; estado: string; cliente: string; rubro: string; servicio: string };
+  caso: { rotulo: string; problema: string; solucion: string; resultado: string; ia: string; ficha: string; estado: string; cliente: string; rubro: string; servicio: string };
 }
 
 export interface PiezasNosotros {

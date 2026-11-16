@@ -13,6 +13,13 @@ export const rutaCaso: CasoCliente = {
     'Vion built a CRM with GPS on the buses, to know where each bus is and when it passes each stop, and implemented artificial intelligence in the company.',
   resultado:
     'Checkers are no longer needed to control when the buses pass the stops: the system provides that control.',
+  ia: [
+    'It evaluates the routes.',
+    'It proposes improvements to operations.',
+    'It keeps the company’s finances.',
+    'It produces the bus reports.',
+    'It helps optimize the service.',
+  ],
   servicio: 'apps',
   publicado: '2026-11-16',
   pendientes: [P.cifrasRuta],

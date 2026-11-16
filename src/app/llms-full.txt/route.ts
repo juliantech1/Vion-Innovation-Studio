@@ -45,7 +45,7 @@ function seccionEnTexto(s: Seccion): string[] {
       break;
     case 'caso':
       for (const c of s.casos) {
-        l.push(`#### ${c.titulo}`, '', `- ${c.cliente} (${c.rubro})`, `- ${plano(c.problema)}`, `- ${plano(c.solucion)}`, `- ${plano(c.resultado)}`, '');
+        l.push(`#### ${c.titulo}`, '', `- ${c.cliente} (${c.rubro})`, `- ${plano(c.problema)}`, `- ${plano(c.solucion)}`, ...c.ia.map((x) => `  - ${plano(x)}`), `- ${plano(c.resultado)}`, '');
       }
       for (const x of s.cierre ?? []) if (plano(x)) l.push(plano(x));
       break;

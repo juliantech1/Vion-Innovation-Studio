@@ -17,6 +17,15 @@ export const rutaCaso: CasoCliente = {
     'Vion le hizo un CRM con GPS en los buses, para saber por dónde va cada bus y cuándo pasa por cada parada, e implementó inteligencia artificial en la empresa.',
   resultado:
     'Ya no hacen falta checadores para controlar el paso de los buses por las paradas: ese control lo da el sistema.',
+  // Lo que hace la IA, en palabras de Julian (2026-11-16): «evalúa rutas, mejora el funcionamiento, lleva finanzas, crea
+  // reportes de los buses, optimiza».
+  ia: [
+    'Evalúa las rutas.',
+    'Propone mejoras en la operación.',
+    'Lleva las finanzas de la empresa.',
+    'Arma los reportes de los buses.',
+    'Ayuda a optimizar el servicio.',
+  ],
   servicio: 'apps',
   publicado: '2026-11-16',
   pendientes: [P.cifrasRuta],

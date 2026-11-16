@@ -19,7 +19,7 @@ function listas(idioma: Idioma): string[] {
   const casos = pagina('casos', idioma).secciones.flatMap((s) => (s.tipo === 'caso' ? s.casos : []));
   if (casos.length) {
     lineas.push('', t.casos, '');
-    for (const c of casos) lineas.push(`- [${c.titulo}](${urlAbsoluta('casos', idioma)}#${c.id}): ${c.problema} ${c.solucion} ${c.resultado}`);
+    for (const c of casos) lineas.push(`- [${c.titulo}](${urlAbsoluta('casos', idioma)}#${c.id}): ${c.problema} ${c.solucion} ${c.ia.join(' ')} ${c.resultado}`);
   }
   lineas.push('', t.blog, '');
   for (const a of ARTICULOS) lineas.push(`- [${a[idioma].titulo}](${urlArticulo(a[idioma].slug, idioma)}): ${a[idioma].descripcion}`);

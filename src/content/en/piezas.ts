@@ -223,6 +223,7 @@ export const piezas: Piezas = {
       problema: 'The problem',
       solucion: 'What Vion did',
       resultado: 'The result',
+      ia: 'What the AI does',
       ficha: 'Case sheet',
       estado: 'Published with permission',
       cliente: 'Client',

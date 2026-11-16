@@ -227,7 +227,7 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
       '@id': `${url}#${c.id}`,
       url: `${url}#${c.id}`,
       headline: c.titulo,
-      description: `${c.problema} ${c.solucion} ${c.resultado}`,
+      description: `${c.problema} ${c.solucion} ${idioma === 'es' ? 'Lo que hace la IA' : 'What the AI does'}: ${c.ia.map((x) => x.replace(/\.$/, '').replace(/^It /, '').toLowerCase()).join('; ')}. ${c.resultado}`,
       articleSection: idioma === 'es' ? 'Casos de clientes' : 'Client cases',
       inLanguage: ui.lang,
       datePublished: c.publicado,

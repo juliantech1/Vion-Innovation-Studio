@@ -87,8 +87,8 @@ en el JSON-LD**: el `sameAs` de `src/seo/jsonld.ts` lleva solo lo real (hoy Inst
 - **Caso Ruta 51-53 (2026-11-16).** Publicado con permiso en `/casos#ruta-51-53` y `/en/work#ruta-51-53`, con fecha de
   publicación 2026-11-16 en el JSON-LD (si sale otro día, se cambia `publicado` en `casos.ts`). Dos preguntas:
   ¿**Viazo** («rastreo de flotas de buses públicos, con una app GPS para las rutas 51 y 53», en la misma página) es el
-  sistema que se hizo para Ruta 51-53? Si es así, conviene decirlo y enlazar uno con el otro. Y la IA que se implementó
-  en la empresa: si se puede contar qué hace (sin datos privados), el caso gana mucho.
+  sistema que se hizo para Ruta 51-53? Si es así, conviene decirlo y enlazar uno con el otro. Lo que hace la IA en la empresa
+  ya está en el caso (Julian, 2026-11-16), como lista y sin cifras.
 
 ## Cursos y blog (2026-11-10)
 

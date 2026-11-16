@@ -211,6 +211,7 @@ export function Casos({ idioma }: { idioma: Idioma }) {
                   filas={[
                     { termino: t.caso.problema, valor: tx(c.problema) },
                     { termino: t.caso.solucion, valor: tx(c.solucion) },
+                    { termino: t.caso.ia, valor: <ul className="caso__ia">{c.ia.map((x) => <li key={x}>{tx(x)}</li>)}</ul> },
                     { termino: t.caso.resultado, valor: tx(c.resultado) },
                   ]}
                 />
