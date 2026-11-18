@@ -26,7 +26,7 @@ export const interfaz: Interfaz = {
     formulario: 'Ver el formulario y los datos de contacto',
   },
   etiquetas: { paso: 'Paso {n} de {total}', plazo: 'Plazo', rango: 'Inversión orientativa', entregables: 'Lo que recibe' },
-  contacto: { whatsapp: 'WhatsApp', correo: 'Correo', instagram: 'Instagram' },
+  contacto: { whatsapp: 'WhatsApp', correo: 'Correo', instagram: 'Instagram', youtube: 'Canal de Vion' },
   noEncontrada: {
     titulo: 'Página no encontrada | Vion',
     descripcion:

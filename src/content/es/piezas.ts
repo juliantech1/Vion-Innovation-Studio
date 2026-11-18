@@ -229,6 +229,7 @@ export const piezas: Piezas = {
       cliente: 'Cliente',
       rubro: 'Rubro',
       servicio: 'Servicio',
+      sistema: 'Sistema',
     },
   },
   nosotros: {

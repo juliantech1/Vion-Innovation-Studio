@@ -19,7 +19,7 @@ function listas(idioma: Idioma): string[] {
   const casos = pagina('casos', idioma).secciones.flatMap((s) => (s.tipo === 'caso' ? s.casos : []));
   if (casos.length) {
     lineas.push('', t.casos, '');
-    for (const c of casos) lineas.push(`- [${c.titulo}](${urlAbsoluta('casos', idioma)}#${c.id}): ${c.problema} ${c.solucion} ${c.ia.join(' ')} ${c.resultado}`);
+    for (const c of casos) lineas.push(`- [${c.titulo}](${urlAbsoluta('casos', idioma)}#${c.id}): ${[c.problema, c.solucion, ...c.ia, c.resultado].join(' ').replace(/\[([^\]]+)\]\([^)\s]+\)/g, '$1')}`);
   }
   lineas.push('', t.blog, '');
   for (const a of ARTICULOS) lineas.push(`- [${a[idioma].titulo}](${urlArticulo(a[idioma].slug, idioma)}): ${a[idioma].descripcion}`);
@@ -41,7 +41,7 @@ export function GET() {
     '',
     `> ${pagina('inicio', 'es').bajada}`,
     '',
-    `Vion es un estudio de IA de ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario}.`,
+    `Vion es un estudio de IA de ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario} · YouTube ${sitio.youtube}.`,
     'El sitio está en español de Costa Rica (en la raíz) y en inglés (bajo /en), con las mismas páginas. Los precios publicados son orientativos y se confirman después del diagnóstico. La auditoría GEO se cotiza para cada sitio.',
     `Texto completo de las páginas y los artículos: ${sitio.url}/llms-full.txt`,
     '',
@@ -50,7 +50,7 @@ export function GET() {
     '',
     `> ${pagina('inicio', 'en').bajada}`,
     '',
-    `Vion is an AI studio based in ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contact: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario}. Prices are indicative and are confirmed after the assessment; the GEO audit is quoted per site. Full text: ${sitio.url}/llms-full.txt`,
+    `Vion is an AI studio based in ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contact: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario} · YouTube ${sitio.youtube}. Prices are indicative and are confirmed after the assessment; the GEO audit is quoted per site. Full text: ${sitio.url}/llms-full.txt`,
     '',
     ...listas('en'),
   ];

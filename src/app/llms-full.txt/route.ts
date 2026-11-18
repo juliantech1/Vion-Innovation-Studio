@@ -45,7 +45,7 @@ function seccionEnTexto(s: Seccion): string[] {
       break;
     case 'caso':
       for (const c of s.casos) {
-        l.push(`#### ${c.titulo}`, '', `- ${c.cliente} (${c.rubro})`, `- ${plano(c.problema)}`, `- ${plano(c.solucion)}`, ...c.ia.map((x) => `  - ${plano(x)}`), `- ${plano(c.resultado)}`, '');
+        l.push(`#### ${c.titulo}`, '', `- ${c.cliente} (${c.rubro})`, ...c.datos.map((d) => `- ${d.termino}: ${d.valor}`), `- ${plano(c.problema)}`, `- ${plano(c.solucion)}`, ...c.ia.map((x) => `  - ${plano(x)}`), `- ${plano(c.resultado)}`, '');
       }
       for (const x of s.cierre ?? []) if (plano(x)) l.push(plano(x));
       break;
@@ -100,12 +100,12 @@ export function GET() {
   const lineas = [
     `# ${sitio.nombre} (${sitio.nombresAlternos.join(', ')}): texto completo`,
     '',
-    `> Vion es un estudio de IA de ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario}. Resumen corto y lista de páginas: ${sitio.url}/llms.txt`,
+    `> Vion es un estudio de IA de ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contacto: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · Instagram ${sitio.instagramUsuario} · YouTube ${sitio.youtube}. Resumen corto y lista de páginas: ${sitio.url}/llms.txt`,
     '',
     ...idiomaEnTexto('es'),
     '# English version (/en)',
     '',
-    `> Vion is an AI studio based in Costa Rica. Contact: ${sitio.correo} · WhatsApp ${sitio.whatsapp}.`,
+    `> Vion is an AI studio based in ${sitio.direccion.localidad}, ${sitio.direccion.region}, Costa Rica. Contact: ${sitio.correo} · WhatsApp ${sitio.whatsapp} · YouTube ${sitio.youtube}.`,
     '',
     ...idiomaEnTexto('en'),
   ];

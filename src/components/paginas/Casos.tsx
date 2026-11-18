@@ -225,6 +225,8 @@ export function Casos({ idioma }: { idioma: Idioma }) {
                   filas={[
                     { termino: t.caso.cliente, valor: c.cliente },
                     { termino: t.caso.rubro, valor: c.rubro },
+                    ...c.datos.map((d) => ({ termino: d.termino, valor: d.valor })),
+                    ...(c.sistema ? [{ termino: t.caso.sistema, valor: <a href={`#${c.sistema.ancla}`}>{c.sistema.nombre}</a> }] : []),
                     { termino: t.caso.servicio, valor: <Link href={ruta(c.servicio, idioma)}>{pagina(c.servicio, idioma).esquema.servicio?.nombre ?? pagina(c.servicio, idioma).nav}</Link> },
                   ]}
                 />

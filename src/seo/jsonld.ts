@@ -5,6 +5,9 @@ import { ARTICULOS, CURSOS, JULIAN, PAGINAS, anclaPersona, cursoIndexable, perso
 
 type Nodo = Record<string, unknown>;
 
+/** Texto plano para el JSON-LD: sin el marcado de enlaces ni negritas del contenido. */
+const plano = (s: string) => s.replace(/\[([^\]]+)\]\([^)\s]+\)/g, '$1').replace(/\*\*([^*]+)\*\*/g, '$1');
+
 export const ID_ORGANIZACION = `${sitio.url}/#organizacion`;
 export const ID_SITIO = `${sitio.url}/#sitio`;
 
@@ -72,7 +75,7 @@ export function organizacion(idioma: Idioma, personas?: { nombre: string; cargo:
     knowsAbout: SABE[idioma],
     founder: { '@type': 'Person', '@id': idPersona(JULIAN.nombre, idioma), name: JULIAN.nombre, url: `${urlAbsoluta('nosotros', idioma)}#${JULIAN.ancla}` },
     // Solo perfiles reales. LinkedIn de empresa, YouTube y el perfil de Google: casilleros en PENDIENTES-JULIAN.md.
-    sameAs: [sitio.instagram],
+    sameAs: [sitio.instagram, sitio.youtube],
     // Los servicios de Vion: cada uno es el Service de su página (mismo @id), con o sin precio según la página.
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -227,7 +230,7 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
       '@id': `${url}#${c.id}`,
       url: `${url}#${c.id}`,
       headline: c.titulo,
-      description: `${c.problema} ${c.solucion} ${idioma === 'es' ? 'Lo que hace la IA' : 'What the AI does'}: ${c.ia.map((x) => x.replace(/\.$/, '').replace(/^It /, '').toLowerCase()).join('; ')}. ${c.resultado}`,
+      description: `${plano(c.problema)} ${plano(c.solucion)} ${idioma === 'es' ? 'Lo que hace la IA' : 'What the AI does'}: ${c.ia.map((x) => x.replace(/\.$/, '').replace(/^It /, '').toLowerCase()).join('; ')}. ${c.resultado}`,
       articleSection: idioma === 'es' ? 'Casos de clientes' : 'Client cases',
       inLanguage: ui.lang,
       datePublished: c.publicado,
@@ -237,7 +240,12 @@ export function datosEstructurados(id: IdPagina, idioma: Idioma): Nodo[] {
       publisher: { '@id': ID_ORGANIZACION },
       isPartOf: { '@id': `${url}#pagina` },
       about: [cliente, { '@type': 'Service', '@id': `${urlAbsoluta(c.servicio, idioma)}#servicio`, name: pagina(c.servicio, idioma).esquema.servicio?.nombre }],
-      mentions: [cliente],
+      mentions: [
+        cliente,
+        ...(c.sistema
+          ? [{ '@type': 'SoftwareApplication', name: c.sistema.nombre, applicationCategory: 'BusinessApplication', url: `${url}#${c.sistema.ancla}`, creator: { '@id': ID_ORGANIZACION } }]
+          : []),
+      ],
     });
   }
 

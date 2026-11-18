@@ -27,7 +27,6 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 | `{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` |
 | `{{resultado medido del diagnóstico de ejemplo}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` (el diagnóstico sobre el plano de muestra de Autodesk) |
 | `{{primer caso de AutoCAD con permiso: firma, flujo automatizado y horas antes y después}}` | `/automatizacion-autocad` `/en/autocad-automation` | `autocad.ts` (el primer caso publicado, Ruta 51-53, es de software con IA y ya está enlazado ahí) |
-| `{{cifras del caso Ruta 51-53, si se publican: cantidad de buses, checadores que ya no hacen falta y desde cuándo funciona}}` | `/casos` `/en/work` | `casos.ts` (ficha del caso; el texto se sostiene sin cifras) |
 | `{{resultados medidos de Ultron, si se publican}}` | `/casos` `/en/work` | `casos.ts` |
 | `{{captura real de Ultron en modo demo, sin datos privados}}` | `/casos` `/en/work` | `casos.ts` (al tenerla: `imagen` del proyecto, con alt y medidas) |
 | `{{estado de Top Spin y qué hace la app}}` | `/casos` `/en/work` | `casos.ts` |
@@ -36,8 +35,6 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 | `{{estado de RealFood y qué parte construyó Vion}}` | `/casos` `/en/work` | `casos.ts` |
 | `{{resultados medidos de RealFood, si se publican}}` | `/casos` `/en/work` | `casos.ts` |
 | `{{captura real de RealFood}}` | `/casos` `/en/work` | `casos.ts` |
-| `{{estado de Viazo}}` | `/casos` `/en/work` | `casos.ts` |
-| `{{resultados medidos de Viazo, si se publican}}` | `/casos` `/en/work` | `casos.ts` |
 | `{{captura real de Viazo}}` | `/casos` `/en/work` | `casos.ts` |
 
 ## Decisiones (no son casilleros, pero conviene confirmarlas antes de publicar)
@@ -67,11 +64,13 @@ se vuelve a correr la revisión. Antes de publicar el dominio: `node scripts/rev
 ## Buscadores con IA (GEO, 2026-11-16)
 
 Datos que faltan para que los buscadores con IA reconozcan a Vion como entidad. **No van como casillero en la página ni
-en el JSON-LD**: el `sameAs` de `src/seo/jsonld.ts` lleva solo lo real (hoy Instagram). Al tenerlos, se suman ahí.
+en el JSON-LD**: el `sameAs` de `src/seo/jsonld.ts` lleva solo lo real (hoy Instagram y YouTube). Al tenerlos, se suman ahí.
 
 - `{{perfil de LinkedIn de la empresa}}` → `sameAs` de Organization.
-- `{{canal de YouTube de Vion}}` → `sameAs` de Organization.
-- `{{perfil de empresa de Google (Google Business Profile)}}` → `sameAs` de Organization.
+- `{{perfil de empresa de Google (Google Business Profile)}}` → `sameAs` de Organization. Julian lo creó («VION Studio»,
+  2026-11-17) y está en verificación (unos 5 días): cuando tenga URL pública, se suma en `src/seo/jsonld.ts`.
+- YouTube: sumado el 2026-11-17 (`sitio.youtube`): `sameAs`, pie, Contacto y llms. Los videos de los cursos están en
+  R2, no en el canal; si se suben ahí, se enlaza el canal desde Cursos.
 - **Autor del blog (decidido el 2026-11-16).** Firma Vion por defecto; Julian Alvarez solo en los de más oficio (hoy
   «Cómo nombrar archivos con ISO 19650» y «Qué automatizar primero en AutoCAD»). Es el campo `autor` de cada artículo
   (`vion` o `julian`, ver `src/content/autores.ts`). Su bio corta en `/nosotros` dice solo lo confirmado (fundador y CEO;
@@ -84,11 +83,9 @@ en el JSON-LD**: el `sameAs` de `src/seo/jsonld.ts` lleva solo lo real (hoy Inst
   JSON-LD (`addressLocality`, `addressRegion`, `addressCountry`). Si se publica la calle, se suma en `sitio.ts`.
 - **Formulario:** «Auditoría GEO» ya es una opción del servicio (Ventas de Ultron lo recibe como texto libre). El
   formulario no elige una opción según el enlace de llegada; si se quiere eso, es un cambio aparte.
-- **Caso Ruta 51-53 (2026-11-16).** Publicado con permiso en `/casos#ruta-51-53` y `/en/work#ruta-51-53`, con fecha de
-  publicación 2026-11-16 en el JSON-LD (si sale otro día, se cambia `publicado` en `casos.ts`). Dos preguntas:
-  ¿**Viazo** («rastreo de flotas de buses públicos, con una app GPS para las rutas 51 y 53», en la misma página) es el
-  sistema que se hizo para Ruta 51-53? Si es así, conviene decirlo y enlazar uno con el otro. Lo que hace la IA en la empresa
-  ya está en el caso (Julian, 2026-11-16), como lista y sin cifras.
+- **Caso Ruta 51-53 (2026-11-16 y 17).** Publicado con permiso en `/casos#ruta-51-53` y `/en/work#ruta-51-53`, con
+  fecha de publicación 2026-11-16 en el JSON-LD (si sale otro día, se cambia `publicado` en `casos.ts`). Cifras de
+  Julian: 40 buses y 5 checadores. Viazo es el sistema del caso: las dos fichas se enlazan y el Article lo menciona.
 
 ## Cursos y blog (2026-11-10)
 

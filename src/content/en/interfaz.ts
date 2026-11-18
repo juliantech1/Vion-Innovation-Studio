@@ -26,7 +26,7 @@ export const interfaz: Interfaz = {
     formulario: 'See the contact form and details',
   },
   etiquetas: { paso: 'Step {n} of {total}', plazo: 'Timeline', rango: 'Indicative investment', entregables: 'What you receive' },
-  contacto: { whatsapp: 'WhatsApp', correo: 'Email', instagram: 'Instagram' },
+  contacto: { whatsapp: 'WhatsApp', correo: 'Email', instagram: 'Instagram', youtube: 'Vion’s channel' },
   noEncontrada: {
     titulo: 'Page not found | Vion',
     descripcion: 'This page does not exist or has moved. From here you can go to any page of the Vion website: services, courses and blog.',

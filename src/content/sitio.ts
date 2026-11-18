@@ -15,6 +15,8 @@ export const sitio = {
   whatsappEnlace: 'https://wa.me/50686783553',
   instagram: 'https://www.instagram.com/vion_int/',
   instagramUsuario: '@vion_int',
+  /** El canal de YouTube de Vion (Julian, 2026-11-17). */
+  youtube: 'https://www.youtube.com/channel/UC3G0-twnFLLEMckiR9eVh6A',
   pais: 'CR',
   /** Confirmada por Julian el 2026-11-16: solo localidad y provincia, sin calle ni número. */
   direccion: { localidad: 'Escazú', region: 'San José', pais: 'Costa Rica' },

@@ -16,7 +16,6 @@ export const P = {
   tecnologias: '{{tecnologías de la automatización: AutoLISP, .NET, Python u otras}}',
   resultadoEjemplo: '{{resultado medido del diagnóstico de ejemplo}}',
   casoAutocad: '{{primer caso de AutoCAD con permiso: firma, flujo automatizado y horas antes y después}}',
-  cifrasRuta: '{{cifras del caso Ruta 51-53, si se publican: cantidad de buses, checadores que ya no hacen falta y desde cuándo funciona}}',
   capturaUltron: '{{captura real de Ultron en modo demo, sin datos privados}}',
   resultadosUltron: '{{resultados medidos de Ultron, si se publican}}',
   estadoTopSpin: '{{estado de Top Spin y qué hace la app}}',
@@ -25,7 +24,5 @@ export const P = {
   estadoRealFood: '{{estado de RealFood y qué parte construyó Vion}}',
   capturaRealFood: '{{captura real de RealFood}}',
   resultadosRealFood: '{{resultados medidos de RealFood, si se publican}}',
-  estadoViazo: '{{estado de Viazo}}',
   capturaViazo: '{{captura real de Viazo}}',
-  resultadosViazo: '{{resultados medidos de Viazo, si se publican}}',
 } as const;

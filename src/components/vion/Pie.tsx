@@ -77,6 +77,9 @@ export function Pie({ idioma }: { idioma: Idioma }) {
               <li>
                 <a href={sitio.instagram} rel="noopener">Instagram {sitio.instagramUsuario}</a>
               </li>
+              <li>
+                <a href={sitio.youtube} rel="noopener">YouTube</a>
+              </li>
             </ul>
           </div>
           <div className="celda celda--colofon">

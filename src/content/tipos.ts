@@ -119,8 +119,12 @@ export interface CasoCliente {
   problema: Texto;
   solucion: Texto;
   resultado: Texto;
-  /** Qué hace la IA en la empresa, punto por punto (lista citable, sin cifras). */
+  /** Qué hace la IA en la empresa, punto por punto (lista citable). */
   ia: string[];
+  /** Los datos del caso que dio el cliente o Julian (flota, personas…): van en la ficha y en el JSON-LD. */
+  datos: { termino: string; valor: string }[];
+  /** El sistema de Vion que usa el cliente, con su ficha en la misma página (#ancla). */
+  sistema?: { nombre: string; ancla: string };
   /** El servicio de Vion al que corresponde (enlace y `about`). */
   servicio: IdPagina;
   /** AAAA-MM-DD: cuándo se publicó el caso en el sitio (no la fecha del proyecto). */
@@ -259,7 +263,7 @@ export interface Interfaz {
   llamado: { whatsapp: string; correo: string; formulario: string };
   /** Rótulos de los pasos y los rangos. `paso` lleva {n} y {total}. */
   etiquetas: { paso: string; plazo: string; rango: string; entregables: string };
-  contacto: { whatsapp: string; correo: string; instagram: string };
+  contacto: { whatsapp: string; correo: string; instagram: string; youtube: string };
   noEncontrada: { titulo: string; descripcion: string; etiqueta: string; h1: string; acento: string; bajada: string; lista: string };
   formulario: {
     avisoPrueba: string;
@@ -633,7 +637,7 @@ export interface PiezasCasos {
   figuras: Record<'ultron' | 'topspin' | 'realfood' | 'viazo', FiguraDibujada>;
   /** Cómo va a ser un caso de cliente cuando exista: la ficha vacía con su estado. */
   /** Los rótulos de un caso de cliente (`SeccionCaso`). */
-  caso: { rotulo: string; problema: string; solucion: string; resultado: string; ia: string; ficha: string; estado: string; cliente: string; rubro: string; servicio: string };
+  caso: { rotulo: string; problema: string; solucion: string; resultado: string; ia: string; ficha: string; estado: string; cliente: string; rubro: string; servicio: string; sistema: string };
 }
 
 export interface PiezasNosotros {

@@ -95,6 +95,7 @@ export function Contacto({ idioma }: { idioma: Idioma }) {
                   filas={[
                     { termino: c.respuesta, valor: c.respuestaValor },
                     { termino: ui.contacto.instagram, valor: <a href={sitio.instagram} rel="noopener">{sitio.instagramUsuario}</a> },
+                    { termino: 'YouTube', valor: <a href={sitio.youtube} rel="noopener">{ui.contacto.youtube}</a> },
                     ...datos.filas.map((f) => ({ termino: f.termino, valor: tx(f.valor) })),
                   ]}
                 />

@@ -4,7 +4,8 @@ import type { CasoCliente, Pagina, Proyecto } from '../tipos';
 /**
  * El primer caso de cliente (Julian, 2026-11-16; autoriza nombrar a la empresa): «la empresa Ruta 51-53: le hicimos un
  * CRM para tener GPS en los buses e implementamos IA en la empresa; se ahorran los checadores, que eran los que revisaban
- * cada cuánto pasaban los buses por las paradas públicas». Sin cifras ni fechas del proyecto: no las dio.
+ * cada cuánto pasaban los buses por las paradas públicas». El 2026-11-17 confirmó las cifras (40 buses, 5 checadores) y
+ * que el sistema es Viazo. Sin otras cifras ni fechas del proyecto: no las dio.
  */
 export const rutaCaso: CasoCliente = {
   id: 'ruta-51-53',
@@ -12,11 +13,11 @@ export const rutaCaso: CasoCliente = {
   rubro: 'Transporte público en buses',
   titulo: 'Ruta 51-53: GPS en los buses en lugar de checadores',
   problema:
-    'Para controlar la frecuencia del servicio, la empresa dependía de checadores: personas en las paradas públicas que revisaban cada cuánto pasaban los buses.',
+    'Para controlar la frecuencia del servicio en su flota de 40 buses, la empresa dependía de 5 checadores: personas en las paradas públicas que revisaban cada cuánto pasaban los buses.',
   solucion:
-    'Vion le hizo un CRM con GPS en los buses, para saber por dónde va cada bus y cuándo pasa por cada parada, e implementó inteligencia artificial en la empresa.',
+    'Vion le hizo un CRM con GPS en los 40 buses, [Viazo](@casos#viazo), para saber por dónde va cada bus y cuándo pasa por cada parada, e implementó inteligencia artificial en la empresa.',
   resultado:
-    'Ya no hacen falta checadores para controlar el paso de los buses por las paradas: ese control lo da el sistema.',
+    'Los 5 checadores ya no hacen falta para controlar el paso de los buses por las paradas: ese control lo da el sistema.',
   // Lo que hace la IA, en palabras de Julian (2026-11-16): «evalúa rutas, mejora el funcionamiento, lleva finanzas, crea
   // reportes de los buses, optimiza».
   ia: [
@@ -26,9 +27,14 @@ export const rutaCaso: CasoCliente = {
     'Arma los reportes de los buses.',
     'Ayuda a optimizar el servicio.',
   ],
+  datos: [
+    { termino: 'Flota', valor: '40 buses' },
+    { termino: 'Checadores antes', valor: '5, en las paradas públicas' },
+  ],
+  sistema: { nombre: 'Viazo', ancla: 'viazo' },
   servicio: 'apps',
   publicado: '2026-11-16',
-  pendientes: [P.cifrasRuta],
+  pendientes: [],
 };
 
 // Proyectos propios de Vion (contexto.NEGOCIOS de la aldea y el catálogo de Orión) y los casos de clientes que existen y
@@ -76,8 +82,8 @@ const proyectos: Proyecto[] = [
     linea: 'Rastreo de flotas',
     que: 'Rastreo de flotas de buses públicos, con una app GPS para las rutas 51 y 53.',
     filas: [
-      { termino: 'Estado', valor: P.estadoViazo },
-      { termino: 'Resultados', valor: P.resultadosViazo },
+      { termino: 'Estado', valor: 'En uso en [Ruta 51-53](@casos#ruta-51-53), en los 40 buses de su flota.' },
+      { termino: 'Resultados', valor: 'Los 5 checadores que controlaban el paso por las paradas ya no hacen falta para eso. [Ver el caso Ruta 51-53](@casos#ruta-51-53).' },
     ],
     captura: P.capturaViazo,
   },

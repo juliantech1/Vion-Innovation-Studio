@@ -8,11 +8,11 @@ export const rutaCaso: CasoCliente = {
   rubro: 'Public bus transport',
   titulo: 'Ruta 51-53: GPS on the buses instead of manual checkers',
   problema:
-    'To control service frequency, the company relied on checkers (“checadores”): people at public bus stops who tracked how often the buses came by.',
+    'To control service frequency across its fleet of 40 buses, the company relied on 5 checkers (“checadores”): people at public bus stops who tracked how often the buses came by.',
   solucion:
-    'Vion built a CRM with GPS on the buses, to know where each bus is and when it passes each stop, and implemented artificial intelligence in the company.',
+    'Vion built a CRM with GPS on all 40 buses, [Viazo](@casos#viazo), to know where each bus is and when it passes each stop, and implemented artificial intelligence in the company.',
   resultado:
-    'Checkers are no longer needed to control when the buses pass the stops: the system provides that control.',
+    'The 5 checkers are no longer needed to control when the buses pass the stops: the system provides that control.',
   ia: [
     'It evaluates the routes.',
     'It proposes improvements to operations.',
@@ -20,9 +20,14 @@ export const rutaCaso: CasoCliente = {
     'It produces the bus reports.',
     'It helps optimize the service.',
   ],
+  datos: [
+    { termino: 'Fleet', valor: '40 buses' },
+    { termino: 'Checkers before', valor: '5, at public bus stops' },
+  ],
+  sistema: { nombre: 'Viazo', ancla: 'viazo' },
   servicio: 'apps',
   publicado: '2026-11-16',
-  pendientes: [P.cifrasRuta],
+  pendientes: [],
 };
 
 // Only Vion's own projects. What is not known yet is a placeholder. No client cases until one exists and the client allows it.
@@ -69,8 +74,8 @@ const proyectos: Proyecto[] = [
     linea: 'Fleet tracking',
     que: 'Fleet tracking for public buses, with a GPS app for routes 51 and 53.',
     filas: [
-      { termino: 'Status', valor: P.estadoViazo },
-      { termino: 'Results', valor: P.resultadosViazo },
+      { termino: 'Status', valor: 'In use at [Ruta 51-53](@casos#ruta-51-53), on all 40 buses of its fleet.' },
+      { termino: 'Results', valor: 'The 5 checkers who tracked the buses at the stops are no longer needed for that. [See the Ruta 51-53 case](@casos#ruta-51-53).' },
     ],
     captura: P.capturaViazo,
   },
